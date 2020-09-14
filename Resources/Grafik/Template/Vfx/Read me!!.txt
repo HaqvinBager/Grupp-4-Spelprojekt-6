@@ -1,0 +1,10 @@
+Vfx_Type_Name_Number_19G4_version_19
+
+Type =
+	_Tx_ = texture
+	_Px_ = partikel effekt
+	_Fb_ = flipbooks
+	_Etc_ = Etc
+	
+
+T.ex: Vfx_Px_fire_01_19G4_v1_19
