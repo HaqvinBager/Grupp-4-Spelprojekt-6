@@ -11,8 +11,11 @@
 #include <LightFactory.h>
 #include <EnvironmentLight.h>
 
+#include "CUnityLoader.h"
+
 #ifdef _DEBUG
 #pragma comment(lib, "Engine_Debug.lib")
+#pragma comment(lib, "UnityImporterApp_Debug.lib")
 #endif // _DEBUG
 #ifdef NDEBUG
 #pragma comment(lib, "Engine_Release.lib")
@@ -21,7 +24,11 @@
 namespace SM = DirectX::SimpleMath;
 using namespace CommonUtilities;
 
-CGame::CGame() : myEnemyModel(nullptr)
+#define UNITY_SCALE_MODIFIER 100
+
+CGame::CGame()
+	: myEnemyModel(nullptr)
+	, myUnityLoader(new CUnityLoader())
 {
 }
 
@@ -38,9 +45,16 @@ void CGame::Init()
 	CScene* scene = CScene::GetInstance();
 	scene->AddInstance(camera);
 	scene->SetMainCamera(camera);
-	scene->AddInstance(CreateModel(SM::Vector3(-4.0f, -2.5f, 7.0f)));
-	scene->AddInstance(CreateModel(SM::Vector3(0.0f, -2.5f, 7.0f)));
-	scene->AddInstance(CreateModel(SM::Vector3(0.22f, -2.5f, 7.0f)));
+	//scene->AddInstance(CreateModel(SM::Vector3(-4.0f, -2.5f, 7.0f)));
+	//scene->AddInstance(CreateModel(SM::Vector3(0.0f, -2.5f, 7.0f)));
+	//scene->AddInstance(CreateModel(SM::Vector3(0.55f, -2.5f, 7.0f)));
+	
+	//LoadUnityScene("Unity Level Export/level1.txt");
+	LoadUnityScene("Unity Level Export/exportedLevelASCII.txt");
+	/*
+		FBX scales are very important!.
+
+	*/
 
 	CLightFactory* lightFactory = CLightFactory::GetInstance();
 	CEnvironmentLight* environmentLight = lightFactory->CreateEnvironmentLight("CubeMapTexture.dds");
@@ -76,18 +90,42 @@ void CGame::UpdateCamera(const float& dt)
 	camera->Rotate({ 0, camera_rotation_input * dt, 0 });
 }
 
-void CGame::UpdateScene(const float& dt)
+void CGame::LoadUnityScene(const std::string& aFilePath)
 {
-	std::vector<CModelInstance*> models = CScene::GetInstance()->CullModels(nullptr);
-	for (auto& model : models)
+	std::vector<ObjectData> objectData;
+#if _DEBUG
+	CScene* scene = CScene::GetInstance();
+	std::string modelPath = aFilePath;
+	myUnityLoader->LoadModels(modelPath);
+	objectData = myUnityLoader->LoadGameObjects(modelPath, EReadMode::EReadMode_ASCII);
+	for (auto& object : objectData)
 	{
-		model->Rotate({ 0, dt, 0 });
+		CModelInstance* model = CreateModel(object.myRelativePath, SM::Vector3(object.myPosX * UNITY_SCALE_MODIFIER, object.myPosY * UNITY_SCALE_MODIFIER, object.myPosZ * UNITY_SCALE_MODIFIER));
+		model->SetRotation(SM::Vector3(DirectX::XMConvertToRadians(object.myRotX), DirectX::XMConvertToRadians(object.myRotY), DirectX::XMConvertToRadians(object.myRotZ)));
+		scene->AddInstance(model);
 	}
+
+#endif // _DEBUG
+#if NDEBUG
+	objectData = myUnityLoader->LoadGameObjects(aFilePath, EReadMode::EReadMode_Binary);
+#endif // NDEBUG
+
+	
 }
 
-CModelInstance* CGame::CreateModel(SM::Vector3 position)
+void CGame::UpdateScene(const float& /*dt*/)
 {
-	CModel* model = CModelFactory::GetInstance()->GetModel("Model/enemy_robot/enemy_robot.fbx");
+	//std::vector<CModelInstance*> models = CScene::GetInstance()->CullModels(nullptr);
+	//for (auto& model : models)
+	//{
+	//	model->Rotate({ 0, dt, 0 });
+	//}
+}
+
+CModelInstance* CGame::CreateModel(const std::string& aModelPath, SM::Vector3 position)
+{
+	CModel* model = CModelFactory::GetInstance()->GetModel(aModelPath);
+	//CModel* model = CModelFactory::GetInstance()->GetModel("enemy_robot.fbx");
 	//CModel* model = CModelFactory::GetInstance()->GetModel("Model/hejsanhopsan/hejsanhopsan.fbx");
 	myEnemyModel = new CModelInstance();
 	myEnemyModel->Init(model);
