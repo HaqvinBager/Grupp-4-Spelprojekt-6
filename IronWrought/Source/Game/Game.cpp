@@ -40,7 +40,7 @@ void CGame::Init()
 	scene->SetMainCamera(camera);
 	scene->AddInstance(CreateModel(SM::Vector3(-4.0f, -2.5f, 7.0f)));
 	scene->AddInstance(CreateModel(SM::Vector3(0.0f, -2.5f, 7.0f)));
-	scene->AddInstance(CreateModel(SM::Vector3(4.22f, -2.5f, 7.0f)));
+	scene->AddInstance(CreateModel(SM::Vector3(0.22f, -2.5f, 7.0f)));
 
 	CLightFactory* lightFactory = CLightFactory::GetInstance();
 	CEnvironmentLight* environmentLight = lightFactory->CreateEnvironmentLight("CubeMapTexture.dds");
