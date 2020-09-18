@@ -29,7 +29,6 @@ bool CForwardRenderer::Init(CEngine& anEngine) {
 		return false;
 
 	HRESULT result;
-
 	D3D11_BUFFER_DESC bufferDescription = { 0 };
 	bufferDescription.Usage = D3D11_USAGE_DYNAMIC;
 	bufferDescription.BindFlags = D3D11_BIND_CONSTANT_BUFFER;

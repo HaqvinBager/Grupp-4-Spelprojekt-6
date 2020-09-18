@@ -15,7 +15,8 @@
     </Filter>
     <Filter Include="AxelsFantastiskaFillterWaooewee">
       <UniqueIdentifier>{c54ce9b4-5429-4db1-9822-4a761cd7f2d7}</UniqueIdentifier>
-    <Filter Include="asd">
+    </Filter>
+	<Filter Include="asd">
       <UniqueIdentifier>{e093450e-09cb-44bd-b18a-f6893b6f3a80}</UniqueIdentifier>
     </Filter>
   </ItemGroup>

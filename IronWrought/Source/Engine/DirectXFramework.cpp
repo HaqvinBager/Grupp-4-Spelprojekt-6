@@ -8,8 +8,6 @@ CDirectXFramework::CDirectXFramework()
     myDevice = nullptr;
     myContext = nullptr;
     myBackBuffer = nullptr;
-
-
 }
 
 CDirectXFramework::~CDirectXFramework()
