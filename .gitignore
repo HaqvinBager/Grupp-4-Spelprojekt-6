@@ -366,3 +366,8 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+/IronWrought/Unity_Project/Library/
+/IronWrought/Unity_Project/Logs/
+/IronWrought/Unity_Project/Packages/
+/IronWrought/Unity_Project/Temp/
