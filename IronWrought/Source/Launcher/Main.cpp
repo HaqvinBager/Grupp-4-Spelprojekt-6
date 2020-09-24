@@ -18,6 +18,7 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 	hPrevInstance;
 	lpCmdLine;
 	nShowCmd;
+<<<<<<< Updated upstream
 	/// <summarysummarysummary>
 	/// <summarysummarysummary>
 	/// <summarysummarysummary>
@@ -26,6 +27,33 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 	/// </summarysummarysummary>
 	/// </summarysummarysummary>
 	/// </summarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummary>
+=======
+	//gdgdfgfhcvhchchc
+	//gdgdfgfhcvhchchc
+	//gdgdfgfhcvhchchc
+	//gdgdfgfhcvhchchc
+	//gdgdfgfhcvhchchc
+	//gdgdfgfhcvhchchc
+	//gdgdfgfhcvhchchc
+	//gdgdfgfhcvhchchc
+	//gdgdfgfhcvhchchc
+	//gdgdfgfhcvhchchc
+	//gdgdfgfhcvhchchc
+	//gdgdfgfhcvhchchc
+	//gdgdfgfhcvhchchc
+	//gdgdfgfhcvhchchc
+	//gdgdfgfhcvhchchc
+	//gdgdfgfhcvhchchc
+	//gdgdfgfhcvhchchc
+	//gdgdfgfhcvhchchc
+	//gdgdfgfhcvhchchc
+	//gdgdfgfhcvhchchc
+	//gdgdfgfhcvhchchc
+	//gdgdfgfhcvhchchc
+	/// <summary>
+	/// 
+	/// </summary>
+>>>>>>> Stashed changes
 	/// <param name="hInstance"></param>
 	/// <paramparamparamparamparamparamparamparamparamparamparamparamparamparamparamparamparamparamparamparamparamparamparamparamparamparamparamparamparamparamparamparamparamparamparamparam name="hPrevInstance"></param>
 	/// <param name="hPrevInstance"></param>
