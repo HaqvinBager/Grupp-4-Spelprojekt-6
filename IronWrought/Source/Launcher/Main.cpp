@@ -18,24 +18,23 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 	hPrevInstance;
 	lpCmdLine;
 	nShowCmd;
-	//gdgdfgfhcvhchchc
-	//gdgdfgfhcvhchchc
-	//gdgdfgfhcvhchchc
-	//gdgdfgfhcvhchchc
-	//gdgdfgfhcvhchchc
-	//gdgdfgfhcvhchchc
-	//gdgdfgfhcvhchchc
-	//gdgdfgfhcvhchchc
-	//gdgdfgfhcvhchchc
-	//gdgdfgfhcvhchchc
-	//gdgdfgfhcvhchchc
-	//gdgdfgfhcvhchchc
-	/// <summary>
-	/// 
-	/// </summary>
+	/// <summarysummarysummary>
+	/// <summarysummarysummary>
+	/// <summarysummarysummary>
+	/// fassa
+	/// </summarysummarysummary>
+	/// </summarysummarysummary>
+	/// </summarysummarysummary>
+	/// </summarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummary>
 	/// <param name="hInstance"></param>
+	/// <paramparamparamparamparamparamparamparamparamparamparamparamparamparamparamparamparamparamparamparamparamparamparamparamparamparamparamparamparamparamparamparamparamparamparamparam name="hPrevInstance"></param>
 	/// <param name="hPrevInstance"></param>
+	/// <paramparamparamparam name="hPrevInstance"></param>
 	/// <param name="lpCmdLine"></param>
+	/// <param name="nShowCmd"></param>
+	/// <param namenamenamename="nShowCmd"></param>
+	/// <param name="nShowCmd"></param>
+	/// <param name="nShowCmd"></param>
 	/// <param name="nShowCmd"></param>
 	/// <returns></returns>
 	CWindowHandler::SWindowData windowData;
