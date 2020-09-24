@@ -30,6 +30,14 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 	//gdgdfgfhcvhchchc
 	//gdgdfgfhcvhchchc
 	//gdgdfgfhcvhchchc
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <param name="hInstance"></param>
+	/// <param name="hPrevInstance"></param>
+	/// <param name="lpCmdLine"></param>
+	/// <param name="nShowCmd"></param>
+	/// <returns></returns>
 	CWindowHandler::SWindowData windowData;
 	windowData.myX = 100;
 	windowData.myY = 100;
