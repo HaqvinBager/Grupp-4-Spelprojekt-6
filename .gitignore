@@ -295,3 +295,13 @@ FodyWeavers.xsd
 /IronWrought/Unity_Project/Logs/
 /IronWrought/Unity_Project/Packages/
 /IronWrought/Unity_Project/Temp/
+SpelMotor/IronWrought/Lib/ModelLoader_Debug.lib
+SpelMotor/IronWrought/Bin/CubePixelShader.cso
+SpelMotor/IronWrought/Bin/CubeVertexShader.cso
+SpelMotor/IronWrought/Bin/PBRPixelShader.cso
+SpelMotor/IronWrought/Bin/PixelShader.cso
+SpelMotor/IronWrought/Bin/VertexShader.cso
+SpelMotor/IronWrought/Lib/DirectXTK_Debug.lib
+SpelMotor/IronWrought/Lib/Engine_Debug.lib
+SpelMotor/IronWrought/Lib/Game_Debug.lib
+SpelMotor/IronWrought/Bin/Launcher_Debug.exe
