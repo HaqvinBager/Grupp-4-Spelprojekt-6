@@ -19,6 +19,17 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 	lpCmdLine;
 	nShowCmd;
 	//gdgdfgfhcvhchchc
+	//gdgdfgfhcvhchchc
+	//gdgdfgfhcvhchchc
+	//gdgdfgfhcvhchchc
+	//gdgdfgfhcvhchchc
+	//gdgdfgfhcvhchchc
+	//gdgdfgfhcvhchchc
+	//gdgdfgfhcvhchchc
+	//gdgdfgfhcvhchchc
+	//gdgdfgfhcvhchchc
+	//gdgdfgfhcvhchchc
+	//gdgdfgfhcvhchchc
 	CWindowHandler::SWindowData windowData;
 	windowData.myX = 100;
 	windowData.myY = 100;
