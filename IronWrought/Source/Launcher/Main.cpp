@@ -18,25 +18,20 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 	hPrevInstance;
 	lpCmdLine;
 	nShowCmd;
-	/// <summarysummarysummary>
-	/// <summarysummarysummary>
-	/// <summarysummarysummary>
-	/// fassa
-	/// </summarysummarysummary>
-	/// </summarysummarysummary>
-	/// </summarysummarysummary>
-	/// </summarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummary>
-	/// <param name="hInstance"></param>
-	/// <paramparamparamparamparamparamparamparamparamparamparamparamparamparamparamparamparamparamparamparamparamparamparamparamparamparamparamparamparamparamparamparamparamparamparamparam name="hPrevInstance"></param>
-	/// <param name="hPrevInstance"></param>
-	/// <paramparamparamparam name="hPrevInstance"></param>
-	/// <param name="lpCmdLine"></param>
-	/// <param name="nShowCmd"></param>
-	/// <param namenamenamename="nShowCmd"></param>
-	/// <param name="nShowCmd"></param>
-	/// <param name="nShowCmd"></param>
-	/// <param name="nShowCmd"></param>
-	/// <returns></returns>
+	//Hej
+	//Hej
+	//Hej
+	//Hej
+	//Hej
+	//Hej
+	//Hej
+	//Hej
+	//Hej
+	//Hej
+	//Hej
+	//Hej
+	//Hej
+	//Hej
 	CWindowHandler::SWindowData windowData;
 	windowData.myX = 100;
 	windowData.myY = 100;
