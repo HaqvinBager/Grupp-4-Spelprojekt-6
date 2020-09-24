@@ -28,30 +28,19 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 	/// </summarysummarysummary>
 	/// </summarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummary>
 =======
-	//gdgdfgfhcvhchchc
-	//gdgdfgfhcvhchchc
-	//gdgdfgfhcvhchchc
-	//gdgdfgfhcvhchchc
-	//gdgdfgfhcvhchchc
-	//gdgdfgfhcvhchchc
-	//gdgdfgfhcvhchchc
-	//gdgdfgfhcvhchchc
-	//gdgdfgfhcvhchchc
-	//gdgdfgfhcvhchchc
-	//gdgdfgfhcvhchchc
-	//gdgdfgfhcvhchchc
-	//gdgdfgfhcvhchchc
-	//gdgdfgfhcvhchchc
-	//gdgdfgfhcvhchchc
-	//gdgdfgfhcvhchchc
-	//gdgdfgfhcvhchchc
-	//gdgdfgfhcvhchchc
-	//gdgdfgfhcvhchchc
-	//gdgdfgfhcvhchchc
-	//gdgdfgfhcvhchchc
+	//HEJ HEJ HEJ HEJ
+		//HEJ HEJ HEJ HEJ
+			//HEJ HEJ HEJ HEJ
+				//HEJ HEJ HEJ HEJ
+
+					//HEJ HEJ HEJ HEJ
+						//HEJ HEJ HEJ HEJ
+							//HEJ HEJ HEJ HEJ
+								//HEJ HEJ HEJ HEJ
+									//HEJ HEJ HEJ HEJ
 	//gdgdfgfhcvhchchc
 	/// <summary>
-	/// 
+	///
 	/// </summary>
 >>>>>>> Stashed changes
 	/// <param name="hInstance"></param>
@@ -171,11 +160,11 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 		//	cubeModelInstance->SetUVOffset(Vector2(duration, uvoffset.y));
 		//}
 
-		//if (Input::GetInstance()->IsKeyDown('V')) {		
+		//if (Input::GetInstance()->IsKeyDown('V')) {
 		//	cubeModelInstance->SetUVOffset(Vector2(uvoffset.x, duration));
 		//}
 
-		//	
+		//
 		//cubeModelInstance->Rotate(Vector3(sinf(duration) * dt, sinf(duration) * dt, cosf(duration) * dt));
 		////cubeModelInstance->SetPosition(Vector3(cosf(duration) * dt, 0.0f, 7.0f));
 
