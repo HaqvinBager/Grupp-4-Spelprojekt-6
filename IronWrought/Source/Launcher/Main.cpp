@@ -18,20 +18,42 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 	hPrevInstance;
 	lpCmdLine;
 	nShowCmd;
-	//Hej
-	//Hej
-	//Hej
-	//Hej
-	//Hej
-	//Hej
-	//Hej
-	//Hej
-	//Hej
-	//Hej
-	//Hej
-	//Hej
-	//Hej
-	//Hej
+	//gdgdfgfhcvhchchc
+	//gdgdfgfhcvhchchc
+	//gdgdfgfhcvhchchc
+	//gdgdfgfhcvhchchc
+	//gdgdfgfhcvhchchc
+	//gdgdfgfhcvhchchc
+	//gdgdfgfhcvhchchc
+	//gdgdfgfhcvhchchc
+	//gdgdfgfhcvhchchc
+	//gdgdfgfhcvhchchc
+	//gdgdfgfhcvhchchc
+	//gdgdfgfhcvhchchc
+	//gdgdfgfhcvhchchc
+	//gdgdfgfhcvhchchc
+	//gdgdfgfhcvhchchc
+	//gdgdfgfhcvhchchc
+	//gdgdfgfhcvhchchc
+	//gdgdfgfhcvhchchc
+	//gdgdfgfhcvhchchc
+	//gdgdfgfhcvhchchc
+	//gdgdfgfhcvhchchc
+	//gdgdfgfhcvhchchc
+	/// <summary>
+	///
+	/// </summary>
+	/// <param name="hInstance"></param>
+	/// <paramparamparamparamparamparamparamparamparamparamparamparamparamparamparamparamparamparamparamparamparamparamparamparamparamparamparamparamparamparamparamparamparamparamparamparam name="hPrevInstance"></param>
+	/// <param name="hPrevInstance"></param>
+	/// <paramparamparamparam name="hPrevInstance"></param>
+	/// <param name="lpCmdLine"></param>
+	/// <param name="nShowCmd"></param>
+	/// <param namenamenamename="nShowCmd"></param>
+	/// <param name="nShowCmd"></param>
+	/// <param name="nShowCmd"></param>
+	/// <param name="nShowCmd"></param>
+	/// <returns></returns>
 	CWindowHandler::SWindowData windowData;
 	windowData.myX = 100;
 	windowData.myY = 100;
@@ -138,11 +160,11 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 		//	cubeModelInstance->SetUVOffset(Vector2(duration, uvoffset.y));
 		//}
 
-		//if (Input::GetInstance()->IsKeyDown('V')) {		
+		//if (Input::GetInstance()->IsKeyDown('V')) {
 		//	cubeModelInstance->SetUVOffset(Vector2(uvoffset.x, duration));
 		//}
 
-		//	
+		//
 		//cubeModelInstance->Rotate(Vector3(sinf(duration) * dt, sinf(duration) * dt, cosf(duration) * dt));
 		////cubeModelInstance->SetPosition(Vector3(cosf(duration) * dt, 0.0f, 7.0f));
 
