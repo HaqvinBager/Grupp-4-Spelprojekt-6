@@ -305,3 +305,8 @@ SpelMotor/IronWrought/Lib/DirectXTK_Debug.lib
 SpelMotor/IronWrought/Lib/Engine_Debug.lib
 SpelMotor/IronWrought/Lib/Game_Debug.lib
 SpelMotor/IronWrought/Bin/Launcher_Debug.exe
+SpelMotor/IronWrought/Lib/ModelLoader_Release.lib
+SpelMotor/IronWrought/Lib/Game_Release.lib
+SpelMotor/IronWrought/Lib/Engine_Release.lib
+SpelMotor/IronWrought/Lib/DirectXTK_Release.lib
+SpelMotor/IronWrought/Bin/Launcher_Release.exe
