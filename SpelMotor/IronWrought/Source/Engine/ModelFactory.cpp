@@ -61,7 +61,7 @@ CModel* CModelFactory::GetModelPBR(std::string aFilePath)
 CModel* CModelFactory::LoadModelPBR(std::string aFilePath)
 {
 	HRESULT result;
-
+	// THIS ABSOLUTELY AWESOME MATEY. BUT MAEK IT BETTER LATER LOL :):)??
 	const size_t last_slash_idx = aFilePath.find_last_of("\\/");
 	std::string modelDirectory = aFilePath.substr(0, last_slash_idx + 1);
 	std::string modelName = aFilePath.substr(last_slash_idx + 1, aFilePath.size() - last_slash_idx - 5);
