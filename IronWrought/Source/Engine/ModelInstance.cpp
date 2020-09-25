@@ -30,8 +30,9 @@ void CModelInstance::SetPosition(Vector3 aPosition)
 void CModelInstance::SetRotation(Vector3 aRotation)
 {
 	Vector3 translation = myTransform.Translation();
-	myTransform = Matrix::CreateFromYawPitchRoll(aRotation.x, aRotation.y, aRotation.z);
-	myTransform += Matrix::CreateTranslation(aRotation);
+	myTransform = Matrix::CreateFromYawPitchRoll(aRotation.y, aRotation.x, aRotation.z);
+	//myTransform += Matrix::CreateTranslation(aRotation);
+	myTransform.Translation(translation);
 }
 
 void CModelInstance::Move(Vector3 aMovement)

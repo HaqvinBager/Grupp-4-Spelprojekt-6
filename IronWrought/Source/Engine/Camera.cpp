@@ -14,7 +14,7 @@ CCamera::~CCamera()
 bool CCamera::Init(float aFoV, Vector2 aResolution)
 {
 	myTransform = Matrix();
-	myProjection = DirectX::XMMatrixPerspectiveFovLH(DirectX::XMConvertToRadians(aFoV), (aResolution.x / aResolution.y), 0.05f, 100.0f);
+	myProjection = DirectX::XMMatrixPerspectiveFovLH(DirectX::XMConvertToRadians(aFoV), (aResolution.x / aResolution.y), 0.05f, 1000.0f);
 	return true;
 }
 

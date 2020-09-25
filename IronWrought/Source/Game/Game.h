@@ -1,4 +1,6 @@
 #pragma once
+#include <string>
+class CUnityLoader;
 
 namespace DirectX {
 	namespace SimpleMath {
@@ -18,9 +20,11 @@ public:
 
 private:
 
+	void LoadUnityScene(const std::string& aFilePath);
 	void UpdateScene(const float& dt);
 	void UpdateCamera(const float& dt);
-	CModelInstance* CreateModel(DirectX::SimpleMath::Vector3 position);
+	CModelInstance* CreateModel(const std::string& aModelPath, DirectX::SimpleMath::Vector3 position);
 	CModelInstance* myEnemyModel;
+	CUnityLoader*  myUnityLoader;
 };
 
