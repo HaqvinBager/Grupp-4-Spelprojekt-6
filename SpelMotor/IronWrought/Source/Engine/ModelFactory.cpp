@@ -478,7 +478,7 @@ CModel* CModelFactory::GetCube()
 
 CModelInstance* CModelFactory::CreateModel(std::string aModelName, float scale)
 {
-	CModel* model = CModelFactory::GetInstance()->GetModelPBR("Model/Chest/Particle_Chest.fbx");
+	CModel* model = CModelFactory::GetInstance()->GetModelPBR(aModelName);
 	CModelInstance* modelInstance = new CModelInstance();
 	modelInstance->Init(model);
 	modelInstance->SetScale(scale);
