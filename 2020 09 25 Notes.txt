@@ -1,0 +1,41 @@
+
+
+//Tga2D -> c++ Engine Startup CallStack
+	//Main.cpp
+		57: int WINAPI WinMain(HINSTANCE **, HINSTANCE **, char* **, int **)
+		63: Init();
+		
+		75: CGame myGame;
+		88: myGame.Init();
+		
+	//Game.cpp
+		48: bool Init(const std::wstring& aVersion, HWND aHWND, int width, int height)
+		58: Setup myWinProcCallBack = [this] (HWND)
+		
+		
+//Tga2D -> c# Engine Startup CallStack
+	//MainWindow.xaml.cs
+		129: engineThread = new Thread(() => { RunGfxEngine(); });
+		
+		152: lock (RenderPanel) {
+        153:    engineBridge = new EngineBridge();
+        154:    engineBridge.init(hwnd, 1280, 720); 
+		155: }
+		//Här skickas HWND in, den som annars är en vanlig c++ Application Window är nu en WindowsHost Application Window
+			
+	//Game.cpp
+		48: bool Init(const std::wstring& aVersion, HWND aHWND, int width, int height)
+		58: Setup myWinProcCallBack = [this] (HWND)
+		
+        
+		
+			
+		
+	
+	
+	//EngineBridge.cpp
+		
+		
+		
+		
+		
