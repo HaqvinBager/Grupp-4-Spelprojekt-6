@@ -7,6 +7,7 @@
 #include "DDSTextureLoader.h"
 #include "FBXLoaderCustom.h"
 #include "ModelInstance.h"
+#include "ModelMath.h"
 
 #ifdef _DEBUG
 #pragma comment(lib, "ModelLoader_Debug.lib")
@@ -69,6 +70,7 @@ CModel* CModelFactory::LoadModelPBR(std::string aFilePath)
 	CFBXLoaderCustom modelLoader;
 	CLoaderModel* loaderModel = modelLoader.LoadModel(aFilePath.c_str());
 	CLoaderMesh* mesh = loaderModel->myMeshes[0];
+	
 
 	D3D11_BUFFER_DESC vertexBufferDesc = { 0 };
 	vertexBufferDesc.ByteWidth = mesh->myVertexBufferSize * mesh->myVertexCount;
@@ -96,11 +98,41 @@ CModel* CModelFactory::LoadModelPBR(std::string aFilePath)
 	if (FAILED(result))
 		return nullptr;
 
+
+	//ID3D11Buffer* bonesBuffer = nullptr;
+	//if (mesh->myModel->myNumBones > 0)
+	//{
+	//	struct BoneB
+	//	{
+	//		SlimMatrix44 boneOffset[64];
+	//		SlimMatrix44 finalTransformation[64];
+	//	};
+
+	//	D3D11_BUFFER_DESC boneBufferDesc = { 0 };
+	//	boneBufferDesc.Usage = D3D11_USAGE_DYNAMIC;
+	//	boneBufferDesc.ByteWidth = sizeof(BoneB);
+	//	boneBufferDesc.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
+	//	boneBufferDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
+	//	boneBufferDesc.MiscFlags = 0;
+	//	boneBufferDesc.StructureByteStride = 0;
+	//	//D3D11_SUBRESOURCE_DATA boneSubResourceData;
+	//	//boneSubResourceData.pSysMem = mesh->myModel->my
+
+	//	result = myEngine->myFramework->GetDevice()->CreateBuffer(&boneBufferDesc, NULL, &bonesBuffer);
+	//	if (FAILED(result)) { return nullptr; }
+	//}
+
 	//VertexShader
 	std::ifstream vsFile;
-	vsFile.open("VertexShader.cso", std::ios::binary);
+	if (mesh->myModel->myNumBones > 0)
+	{
+		vsFile.open("AnimatedVertexShader.cso", std::ios::binary);
+	}
+	else {
+		vsFile.open("VertexShader.cso", std::ios::binary);
+	}
+	
 	std::string vsData = { std::istreambuf_iterator<char>(vsFile), std::istreambuf_iterator<char>() };
-
 	ID3D11VertexShader* vertexShader;
 	result = myEngine->myFramework->GetDevice()->CreateVertexShader(vsData.data(), vsData.size(), nullptr, &vertexShader);
 
@@ -108,6 +140,7 @@ CModel* CModelFactory::LoadModelPBR(std::string aFilePath)
 		return nullptr;
 
 	vsFile.close();
+
 
 	//PixelShader
 	std::ifstream psFile;
@@ -182,6 +215,12 @@ CModel* CModelFactory::LoadModelPBR(std::string aFilePath)
 	modelData.myTexture[0] = diffuseResourceView;
 	modelData.myTexture[1] = materialResourceView;
 	modelData.myTexture[2] = normalResourceView;
+
+	//if (mesh->myModel->myNumBones > 0)
+	//{
+	//	modelData.myBonesBuffer = bonesBuffer;
+	//}
+	//modelData.myAnimations
 
 	//modelData.myTexture[3] = roughnessShaderResourceView;
 	//modelData.myTexture[4] = ambientShaderResourceView;

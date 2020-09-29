@@ -28,15 +28,26 @@ cbuffer ObjectBuffer : register(b1)
     float3 padding;
 };
 
+cbuffer BoneBuffer : register(b2)
+{
+    matrix myBones[64];
+};
+
 struct VertexInput
 {
-	float4 myPosition : POSITION;
-	float4 myNormal : NORMAL;
-	float4 myTangent : TANGENT;
-	float4 myBiNormal : BITANGENT;
-	float2 myUV : UV;
-	float4 myBoneID : BONEID;
-	float4 myBoneWeight : BONEWEIGHT;
+	float4 myPosition : POSITION;       //16
+    float4 myNormal : NORMAL;           //16
+    float4 myTangent : TANGENT;         //16
+    float4 myBiNormal : BITANGENT;      //16
+	float2 myUV : UV;                   //8
+	float4 myBoneID : BONEID;           //16
+	float4 myBoneWeight : BONEWEIGHT;   //16
+};
+
+struct AnimVertexToPixel
+{
+    float4 myPosition : SV_POSITION;
+    float4 myColor : COLOR;
 };
 
 struct VertexToPixel

@@ -1,7 +1,9 @@
 #pragma once
 #include <vector>
 #include "SimpleMath.h"
+#include "ModelMath.h"
 #include <wrl.h>
+
 
 class CModelInstance;
 class CEngine;
@@ -47,11 +49,20 @@ private:
 	static_assert((sizeof(SObjectBufferData) % 16) == 0, "CB size not padded correctly");
 
 
+	struct SBoneBufferData {
+		SlimMatrix44 myBones[64];
+	} myBoneBufferData;
+
+	static_assert((sizeof(SBoneBufferData) % 16) == 0, "CB size not padded correctly");
+
 private:
 
 	ID3D11DeviceContext* myContext;
 	ID3D11Buffer* myFrameBuffer;
 	ID3D11Buffer* myObjectBuffer;
+	ID3D11Buffer* myBoneBuffer;
+
+
 };
 
 //struct SObjectLightBufferData
