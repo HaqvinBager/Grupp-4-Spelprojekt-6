@@ -1,7 +1,15 @@
 #pragma once
 #include "SimpleMath.h"
+#include "ModelMath.h"
 
 class CModel;
+
+struct SAnimationBlend
+{
+	int myFirst = -1;
+	int mySecond = -1;
+	float myBlendLerp = 0;
+};
 
 class CModelInstance {
 public:
@@ -16,6 +24,12 @@ public:
 	void Rotate(DirectX::SimpleMath::Vector3 aRotation);
 	void SetScale(float aScale);
 
+public:
+	void UpdateAnimation(float dt);
+
+	std::array<SlimMatrix44, 64> GetBones() { return myBones; }
+	void GetAnimatedTransforms(float dt, SlimMatrix44* transforms);
+	void SetBlend(int anAnimationIndex, int anAnimationIndexTwo, float aBlend);
 
 public:
 	CModel* GetModel() { return myModel; }
@@ -28,4 +42,6 @@ private:
 	DirectX::SimpleMath::Matrix myTransform;
 	DirectX::SimpleMath::Vector2 myUVOffset;
 	float myScale;
+	std::array<SlimMatrix44, 64> myBones { };
+	SAnimationBlend myBlend;
 };

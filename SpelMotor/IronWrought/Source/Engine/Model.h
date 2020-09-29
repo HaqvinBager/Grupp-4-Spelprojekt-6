@@ -2,6 +2,8 @@
 #include <array>
 #include <d3d11.h>
 
+class CAnimation;
+
 class CModel {
 public:
 	struct SModelData {
@@ -17,6 +19,8 @@ public:
 		D3D11_PRIMITIVE_TOPOLOGY myPrimitiveTopology;
 		ID3D11InputLayout* myInputLayout = nullptr;
 		std::array<ID3D11ShaderResourceView*, 3> myTexture { };
+		//ID3D11Buffer* myBonesBuffer = nullptr;
+		//std::vector<CAnimation*> myAnimations;
 	};
 
 public:
@@ -25,6 +29,10 @@ public:
 
 	void Init(SModelData data);
 	SModelData& GetModelData();
+
+	int AddAnimation(CAnimation* anAnimation);
+	const std::vector<CAnimation*>& GetAnimations() const { return myAnimations; }
 private:
+	std::vector<CAnimation*> myAnimations;
 	SModelData myModelData;
 };
