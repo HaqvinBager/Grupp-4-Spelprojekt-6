@@ -267,6 +267,10 @@ FodyWeavers.xsd
 /IronWrought/Unity_Project/Logs/
 /IronWrought/Unity_Project/Packages/
 /IronWrought/Unity_Project/Temp/
+/Resources/vertexPaint/vertexPaint_unity/Library/
+/Resources/vertexPaint/vertexPaint_unity/Logs/
+/Resources/vertexPaint/vertexPaint_unity/Packages/
+/Resources/vertexPaint/vertexPaint_unity/Temp/
 SpelMotor/IronWrought/Lib/ModelLoader_Debug.lib
 SpelMotor/IronWrought/Bin/CubePixelShader.cso
 SpelMotor/IronWrought/Bin/CubeVertexShader.cso
