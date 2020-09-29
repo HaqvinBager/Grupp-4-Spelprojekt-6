@@ -166,6 +166,7 @@ int CFBXLoaderCustom::DetermineAndLoadVerticies(aiMesh* fbxMesh, CLoaderMesh* aL
 			data[dataIndex + 19] = (float)boneData.IDs[1];
 			data[dataIndex + 20] = (float)boneData.IDs[2];
 			data[dataIndex + 21] = (float)boneData.IDs[3];
+			//CONFJURMED by Haqvin
 
 			data[dataIndex + 22] = boneData.Weights[0];
 			data[dataIndex + 23] = boneData.Weights[1];

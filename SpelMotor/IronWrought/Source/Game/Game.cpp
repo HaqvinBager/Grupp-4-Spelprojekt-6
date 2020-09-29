@@ -13,6 +13,8 @@
 #include <Timer.h>
 #include <PointLight.h>
 
+#include <Animation.h>
+
 
 #ifdef _DEBUG
 #pragma comment(lib, "Engine_Debug.lib")
@@ -42,8 +44,8 @@ void CGame::Init()
 	light->Init();
 
 	CModelInstance* model = CModelFactory::GetInstance()->CreateModel("Model/Chest/Particle_Chest.fbx", 0.025f);
-	model->SetPosition({ 10.0f, 0.0f, 10.0f });
-	camera->SetPosition({ 10.0f, 1.0f, 5.0f });
+	model->SetPosition({ 12.5f, 0.0f, 15.0f });
+	camera->SetPosition({ 10.0f, 2.5f, 5.0f });
 	light->SetPosition({ 10.0f, 1.0f, 7.0f });
 
 	environmentLight->SetDirection(SM::Vector3(0, 1, -1));
@@ -58,10 +60,35 @@ void CGame::Init()
 	scene->AddInstance(camera);
 	scene->AddInstance(environmentLight);
 	scene->AddInstance(light);
+
+	CModel* animModel = CModelFactory::GetInstance()->LoadModelPBR("Ani/CH_NPC_Undead_17G3_SK.fbx");
+
+	CAnimation* animation = new CAnimation();
+	std::vector<std::string> somePathsToAnimations;
+	somePathsToAnimations.push_back("ani/CH_NPC_Undead@Walk_01_17G3_AN.fbx");
+	somePathsToAnimations.push_back("ani/CH_NPC_Undead@Idle_01_17G3_AN.fbx");
+
+	const std::string rigModel = "Ani/CH_NPC_Undead_17G3_SK.fbx";
+	animation->Init(rigModel.c_str(), somePathsToAnimations);
+	animModel->AddAnimation(animation);
+
+	CModelInstance* animModelInstance = new CModelInstance();
+	animModelInstance->Init(animModel);
+	animModelInstance->SetScale(0.025f);
+	animModelInstance->SetBlend(0, 1, 1.0f);
+	animModelInstance->SetPosition({ 10.0f, 0.0f, 10.0f });
+	scene->AddInstance(animModelInstance);
 }
 
 void CGame::Update()
 {
+	auto models = CScene::GetInstance()->CullModels(CScene::GetInstance()->GetMainCamera());
+	for (auto& model : models)
+	{
+		model->SetBlend(0, 1, sinf(CTimer::Time()));
+		model->UpdateAnimation(CTimer::Dt());//CTimer::Dt());
+	}
+
 	UpdateCamera();
 	UpdatePointLights();
 }
@@ -88,9 +115,9 @@ void CGame::UpdateCamera()
 	camera->Move(camera_movement_input * dt);
 	camera->Rotate({ 0, camera_rotation_input * dt, 0 });
 
-	CModelInstance* model = CScene::GetInstance()->CullModels(CScene::GetInstance()->GetMainCamera())[0];
-	model->Rotate({ 0.0f, sinf(CTimer::Time()) * dt, 0.0f });
-	model = nullptr;
+	//CModelInstance* model = CScene::GetInstance()->CullModels(CScene::GetInstance()->GetMainCamera())[0];
+	//model->Rotate({ 0.0f, sinf(CTimer::Time()) * dt, 0.0f });
+	//model = nullptr;
 }
 
 void CGame::UpdatePointLights()

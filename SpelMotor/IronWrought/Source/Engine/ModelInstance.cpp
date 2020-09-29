@@ -1,5 +1,7 @@
 #include "stdafx.h"
 #include "ModelInstance.h"
+#include "Animation.h"
+#include "Model.h"
 
 using namespace DirectX::SimpleMath;
 
@@ -62,3 +64,36 @@ void CModelInstance::SetScale(float aScale)
 	myScale = aScale;
 	myTransform *= Matrix::CreateScale(myScale);
 }
+
+void CModelInstance::UpdateAnimation(float dt)
+{
+	for (CAnimation* anim : myModel->GetAnimations())
+	{
+		anim->Step(dt);
+	}
+
+	for (int i = 0; i < 64; i++)
+	{
+		myBones[i].SetIdentity();
+	}
+
+	GetAnimatedTransforms(dt, myBones.data());	
+}
+
+void CModelInstance::GetAnimatedTransforms(float dt, SlimMatrix44* transforms)
+{
+	dt;
+	if(myModel->GetAnimations().size() > 0)
+	{
+		CAnimation* first = myModel->GetAnimations()[0];
+		first->BoneTransformWithBlend(transforms, myBlend.myBlendLerp);
+	}
+}
+
+void CModelInstance::SetBlend(int anAnimationIndex, int anAnimationIndexTwo, float aBlend)
+{
+	myBlend.myFirst = anAnimationIndex;
+	myBlend.mySecond = anAnimationIndexTwo;
+	myBlend.myBlendLerp = aBlend;
+}
+

@@ -6,10 +6,11 @@
 #include "Camera.h"
 #include "EnvironmentLight.h"
 #include "PointLight.h"
+#include "ModelMath.h"
 
 namespace SM = DirectX::SimpleMath;
 
-CForwardRenderer::CForwardRenderer() : myContext(nullptr), myFrameBuffer(), myObjectBuffer(nullptr) {
+CForwardRenderer::CForwardRenderer() : myContext(nullptr), myFrameBuffer(nullptr), myFrameBufferData(), myObjectBuffer(nullptr), myObjectBufferData(), myBoneBuffer(nullptr), myBoneBufferData() {
 
 }
 
@@ -51,6 +52,12 @@ bool CForwardRenderer::Init(CEngine& anEngine) {
 		return false;
 	}
 
+	bufferDescription.ByteWidth = static_cast<UINT>(sizeof(SBoneBufferData) + (16 - (sizeof(SBoneBufferData) % 16)));
+	result = device->CreateBuffer(&bufferDescription, nullptr, &myBoneBuffer);
+	if (FAILED(result)) {
+		return false;
+	}
+
 	return true;
 }
 
@@ -78,7 +85,6 @@ void CForwardRenderer::Render(CEnvironmentLight* anEnvironmentLight, std::vector
 	myContext->PSSetShaderResources(0, 1, &cubeShaderResourceView);
 	
 	UINT modelInstanceCount = 0;
-	//int size = sizeof(myObjectBufferData);
 	for (CModelInstance* instance : aModelList) {
 		CModel* model = instance->GetModel();
 		CModel::SModelData modelData = model->GetModelData();
@@ -97,17 +103,26 @@ void CForwardRenderer::Render(CEnvironmentLight* anEnvironmentLight, std::vector
 		myObjectBufferData.myNumberOfUsedPointLights = 1;
 		modelInstanceCount++;
 
-
 		D3D11_MAPPED_SUBRESOURCE PSbufferData;
-
 		ZeroMemory(&PSbufferData, sizeof(D3D11_MAPPED_SUBRESOURCE));
 		result = myContext->Map(myObjectBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &PSbufferData);
 		if (FAILED(result)) {
 			return;
 		}
 		CopyMemory(PSbufferData.pData, &myObjectBufferData, sizeof(SObjectBufferData));
-		//memcpy(PSbufferData.pData, &myObjectBufferData, sizeof(SObjectBufferData));
 		myContext->Unmap(myObjectBuffer, 0);
+
+		memcpy(myBoneBufferData.myBones, instance->GetBones().data(), sizeof(SlimMatrix44) * 64);
+
+		D3D11_MAPPED_SUBRESOURCE VSBufferData;
+		ZeroMemory(&VSBufferData, sizeof(D3D11_MAPPED_SUBRESOURCE));
+		result = myContext->Map(myBoneBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &VSBufferData);
+		if (FAILED(result)) {
+			return;
+		}
+		CopyMemory(VSBufferData.pData, &myBoneBufferData, sizeof(SBoneBufferData));
+		myContext->Unmap(myBoneBuffer, 0);
+
 
 		myContext->IASetPrimitiveTopology(modelData.myPrimitiveTopology);
 		myContext->IASetInputLayout(modelData.myInputLayout);
@@ -115,6 +130,7 @@ void CForwardRenderer::Render(CEnvironmentLight* anEnvironmentLight, std::vector
 		myContext->IASetIndexBuffer(modelData.myIndexBuffer, DXGI_FORMAT_R32_UINT, 0);
 
 		myContext->VSSetConstantBuffers(1, 1, &myObjectBuffer);
+		myContext->VSSetConstantBuffers(2, 1, &myBoneBuffer);
 		myContext->VSSetShader(modelData.myVertexShader, nullptr, 0);
 
 		myContext->PSSetConstantBuffers(1, 1, &myObjectBuffer);
