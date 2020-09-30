@@ -14,19 +14,14 @@ public:
 	static void EngineErrorMessage(HRESULT result, const int line, const char* function, const char* /*file*/, ...) {
 		_com_error err(result); 
 		LPCTSTR error_msg = err.ErrorMessage();
-		//std::wstring errorStr(L"FUNCTION: ");
-
 		std::wstring str;
 		str.append(L"\nERROR: ");
 		str.append(error_msg);
 		std::wstring aFunctionString = stringToWstring(function);
 		str.append(L"\nFUNCTION: ");
 		str.append(aFunctionString);
-		//str.append(L"\nLINE: ");
-		str.append(L"(");
+		str.append(L"\nLINE: ");
 		str.append(std::to_wstring(line));
-		str.append(L")");
-		
 		MessageBox(0, str.c_str(), 0, MB_ICONERROR);
 	}
 
