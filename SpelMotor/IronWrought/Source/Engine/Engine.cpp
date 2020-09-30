@@ -50,10 +50,7 @@ CEngine::~CEngine()
 
 bool CEngine::Init(CWindowHandler::SWindowData& someWindowData)
 {
-	if (!myWindowHandler->Init(someWindowData))
-	{
-		return false;//TODO INIT FAILED
-	}
+	ENGINE_ERROR_BOOL_MESSAGE(myWindowHandler->Init(someWindowData), "Window Handler could not be initialized");
 
 	if (!myFramework->Init(myWindowHandler))
 	{

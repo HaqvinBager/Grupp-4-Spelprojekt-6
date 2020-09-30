@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "ModelFactory.h"
-#include "EngineException.h"
 #include "Model.h"
 #include "Engine.h"
 #include <d3d11.h>
@@ -80,11 +79,11 @@ CModel* CModelFactory::LoadModelPBR(std::string aFilePath)
 	vertexBufferDesc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
 
 	D3D11_SUBRESOURCE_DATA subVertexResourceData = { 0 };
-	subVertexResourceData.pSysMem = nullptr;// mesh->myVerticies;
+	subVertexResourceData.pSysMem = mesh->myVerticies;
 
 	ID3D11Buffer* vertexBuffer;
 	//result = 
-	ENGINE_HR(myEngine->myFramework->GetDevice()->CreateBuffer(&vertexBufferDesc, &subVertexResourceData, &vertexBuffer));
+	ENGINE_HR_MESSAGE(myEngine->myFramework->GetDevice()->CreateBuffer(&vertexBufferDesc, &subVertexResourceData, &vertexBuffer), "Vertex Buffer could not be created.");
 //	if (FAILED(result))
 //		return nullptr; //TODO FAILED
 
