@@ -1,23 +1,23 @@
 #pragma once
 #include <codecvt>
 #include <cstdarg>
-#include <string>
 
-#define ENGINE_HR_ERROR_MESSAGE(hr, ...) { Engine::EngineException::EngineErrorMessage(hr, __LINE__, __FUNCTION__, __FILE__, ##__VA_ARGS__);  }
-#define ENGINE_HR(hr) { HRESULT hresult = hr; if (FAILED(hresult)) { ENGINE_HR_ERROR_MESSAGE(hresult, ""); }}
-#define ENGINE_HR_BOOL(hr) { HRESULT hresult = hr; if(FAILED(hresult)){ENGINE_HR_ERROR_MESSAGE(hresult, ""); return false;}}
-#define ENGINE_HR_MESSAGE(hr, ...) { HRESULT hresult = hr; if (FAILED(hresult)) { ENGINE_HR_ERROR_MESSAGE(hresult, ##__VA_ARGS__); }}
-#define ENGINE_HR_BOOL_MESSAGE(hr, ...) { HRESULT hresult = hr; if(FAILED(hresult)){ENGINE_HR_ERROR_MESSAGE(hresult, ##__VA_ARGS__); return false;}}
+#define ENGINE_HR_ERROR_MESSAGE(hr, ...)	{ Engine::EngineException::EngineErrorMessage(hr, __LINE__, __FUNCTION__, __FILE__, ##__VA_ARGS__);  }
+#define ENGINE_HR(hr)						{ HRESULT hresult = hr; if (FAILED(hresult))	{ ENGINE_HR_ERROR_MESSAGE(hresult, ""); }}
+#define ENGINE_HR_BOOL(hr)					{ HRESULT hresult = hr; if (FAILED(hresult))	{ ENGINE_HR_ERROR_MESSAGE(hresult, ""); return false;}}
+#define ENGINE_HR_MESSAGE(hr, ...)			{ HRESULT hresult = hr; if (FAILED(hresult))	{ ENGINE_HR_ERROR_MESSAGE(hresult, ##__VA_ARGS__); }}
+#define ENGINE_HR_BOOL_MESSAGE(hr, ...)		{ HRESULT hresult = hr; if (FAILED(hresult))	{ ENGINE_HR_ERROR_MESSAGE(hresult, ##__VA_ARGS__); return false;}}
 
-#define ENGINE_ERROR_MESSAGE(...) { Engine::EngineException::EngineErrorMessage(__LINE__, __FUNCTION__, __FILE__, ##__VA_ARGS__);  }
-#define ENGINE_ERROR_BOOL(result) { if(!result){ENGINE_ERROR_MESSAGE(""); return false;}}
-#define ENGINE_ERROR_BOOL_MESSAGE(result, ...) { if(!result){ENGINE_ERROR_MESSAGE(##__VA_ARGS__); return false;}}
+#define ENGINE_ERROR_MESSAGE(...)				{ Engine::EngineException::EngineErrorMessage(__LINE__, __FUNCTION__, __FILE__, ##__VA_ARGS__);  }
+#define ENGINE_ERROR_BOOL(result)				{ if (!result)	{ENGINE_ERROR_MESSAGE(""); return false;}}
+#define ENGINE_ERROR_BOOL_MESSAGE(result, ...)	{ if (!result)	{ENGINE_ERROR_MESSAGE(##__VA_ARGS__); return false;}}
 
 namespace Engine
 {
 	class EngineException
 	{
 	public:
+
 		static void EngineErrorMessage(HRESULT result, const int line, const char* function, const char* file, const char* aFormattedMessage, ...)
 		{
 			_com_error err(result);
@@ -95,3 +95,25 @@ namespace Engine
 		}
 	};
 }
+		//CustomMessageBox(0, wstr.c_str(), L"ENGINE EXCEPTION", MB_OK, IDI_ICON1);
+		
+		//static int CustomMessageBox(HWND hWnd,
+		//	LPCTSTR lpText,
+		//	LPCTSTR lpCaption,
+		//	UINT uType,
+		//	UINT uIconResID)
+		//{
+		//	MSGBOXPARAMS mbp;
+		//	mbp.cbSize = sizeof(MSGBOXPARAMS);
+		//	mbp.hwndOwner = hWnd;
+		//	mbp.hInstance = GetModuleHandle(NULL);
+		//	mbp.lpszText = lpText;
+		//	mbp.lpszCaption = lpCaption;
+		//	mbp.dwStyle = uType | MB_USERICON;
+		//	mbp.dwLanguageId = MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT);
+		//	mbp.lpfnMsgBoxCallback = NULL;
+		//	mbp.dwContextHelpId = 0;
+		//	mbp.lpszIcon = MAKEINTRESOURCE(uIconResID);
+
+		//	return MessageBoxIndirect(&mbp);
+		//}

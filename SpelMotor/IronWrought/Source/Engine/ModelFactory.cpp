@@ -82,10 +82,7 @@ CModel* CModelFactory::LoadModelPBR(std::string aFilePath)
 	subVertexResourceData.pSysMem = mesh->myVerticies;
 
 	ID3D11Buffer* vertexBuffer;
-	//result = 
 	ENGINE_HR_MESSAGE(myEngine->myFramework->GetDevice()->CreateBuffer(&vertexBufferDesc, &subVertexResourceData, &vertexBuffer), "Vertex Buffer could not be created.");
-//	if (FAILED(result))
-//		return nullptr; //TODO FAILED
 
 	D3D11_BUFFER_DESC indexBufferDesc = { 0 };
 	indexBufferDesc.ByteWidth = sizeof(unsigned int) * static_cast<UINT>(mesh->myIndexes.size());
@@ -99,30 +96,6 @@ CModel* CModelFactory::LoadModelPBR(std::string aFilePath)
 	result = myEngine->myFramework->GetDevice()->CreateBuffer(&indexBufferDesc, &subIndexResourceData, &indexBuffer);
 	if (FAILED(result))
 		return nullptr; //TODO FAILED
-
-
-	//ID3D11Buffer* bonesBuffer = nullptr;
-	//if (mesh->myModel->myNumBones > 0)
-	//{
-	//	struct BoneB
-	//	{
-	//		SlimMatrix44 boneOffset[64];
-	//		SlimMatrix44 finalTransformation[64];
-	//	};
-
-	//	D3D11_BUFFER_DESC boneBufferDesc = { 0 };
-	//	boneBufferDesc.Usage = D3D11_USAGE_DYNAMIC;
-	//	boneBufferDesc.ByteWidth = sizeof(BoneB);
-	//	boneBufferDesc.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
-	//	boneBufferDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
-	//	boneBufferDesc.MiscFlags = 0;
-	//	boneBufferDesc.StructureByteStride = 0;
-	//	//D3D11_SUBRESOURCE_DATA boneSubResourceData;
-	//	//boneSubResourceData.pSysMem = mesh->myModel->my
-
-	//	result = myEngine->myFramework->GetDevice()->CreateBuffer(&boneBufferDesc, NULL, &bonesBuffer);
-	//	if (FAILED(result)) { return nullptr; }
-	//}
 
 	//VertexShader
 	std::ifstream vsFile;
