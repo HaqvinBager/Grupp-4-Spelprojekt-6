@@ -96,6 +96,9 @@
     <ClInclude Include="MathFunc.h">
       <Filter>Animation</Filter>
     </ClInclude>
+    <ClInclude Include="EngineException.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp">

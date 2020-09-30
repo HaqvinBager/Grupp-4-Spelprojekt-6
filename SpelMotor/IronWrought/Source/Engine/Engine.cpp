@@ -52,37 +52,37 @@ bool CEngine::Init(CWindowHandler::SWindowData& someWindowData)
 {
 	if (!myWindowHandler->Init(someWindowData))
 	{
-		return false;
+		return false;//TODO INIT FAILED
 	}
 
 	if (!myFramework->Init(myWindowHandler))
 	{
-		return false;
+		return false;//TODO INIT FAILED
 	}
 
 	if (!myForwardRenderer->Init(*this))
 	{
-		return false;
+		return false;//TODO INIT FAILED
 	}
 
 	if (!myModelFactory->Init(*this))
 	{
-		return false;
+		return false;//TODO INIT FAILED
 	}
 
 	if (!myCameraFactory->Init(myWindowHandler))
 	{
-		return false;
+		return false;//TODO INIT FAILED
 	}
 
 	if (!myScene->Init())
 	{
-		return false;
+		return false;//TODO INIT FAILED
 	}
 
 	if (!myLightFactory->Init(*this))
 	{
-		return false;
+		return false;//TODO INIT FAILED
 	}
 
 	return true;
