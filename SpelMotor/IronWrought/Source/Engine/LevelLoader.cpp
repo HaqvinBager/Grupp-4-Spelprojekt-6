@@ -26,10 +26,13 @@ void CLevelLoader::CreateLevel(const std::string& aPath)
 
 	objectData = myUnityLoader->LoadGameObjects(aPath, EReadMode::EReadMode_ASCII);
 	for (auto object : objectData) {
-		CModelInstance* model = CModelFactory::GetInstance()->CreateModel(object.myRelativePath);
-		model->SetTransform(DirectX::SimpleMath::Vector3(object.myPosX, object.myPosY, object.myPosZ), DirectX::SimpleMath::Vector3(object.myRotX, object.myRotY, object.myRotZ));
-		//model->SetScale(DirectX::SimpleMath::Vector3(object.myScaleX, object.myScaleY, object.myScaleZ));
-		myScene->AddInstance(model);
+		if (object.myRelativePath.length() > 1)
+		{
+			CModelInstance* model = CModelFactory::GetInstance()->CreateModel(object.myRelativePath);
+			model->SetTransform(DirectX::SimpleMath::Vector3(object.myPosX, object.myPosY, object.myPosZ), DirectX::SimpleMath::Vector3(object.myRotX, object.myRotY, object.myRotZ));
+			//model->SetScale(DirectX::SimpleMath::Vector3(object.myScaleX, object.myScaleY, object.myScaleZ));
+			myScene->AddInstance(model);
+		}
 	}
 	myScene->SetMainCamera(camera);
 	myScene->AddInstance(camera);
