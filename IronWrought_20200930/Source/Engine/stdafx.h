@@ -1,0 +1,12 @@
+#pragma once
+#include "WindowHandler.h"
+#include <d3d11.h>
+//#include "SimpleMath.h"
+#include <fstream>
+#include <vector>
+#include <string>
+#include <map>
+#include "WinInclude.h"
+#include <SimpleMath.h>
+#include <array>
+#include "Input.h"

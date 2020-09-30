@@ -1,0 +1,97 @@
+{
+    "dataList": [
+        {
+            "myName": "Main Camera",
+            "myRotX": 0.0,
+            "myRotY": 0.0,
+            "myRotZ": 0.0,
+            "myPosX": 0.0,
+            "myPosY": 1.0,
+            "myPosZ": -10.0,
+            "myScaleX": 1.0,
+            "myScaleY": 1.0,
+            "myScaleZ": 1.0,
+            "myPath": "",
+            "myCharacterData": {
+                "myName": "",
+                "myHealth": 0.0,
+                "myDamage": 0.0,
+                "myMoveSpeed": 0.0,
+                "myAttackSpeed": 0.0,
+                "myCastSpeed": 0.0
+            },
+            "myColliderData": {
+                "myColliderType": "",
+                "myCenterX": 0.0,
+                "myCenterY": 0.0,
+                "myCenterZ": 0.0,
+                "myRadius": 0.0,
+                "mySizeX": 0.0,
+                "mySizeY": 0.0,
+                "mySizeZ": 0.0
+            }
+        },
+        {
+            "myName": "CH_PL_Daughter_01_19G4_1_19 - kopia",
+            "myRotX": 0.0,
+            "myRotY": 0.0,
+            "myRotZ": 0.0,
+            "myPosX": 0.0,
+            "myPosY": 0.0,
+            "myPosZ": 0.0,
+            "myScaleX": 1.0,
+            "myScaleY": 1.0,
+            "myScaleZ": 1.0,
+            "myPath": "Assets/SG/Character/Airwing/CH_PL_Daughter_01_19G4_1_19 - kopia.fbx",
+            "myCharacterData": {
+                "myName": "",
+                "myHealth": 0.0,
+                "myDamage": 0.0,
+                "myMoveSpeed": 0.0,
+                "myAttackSpeed": 0.0,
+                "myCastSpeed": 0.0
+            },
+            "myColliderData": {
+                "myColliderType": "",
+                "myCenterX": 0.0,
+                "myCenterY": 0.0,
+                "myCenterZ": 0.0,
+                "myRadius": 0.0,
+                "mySizeX": 0.0,
+                "mySizeY": 0.0,
+                "mySizeZ": 0.0
+            }
+        },
+        {
+            "myName": "Directional Light",
+            "myRotX": 50.0,
+            "myRotY": 330.0,
+            "myRotZ": 0.0,
+            "myPosX": 0.0,
+            "myPosY": 3.0,
+            "myPosZ": 0.0,
+            "myScaleX": 1.0,
+            "myScaleY": 1.0,
+            "myScaleZ": 1.0,
+            "myPath": "",
+            "myCharacterData": {
+                "myName": "",
+                "myHealth": 0.0,
+                "myDamage": 0.0,
+                "myMoveSpeed": 0.0,
+                "myAttackSpeed": 0.0,
+                "myCastSpeed": 0.0
+            },
+            "myColliderData": {
+                "myColliderType": "",
+                "myCenterX": 0.0,
+                "myCenterY": 0.0,
+                "myCenterZ": 0.0,
+                "myRadius": 0.0,
+                "mySizeX": 0.0,
+                "mySizeY": 0.0,
+                "mySizeZ": 0.0
+            }
+        }
+    ]
+}
