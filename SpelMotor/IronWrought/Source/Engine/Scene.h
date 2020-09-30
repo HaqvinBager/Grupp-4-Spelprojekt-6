@@ -26,6 +26,8 @@ public:
 	bool AddInstance(CCamera* aCamera);
 	bool AddInstance(CEnvironmentLight* anEnvironmentLight);
 	bool AddInstance(CPointLight* aPointLight);
+
+	bool ClearInstances();
 private:
 	CScene();
 	~CScene();

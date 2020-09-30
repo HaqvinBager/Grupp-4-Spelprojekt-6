@@ -104,3 +104,13 @@ bool CScene::AddInstance(CPointLight* aPointLight)
 	myPointLights.emplace_back(aPointLight);
 	return true;
 }
+
+bool CScene::ClearInstances()
+{
+	for (auto models : myModelInstances) {
+		delete models;
+		models = nullptr;
+	}
+	myModelInstances.clear();
+	return true;
+}

@@ -5,7 +5,7 @@ namespace DirectX {
 		struct Vector3;
 	}
 }
-
+class CLevelLoader;
 class CModelInstance;
 class CGame
 {
@@ -20,5 +20,7 @@ private:
 
 	void UpdatePointLights();
 	void UpdateCamera();
+
+	CLevelLoader* myLevelLoader;
 };
 
