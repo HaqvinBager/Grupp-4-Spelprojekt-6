@@ -101,7 +101,7 @@ void CGame::LoadUnityScene(const std::string& aFilePath)
 	objectData = myUnityLoader->LoadGameObjects(modelPath, EReadMode::EReadMode_ASCII);
 	for (auto& object : objectData)
 	{
-		CModelInstance* model = CreateModel(object.myRelativePath, SM::Vector3(object.myPosX * UNITY_SCALE_MODIFIER, object.myPosY * UNITY_SCALE_MODIFIER, object.myPosZ * UNITY_SCALE_MODIFIER));
+		CModelInstance* model = CreateModel(object.myRelativePath, SM::Vector3(object.myPosX, object.myPosY, object.myPosZ));
 		model->SetRotation(SM::Vector3(DirectX::XMConvertToRadians(object.myRotX), DirectX::XMConvertToRadians(object.myRotY), DirectX::XMConvertToRadians(object.myRotZ)));
 		scene->AddInstance(model);
 	}

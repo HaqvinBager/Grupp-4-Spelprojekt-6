@@ -1,0 +1,82 @@
+{
+    "dataList": [
+        {
+            "myName": "K11_1415 (1)",
+            "myRotX": 315.0,
+            "myRotY": 0.0,
+            "myRotZ": 0.0,
+            "myPosX": 0.013159999623894692,
+            "myPosY": 0.0,
+            "myPosZ": 0.0,
+            "myScaleX": 1.0,
+            "myScaleY": 1.0,
+            "myScaleZ": 1.0,
+            "myPath": "Assets/Scenes/K11_1415.fbx"
+        },
+        {
+            "myName": "K11_1415 (4)",
+            "myRotX": 90.0,
+            "myRotY": 180.0,
+            "myRotZ": 0.0,
+            "myPosX": 0.011950000189244748,
+            "myPosY": 0.01834000088274479,
+            "myPosZ": 0.0,
+            "myScaleX": 1.0,
+            "myScaleY": 1.0,
+            "myScaleZ": 1.0,
+            "myPath": "Assets/Scenes/K11_1415.fbx"
+        },
+        {
+            "myName": "K11_1415 (2)",
+            "myRotX": 45.0,
+            "myRotY": 0.0,
+            "myRotZ": 0.0,
+            "myPosX": -0.016610000282526017,
+            "myPosY": 0.0,
+            "myPosZ": 0.0,
+            "myScaleX": 1.0,
+            "myScaleY": 1.0,
+            "myScaleZ": 1.0,
+            "myPath": "Assets/Scenes/K11_1415.fbx"
+        },
+        {
+            "myName": "K11_1415 (5)",
+            "myRotX": 90.0,
+            "myRotY": 90.0,
+            "myRotZ": 0.0,
+            "myPosX": -0.016330000013113023,
+            "myPosY": 0.01834000088274479,
+            "myPosZ": 0.0,
+            "myScaleX": 1.0,
+            "myScaleY": 1.0,
+            "myScaleZ": 1.0,
+            "myPath": "Assets/Scenes/K11_1415.fbx"
+        },
+        {
+            "myName": "K11_1415 (3)",
+            "myRotX": 0.0,
+            "myRotY": 180.0,
+            "myRotZ": 0.0,
+            "myPosX": 0.0,
+            "myPosY": 0.01834000088274479,
+            "myPosZ": 0.0,
+            "myScaleX": 1.0,
+            "myScaleY": 1.0,
+            "myScaleZ": 1.0,
+            "myPath": "Assets/Scenes/K11_1415.fbx"
+        },
+        {
+            "myName": "K11_1415_BoxHead",
+            "myRotX": 0.0,
+            "myRotY": 0.0,
+            "myRotZ": 0.0,
+            "myPosX": 0.0,
+            "myPosY": 0.0,
+            "myPosZ": 0.0,
+            "myScaleX": 1.0,
+            "myScaleY": 1.0,
+            "myScaleZ": 1.0,
+            "myPath": "Assets/Scenes/K11_1415.fbx"
+        }
+    ]
+}

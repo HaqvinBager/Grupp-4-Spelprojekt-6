@@ -5,9 +5,10 @@
 
 using namespace DirectX::SimpleMath;
 
+#define ENGINE_SCALE 0.01f
+
 CModelInstance::CModelInstance() {
 	myModel = nullptr;
-	myScale = 1.0f;
 }
 
 CModelInstance::~CModelInstance() {
@@ -40,7 +41,7 @@ void CModelInstance::SetRotation(Vector3 aRotation)
 		DirectX::XMConvertToRadians(aRotation.z)
 	);
 	myTransform = tempRotation;
-	myTransform *= Matrix::CreateScale(myScale);
+	myTransform *= Matrix::CreateScale(ENGINE_SCALE);
 	myTransform.Translation(tempTranslation);
 }
 
@@ -59,10 +60,11 @@ void CModelInstance::Rotate(Vector3 aRotation)
 	myTransform.Translation(tempTranslation);
 }
 
-void CModelInstance::SetScale(float aScale)
+void CModelInstance::SetScale(Vector3 aScale)
 {
 	myScale = aScale;
-	myTransform *= Matrix::CreateScale(myScale);
+	myTransform *= Matrix::CreateScale(ENGINE_SCALE);
+
 }
 
 void CModelInstance::UpdateAnimation(float dt)

@@ -22,7 +22,7 @@ public:
 	void SetRotation(DirectX::SimpleMath::Vector3 aRotation);
 	void Move(DirectX::SimpleMath::Vector3 aMovement);
 	void Rotate(DirectX::SimpleMath::Vector3 aRotation);
-	void SetScale(float aScale);
+	void SetScale(DirectX::SimpleMath::Vector3 aScale);
 
 public:
 	void UpdateAnimation(float dt);
@@ -41,7 +41,7 @@ private:
 	CModel* myModel;
 	DirectX::SimpleMath::Matrix myTransform;
 	DirectX::SimpleMath::Vector2 myUVOffset;
-	float myScale;
+	DirectX::SimpleMath::Vector3 myScale;
 	std::array<SlimMatrix44, 64> myBones { };
 	SAnimationBlend myBlend;
 };
