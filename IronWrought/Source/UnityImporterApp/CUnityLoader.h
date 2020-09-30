@@ -61,4 +61,3 @@ private:
 	std::map<int, std::string> myModelPaths;
 	bool myModelPathsFetched = false;
 };
-
