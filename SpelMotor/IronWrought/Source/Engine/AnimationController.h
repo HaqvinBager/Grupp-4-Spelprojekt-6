@@ -301,7 +301,7 @@ public:
 			Transforms[i] = m_BoneInfo[i].FinalTransformation;
 		}
 	}
-
+	//test
 	void LoadBones(uint MeshIndex, const aiMesh* pMesh)
 	{
 		for (uint i = 0; i < pMesh->mNumBones; i++)
