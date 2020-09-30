@@ -1,0 +1,28 @@
+{
+    "dataList": [
+        {
+            "myName": "MeanEnemy",
+            "myHealth": 11.0,
+            "myDamage": 12.0,
+            "myMoveSpeed": 13.0,
+            "myAttackSpeed": 14.0,
+            "myCastSpeed": 15.0
+        },
+        {
+            "myName": "aPlayer",
+            "myHealth": 20.0,
+            "myDamage": 21.0,
+            "myMoveSpeed": 22.0,
+            "myAttackSpeed": 23.0,
+            "myCastSpeed": 24.0
+        },
+        {
+            "myName": "BIGENEMIGO",
+            "myHealth": 999.0,
+            "myDamage": 99.0,
+            "myMoveSpeed": 9.0,
+            "myAttackSpeed": 9.0,
+            "myCastSpeed": 9.0
+        }
+    ]
+}
