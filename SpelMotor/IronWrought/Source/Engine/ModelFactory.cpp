@@ -62,7 +62,7 @@ CModel* CModelFactory::GetModelPBR(std::string aFilePath)
 
 CModel* CModelFactory::LoadModelPBR(std::string aFilePath)
 {
-	HRESULT result;
+	//HRESULT result;
 	// THIS ABSOLUTELY AWESOME MATEY. BUT MAEK IT BETTER LATER LOL :):)??
 	const size_t last_slash_idx = aFilePath.find_last_of("\\/");
 	std::string modelDirectory = aFilePath.substr(0, last_slash_idx + 1);
@@ -94,9 +94,7 @@ CModel* CModelFactory::LoadModelPBR(std::string aFilePath)
 	subIndexResourceData.pSysMem = mesh->myIndexes.data();
 
 	ID3D11Buffer* indexBuffer;
-	result = myEngine->myFramework->GetDevice()->CreateBuffer(&indexBufferDesc, &subIndexResourceData, &indexBuffer);
-	if (FAILED(result))
-		return nullptr; //TODO FAILED
+	ENGINE_HR_MESSAGE(myEngine->myFramework->GetDevice()->CreateBuffer(&indexBufferDesc, &subIndexResourceData, &indexBuffer), "Index Buffer could not be created.");
 
 	//VertexShader
 	std::ifstream vsFile;
@@ -110,10 +108,7 @@ CModel* CModelFactory::LoadModelPBR(std::string aFilePath)
 	
 	std::string vsData = { std::istreambuf_iterator<char>(vsFile), std::istreambuf_iterator<char>() };
 	ID3D11VertexShader* vertexShader;
-	result = myEngine->myFramework->GetDevice()->CreateVertexShader(vsData.data(), vsData.size(), nullptr, &vertexShader);
-
-	if (FAILED(result))
-		return nullptr;//TODO FAILED
+	ENGINE_HR_MESSAGE(myEngine->myFramework->GetDevice()->CreateVertexShader(vsData.data(), vsData.size(), nullptr, &vertexShader), "Vertex Shader could not be created.");
 
 	vsFile.close();
 
@@ -124,10 +119,7 @@ CModel* CModelFactory::LoadModelPBR(std::string aFilePath)
 	std::string psData = { std::istreambuf_iterator<char>(psFile), std::istreambuf_iterator<char>() };
 
 	ID3D11PixelShader* pixelShader;
-	result = myEngine->myFramework->GetDevice()->CreatePixelShader(psData.data(), psData.size(), nullptr, &pixelShader);
-
-	if (FAILED(result))
-		return nullptr;//TODO FAILED
+	ENGINE_HR_MESSAGE(myEngine->myFramework->GetDevice()->CreatePixelShader(psData.data(), psData.size(), nullptr, &pixelShader), "Pixel Shader could not be created.");
 
 	psFile.close();
 
@@ -138,9 +130,8 @@ CModel* CModelFactory::LoadModelPBR(std::string aFilePath)
 	samplerDesc.AddressU = D3D11_TEXTURE_ADDRESS_WRAP;
 	samplerDesc.AddressV = D3D11_TEXTURE_ADDRESS_WRAP;
 	samplerDesc.AddressW = D3D11_TEXTURE_ADDRESS_WRAP;
-	result = myEngine->myFramework->GetDevice()->CreateSamplerState(&samplerDesc, &sampler);
-	if (FAILED(result))
-		return nullptr;//TODO FAILED
+
+	ENGINE_HR_MESSAGE(myEngine->myFramework->GetDevice()->CreateSamplerState(&samplerDesc, &sampler), "Sampler State could not be created.");
 
 	//Layout
 	D3D11_INPUT_ELEMENT_DESC layout[] =
@@ -155,15 +146,13 @@ CModel* CModelFactory::LoadModelPBR(std::string aFilePath)
 	};
 
 	ID3D11InputLayout* inputLayout;
-	result = myEngine->myFramework->GetDevice()->CreateInputLayout(layout, sizeof(layout) / sizeof(D3D11_INPUT_ELEMENT_DESC), vsData.data(), vsData.size(), &inputLayout);
-	if (FAILED(result))
-		return nullptr;//TODO FAILED
+	ENGINE_HR_MESSAGE(myEngine->myFramework->GetDevice()->CreateInputLayout(layout, sizeof(layout) / sizeof(D3D11_INPUT_ELEMENT_DESC), vsData.data(), vsData.size(), &inputLayout), "Input Layout could not be created.");
 
 	ID3D11Device* device = myEngine->myFramework->GetDevice();
 	std::string modelDirectoryAndName = modelDirectory + modelName;
-	ID3D11ShaderResourceView* diffuseResourceView = GetShaderResourceView(device, TexturePathWide(modelDirectoryAndName + "_D.dds"));
-	ID3D11ShaderResourceView* materialResourceView = GetShaderResourceView(device, TexturePathWide(modelDirectoryAndName + "_M.dds"));
-	ID3D11ShaderResourceView* normalResourceView = GetShaderResourceView(device, TexturePathWide(modelDirectoryAndName + "_N.dds"));
+	ID3D11ShaderResourceView* diffuseResourceView = GetShaderResourceView(device, /*TexturePathWide*/(modelDirectoryAndName + "_D.dds"));
+	ID3D11ShaderResourceView* materialResourceView = GetShaderResourceView(device, /*TexturePathWide*/(modelDirectoryAndName + "_M.dds"));
+	ID3D11ShaderResourceView* normalResourceView = GetShaderResourceView(device, /*TexturePathWide*/(modelDirectoryAndName + "_N.dds"));
 
 
 	//ID3D11ShaderResourceView* metalnessShaderResourceView = GetShaderResourceView(device, TexturePathWide(modelDirectory + loaderModel->myTextures[10]));
@@ -173,8 +162,7 @@ CModel* CModelFactory::LoadModelPBR(std::string aFilePath)
 
 	//Model
 	CModel* model = new CModel();
-	if (!model)
-		return nullptr;//TODO NULLPTR
+	ENGINE_ERROR_BOOL_MESSAGE(model, "Empty model could not be loaded.");
 
 	CModel::SModelData modelData;
 	modelData.myNumberOfVerticies = mesh->myVertexCount;
@@ -210,8 +198,6 @@ CModel* CModelFactory::LoadModelPBR(std::string aFilePath)
 
 CModel* CModelFactory::LoadModel(std::string aFilePath)
 {
-	HRESULT result;
-
 	const size_t last_slash_idx = aFilePath.find_last_of("\\/");
 	std::string modelDirectory = aFilePath.substr(0, last_slash_idx + 1);
 
@@ -228,9 +214,7 @@ CModel* CModelFactory::LoadModel(std::string aFilePath)
 	subVertexResourceData.pSysMem = mesh->myVerticies;
 
 	ID3D11Buffer* vertexBuffer;
-	result = myEngine->myFramework->GetDevice()->CreateBuffer(&vertexBufferDesc, &subVertexResourceData, &vertexBuffer);
-	if (FAILED(result))
-		return nullptr;//TODO FAILED
+	ENGINE_HR_MESSAGE(myEngine->myFramework->GetDevice()->CreateBuffer(&vertexBufferDesc, &subVertexResourceData, &vertexBuffer), "Vertex Buffer could not be created.");
 
 	D3D11_BUFFER_DESC indexBufferDesc = { 0 };
 	indexBufferDesc.ByteWidth = sizeof(unsigned int) * static_cast<UINT>(mesh->myIndexes.size());
@@ -241,9 +225,7 @@ CModel* CModelFactory::LoadModel(std::string aFilePath)
 	subIndexResourceData.pSysMem = mesh->myIndexes.data();
 
 	ID3D11Buffer* indexBuffer;
-	result = myEngine->myFramework->GetDevice()->CreateBuffer(&indexBufferDesc, &subIndexResourceData, &indexBuffer);
-	if (FAILED(result))
-		return nullptr;//TODO FAILED
+	ENGINE_HR_MESSAGE(myEngine->myFramework->GetDevice()->CreateBuffer(&indexBufferDesc, &subIndexResourceData, &indexBuffer), "Index Buffer could not be created.");
 
 	//VertexShader
 	std::ifstream vsFile;
@@ -251,10 +233,7 @@ CModel* CModelFactory::LoadModel(std::string aFilePath)
 	std::string vsData = { std::istreambuf_iterator<char>(vsFile), std::istreambuf_iterator<char>() };
 
 	ID3D11VertexShader* vertexShader;
-	result = myEngine->myFramework->GetDevice()->CreateVertexShader(vsData.data(), vsData.size(), nullptr, &vertexShader);
-
-	if (FAILED(result))
-		return nullptr;//TODO FAILED
+	ENGINE_HR_MESSAGE(myEngine->myFramework->GetDevice()->CreateVertexShader(vsData.data(), vsData.size(), nullptr, &vertexShader), "Vertex Shader could not be created.");
 
 	vsFile.close();
 
@@ -264,10 +243,7 @@ CModel* CModelFactory::LoadModel(std::string aFilePath)
 	std::string psData = { std::istreambuf_iterator<char>(psFile), std::istreambuf_iterator<char>() };
 
 	ID3D11PixelShader* pixelShader;
-	result = myEngine->myFramework->GetDevice()->CreatePixelShader(psData.data(), psData.size(), nullptr, &pixelShader);
-
-	if (FAILED(result))
-		return nullptr;//TODO FAILED
+	ENGINE_HR_MESSAGE(myEngine->myFramework->GetDevice()->CreatePixelShader(psData.data(), psData.size(), nullptr, &pixelShader), "Pixel Shader could not be created.");
 
 	psFile.close();
 
@@ -278,9 +254,7 @@ CModel* CModelFactory::LoadModel(std::string aFilePath)
 	samplerDesc.AddressU = D3D11_TEXTURE_ADDRESS_WRAP;
 	samplerDesc.AddressV = D3D11_TEXTURE_ADDRESS_WRAP;
 	samplerDesc.AddressW = D3D11_TEXTURE_ADDRESS_WRAP;
-	result = myEngine->myFramework->GetDevice()->CreateSamplerState(&samplerDesc, &sampler);
-	if (FAILED(result))
-		return nullptr;//TODO FAILED
+	ENGINE_HR_MESSAGE(myEngine->myFramework->GetDevice()->CreateSamplerState(&samplerDesc, &sampler), "Sampler State could not be created.");
 
 	//Layout
 	D3D11_INPUT_ELEMENT_DESC layout[] =
@@ -295,18 +269,15 @@ CModel* CModelFactory::LoadModel(std::string aFilePath)
 	};
 
 	ID3D11InputLayout* inputLayout;
-	result = myEngine->myFramework->GetDevice()->CreateInputLayout(layout, sizeof(layout) / sizeof(D3D11_INPUT_ELEMENT_DESC), vsData.data(), vsData.size(), &inputLayout);
-	if (FAILED(result))
-		return nullptr;//TODO FAILED
+	ENGINE_HR_MESSAGE(myEngine->myFramework->GetDevice()->CreateInputLayout(layout, sizeof(layout) / sizeof(D3D11_INPUT_ELEMENT_DESC), vsData.data(), vsData.size(), &inputLayout), "Input Layout could not be created.");
 
 	ID3D11Device* device = myEngine->myFramework->GetDevice();
-	ID3D11ShaderResourceView* albedoResourceView = GetShaderResourceView(device, TexturePathWide(modelDirectory + loaderModel->myTextures[0]));
-	ID3D11ShaderResourceView* normalResourceView = GetShaderResourceView(device, TexturePathWide(modelDirectory + loaderModel->myTextures[5]));
+	ID3D11ShaderResourceView* albedoResourceView = GetShaderResourceView(device, /*TexturePathWide*/(modelDirectory + loaderModel->myTextures[0]));
+	ID3D11ShaderResourceView* normalResourceView = GetShaderResourceView(device, /*TexturePathWide*/(modelDirectory + loaderModel->myTextures[5]));
 
 	//Model
 	CModel* model = new CModel();
-	if (!model)
-		return nullptr;//TODO NULLPTR
+	ENGINE_ERROR_BOOL_MESSAGE(model, "Empty model could not be loaded.");
 
 	CModel::SModelData modelData;
 	modelData.myNumberOfVerticies = mesh->myVertexCount;
@@ -335,9 +306,6 @@ CModel* CModelFactory::LoadModel(std::string aFilePath)
 
 CModel* CModelFactory::GetCube()
 {
-
-	HRESULT result;
-
 	//Vertex Setup
 	struct Vertex
 	{
@@ -398,9 +366,7 @@ CModel* CModelFactory::GetCube()
 	subResourceData.pSysMem = verticies;
 
 	ID3D11Buffer* vertexBuffer;
-	result = myEngine->myFramework->GetDevice()->CreateBuffer(&vertexBufferDesc, &subResourceData, &vertexBuffer);
-	if (FAILED(result))
-		return nullptr;//TODO FAILED
+	ENGINE_HR_MESSAGE(myEngine->myFramework->GetDevice()->CreateBuffer(&vertexBufferDesc, &subResourceData, &vertexBuffer), "Vertex Buffer could not be created.");
 
 	D3D11_BUFFER_DESC indexBufferDesc = { 0 };
 	indexBufferDesc.ByteWidth = sizeof(indicies);
@@ -410,20 +376,14 @@ CModel* CModelFactory::GetCube()
 	indexSubresourceData.pSysMem = indicies;
 
 	ID3D11Buffer* indexBuffer;
-	result = myEngine->myFramework->GetDevice()->CreateBuffer(&indexBufferDesc, &indexSubresourceData, &indexBuffer);
-	if (FAILED(result))
-	{
-		return nullptr;//TODO FAILED
-	}
+	ENGINE_HR_MESSAGE(myEngine->myFramework->GetDevice()->CreateBuffer(&indexBufferDesc, &indexSubresourceData, &indexBuffer), "Index Buffer could not be created.");
 
 	//VertexShader
 	std::ifstream vsFile;
 	vsFile.open("CubeVertexShader.cso", std::ios::binary);
 	std::string vsData = { std::istreambuf_iterator<char>(vsFile), std::istreambuf_iterator<char>() };
 	ID3D11VertexShader* vertexShader;
-	result = myEngine->myFramework->GetDevice()->CreateVertexShader(vsData.data(), vsData.size(), nullptr, &vertexShader);
-	if (FAILED(result))
-		return nullptr;//TODO FAILED
+	ENGINE_HR_MESSAGE(myEngine->myFramework->GetDevice()->CreateVertexShader(vsData.data(), vsData.size(), nullptr, &vertexShader), "Vertex Shader could not be created.");
 	vsFile.close();
 
 	//PixelShader
@@ -431,9 +391,7 @@ CModel* CModelFactory::GetCube()
 	psFile.open("CubePixelShader.cso", std::ios::binary);
 	std::string psData = { std::istreambuf_iterator<char>(psFile), std::istreambuf_iterator<char>() };
 	ID3D11PixelShader* pixelShader;
-	result = myEngine->myFramework->GetDevice()->CreatePixelShader(psData.data(), psData.size(), nullptr, &pixelShader);
-	if (FAILED(result))
-		return nullptr;//TODO FAILED
+	ENGINE_HR_MESSAGE(myEngine->myFramework->GetDevice()->CreatePixelShader(psData.data(), psData.size(), nullptr, &pixelShader), "Pixel Shader could not be created.");
 	psFile.close();
 
 	//Sampler
@@ -443,9 +401,7 @@ CModel* CModelFactory::GetCube()
 	samplerDesc.AddressU = D3D11_TEXTURE_ADDRESS_WRAP;
 	samplerDesc.AddressV = D3D11_TEXTURE_ADDRESS_WRAP;
 	samplerDesc.AddressW = D3D11_TEXTURE_ADDRESS_WRAP;
-	result = myEngine->myFramework->GetDevice()->CreateSamplerState(&samplerDesc, &sampler);
-	if (FAILED(result))
-		return nullptr;//TODO FAILED
+	ENGINE_HR_MESSAGE(myEngine->myFramework->GetDevice()->CreateSamplerState(&samplerDesc, &sampler), "Sampler could not be created.");
 
 	//Layout
 	D3D11_INPUT_ELEMENT_DESC layout[] = {
@@ -455,22 +411,13 @@ CModel* CModelFactory::GetCube()
 	};
 
 	ID3D11InputLayout* inputLayout;
-	result = myEngine->myFramework->GetDevice()->CreateInputLayout(layout, 3, vsData.data(), vsData.size(), &inputLayout);
-	if (FAILED(result))
-		return nullptr;//TODO FAILED
+	ENGINE_HR_MESSAGE(myEngine->myFramework->GetDevice()->CreateInputLayout(layout, 3, vsData.data(), vsData.size(), &inputLayout), "Input Layout could not be created.");
 
-	std::wstring filename = L"Texture.dds";
-	ID3D11ShaderResourceView* shaderResourceView;
-	result = DirectX::CreateDDSTextureFromFile(myEngine->myFramework->GetDevice(), filename.c_str(), nullptr, &shaderResourceView);
-	if (FAILED(result))
-	{
-		return nullptr;//TODO FAILED
-	}
+	ID3D11ShaderResourceView* shaderResourceView = GetShaderResourceView(myEngine->myFramework->GetDevice(), "Texture.dds");
 
 	//Model
 	CModel* model = new CModel();
-	if (!model)
-		return nullptr;//TODO NULLPTR
+	ENGINE_ERROR_BOOL_MESSAGE(model, "Empty model could not be loaded.");
 
 	CModel::SModelData modelData;
 	modelData.myNumberOfVerticies = sizeof(verticies) / sizeof(Vertex);
@@ -500,26 +447,37 @@ CModelInstance* CModelFactory::CreateModel(std::string aModelName, DirectX::Simp
 	return modelInstance;
 }
 
-ID3D11ShaderResourceView* CModelFactory::GetShaderResourceView(ID3D11Device* aDevice, wchar_t* aTexturePath)
+ID3D11ShaderResourceView* CModelFactory::GetShaderResourceView(ID3D11Device* aDevice, std::string aTexturePath)
 {
-	HRESULT result;
 	ID3D11ShaderResourceView* shaderResourceView;
-	result = DirectX::CreateDDSTextureFromFile(aDevice, aTexturePath, nullptr, &shaderResourceView);
-	if (FAILED(result))
-		return nullptr;
 
-	delete[] aTexturePath;
+	wchar_t* widePath = new wchar_t[aTexturePath.length() + 1];
+	std::copy(aTexturePath.begin(), aTexturePath.end(), widePath);
+	widePath[aTexturePath.length()] = 0;
+
+	////==ENABLE FOR TEXTURE CHECKING==
+	//ENGINE_HR_MESSAGE(DirectX::CreateDDSTextureFromFile(aDevice, widePath, nullptr, &shaderResourceView), aTexturePath.append(" could not be found.").c_str());
+	////===============================
+
+	//==DISABLE FOR TEXTURE CHECKING==
+	HRESULT result;
+	result = DirectX::CreateDDSTextureFromFile(aDevice, widePath, nullptr, &shaderResourceView);
+	if (FAILED(result))
+		DirectX::CreateDDSTextureFromFile(aDevice, L"ErrorTexture.dds", nullptr, &shaderResourceView);
+		//return nullptr;
+	//================================
+
+	delete[] widePath;
 	return shaderResourceView;
 }
 
-wchar_t* CModelFactory::TexturePathWide(std::string aTexturePath) const
-{
-	wchar_t* albedo_path_wide = new wchar_t[aTexturePath.length() + 1];
-	std::copy(aTexturePath.begin(), aTexturePath.end(), albedo_path_wide);
-	albedo_path_wide[aTexturePath.length()] = 0;
-	return std::move(albedo_path_wide);
-}
-
+//wchar_t* CModelFactory::TexturePathWide(std::string aTexturePath) const
+//{
+//	wchar_t* albedo_path_wide = new wchar_t[aTexturePath.length() + 1];
+//	std::copy(aTexturePath.begin(), aTexturePath.end(), albedo_path_wide);
+//	albedo_path_wide[aTexturePath.length()] = 0;
+//	return std::move(albedo_path_wide);
+//}
 
 
 /*ID3D11ShaderResourceView* albedoResourceView;

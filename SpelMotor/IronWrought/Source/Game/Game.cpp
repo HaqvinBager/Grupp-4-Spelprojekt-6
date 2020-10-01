@@ -47,8 +47,13 @@ void CGame::Init()
 	CPointLight* light = lightFactory->CreatePointLight();
 	light->Init();
 
-	//CModelInstance* model = CModelFactory::GetInstance()->CreateModel("Model/Chest/Particle_Chest.fbx", 0.025f);
-	//model->SetPosition({ 12.5f, 0.0f, 15.0f });
+	CModel* cubeModel = CModelFactory::GetInstance()->GetCube();
+	CModelInstance* cube = new CModelInstance();
+	cube->Init(cubeModel);
+	scene->AddInstance(cube);
+
+	CModelInstance* model = CModelFactory::GetInstance()->CreateModel("Model/Chest/Particle_Chest.fbx", { 0.025f, 0.025f, 0.025f });
+	model->SetPosition({ 12.5f, 0.0f, 15.0f });
 	//camera->SetPosition({ 10.0f, 2.5f, 5.0f });
 	light->SetPosition({ 10.0f, 1.0f, 7.0f });
 	//
@@ -59,7 +64,7 @@ void CGame::Init()
 	light->SetRange(10.0f);
 	light->SetIntensity(10.0f);
 	//
-	//scene->AddInstance(model);
+	scene->AddInstance(model);
 	//scene->SetMainCamera(camera);
 	//scene->AddInstance(camera);
 	scene->AddInstance(environmentLight);
