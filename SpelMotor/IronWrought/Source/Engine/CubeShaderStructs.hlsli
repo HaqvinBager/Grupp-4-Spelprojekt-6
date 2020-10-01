@@ -1,5 +1,5 @@
-
-texture2D instanceTexture : register(t0);
+TextureCube environmentTexture : register(t0);
+Texture2D instanceTexture : register(t1);
 SamplerState defaultSampler : register(s0);
 
 cbuffer FrameBuffer : register(b0)
