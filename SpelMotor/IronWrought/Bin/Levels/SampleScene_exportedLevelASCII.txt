@@ -32,37 +32,6 @@
             }
         },
         {
-            "myName": "EN_W_WallDoor_01_19G4_01_19",
-            "myRotX": -700.9599609375,
-            "myRotY": 515.5924072265625,
-            "myRotZ": -684.2870483398438,
-            "myPosX": 0.0,
-            "myPosY": 10.3100004196167,
-            "myPosZ": 6.699999809265137,
-            "myScaleX": 1.0,
-            "myScaleY": 1.0,
-            "myScaleZ": 1.0,
-            "myPath": "Assets/3D/Environment/EN_W_WallDoor_01_19G4_01_19.fbx",
-            "myCharacterData": {
-                "myName": "",
-                "myHealth": 0.0,
-                "myDamage": 0.0,
-                "myMoveSpeed": 0.0,
-                "myAttackSpeed": 0.0,
-                "myCastSpeed": 0.0
-            },
-            "myColliderData": {
-                "myColliderType": "",
-                "myCenterX": 0.0,
-                "myCenterY": 0.0,
-                "myCenterZ": 0.0,
-                "myRadius": 0.0,
-                "mySizeX": 0.0,
-                "mySizeY": 0.0,
-                "mySizeZ": 0.0
-            }
-        },
-        {
             "myName": "EN_W_Top_CathedralStairs01_18G4_v2_19",
             "myRotX": -694.8101806640625,
             "myRotY": 517.8316040039063,

@@ -97,9 +97,18 @@ void CGame::Update()
 	UpdateCamera();
 
 	if (Input::GetInstance()->IsKeyPressed('1')) {
-		myLevelLoader->LoadNewLevel("Levels/SampleScene_exportedLevelASCII.txt");
+		myLevelLoader->LoadNewLevel("Levels/Dungeon_exportedLevelASCII.txt");
 	}
 	if (Input::GetInstance()->IsKeyPressed('2')) {
+		myLevelLoader->LoadNewLevel("Levels/Gardens_exportedLevelASCII.txt");
+	}
+	if (Input::GetInstance()->IsKeyPressed('3')) {
+		myLevelLoader->LoadNewLevel("Levels/Castle_exportedLevelASCII.txt");
+	}
+	if (Input::GetInstance()->IsKeyPressed('4')) {
+		myLevelLoader->LoadNewLevel("Levels/SampleScene_exportedLevelASCII.txt");
+	}
+	if (Input::GetInstance()->IsKeyPressed('5')) {
 		myLevelLoader->LoadNewLevel("Levels/SampleScene_exportedLevelASCII_Smily.txt");
 	}
 	UpdatePointLights();
