@@ -40,7 +40,7 @@ CGame::~CGame()
 void CGame::Init()
 {
 	myLevelLoader->Init();
-	myLevelLoader->LoadNewLevel("Levels/SampleScene_exportedLevelASCII.txt");
+	myLevelLoader->LoadNewLevel("Levels/Dungeon_exportedLevelASCII.txt");
 	CScene* scene = CScene::GetInstance();
 	CLightFactory* lightFactory = CLightFactory::GetInstance();
 	CEnvironmentLight* environmentLight = lightFactory->CreateEnvironmentLight("Yokohama2.dds");
