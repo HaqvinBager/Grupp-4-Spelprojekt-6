@@ -9,8 +9,8 @@
 #define ENGINE_HR_BOOL_MESSAGE(hr, ...)		{ HRESULT hresult = hr; if (FAILED(hresult))	{ ENGINE_HR_ERROR_MESSAGE(hresult, ##__VA_ARGS__); return false;}}
 
 #define ENGINE_ERROR_MESSAGE(...)				{ Engine::EngineException::EngineErrorMessage(__LINE__, __FUNCTION__, __FILE__, ##__VA_ARGS__);  }
-#define ENGINE_ERROR_BOOL(result)				{ if (!result)	{ENGINE_ERROR_MESSAGE(""); return false;}}
-#define ENGINE_ERROR_BOOL_MESSAGE(result, ...)	{ if (!result)	{ENGINE_ERROR_MESSAGE(##__VA_ARGS__); return false;}}
+#define ENGINE_ERROR_BOOL(result)				{ if (!result)	{ ENGINE_ERROR_MESSAGE(""); return 0;}}
+#define ENGINE_ERROR_BOOL_MESSAGE(result, ...)	{ if (!result)	{ ENGINE_ERROR_MESSAGE(##__VA_ARGS__); return 0;}}
 
 namespace Engine
 {

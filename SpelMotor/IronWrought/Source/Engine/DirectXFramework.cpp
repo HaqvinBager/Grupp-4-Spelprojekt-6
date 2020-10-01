@@ -38,6 +38,11 @@ void CDirectXFramework::EndFrame()
 
 bool CDirectXFramework::Init(CWindowHandler* aWindowHandler)
 {
+    if (!aWindowHandler) 
+    {
+        return false;
+    }
+
     HRESULT result;
     DXGI_SWAP_CHAIN_DESC swapchainDesc = {};
     swapchainDesc.BufferCount = 1;

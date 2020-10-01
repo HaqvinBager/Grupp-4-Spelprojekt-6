@@ -70,9 +70,10 @@ CModel* CModelFactory::LoadModelPBR(std::string aFilePath)
 
 	CFBXLoaderCustom modelLoader;
 	CLoaderModel* loaderModel = modelLoader.LoadModel(aFilePath.c_str());
+	ENGINE_ERROR_BOOL_MESSAGE(loaderModel, aFilePath.append(" could not be loaded.").c_str());
+
 	CLoaderMesh* mesh = loaderModel->myMeshes[0];
 	
-
 	D3D11_BUFFER_DESC vertexBufferDesc = { 0 };
 	vertexBufferDesc.ByteWidth = mesh->myVertexBufferSize * mesh->myVertexCount;
 	vertexBufferDesc.Usage = D3D11_USAGE_IMMUTABLE;

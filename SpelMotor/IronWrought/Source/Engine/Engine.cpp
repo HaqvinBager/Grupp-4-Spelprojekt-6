@@ -50,37 +50,19 @@ CEngine::~CEngine()
 
 bool CEngine::Init(CWindowHandler::SWindowData& someWindowData)
 {
-	ENGINE_ERROR_BOOL_MESSAGE(myWindowHandler->Init(someWindowData), "Window Handler could not be initialized");
+	ENGINE_ERROR_BOOL_MESSAGE(myWindowHandler->Init(someWindowData), "Window Handler could not be initialized.");
 
-	if (!myFramework->Init(myWindowHandler))
-	{
-		return false;//TODO INIT FAILED
-	}
+	ENGINE_ERROR_BOOL_MESSAGE(myFramework->Init(myWindowHandler), "Framework could not be initialized.");
 
-	if (!myForwardRenderer->Init(*this))
-	{
-		return false;//TODO INIT FAILED
-	}
+	ENGINE_ERROR_BOOL_MESSAGE(myForwardRenderer->Init(*this), "Forward Renderer could not be initiliazed.");
 
-	if (!myModelFactory->Init(*this))
-	{
-		return false;//TODO INIT FAILED
-	}
+	ENGINE_ERROR_BOOL_MESSAGE(myModelFactory->Init(*this), "Model Factory could not be initiliazed.");
 
-	if (!myCameraFactory->Init(myWindowHandler))
-	{
-		return false;//TODO INIT FAILED
-	}
+	ENGINE_ERROR_BOOL_MESSAGE(myCameraFactory->Init(myWindowHandler), "Camera Factory could not be initialized.");
 
-	if (!myScene->Init())
-	{
-		return false;//TODO INIT FAILED
-	}
+	ENGINE_ERROR_BOOL_MESSAGE(myScene->Init(), "Scene could not be initialized.");
 
-	if (!myLightFactory->Init(*this))
-	{
-		return false;//TODO INIT FAILED
-	}
+	ENGINE_ERROR_BOOL_MESSAGE(myLightFactory->Init(*this), "Light Factory could not be initialized.");
 
 	return true;
 }
