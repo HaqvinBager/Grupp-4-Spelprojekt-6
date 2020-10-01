@@ -12,12 +12,45 @@
 
 using namespace CommonUtilities;
 
+#ifdef _DEBUG
+#define USE_CONSOLE_COMMAND
+#endif
+void InitConsole()
+{
+#pragma warning( push )
+#pragma warning( disable : 4996 )
+#pragma warning( disable : 6031 )
+	AllocConsole();
+	freopen("CONIN$", "r", stdin);
+	freopen("CONOUT$", "w", stdout);
+	freopen("CONOUT$", "w", stderr);
+
+	setbuf(stdin, NULL);
+	setbuf(stdout, NULL);
+	setbuf(stderr, NULL);
+#pragma warning( pop )
+}
+
+void CloseConsole()
+{
+#pragma warning( push )
+#pragma warning( disable : 4996 )
+	fclose(stdin); 
+	fclose(stdout);
+	fclose(stderr);
+#pragma warning( pop )
+}
+
 int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPWSTR lpCmdLine, _In_ int nShowCmd)
 {
 	hInstance;
 	hPrevInstance;
 	lpCmdLine;
 	nShowCmd;
+
+#ifdef USE_CONSOLE_COMMAND
+	InitConsole();
+#endif
 
 	CWindowHandler::SWindowData windowData;
 	windowData.myX = 100;
@@ -54,6 +87,9 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 		Input::GetInstance()->update();
 	}
 
+#ifdef USE_CONSOLE_COMMAND
+	CloseConsole();
+#endif
 	return 0;
 }
 

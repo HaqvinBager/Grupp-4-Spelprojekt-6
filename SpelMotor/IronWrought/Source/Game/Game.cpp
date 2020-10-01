@@ -40,7 +40,7 @@ CGame::~CGame()
 void CGame::Init()
 {
 	myLevelLoader->Init();
-	myLevelLoader->LoadNewLevel("Unity Level Export/SampleScene_exportedLevelASCII.txt");
+	myLevelLoader->LoadNewLevel("Levels/SampleScene_exportedLevelASCII.txt");
 	CScene* scene = CScene::GetInstance();
 	CLightFactory* lightFactory = CLightFactory::GetInstance();
 	CEnvironmentLight* environmentLight = lightFactory->CreateEnvironmentLight("Yokohama2.dds");
@@ -97,10 +97,19 @@ void CGame::Update()
 	UpdateCamera();
 
 	if (Input::GetInstance()->IsKeyPressed('1')) {
-		myLevelLoader->LoadNewLevel("Unity Level Export/SampleScene_exportedLevelASCII.txt");
+		myLevelLoader->LoadNewLevel("Levels/Dungeon_exportedLevelASCII.txt");
 	}
 	if (Input::GetInstance()->IsKeyPressed('2')) {
-		myLevelLoader->LoadNewLevel("Unity Level Export/SampleScene_exportedLevelASCII_Smily.txt");
+		myLevelLoader->LoadNewLevel("Levels/Gardens_exportedLevelASCII.txt");
+	}
+	if (Input::GetInstance()->IsKeyPressed('3')) {
+		myLevelLoader->LoadNewLevel("Levels/Castle_exportedLevelASCII.txt");
+	}
+	if (Input::GetInstance()->IsKeyPressed('4')) {
+		myLevelLoader->LoadNewLevel("Levels/SampleScene_exportedLevelASCII.txt");
+	}
+	if (Input::GetInstance()->IsKeyPressed('5')) {
+		myLevelLoader->LoadNewLevel("Levels/SampleScene_exportedLevelASCII_Smily.txt");
 	}
 	UpdatePointLights();
 }
