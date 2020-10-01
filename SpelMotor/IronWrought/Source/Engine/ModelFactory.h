@@ -26,8 +26,8 @@ public:
 private:
 	CModelFactory();
 	~CModelFactory();
-	wchar_t* TexturePathWide(std::string aTexturePath) const;
-	ID3D11ShaderResourceView* GetShaderResourceView(ID3D11Device* aDevice, wchar_t* aTexturePath);
+	//wchar_t* TexturePathWide(std::string aTexturePath) const;
+	ID3D11ShaderResourceView* GetShaderResourceView(ID3D11Device* aDevice, std::string aTexturePath);
 
 	std::map<std::string, CModel*> myModelMapPBR;
 	std::map<std::string, CModel*> myModelMap;
