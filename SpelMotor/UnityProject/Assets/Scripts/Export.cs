@@ -21,7 +21,7 @@ public class MenuItems : MonoBehaviour
         }
 
         string scene_name = SceneManager.GetActiveScene().name;
-
+        // its actually just a json file. Named .txt.
         using (System.IO.StreamWriter file = new System.IO.StreamWriter(target_path + scene_name + "_exportedLevelASCII.txt"))
         {
             // Gets all root objects in the scene (i.e children are not included)
@@ -49,9 +49,11 @@ public class MenuItems : MonoBehaviour
                 ObjectData savingObject = new ObjectData();
 
                 // Transforms
-                savingObject.myRotX     = go.transform.rotation.eulerAngles.x;//Eueler is in Degrees?
-                savingObject.myRotY     = go.transform.rotation.eulerAngles.y;
-                savingObject.myRotZ     = go.transform.rotation.eulerAngles.z;
+                /// the adjustments made to myRotXYZ is to make it correct in engine. There is most likely a cause to this. This should be looked over
+                savingObject.myRotX     = -go.transform.rotation.eulerAngles.x - 360.0f;//Eueler is in Degrees?
+                savingObject.myRotY     =  go.transform.rotation.eulerAngles.y + 180.0f;
+                savingObject.myRotZ     = -go.transform.rotation.eulerAngles.z - 360.0f;
+
                 savingObject.myPosX     = go.transform.position.x;
                 savingObject.myPosY     = go.transform.position.y;
                 savingObject.myPosZ     = go.transform.position.z;
@@ -128,6 +130,8 @@ public class MenuItems : MonoBehaviour
             }
             string jsonString = JsonUtility.ToJson(objects, true);
             file.WriteLine(jsonString);
+            
+            print(System.DateTime.Now.ToString() + " - Level exported.");
         }
     }
 
