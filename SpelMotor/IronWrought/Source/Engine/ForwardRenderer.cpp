@@ -41,10 +41,7 @@ bool CForwardRenderer::Init(CEngine& anEngine) {
 	bufferDescription.ByteWidth = static_cast<UINT>(sizeof(SFrameBufferData) + (16 - (sizeof(SFrameBufferData) % 16)));
 	bufferDescription.StructureByteStride = 0;
 
-	result = device->CreateBuffer(&bufferDescription, nullptr, &myFrameBuffer);
-	if (FAILED(result)) {
-		return false;
-	}
+	ENGINE_HR_BOOL_MESSAGE(device->CreateBuffer(&bufferDescription, nullptr, &myFrameBuffer), "Forward Renderer Frame Buffer could not be created.");
 
 	bufferDescription.ByteWidth = static_cast<UINT>(sizeof(SObjectBufferData) + (16 - (sizeof(SObjectBufferData) % 16)));
 	result = device->CreateBuffer(&bufferDescription, nullptr, &myObjectBuffer);

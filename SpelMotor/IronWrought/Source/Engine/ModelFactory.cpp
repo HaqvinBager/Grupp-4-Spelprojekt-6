@@ -9,6 +9,7 @@
 #include "ModelInstance.h"
 #include "ModelMath.h"
 
+
 #ifdef _DEBUG
 #pragma comment(lib, "ModelLoader_Debug.lib")
 #endif
@@ -69,9 +70,10 @@ CModel* CModelFactory::LoadModelPBR(std::string aFilePath)
 
 	CFBXLoaderCustom modelLoader;
 	CLoaderModel* loaderModel = modelLoader.LoadModel(aFilePath.c_str());
+	ENGINE_ERROR_BOOL_MESSAGE(loaderModel, aFilePath.append(" could not be loaded.").c_str());
+
 	CLoaderMesh* mesh = loaderModel->myMeshes[0];
 	
-
 	D3D11_BUFFER_DESC vertexBufferDesc = { 0 };
 	vertexBufferDesc.ByteWidth = mesh->myVertexBufferSize * mesh->myVertexCount;
 	vertexBufferDesc.Usage = D3D11_USAGE_IMMUTABLE;
@@ -81,9 +83,7 @@ CModel* CModelFactory::LoadModelPBR(std::string aFilePath)
 	subVertexResourceData.pSysMem = mesh->myVerticies;
 
 	ID3D11Buffer* vertexBuffer;
-	result = myEngine->myFramework->GetDevice()->CreateBuffer(&vertexBufferDesc, &subVertexResourceData, &vertexBuffer);
-	if (FAILED(result))
-		return nullptr;
+	ENGINE_HR_MESSAGE(myEngine->myFramework->GetDevice()->CreateBuffer(&vertexBufferDesc, &subVertexResourceData, &vertexBuffer), "Vertex Buffer could not be created.");
 
 	D3D11_BUFFER_DESC indexBufferDesc = { 0 };
 	indexBufferDesc.ByteWidth = sizeof(unsigned int) * static_cast<UINT>(mesh->myIndexes.size());
@@ -96,31 +96,7 @@ CModel* CModelFactory::LoadModelPBR(std::string aFilePath)
 	ID3D11Buffer* indexBuffer;
 	result = myEngine->myFramework->GetDevice()->CreateBuffer(&indexBufferDesc, &subIndexResourceData, &indexBuffer);
 	if (FAILED(result))
-		return nullptr;
-
-
-	//ID3D11Buffer* bonesBuffer = nullptr;
-	//if (mesh->myModel->myNumBones > 0)
-	//{
-	//	struct BoneB
-	//	{
-	//		SlimMatrix44 boneOffset[64];
-	//		SlimMatrix44 finalTransformation[64];
-	//	};
-
-	//	D3D11_BUFFER_DESC boneBufferDesc = { 0 };
-	//	boneBufferDesc.Usage = D3D11_USAGE_DYNAMIC;
-	//	boneBufferDesc.ByteWidth = sizeof(BoneB);
-	//	boneBufferDesc.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
-	//	boneBufferDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
-	//	boneBufferDesc.MiscFlags = 0;
-	//	boneBufferDesc.StructureByteStride = 0;
-	//	//D3D11_SUBRESOURCE_DATA boneSubResourceData;
-	//	//boneSubResourceData.pSysMem = mesh->myModel->my
-
-	//	result = myEngine->myFramework->GetDevice()->CreateBuffer(&boneBufferDesc, NULL, &bonesBuffer);
-	//	if (FAILED(result)) { return nullptr; }
-	//}
+		return nullptr; //TODO FAILED
 
 	//VertexShader
 	std::ifstream vsFile;
@@ -137,7 +113,7 @@ CModel* CModelFactory::LoadModelPBR(std::string aFilePath)
 	result = myEngine->myFramework->GetDevice()->CreateVertexShader(vsData.data(), vsData.size(), nullptr, &vertexShader);
 
 	if (FAILED(result))
-		return nullptr;
+		return nullptr;//TODO FAILED
 
 	vsFile.close();
 
@@ -151,7 +127,7 @@ CModel* CModelFactory::LoadModelPBR(std::string aFilePath)
 	result = myEngine->myFramework->GetDevice()->CreatePixelShader(psData.data(), psData.size(), nullptr, &pixelShader);
 
 	if (FAILED(result))
-		return nullptr;
+		return nullptr;//TODO FAILED
 
 	psFile.close();
 
@@ -164,7 +140,7 @@ CModel* CModelFactory::LoadModelPBR(std::string aFilePath)
 	samplerDesc.AddressW = D3D11_TEXTURE_ADDRESS_WRAP;
 	result = myEngine->myFramework->GetDevice()->CreateSamplerState(&samplerDesc, &sampler);
 	if (FAILED(result))
-		return nullptr;
+		return nullptr;//TODO FAILED
 
 	//Layout
 	D3D11_INPUT_ELEMENT_DESC layout[] =
@@ -181,7 +157,7 @@ CModel* CModelFactory::LoadModelPBR(std::string aFilePath)
 	ID3D11InputLayout* inputLayout;
 	result = myEngine->myFramework->GetDevice()->CreateInputLayout(layout, sizeof(layout) / sizeof(D3D11_INPUT_ELEMENT_DESC), vsData.data(), vsData.size(), &inputLayout);
 	if (FAILED(result))
-		return nullptr;
+		return nullptr;//TODO FAILED
 
 	ID3D11Device* device = myEngine->myFramework->GetDevice();
 	std::string modelDirectoryAndName = modelDirectory + modelName;
@@ -198,7 +174,7 @@ CModel* CModelFactory::LoadModelPBR(std::string aFilePath)
 	//Model
 	CModel* model = new CModel();
 	if (!model)
-		return nullptr;
+		return nullptr;//TODO NULLPTR
 
 	CModel::SModelData modelData;
 	modelData.myNumberOfVerticies = mesh->myVertexCount;
@@ -254,7 +230,7 @@ CModel* CModelFactory::LoadModel(std::string aFilePath)
 	ID3D11Buffer* vertexBuffer;
 	result = myEngine->myFramework->GetDevice()->CreateBuffer(&vertexBufferDesc, &subVertexResourceData, &vertexBuffer);
 	if (FAILED(result))
-		return nullptr;
+		return nullptr;//TODO FAILED
 
 	D3D11_BUFFER_DESC indexBufferDesc = { 0 };
 	indexBufferDesc.ByteWidth = sizeof(unsigned int) * static_cast<UINT>(mesh->myIndexes.size());
@@ -267,7 +243,7 @@ CModel* CModelFactory::LoadModel(std::string aFilePath)
 	ID3D11Buffer* indexBuffer;
 	result = myEngine->myFramework->GetDevice()->CreateBuffer(&indexBufferDesc, &subIndexResourceData, &indexBuffer);
 	if (FAILED(result))
-		return nullptr;
+		return nullptr;//TODO FAILED
 
 	//VertexShader
 	std::ifstream vsFile;
@@ -278,7 +254,7 @@ CModel* CModelFactory::LoadModel(std::string aFilePath)
 	result = myEngine->myFramework->GetDevice()->CreateVertexShader(vsData.data(), vsData.size(), nullptr, &vertexShader);
 
 	if (FAILED(result))
-		return nullptr;
+		return nullptr;//TODO FAILED
 
 	vsFile.close();
 
@@ -291,7 +267,7 @@ CModel* CModelFactory::LoadModel(std::string aFilePath)
 	result = myEngine->myFramework->GetDevice()->CreatePixelShader(psData.data(), psData.size(), nullptr, &pixelShader);
 
 	if (FAILED(result))
-		return nullptr;
+		return nullptr;//TODO FAILED
 
 	psFile.close();
 
@@ -304,7 +280,7 @@ CModel* CModelFactory::LoadModel(std::string aFilePath)
 	samplerDesc.AddressW = D3D11_TEXTURE_ADDRESS_WRAP;
 	result = myEngine->myFramework->GetDevice()->CreateSamplerState(&samplerDesc, &sampler);
 	if (FAILED(result))
-		return nullptr;
+		return nullptr;//TODO FAILED
 
 	//Layout
 	D3D11_INPUT_ELEMENT_DESC layout[] =
@@ -321,7 +297,7 @@ CModel* CModelFactory::LoadModel(std::string aFilePath)
 	ID3D11InputLayout* inputLayout;
 	result = myEngine->myFramework->GetDevice()->CreateInputLayout(layout, sizeof(layout) / sizeof(D3D11_INPUT_ELEMENT_DESC), vsData.data(), vsData.size(), &inputLayout);
 	if (FAILED(result))
-		return nullptr;
+		return nullptr;//TODO FAILED
 
 	ID3D11Device* device = myEngine->myFramework->GetDevice();
 	ID3D11ShaderResourceView* albedoResourceView = GetShaderResourceView(device, TexturePathWide(modelDirectory + loaderModel->myTextures[0]));
@@ -330,7 +306,7 @@ CModel* CModelFactory::LoadModel(std::string aFilePath)
 	//Model
 	CModel* model = new CModel();
 	if (!model)
-		return nullptr;
+		return nullptr;//TODO NULLPTR
 
 	CModel::SModelData modelData;
 	modelData.myNumberOfVerticies = mesh->myVertexCount;
@@ -424,7 +400,7 @@ CModel* CModelFactory::GetCube()
 	ID3D11Buffer* vertexBuffer;
 	result = myEngine->myFramework->GetDevice()->CreateBuffer(&vertexBufferDesc, &subResourceData, &vertexBuffer);
 	if (FAILED(result))
-		return nullptr;
+		return nullptr;//TODO FAILED
 
 	D3D11_BUFFER_DESC indexBufferDesc = { 0 };
 	indexBufferDesc.ByteWidth = sizeof(indicies);
@@ -437,7 +413,7 @@ CModel* CModelFactory::GetCube()
 	result = myEngine->myFramework->GetDevice()->CreateBuffer(&indexBufferDesc, &indexSubresourceData, &indexBuffer);
 	if (FAILED(result))
 	{
-		return nullptr;
+		return nullptr;//TODO FAILED
 	}
 
 	//VertexShader
@@ -447,7 +423,7 @@ CModel* CModelFactory::GetCube()
 	ID3D11VertexShader* vertexShader;
 	result = myEngine->myFramework->GetDevice()->CreateVertexShader(vsData.data(), vsData.size(), nullptr, &vertexShader);
 	if (FAILED(result))
-		return nullptr;
+		return nullptr;//TODO FAILED
 	vsFile.close();
 
 	//PixelShader
@@ -457,7 +433,7 @@ CModel* CModelFactory::GetCube()
 	ID3D11PixelShader* pixelShader;
 	result = myEngine->myFramework->GetDevice()->CreatePixelShader(psData.data(), psData.size(), nullptr, &pixelShader);
 	if (FAILED(result))
-		return nullptr;
+		return nullptr;//TODO FAILED
 	psFile.close();
 
 	//Sampler
@@ -469,7 +445,7 @@ CModel* CModelFactory::GetCube()
 	samplerDesc.AddressW = D3D11_TEXTURE_ADDRESS_WRAP;
 	result = myEngine->myFramework->GetDevice()->CreateSamplerState(&samplerDesc, &sampler);
 	if (FAILED(result))
-		return nullptr;
+		return nullptr;//TODO FAILED
 
 	//Layout
 	D3D11_INPUT_ELEMENT_DESC layout[] = {
@@ -481,20 +457,20 @@ CModel* CModelFactory::GetCube()
 	ID3D11InputLayout* inputLayout;
 	result = myEngine->myFramework->GetDevice()->CreateInputLayout(layout, 3, vsData.data(), vsData.size(), &inputLayout);
 	if (FAILED(result))
-		return nullptr;
+		return nullptr;//TODO FAILED
 
 	std::wstring filename = L"Texture.dds";
 	ID3D11ShaderResourceView* shaderResourceView;
 	result = DirectX::CreateDDSTextureFromFile(myEngine->myFramework->GetDevice(), filename.c_str(), nullptr, &shaderResourceView);
 	if (FAILED(result))
 	{
-		return nullptr;
+		return nullptr;//TODO FAILED
 	}
 
 	//Model
 	CModel* model = new CModel();
 	if (!model)
-		return nullptr;
+		return nullptr;//TODO NULLPTR
 
 	CModel::SModelData modelData;
 	modelData.myNumberOfVerticies = sizeof(verticies) / sizeof(Vertex);

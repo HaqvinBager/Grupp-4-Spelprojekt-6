@@ -2,6 +2,7 @@
 #include <string>
 #include <map>
 
+
 class CModel;
 class CEngine;
 class CModelInstance;

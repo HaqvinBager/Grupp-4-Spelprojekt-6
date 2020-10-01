@@ -20,7 +20,7 @@ CEnvironmentLight* CLightFactory::CreateEnvironmentLight(std::string aCubeMapPat
 	CEnvironmentLight* light = new CEnvironmentLight();
     if (!light->Init(myEngine->myFramework, aCubeMapPath))
     {
-        return nullptr;
+        return nullptr; //TODO INIT FAILED
     }
     
     return light;
@@ -30,7 +30,7 @@ CPointLight* CLightFactory::CreatePointLight()
     CPointLight* light = new CPointLight();
     if (!light->Init())
     {
-        return nullptr;
+        return nullptr; //TODO INIT FAILED
     }
 
     return light;
