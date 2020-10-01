@@ -32,6 +32,37 @@
             }
         },
         {
+            "myName": "EN_P_L1BridgePillar_01_19G4_01_19",
+            "myRotX": -360.0,
+            "myRotY": 180.0,
+            "myRotZ": -360.0,
+            "myPosX": 3.049999952316284,
+            "myPosY": 0.0,
+            "myPosZ": 0.0,
+            "myScaleX": 1.0,
+            "myScaleY": 1.0,
+            "myScaleZ": 1.0,
+            "myPath": "Assets/3D/Environment/EN_P_L1BridgePillar_01_19G4_01_19/EN_P_L1BridgePillar_01_19G4_01_19.fbx",
+            "myCharacterData": {
+                "myName": "",
+                "myHealth": 0.0,
+                "myDamage": 0.0,
+                "myMoveSpeed": 0.0,
+                "myAttackSpeed": 0.0,
+                "myCastSpeed": 0.0
+            },
+            "myColliderData": {
+                "myColliderType": "",
+                "myCenterX": 0.0,
+                "myCenterY": 0.0,
+                "myCenterZ": 0.0,
+                "myRadius": 0.0,
+                "mySizeX": 0.0,
+                "mySizeY": 0.0,
+                "mySizeZ": 0.0
+            }
+        },
+        {
             "myName": "Directional Light",
             "myRotX": -410.0,
             "myRotY": 510.0,
