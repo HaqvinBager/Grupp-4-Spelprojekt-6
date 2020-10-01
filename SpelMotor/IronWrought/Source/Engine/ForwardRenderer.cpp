@@ -31,8 +31,6 @@ bool CForwardRenderer::Init(CEngine& anEngine) {
 	if (!device)
 		return false;
 
-	HRESULT result;
-
 	D3D11_BUFFER_DESC bufferDescription = { 0 };
 	bufferDescription.Usage = D3D11_USAGE_DYNAMIC;
 	bufferDescription.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
@@ -41,25 +39,19 @@ bool CForwardRenderer::Init(CEngine& anEngine) {
 	bufferDescription.ByteWidth = static_cast<UINT>(sizeof(SFrameBufferData) + (16 - (sizeof(SFrameBufferData) % 16)));
 	bufferDescription.StructureByteStride = 0;
 
-	ENGINE_HR_BOOL_MESSAGE(device->CreateBuffer(&bufferDescription, nullptr, &myFrameBuffer), "Forward Renderer Frame Buffer could not be created.");
+	ENGINE_HR_BOOL_MESSAGE(device->CreateBuffer(&bufferDescription, nullptr, &myFrameBuffer), "Frame Buffer could not be created.");
 
 	bufferDescription.ByteWidth = static_cast<UINT>(sizeof(SObjectBufferData) + (16 - (sizeof(SObjectBufferData) % 16)));
-	result = device->CreateBuffer(&bufferDescription, nullptr, &myObjectBuffer);
-	if (FAILED(result)) {
-		return false;
-	}
+	ENGINE_HR_BOOL_MESSAGE(device->CreateBuffer(&bufferDescription, nullptr, &myObjectBuffer), "Object Buffer could not be created.");
 
 	bufferDescription.ByteWidth = static_cast<UINT>(sizeof(SBoneBufferData) + (16 - (sizeof(SBoneBufferData) % 16)));
-	result = device->CreateBuffer(&bufferDescription, nullptr, &myBoneBuffer);
-	if (FAILED(result)) {
-		return false;
-	}
+	ENGINE_HR_BOOL_MESSAGE(device->CreateBuffer(&bufferDescription, nullptr, &myBoneBuffer), "Bone Buffer could not be created.");
 
 	return true;
 }
 
-void CForwardRenderer::Render(CEnvironmentLight* anEnvironmentLight, std::vector<std::pair<unsigned int, std::array<CPointLight*, 8>>> somePointLights, CCamera* aCamera, std::vector<CModelInstance*>& aModelList) {
-	HRESULT result;
+void CForwardRenderer::Render(CEnvironmentLight* anEnvironmentLight, std::vector<std::pair<unsigned int, std::array<CPointLight*, 8>>> somePointLights, CCamera* aCamera, std::vector<CModelInstance*>& aModelList) 
+{
 	D3D11_MAPPED_SUBRESOURCE bufferData;
 	myFrameBufferData.myToCamera = aCamera->GetTransform().Invert();
 	myFrameBufferData.myToProjection = aCamera->GetProjection();
@@ -68,11 +60,8 @@ void CForwardRenderer::Render(CEnvironmentLight* anEnvironmentLight, std::vector
 	myFrameBufferData.myDirectionalLightColor = anEnvironmentLight->GetColor();
 
 	ZeroMemory(&bufferData, sizeof(D3D11_MAPPED_SUBRESOURCE));
+	ENGINE_HR_MESSAGE(myContext->Map(myFrameBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &bufferData), "Frame Buffer could not be mapped.");
 
-	result = myContext->Map(myFrameBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &bufferData);
-	if (FAILED(result)) {
-		return;
-	}
 	memcpy(bufferData.pData, &myFrameBufferData, sizeof(SFrameBufferData));
 	myContext->Unmap(myFrameBuffer, 0);
 	myContext->VSSetConstantBuffers(0, 1, &myFrameBuffer);
@@ -102,10 +91,8 @@ void CForwardRenderer::Render(CEnvironmentLight* anEnvironmentLight, std::vector
 
 		D3D11_MAPPED_SUBRESOURCE PSbufferData;
 		ZeroMemory(&PSbufferData, sizeof(D3D11_MAPPED_SUBRESOURCE));
-		result = myContext->Map(myObjectBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &PSbufferData);
-		if (FAILED(result)) {
-			return;
-		}
+		ENGINE_HR_MESSAGE(myContext->Map(myObjectBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &PSbufferData), "Object Buffer could not be mapped.");
+
 		CopyMemory(PSbufferData.pData, &myObjectBufferData, sizeof(SObjectBufferData));
 		myContext->Unmap(myObjectBuffer, 0);
 
@@ -113,13 +100,10 @@ void CForwardRenderer::Render(CEnvironmentLight* anEnvironmentLight, std::vector
 
 		D3D11_MAPPED_SUBRESOURCE VSBufferData;
 		ZeroMemory(&VSBufferData, sizeof(D3D11_MAPPED_SUBRESOURCE));
-		result = myContext->Map(myBoneBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &VSBufferData);
-		if (FAILED(result)) {
-			return;
-		}
+		ENGINE_HR_MESSAGE(myContext->Map(myBoneBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &VSBufferData), "Bone Buffer could not be mapped.");
+
 		CopyMemory(VSBufferData.pData, &myBoneBufferData, sizeof(SBoneBufferData));
 		myContext->Unmap(myBoneBuffer, 0);
-
 
 		myContext->IASetPrimitiveTopology(modelData.myPrimitiveTopology);
 		myContext->IASetInputLayout(modelData.myInputLayout);
