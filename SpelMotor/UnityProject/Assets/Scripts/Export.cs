@@ -90,7 +90,7 @@ public class MenuItems : MonoBehaviour
                             // Add prefab instance CharacterData if it has the appropriate component (PH is Player)
                             if (child.GetComponent<CharacterData>() != null)//Player.cs is placeholder
                             {
-                                savingObject.myCharacterData = new CharacterData();
+                                savingObject.myCharacterData = new CharacterDataStruct();
                                 savingObject.myCharacterData.myName = child.GetComponent<CharacterData>().myName;
                                 savingObject.myCharacterData.myHealth = child.GetComponent<CharacterData>().myHealth;
                                 savingObject.myCharacterData.myDamage = child.GetComponent<CharacterData>().myDamage;
@@ -177,7 +177,7 @@ public class MenuItems : MonoBehaviour
                         // Add prefab instance CharacterData if it has the appropriate component (PH is Player)
                         if (go.GetComponent<CharacterData>() != null)//Player.cs is placeholder
                         {
-                            savingObject.myCharacterData = new CharacterData();
+                            savingObject.myCharacterData = new CharacterDataStruct();
                             savingObject.myCharacterData.myName = go.GetComponent<CharacterData>().myName;
                             savingObject.myCharacterData.myHealth = go.GetComponent<CharacterData>().myHealth;
                             savingObject.myCharacterData.myDamage = go.GetComponent<CharacterData>().myDamage;
@@ -249,7 +249,7 @@ public class MenuItems : MonoBehaviour
     //public class BoxColliderData : ColliderData {}
     //public class SphereColliderData : ColliderData{}
     [System.Serializable]
-    public class CharacterData
+    public class CharacterDataStruct
     {
         //These are all Place Holder [PH], examples
         public string myName;
@@ -284,7 +284,7 @@ public class MenuItems : MonoBehaviour
         public float myScaleY;// World space
         public float myScaleZ;// World space
         public string myPath;
-        public CharacterData myCharacterData;
+        public CharacterDataStruct myCharacterData;
         public ColliderData myColliderData;
         /* Next step is to add several colliders. 
          * Being able to create a collider hierarchy for a character. 
