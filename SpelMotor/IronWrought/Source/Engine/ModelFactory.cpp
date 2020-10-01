@@ -490,12 +490,12 @@ CModel* CModelFactory::GetCube()
 	return model;
 }
 
-CModelInstance* CModelFactory::CreateModel(std::string aModelName, float scale)
+CModelInstance* CModelFactory::CreateModel(std::string aModelName, DirectX::SimpleMath::Vector3 aScale)
 {
 	CModel* model = CModelFactory::GetInstance()->GetModelPBR(aModelName);
 	CModelInstance* modelInstance = new CModelInstance();
 	modelInstance->Init(model);
-	modelInstance->SetScale(scale);
+	modelInstance->SetScale(aScale);
 	return modelInstance;
 }
 
