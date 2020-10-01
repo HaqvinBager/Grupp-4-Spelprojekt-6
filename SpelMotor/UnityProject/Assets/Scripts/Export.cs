@@ -11,6 +11,93 @@ public class MenuItems : MonoBehaviour
 {
     // REMINDER: add changes made here to Binary export script. -> Slightly more difficult
 
+    static private ObjectData GetSaveObject(GameObject go)
+    {
+        ObjectData savingObject = new ObjectData();
+        // Get desired data from root objects
+        // ObjectData savingObject = new ObjectData();
+
+        // Transforms
+        /// the adjustments made to myRotXYZ is to make it correct in engine. There is most likely a cause to this. This should be looked over
+        savingObject.myRotX = -go.transform.rotation.eulerAngles.x - 360.0f;//Eueler is in Degrees?
+        savingObject.myRotY = go.transform.rotation.eulerAngles.y + 180.0f;
+        savingObject.myRotZ = -go.transform.rotation.eulerAngles.z - 360.0f;
+
+        savingObject.myPosX = go.transform.position.x;
+        savingObject.myPosY = go.transform.position.y;
+        savingObject.myPosZ = go.transform.position.z;
+        savingObject.myScaleX = go.transform.localScale.x;
+        savingObject.myScaleY = go.transform.localScale.y;
+        savingObject.myScaleZ = go.transform.localScale.z;
+
+        // Asset name
+        savingObject.myName = go.name;
+
+        // Is it a prefab?
+        if (PrefabUtility.GetPrefabAssetType(go) == PrefabAssetType.Regular)
+        {
+            //print(go.ToString() + " is a prefab");
+
+            // Check children for meshrenderer to find FBX object
+            if (go.transform.childCount > 0)
+            {
+                for (int i = 0; i < go.transform.childCount; ++i)
+                {
+                    var child = go.transform.GetChild(i);
+                    if (child.gameObject.GetComponentInChildren<MeshRenderer>())
+                    {
+                        savingObject.myPath = AssetDatabase.GetAssetPath(PrefabUtility.GetCorrespondingObjectFromOriginalSource(child));
+                    }
+                }
+            }
+            // Add prefab instance CharacterData if it has the appropriate component (PH is Player)
+            if (go.GetComponent<CharacterData>() != null)//Player.cs is placeholder
+            {
+                savingObject.myCharacterData = new CharacterDataStruct();
+                savingObject.myCharacterData.myName = go.GetComponent<CharacterData>().myName;
+                savingObject.myCharacterData.myHealth = go.GetComponent<CharacterData>().myHealth;
+                savingObject.myCharacterData.myDamage = go.GetComponent<CharacterData>().myDamage;
+                savingObject.myCharacterData.myAttackSpeed = go.GetComponent<CharacterData>().myAttackSpeed;
+                savingObject.myCharacterData.myMoveSpeed = go.GetComponent<CharacterData>().myMoveSpeed;
+                savingObject.myCharacterData.myCastSpeed = go.GetComponent<CharacterData>().myCastSpeed;
+            }
+        }
+        else // it is not a prefab: bare-FBX, Light or Camera, e.g.
+        {
+            savingObject.myPath = AssetDatabase.GetAssetPath(PrefabUtility.GetCorrespondingObjectFromSource(go));
+        }
+
+        if (go.GetComponent<Collider>())
+        {
+            // Int or String? Int -> Enum Clas in C++ faster comparison. String might be fine during load.
+            // UnityEngine.collider, UnityEngine. ends on index 12 
+            savingObject.myColliderData = new ColliderData();
+            savingObject.myColliderData.myColliderType = go.GetComponent<Collider>().GetType().ToString().Remove(0, 12);
+            print(savingObject.myColliderData.myColliderType);
+            if (savingObject.myColliderData.myColliderType == "BoxCollider")
+            {
+                print("Getting BoxCollider Data");
+                savingObject.myColliderData.mySizeX = go.GetComponent<BoxCollider>().size.x;
+                savingObject.myColliderData.mySizeY = go.GetComponent<BoxCollider>().size.y;
+                savingObject.myColliderData.mySizeZ = go.GetComponent<BoxCollider>().size.z;
+                savingObject.myColliderData.myCenterX = go.GetComponent<BoxCollider>().center.x;
+                savingObject.myColliderData.myCenterY = go.GetComponent<BoxCollider>().center.y;
+                savingObject.myColliderData.myCenterZ = go.GetComponent<BoxCollider>().center.z;
+
+            }
+            else if (savingObject.myColliderData.myColliderType == "SphereCollider")
+            {
+                print("Getting SphereCollider Data");
+                savingObject.myColliderData.myRadius = go.GetComponent<SphereCollider>().radius;
+                savingObject.myColliderData.myCenterX = go.GetComponent<SphereCollider>().center.x;
+                savingObject.myColliderData.myCenterY = go.GetComponent<SphereCollider>().center.y;
+                savingObject.myColliderData.myCenterZ = go.GetComponent<SphereCollider>().center.z;
+            }
+        }
+
+        return savingObject;
+    }
+
     [MenuItem("Tools/Export all #s")]
     private static void NewMenuOption()
     {
@@ -47,179 +134,28 @@ public class MenuItems : MonoBehaviour
             {
                 if (go.transform.childCount > 0 && PrefabUtility.GetPrefabAssetType(go) != PrefabAssetType.Regular)
                 {
-                    print(go.transform.childCount);
-                    for (int i = 0; i < go.transform.childCount; ++i)
+                    for (int childindex = 0; childindex < go.transform.childCount; ++childindex)
                     {
-                        ObjectData savingObject = new ObjectData();
-                        Transform child = go.transform.GetChild(i);
-                        // Get desired data from root objects
-                        print("child: " + i);
-                        // Transforms
-                        /// the adjustments made to myRotXYZ is to make it correct in engine. There is most likely a cause to this. This should be looked over
-                        savingObject.myRotX = -child.transform.rotation.eulerAngles.x - 360.0f;//Eueler is in Degrees?
-                        savingObject.myRotY = child.transform.rotation.eulerAngles.y + 180.0f;
-                        savingObject.myRotZ = -child.transform.rotation.eulerAngles.z - 360.0f;
-
-                        savingObject.myPosX = child.transform.position.x;
-                        savingObject.myPosY = child.transform.position.y;
-                        savingObject.myPosZ = child.transform.position.z;
-                        savingObject.myScaleX = child.transform.localScale.x;
-                        savingObject.myScaleY = child.transform.localScale.y;
-                        savingObject.myScaleZ = child.transform.localScale.z;
-
-                        // Asset name
-                        savingObject.myName = child.name;
-
-                        // Is it a prefab?
-                        if (PrefabUtility.GetPrefabAssetType(child) == PrefabAssetType.Regular)
+                        Transform child = go.transform.GetChild(childindex);
+                        if(child.transform.childCount > 0 && PrefabUtility.GetPrefabAssetType(go) != PrefabAssetType.Regular)
                         {
-                            //print(go.ToString() + " is a prefab");
-
-                            // Check children for meshrenderer to find FBX object
-                            if (child.transform.childCount > 0)
+                            for (int childchildindex = 0; childchildindex < child.transform.childCount; ++childchildindex)
                             {
-                                for (int y = 0; y < child.transform.childCount; ++y)
-                                {
-                                    var prefabchild = child.transform.GetChild(y);
-                                    if (prefabchild.gameObject.GetComponentInChildren<MeshRenderer>())
-                                    {
-                                        savingObject.myPath = AssetDatabase.GetAssetPath(PrefabUtility.GetCorrespondingObjectFromOriginalSource(prefabchild));
-                                    }
-                                }
-                            }
-                            // Add prefab instance CharacterData if it has the appropriate component (PH is Player)
-                            if (child.GetComponent<CharacterData>() != null)//Player.cs is placeholder
-                            {
-                                savingObject.myCharacterData = new CharacterDataStruct();
-                                savingObject.myCharacterData.myName = child.GetComponent<CharacterData>().myName;
-                                savingObject.myCharacterData.myHealth = child.GetComponent<CharacterData>().myHealth;
-                                savingObject.myCharacterData.myDamage = child.GetComponent<CharacterData>().myDamage;
-                                savingObject.myCharacterData.myAttackSpeed = child.GetComponent<CharacterData>().myAttackSpeed;
-                                savingObject.myCharacterData.myMoveSpeed = child.GetComponent<CharacterData>().myMoveSpeed;
-                                savingObject.myCharacterData.myCastSpeed = child.GetComponent<CharacterData>().myCastSpeed;
+                                Transform childchild = child.transform.GetChild(childchildindex);
+                                objects.dataList.Add(GetSaveObject(childchild.gameObject));
                             }
                         }
-                        else // it is not a prefab: bare-FBX, Light or Camera, e.g.
-                        {
-                            savingObject.myPath = AssetDatabase.GetAssetPath(PrefabUtility.GetCorrespondingObjectFromSource(child));
-                        }
-
-                        if (child.GetComponent<Collider>())
-                        {
-                            // Int or String? Int -> Enum Clas in C++ faster comparison. String might be fine during load.
-                            // UnityEngine.collider, UnityEngine. ends on index 12 
-                            savingObject.myColliderData = new ColliderData();
-                            savingObject.myColliderData.myColliderType = child.GetComponent<Collider>().GetType().ToString().Remove(0, 12);
-                            print(savingObject.myColliderData.myColliderType);
-                            if (savingObject.myColliderData.myColliderType == "BoxCollider")
+                        else {
+                            for (int i = 0; i < go.transform.childCount; ++i)
                             {
-                                print("Getting BoxCollider Data");
-                                savingObject.myColliderData.mySizeX = child.GetComponent<BoxCollider>().size.x;
-                                savingObject.myColliderData.mySizeY = child.GetComponent<BoxCollider>().size.y;
-                                savingObject.myColliderData.mySizeZ = child.GetComponent<BoxCollider>().size.z;
-                                savingObject.myColliderData.myCenterX = child.GetComponent<BoxCollider>().center.x;
-                                savingObject.myColliderData.myCenterY = child.GetComponent<BoxCollider>().center.y;
-                                savingObject.myColliderData.myCenterZ = child.GetComponent<BoxCollider>().center.z;
-
-                            }
-                            else if (savingObject.myColliderData.myColliderType == "SphereCollider")
-                            {
-                                print("Getting SphereCollider Data");
-                                savingObject.myColliderData.myRadius = child.GetComponent<SphereCollider>().radius;
-                                savingObject.myColliderData.myCenterX = child.GetComponent<SphereCollider>().center.x;
-                                savingObject.myColliderData.myCenterY = child.GetComponent<SphereCollider>().center.y;
-                                savingObject.myColliderData.myCenterZ = child.GetComponent<SphereCollider>().center.z;
+                                objects.dataList.Add(GetSaveObject(child.gameObject));
                             }
                         }
-
-                        objects.dataList.Add(savingObject);
                     }
                 }
                 else
                 {
-                    ObjectData savingObject = new ObjectData();
-                    // Get desired data from root objects
-                    // ObjectData savingObject = new ObjectData();
-
-                    // Transforms
-                    /// the adjustments made to myRotXYZ is to make it correct in engine. There is most likely a cause to this. This should be looked over
-                    savingObject.myRotX = -go.transform.rotation.eulerAngles.x - 360.0f;//Eueler is in Degrees?
-                    savingObject.myRotY = go.transform.rotation.eulerAngles.y + 180.0f;
-                    savingObject.myRotZ = -go.transform.rotation.eulerAngles.z - 360.0f;
-
-                    savingObject.myPosX = go.transform.position.x;
-                    savingObject.myPosY = go.transform.position.y;
-                    savingObject.myPosZ = go.transform.position.z;
-                    savingObject.myScaleX = go.transform.localScale.x;
-                    savingObject.myScaleY = go.transform.localScale.y;
-                    savingObject.myScaleZ = go.transform.localScale.z;
-
-                    // Asset name
-                    savingObject.myName = go.name;
-
-                    // Is it a prefab?
-                    if (PrefabUtility.GetPrefabAssetType(go) == PrefabAssetType.Regular)
-                    {
-                        //print(go.ToString() + " is a prefab");
-
-                        // Check children for meshrenderer to find FBX object
-                        if (go.transform.childCount > 0)
-                        {
-                            for (int i = 0; i < go.transform.childCount; ++i)
-                            {
-                                var child = go.transform.GetChild(i);
-                                if (child.gameObject.GetComponentInChildren<MeshRenderer>())
-                                {
-                                    savingObject.myPath = AssetDatabase.GetAssetPath(PrefabUtility.GetCorrespondingObjectFromOriginalSource(child));
-                                }
-                            }
-                        }
-                        // Add prefab instance CharacterData if it has the appropriate component (PH is Player)
-                        if (go.GetComponent<CharacterData>() != null)//Player.cs is placeholder
-                        {
-                            savingObject.myCharacterData = new CharacterDataStruct();
-                            savingObject.myCharacterData.myName = go.GetComponent<CharacterData>().myName;
-                            savingObject.myCharacterData.myHealth = go.GetComponent<CharacterData>().myHealth;
-                            savingObject.myCharacterData.myDamage = go.GetComponent<CharacterData>().myDamage;
-                            savingObject.myCharacterData.myAttackSpeed = go.GetComponent<CharacterData>().myAttackSpeed;
-                            savingObject.myCharacterData.myMoveSpeed = go.GetComponent<CharacterData>().myMoveSpeed;
-                            savingObject.myCharacterData.myCastSpeed = go.GetComponent<CharacterData>().myCastSpeed;
-                        }
-                    }
-                    else // it is not a prefab: bare-FBX, Light or Camera, e.g.
-                    {
-                        savingObject.myPath = AssetDatabase.GetAssetPath(PrefabUtility.GetCorrespondingObjectFromSource(go));
-                    }
-
-                    if (go.GetComponent<Collider>())
-                    {
-                        // Int or String? Int -> Enum Clas in C++ faster comparison. String might be fine during load.
-                        // UnityEngine.collider, UnityEngine. ends on index 12 
-                        savingObject.myColliderData = new ColliderData();
-                        savingObject.myColliderData.myColliderType = go.GetComponent<Collider>().GetType().ToString().Remove(0, 12);
-                        print(savingObject.myColliderData.myColliderType);
-                        if (savingObject.myColliderData.myColliderType == "BoxCollider")
-                        {
-                            print("Getting BoxCollider Data");
-                            savingObject.myColliderData.mySizeX = go.GetComponent<BoxCollider>().size.x;
-                            savingObject.myColliderData.mySizeY = go.GetComponent<BoxCollider>().size.y;
-                            savingObject.myColliderData.mySizeZ = go.GetComponent<BoxCollider>().size.z;
-                            savingObject.myColliderData.myCenterX = go.GetComponent<BoxCollider>().center.x;
-                            savingObject.myColliderData.myCenterY = go.GetComponent<BoxCollider>().center.y;
-                            savingObject.myColliderData.myCenterZ = go.GetComponent<BoxCollider>().center.z;
-
-                        }
-                        else if (savingObject.myColliderData.myColliderType == "SphereCollider")
-                        {
-                            print("Getting SphereCollider Data");
-                            savingObject.myColliderData.myRadius = go.GetComponent<SphereCollider>().radius;
-                            savingObject.myColliderData.myCenterX = go.GetComponent<SphereCollider>().center.x;
-                            savingObject.myColliderData.myCenterY = go.GetComponent<SphereCollider>().center.y;
-                            savingObject.myColliderData.myCenterZ = go.GetComponent<SphereCollider>().center.z;
-                        }
-                    }
-
-                    objects.dataList.Add(savingObject);
+                    objects.dataList.Add(GetSaveObject(go));
                 }
             }
             string jsonString = JsonUtility.ToJson(objects, true);
@@ -362,3 +298,88 @@ public class MenuItems : MonoBehaviour
         }
     }
  */
+
+//BACKUP
+/* ObjectData savingObject = new ObjectData();
+                    // Get desired data from root objects
+                    // ObjectData savingObject = new ObjectData();
+
+                    // Transforms
+                    /// the adjustments made to myRotXYZ is to make it correct in engine. There is most likely a cause to this. This should be looked over
+                    savingObject.myRotX = -go.transform.rotation.eulerAngles.x - 360.0f;//Eueler is in Degrees?
+                    savingObject.myRotY = go.transform.rotation.eulerAngles.y + 180.0f;
+                    savingObject.myRotZ = -go.transform.rotation.eulerAngles.z - 360.0f;
+
+                    savingObject.myPosX = go.transform.position.x;
+                    savingObject.myPosY = go.transform.position.y;
+                    savingObject.myPosZ = go.transform.position.z;
+                    savingObject.myScaleX = go.transform.localScale.x;
+                    savingObject.myScaleY = go.transform.localScale.y;
+                    savingObject.myScaleZ = go.transform.localScale.z;
+
+                    // Asset name
+                    savingObject.myName = go.name;
+
+                    // Is it a prefab?
+                    if (PrefabUtility.GetPrefabAssetType(go) == PrefabAssetType.Regular)
+                    {
+                        //print(go.ToString() + " is a prefab");
+
+                        // Check children for meshrenderer to find FBX object
+                        if (go.transform.childCount > 0)
+                        {
+                            for (int i = 0; i < go.transform.childCount; ++i)
+                            {
+                                var child = go.transform.GetChild(i);
+                                if (child.gameObject.GetComponentInChildren<MeshRenderer>())
+                                {
+                                    savingObject.myPath = AssetDatabase.GetAssetPath(PrefabUtility.GetCorrespondingObjectFromOriginalSource(child));
+                                }
+                            }
+                        }
+                        // Add prefab instance CharacterData if it has the appropriate component (PH is Player)
+                        if (go.GetComponent<CharacterData>() != null)//Player.cs is placeholder
+                        {
+                            savingObject.myCharacterData = new CharacterDataStruct();
+                            savingObject.myCharacterData.myName = go.GetComponent<CharacterData>().myName;
+                            savingObject.myCharacterData.myHealth = go.GetComponent<CharacterData>().myHealth;
+                            savingObject.myCharacterData.myDamage = go.GetComponent<CharacterData>().myDamage;
+                            savingObject.myCharacterData.myAttackSpeed = go.GetComponent<CharacterData>().myAttackSpeed;
+                            savingObject.myCharacterData.myMoveSpeed = go.GetComponent<CharacterData>().myMoveSpeed;
+                            savingObject.myCharacterData.myCastSpeed = go.GetComponent<CharacterData>().myCastSpeed;
+                        }
+                    }
+                    else // it is not a prefab: bare-FBX, Light or Camera, e.g.
+                    {
+                        savingObject.myPath = AssetDatabase.GetAssetPath(PrefabUtility.GetCorrespondingObjectFromSource(go));
+                    }
+
+                    if (go.GetComponent<Collider>())
+                    {
+                        // Int or String? Int -> Enum Clas in C++ faster comparison. String might be fine during load.
+                        // UnityEngine.collider, UnityEngine. ends on index 12 
+                        savingObject.myColliderData = new ColliderData();
+                        savingObject.myColliderData.myColliderType = go.GetComponent<Collider>().GetType().ToString().Remove(0, 12);
+                        print(savingObject.myColliderData.myColliderType);
+                        if (savingObject.myColliderData.myColliderType == "BoxCollider")
+                        {
+                            print("Getting BoxCollider Data");
+                            savingObject.myColliderData.mySizeX = go.GetComponent<BoxCollider>().size.x;
+                            savingObject.myColliderData.mySizeY = go.GetComponent<BoxCollider>().size.y;
+                            savingObject.myColliderData.mySizeZ = go.GetComponent<BoxCollider>().size.z;
+                            savingObject.myColliderData.myCenterX = go.GetComponent<BoxCollider>().center.x;
+                            savingObject.myColliderData.myCenterY = go.GetComponent<BoxCollider>().center.y;
+                            savingObject.myColliderData.myCenterZ = go.GetComponent<BoxCollider>().center.z;
+
+                        }
+                        else if (savingObject.myColliderData.myColliderType == "SphereCollider")
+                        {
+                            print("Getting SphereCollider Data");
+                            savingObject.myColliderData.myRadius = go.GetComponent<SphereCollider>().radius;
+                            savingObject.myColliderData.myCenterX = go.GetComponent<SphereCollider>().center.x;
+                            savingObject.myColliderData.myCenterY = go.GetComponent<SphereCollider>().center.y;
+                            savingObject.myColliderData.myCenterZ = go.GetComponent<SphereCollider>().center.z;
+                        }
+                    }
+
+                    objects.dataList.Add(savingObject);*/
