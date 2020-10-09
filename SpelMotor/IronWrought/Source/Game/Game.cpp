@@ -11,7 +11,6 @@
 #include <LightFactory.h>
 #include <EnvironmentLight.h>
 #include <Timer.h>
-#include <PointLight.h>
 #include "LevelLoader.h"
 
 #include <Animation.h>
@@ -44,8 +43,6 @@ void CGame::Init()
 	CScene* scene = CScene::GetInstance();
 	CLightFactory* lightFactory = CLightFactory::GetInstance();
 	CEnvironmentLight* environmentLight = lightFactory->CreateEnvironmentLight("Yokohama2.dds");
-	CPointLight* light = lightFactory->CreatePointLight();
-	light->Init();
 
 	CModel* cubeModel = CModelFactory::GetInstance()->GetCube();
 	CModelInstance* cube = new CModelInstance();
@@ -55,20 +52,15 @@ void CGame::Init()
 	CModelInstance* model = CModelFactory::GetInstance()->CreateModel("Model/Chest/Particle_Chest.fbx", { 0.025f, 0.025f, 0.025f });
 	model->SetPosition({ 12.5f, 0.0f, 15.0f });
 	//camera->SetPosition({ 10.0f, 2.5f, 5.0f });
-	light->SetPosition({ 10.0f, 1.0f, 7.0f });
 	//
 	environmentLight->SetDirection(SM::Vector3(0, 1, -1));
 	environmentLight->SetColor(SM::Vector3(0.8f, 0.8f, 0.8f));
 	//
-	light->SetColor({ 1.0f, 0.2f, 0.1f });
-	light->SetRange(10.0f);
-	light->SetIntensity(10.0f);
 	//
 	scene->AddInstance(model);
 	//scene->SetMainCamera(camera);
 	//scene->AddInstance(camera);
 	scene->AddInstance(environmentLight);
-	scene->AddInstance(light);
 
 	//CModel* animModel = CModelFactory::GetInstance()->LoadModelPBR("Ani/CH_NPC_Undead_17G3_SK.fbx");
 	//
@@ -116,7 +108,6 @@ void CGame::Update()
 	if (Input::GetInstance()->IsKeyPressed('5')) {
 		myLevelLoader->LoadNewLevel("Levels/SampleScene_exportedLevelASCII_Smily.txt");
 	}
-	UpdatePointLights();
 }
 
 void CGame::UpdateCamera()
@@ -145,98 +136,3 @@ void CGame::UpdateCamera()
 	//model->Rotate({ 0.0f, sinf(CTimer::Time()) * dt, 0.0f });
 	//model = nullptr;
 }
-
-void CGame::UpdatePointLights()
-{
-	float lightMoveSpeed = 5.0f;
-	CPointLight* light = CScene::GetInstance()->GetPointLights()[0];
-	SM::Vector3 position = light->GetPosition();
-	if (Input::GetInstance()->IsKeyDown(VK_LEFT))
-	{
-		position.x -= lightMoveSpeed * CTimer::Dt();
-	}
-	if (Input::GetInstance()->IsKeyDown(VK_RIGHT))
-	{
-		position.x += lightMoveSpeed * CTimer::Dt();
-	}
-	if (Input::GetInstance()->IsKeyDown(VK_UP))
-	{
-		position.y += lightMoveSpeed * CTimer::Dt();
-	}
-	if (Input::GetInstance()->IsKeyDown(VK_DOWN))
-	{
-		position.y -= lightMoveSpeed * CTimer::Dt();
-	}
-	light->SetPosition(position);
-
-	if (Input::GetInstance()->IsKeyPressed(VK_RETURN))
-	{
-		CCamera* camera = CScene::GetInstance()->GetMainCamera();
-		//camera->SetPosition(position);
-		camera->SetTransform(light->GetPosition(), { 0.0f, 30.0f, 0.0f });
-	}
-}
-
-
-#pragma region Measure Time diff between Static Timer/caching float with dt
-//std::string printTxt = "";
-//auto start = high_resolution_clock::now();
-////NonStatic Call
-//static float totalDuration = 0.0f;
-//totalDuration += dt * 3.0f;	
-//CScene::GetInstance()->GetEnvironmentLight()->SetDirection({ sinf(totalDuration), 0.0f, cosf(totalDuration) });
-////Nonstatic Call
-//auto stop = high_resolution_clock::now();
-//auto duration = duration_cast<nanoseconds>(stop - start).count();
-//printTxt.append("NonStatic: ");
-//printTxt += std::to_string(duration);
-//printTxt.append("\n");
-//OutputDebugStringA(printTxt.c_str());
-
-
-//std::string printTxt = "";
-//auto start = high_resolution_clock::now();
-////Static Call
-//CScene::GetInstance()->GetEnvironmentLight()->SetDirection({ sinf(CTimer::Time()), 0.0f, cosf(CTimer::Time()) });
-////Static Call
-//auto stop = high_resolution_clock::now();
-//auto duration = duration_cast<nanoseconds>(stop - start).count();
-//printTxt.append("Static: ");
-//printTxt += std::to_string(duration);
-//printTxt.append("\n");
-//OutputDebugStringA(printTxt.c_str());
-
-//std::string printTxt = "";
-//auto start = high_resolution_clock::now();
-////Static Call
-////for (int i = 0; i < 100; ++i)
-////{
-//	CScene::GetInstance()->GetEnvironmentLight()->SetDirection({ sinf(CTimer::Time()), 0.0f, cosf(CTimer::Time()) });
-////}
-////Static Call
-//auto stop = high_resolution_clock::now();
-//auto duration = duration_cast<nanoseconds>(stop - start).count();
-//printTxt.append("Static: ");
-//printTxt += std::to_string(duration);
-//printTxt.append("\n");
-//OutputDebugStringA(printTxt.c_str());
-
-//std::string printTxt = "";
-//auto start = high_resolution_clock::now();
-////Cache Static Call
-//const float staticTotalDuration = CTimer::Time();
-//CScene::GetInstance()->GetEnvironmentLight()->SetDirection({ sinf(staticTotalDuration), 0.0f, cosf(staticTotalDuration) });
-////Cache Static Call
-//auto stop = high_resolution_clock::now();
-//auto duration = duration_cast<nanoseconds>(stop - start).count();
-//printTxt.append("Cache Static: ");
-//printTxt += std::to_string(duration);
-//printTxt.append("\n");
-//OutputDebugStringA(printTxt.c_str());
-
-//std::vector<CModelInstance*> models = CScene::GetInstance()->CullModels(nullptr);
-//for (auto& model : models)
-//{
-//	model->Rotate({ 0, dt, 0 });
-//}
-#pragma endregion

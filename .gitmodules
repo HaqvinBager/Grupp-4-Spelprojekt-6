@@ -1,0 +1,3 @@
+[submodule "spelmotor/ironwrought/source/SharedEngine"]
+	path = spelmotor/ironwrought/source/SharedEngine
+	url = https://github.com/Humbabah/MotorEngine.git

@@ -18,7 +18,6 @@ public:
 
 private:
 
-	void UpdatePointLights();
 	void UpdateCamera();
 
 	CLevelLoader* myLevelLoader;

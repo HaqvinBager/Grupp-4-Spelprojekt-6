@@ -9,6 +9,10 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+#Submodule for Shared engine
+SpelMotor/IronWrought/Source/SharedEngine
+
+
 # User-specific files
 *.rsuser
 *.suo

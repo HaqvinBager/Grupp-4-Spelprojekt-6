@@ -17,7 +17,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Game", "Game\Game.vcxproj",
 		{E0B52AE7-E160-4D32-BF3F-910B785E5A8E} = {E0B52AE7-E160-4D32-BF3F-910B785E5A8E}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Engine", "Engine\Engine.vcxproj", "{0B74B727-B1DA-4EA4-AB78-B43D1E7E7175}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Engine", "SharedEngine\Engine\Engine.vcxproj", "{0B74B727-B1DA-4EA4-AB78-B43D1E7E7175}"
 	ProjectSection(ProjectDependencies) = postProject
 		{A47C121D-D2B8-4506-A4A6-1EB74ABCE12F} = {A47C121D-D2B8-4506-A4A6-1EB74ABCE12F}
 		{9B5B0EE3-958F-4F63-BB0F-9E4415FD1C3E} = {9B5B0EE3-958F-4F63-BB0F-9E4415FD1C3E}
@@ -26,9 +26,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Engine", "Engine\Engine.vcx
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DirectXTK", "DirectXTK\DirectXTK_Desktop_2019_Win10.vcxproj", "{E0B52AE7-E160-4D32-BF3F-910B785E5A8E}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ModelLoader", "ModelLoader\ModelLoader.vcxproj", "{9B5B0EE3-958F-4F63-BB0F-9E4415FD1C3E}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ModelLoader", "SharedEngine\ModelLoader\ModelLoader.vcxproj", "{9B5B0EE3-958F-4F63-BB0F-9E4415FD1C3E}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UnityImporterApp", "UnityImporterApp\UnityImporterApp.vcxproj", "{A47C121D-D2B8-4506-A4A6-1EB74ABCE12F}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UnityImporterApp", "SharedEngine\UnityImporterApp\UnityImporterApp.vcxproj", "{A47C121D-D2B8-4506-A4A6-1EB74ABCE12F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
