@@ -49,7 +49,7 @@
     <IntDir>$(SolutionDir)..\Temp\$(ProjectName)\$(Configuration)\</IntDir>
     <TargetName>$(ProjectName)_$(Configuration)</TargetName>
     <LibraryPath>$(SolutionDir)..\Lib\;$(LibraryPath)</LibraryPath>
-    <IncludePath>$(SolutionDir)SharedEngine\ModelLoader\;$(SolutionDir)SharedEngine\Engine\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)MotorEngine\ModelLoader\;$(SolutionDir)MotorEngine\Engine\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -57,7 +57,7 @@
     <IntDir>$(SolutionDir)..\Temp\$(ProjectName)\$(Configuration)\</IntDir>
     <TargetName>$(ProjectName)_$(Configuration)</TargetName>
     <LibraryPath>$(SolutionDir)..\Lib\;$(LibraryPath)</LibraryPath>
-    <IncludePath>$(SolutionDir)SharedEngine\ModelLoader\;$(SolutionDir)SharedEngine\Engine\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)MotorEngine\ModelLoader\;$(SolutionDir)MotorEngine\Engine\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
