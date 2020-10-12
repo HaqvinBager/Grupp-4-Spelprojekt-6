@@ -1,0 +1,11 @@
+EN_Type_Name_Number_19G4_version_19
+
+Type =
+	_W_ = wall
+	_p_ = Prop
+	_G_ = Ground
+	_S_ = Sprite
+	_top_ = top segment
+	_Base_ = bas segment
+
+T.ex: EN_G_BridgeGround_01_19G4_01_19
