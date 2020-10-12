@@ -49,7 +49,7 @@
     <IntDir>$(SolutionDir)..\Temp\$(ProjectName)\$(Configuration)\</IntDir>
     <TargetName>$(ProjectName)_$(Configuration)</TargetName>
     <TargetExt>.lib</TargetExt>
-    <IncludePath>$(IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)DirectXTK\Inc\;$(SolutionDir)SharedEngine\ModelLoader\;$(SolutionDir)SharedEngine\UnityImporterApp\;$(SolutionDir)SharedEngine\Engine\</IncludePath>
+    <IncludePath>$(IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)DirectXTK\Inc\;$(SolutionDir)MotorEngine\ModelLoader\;$(SolutionDir)MotorEngine\UnityImporterApp\;$(SolutionDir)MotorEngine\Engine\</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -57,7 +57,7 @@
     <IntDir>$(SolutionDir)..\Temp\$(ProjectName)\$(Configuration)\</IntDir>
     <TargetName>$(ProjectName)_$(Configuration)</TargetName>
     <TargetExt>.lib</TargetExt>
-    <IncludePath>$(IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)DirectXTK\Inc\;$(SolutionDir)SharedEngine\ModelLoader\;$(SolutionDir)SharedEngine\UnityImporterApp\;$(SolutionDir)SharedEngine\Engine\</IncludePath>
+    <IncludePath>$(IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)DirectXTK\Inc\;$(SolutionDir)MotorEngine\ModelLoader\;$(SolutionDir)MotorEngine\UnityImporterApp\;$(SolutionDir)MotorEngine\Engine\</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
