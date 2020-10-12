@@ -1,0 +1,3 @@
+[submodule "SpelMotor/IronWrought/Source/MotorEngine"]
+	path = SpelMotor/IronWrought/Source/MotorEngine
+	url = https://github.com/Humbabah/MotorEngine.git
