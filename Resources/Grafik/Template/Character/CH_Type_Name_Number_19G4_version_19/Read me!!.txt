@@ -1,3 +1,0 @@
-_D = diffuse texture
-_M = material texture
-_N = normalmap texture

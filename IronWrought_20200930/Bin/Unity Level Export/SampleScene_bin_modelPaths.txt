@@ -1,2 +1,0 @@
-Assets/SG/TEST_crate/Functional/TEST_crate_fbx2014-2015.fbx
-Assets/SG/TEST_crate/Functional/TEST_crate_fbx2014-2015_tweaked.fbx
