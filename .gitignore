@@ -279,6 +279,7 @@ SpelMotor/IronWrought/Lib/ModelLoader_Debug.lib
 
 *.cso 
 
+SpelMotor/IronWrought/Bin/AnimatedVertexShader.cso
 #SpelMotor/IronWrought/Bin/CubePixelShader.cso
 #SpelMotor/IronWrought/Bin/CubeVertexShader.cso
 #SpelMotor/IronWrought/Bin/PBRPixelShader.cso
@@ -287,10 +288,12 @@ SpelMotor/IronWrought/Lib/ModelLoader_Debug.lib
 #SpelMotor/IronWrought/Bin/AnimatedPixelShader.cso
 #SpelMotor/IronWrought/Bin/AnimatedVertexShader.cso
 
+SpelMotor/IronWrought/Lib/UnityImporterApp_Debug.lib
 SpelMotor/IronWrought/Lib/DirectXTK_Debug.lib
 SpelMotor/IronWrought/Lib/Engine_Debug.lib
 SpelMotor/IronWrought/Lib/Game_Debug.lib
 SpelMotor/IronWrought/Bin/Launcher_Debug.exe
+SpelMotor/IronWrought/Lib/UnityImporterApp_Release.lib
 SpelMotor/IronWrought/Lib/ModelLoader_Release.lib
 SpelMotor/IronWrought/Lib/Game_Release.lib
 SpelMotor/IronWrought/Lib/Engine_Release.lib
