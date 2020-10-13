@@ -49,7 +49,7 @@
     <IntDir>$(SolutionDir)..\Temp\$(ProjectName)\$(Configuration)\</IntDir>
     <TargetName>$(ProjectName)_$(Configuration)</TargetName>
     <LibraryPath>$(SolutionDir)..\Lib\;$(LibraryPath)</LibraryPath>
-    <IncludePath>$(SolutionDir)MotorEngine\ModelLoader\;$(SolutionDir)MotorEngine\Engine\;$(IncludePath)</IncludePath>
+    <IncludePath>$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -57,7 +57,7 @@
     <IntDir>$(SolutionDir)..\Temp\$(ProjectName)\$(Configuration)\</IntDir>
     <TargetName>$(ProjectName)_$(Configuration)</TargetName>
     <LibraryPath>$(SolutionDir)..\Lib\;$(LibraryPath)</LibraryPath>
-    <IncludePath>$(SolutionDir)MotorEngine\ModelLoader\;$(SolutionDir)MotorEngine\Engine\;$(IncludePath)</IncludePath>
+    <IncludePath>$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -67,7 +67,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpplatest</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)DirectXTK\Inc\;$(SolutionDir)Game\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)MotorEngine\Engine\;$(SolutionDir)DirectXTK\Inc\;$(SolutionDir)MotorEngine\ModelLoader\;$(SolutionDir)Game\</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
@@ -88,7 +88,7 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpplatest</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)DirectXTK\Inc\;$(SolutionDir)Game\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)MotorEngine\Engine\;$(SolutionDir)DirectXTK\Inc\;$(SolutionDir)MotorEngine\ModelLoader\;$(SolutionDir)Game\</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
