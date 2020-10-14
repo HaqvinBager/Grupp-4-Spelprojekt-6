@@ -23,6 +23,8 @@
 
 #include <Animation.h>
 #include <iostream>
+#include <CapsuleColliderComponent.h>
+#include <IntersectionManager.h>
 
 
 #ifdef _DEBUG
@@ -71,12 +73,13 @@ void CGame::Init()
 
 	//GameObjects Boi
 	CGameObject* boi = new CGameObject();
-	CTransformComponent* transfComp = boi->AddComponent<CTransformComponent>(*boi);
+	/*CTransformComponent* transfComp =*/
+	boi->AddComponent<CTransformComponent>(*boi);
 	CModelComponent* modelComponent = boi->AddComponent<CModelComponent>(*boi);
 	CModel* animModel = CModelFactory::GetInstance()->LoadModelPBR("Ani/CH_NPC_Undead_17G3_SK.fbx");
 	modelComponent->SetMyModel(animModel);
 	//modelComponent->GetMyModel()->SetScale({ 0.25f,0.25f,0.25f });
-	transfComp->Scale(5.0f);
+	//transfComp->Scale(5.0f);
 	//transfComp->Scale(0.25f);
 
 	CAnimationComponent* animComp = boi->AddComponent<CAnimationComponent>(*boi);
@@ -88,13 +91,42 @@ void CGame::Init()
 	animComp->GetMyAnimation()->Init(rigModel.c_str(), somePathsToAnimations);
 	animModel->AddAnimation(animComp->GetMyAnimation());
 	animComp->SetBlend(0, 1, 1.0f);
+
+	boi->AddComponent<CCapsuleColliderComponent>(*boi, 0.5f, 2.0f);
+
+	CGameObject* otherBoi = new CGameObject();
+	otherBoi->AddComponent<CTransformComponent>(*otherBoi);
+	otherBoi->AddComponent<CCapsuleColliderComponent>(*otherBoi, 0.5f, 2.0f);
+
 	scene->AddInstance(boi);
+	scene->AddInstance(otherBoi);
 	//!GameObjects Boi
+
+	std::vector<CGameObject*> gameObjects = CScene::GetInstance()->CullGameObjects(CScene::GetInstance()->GetMainCamera());
+	for (auto& gameobject : gameObjects)
+	{
+		gameobject->Awake();
+	}
+
+	for (auto& gameobject : gameObjects)
+	{
+		gameobject->Start();
+	}
 }
 
 void CGame::Update()
 {
-	auto models = CScene::GetInstance()->CullGameObjects(CScene::GetInstance()->GetMainCamera());
+	//Axel, Alexander M och Gustav Did this. :)
+	//Updaterar alla GameObjects så deras komponenter blir uppdaterade
+	//Gjorde detta så CapsuleColliders Position etc uppdateras!
+	std::vector<CGameObject*> gameObjects = CScene::GetInstance()->CullGameObjects(CScene::GetInstance()->GetMainCamera());
+	for (auto& gameobject : gameObjects)
+	{
+		gameobject->Update();
+	}
+	CapsuleColliderTest();
+
+	/*auto models = CScene::GetInstance()->CullGameObjects(CScene::GetInstance()->GetMainCamera());
 	for (CGameObject* go : models)
 	{
 		if (go->GetComponent<CAnimationComponent>())
@@ -141,6 +173,55 @@ void CGame::Update()
 	}
 	if (Input::GetInstance()->IsKeyPressed('5')) {
 		myLevelLoader->LoadNewLevel("Levels/SampleScene_exportedLevelASCII_Smily.txt");
+	}*/
+}
+
+void CGame::CapsuleColliderTest()
+{
+	std::vector<CGameObject*> gameObjects = CScene::GetInstance()->CullGameObjects(CScene::GetInstance()->GetMainCamera());
+	float moveSpeed = 0.1f;
+	CTransformComponent* boi = gameObjects[0]->GetComponent<CTransformComponent>();
+	CTransformComponent* otherBoi = gameObjects[1]->GetComponent<CTransformComponent>();
+
+	if (Input::GetInstance()->IsKeyDown('W'))
+	{
+		otherBoi->Move({ 0.0f, moveSpeed * CTimer::Dt(), 0.0f });
+	}
+	if (Input::GetInstance()->IsKeyDown('S'))
+	{
+		otherBoi->Move({ 0.0f, -moveSpeed * CTimer::Dt(), 0.0f });
+	}
+	if (Input::GetInstance()->IsKeyDown('A'))
+	{
+		otherBoi->Move({ -moveSpeed * CTimer::Dt(), 0.0f , 0.0f });
+	}
+	if (Input::GetInstance()->IsKeyDown('D'))
+	{
+		otherBoi->Move({ moveSpeed * CTimer::Dt(), 0.0f , 0.0f });
+	}
+
+	if (Input::GetInstance()->IsKeyDown(VK_UP))
+	{
+		boi->Move({ 0.0f, moveSpeed * CTimer::Dt(), 0.0f });
+	}
+	if (Input::GetInstance()->IsKeyDown(VK_DOWN))
+	{
+		boi->Move({ 0.0f, -moveSpeed * CTimer::Dt(), 0.0f });
+	}
+	if (Input::GetInstance()->IsKeyDown(VK_LEFT))
+	{
+		boi->Move({ -moveSpeed * CTimer::Dt(), 0.0f , 0.0f });
+	}
+	if (Input::GetInstance()->IsKeyDown(VK_RIGHT))
+	{
+		boi->Move({ moveSpeed * CTimer::Dt(), 0.0f , 0.0f });
+	}
+
+
+	if (CIntersectionManager::CapsuleIntersection(*boi->GetComponent<CCapsuleColliderComponent>(), *otherBoi->GetComponent<CCapsuleColliderComponent>()))
+	{
+		std::cout << "Boi		[X: " << boi->Position().x << ", Y: " << boi->Position().y << ", Z: " << boi->Position().z << "]" << " - ";
+		std::cout << "\nOtherBoi	[X: " << otherBoi->Position().x << ", Y: " << otherBoi->Position().y << ", Z: " << otherBoi->Position().z << "]" << std::endl;
 	}
 }
 

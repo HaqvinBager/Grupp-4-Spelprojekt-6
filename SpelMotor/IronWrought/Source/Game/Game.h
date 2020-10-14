@@ -16,9 +16,11 @@ public:
 	void Init();
 	void Update();
 
+
 private:
 
 	void UpdateCamera();
+	void CapsuleColliderTest();
 
 	CLevelLoader* myLevelLoader;
 };
