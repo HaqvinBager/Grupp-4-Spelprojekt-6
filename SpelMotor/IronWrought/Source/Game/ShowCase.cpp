@@ -16,15 +16,23 @@
 
 #include <IntersectionManager.h>
 #include <iostream>
+#include <AnimationComponent.h>
+#include <Animation.h>
+
+#include "LevelLoader.h"
+
 
 using namespace CommonUtilities;
 
-CShowCase::CShowCase() : myPlayer(nullptr), myEnemy(nullptr), myCamera(nullptr), myLevelLoader(nullptr) {}
+CShowCase::CShowCase() : myLevelLoader(new CLevelLoader()), myPlayer(nullptr), myEnemy(nullptr), myCamera(nullptr) {}
 
 CShowCase::~CShowCase() {}
 
 void CShowCase::Init()
 {
+	myLevelLoader->Init();
+	myLevelLoader->LoadNewLevel("Levels/Dungeon_SP_exportedLevelASCII.txt");
+
 	myPlayer = CreatePlayer({ 0.0f, 0.0f, 0.0f });
 	myEnemy = CreateEnemy({ 0.5f, 0.0f, 0.0f });
 	myCamera = CreateCamera(myPlayer);
@@ -34,19 +42,13 @@ void CShowCase::Update()
 {
 	myCamera->Update();
 	UpdatePlayerController();
-	CCapsuleColliderComponent* playerCollider = myPlayer->GetComponent<CCapsuleColliderComponent>();
-	CCapsuleColliderComponent* enemyCollider = myEnemy->GetComponent<CCapsuleColliderComponent>();
-	if (CIntersectionManager::CapsuleIntersection(*playerCollider, *enemyCollider)) {
-		std::cout << "Boi		[X: " << myPlayer->GetComponent<CTransformComponent>()->Position().x << ", Y: " << myPlayer->GetComponent<CTransformComponent>()->Position().y << ", Z: " << myPlayer->GetComponent<CTransformComponent>()->Position().z << "]" << " - ";
-		std::cout << "\nOtherBoi	[X: " << myEnemy->GetComponent<CTransformComponent>()->Position().x << ", Y: " << myEnemy->GetComponent<CTransformComponent>()->Position().y << ", Z: " << myEnemy->GetComponent<CTransformComponent>()->Position().z << "]" << std::endl;
-	}
 }
 
 CGameObject* CShowCase::CreatePlayer(Vector3 aPosition)
 {
 	CGameObject* player = new CGameObject();
 	CTransformComponent* transform = player->AddComponent<CTransformComponent>(*player, aPosition);
-	transform->Scale(0.25f);
+	transform->Scale(0.35f);
 	transform->Position(aPosition);
 
 	transform->Rotation({ 0.0f, 180.0f, 0.0f });
@@ -61,21 +63,32 @@ CGameObject* CShowCase::CreateEnemy(Vector3 aPosition)
 {
 	CGameObject* enemy = new CGameObject();
 	CTransformComponent* transform = enemy->AddComponent<CTransformComponent>(*enemy, aPosition);
-	transform->Scale(0.25f);
+	transform->Scale(0.35f);
 	transform->Position(aPosition);
 
 	transform->Rotation({ 0.0f, 0.0f, 0.0f });
-	enemy->AddComponent<CCapsuleColliderComponent>(*enemy, 0.05f, 0.5f);
+	enemy->AddComponent<CCapsuleColliderComponent>(*enemy, 0.1f, 0.5f);
 	CModelComponent* model = enemy->AddComponent<CModelComponent>(*enemy);
-	model->SetMyModel(CModelFactory::GetInstance()->GetModelPBR("Assets/3D/Character/Boss/CH_NPC_Boss_01_19G4_1_19.fbx"));
+	model->SetMyModel(CModelFactory::GetInstance()->GetModelPBR("ani/CH_NPC_Undead_17G3_SK.fbx"));
+	CAnimationComponent* animation = enemy->AddComponent<CAnimationComponent>(*enemy);	
+
+	std::vector<std::string> somePathsToAnimations;
+	somePathsToAnimations.push_back("ani/CH_NPC_Undead@Walk_01_17G3_AN.fbx");
+	somePathsToAnimations.push_back("ani/CH_NPC_Undead@Idle_01_17G3_AN.fbx");
+	
+	const std::string rigModel = "Ani/CH_NPC_Undead_17G3_SK.fbx";
+	animation->GetMyAnimation()->Init(rigModel.c_str(), somePathsToAnimations);
+	model->GetMyModel()->GetModel()->AddAnimation(animation->GetMyAnimation());
+	animation->SetBlend(0, 1, 1.0f);
+
 	CScene::GetInstance()->AddInstance(enemy);
 	return enemy;
 }
 
 CCamera* CShowCase::CreateCamera(CGameObject* aCameraTarget)
 {
-	CCamera* camera = CCameraFactory::GetInstance()->CreateCamera(65.0f);
-	camera->SetTarget(aCameraTarget->GetComponent<CTransformComponent>(), { -0.05f, 0.75f, -0.5f }, { 45.0f, 0.0f, 0.0f });
+	CCamera* camera = CCameraFactory::GetInstance()->CreateCamera(45.0f);
+	camera->SetTarget(aCameraTarget->GetComponent<CTransformComponent>(), { -0.05f, 4.5f, -3.0f }, { 50.0f, 0.0f, 0.0f });
 	camera->SetPosition(aCameraTarget->GetComponent<CTransformComponent>()->Position());
 	camera->Move({ 1.5f, 0.0f, -2.0f });
 	CScene::GetInstance()->AddInstance(camera);
@@ -85,7 +98,7 @@ CCamera* CShowCase::CreateCamera(CGameObject* aCameraTarget)
 
 void CShowCase::UpdatePlayerController()
 {
-	float playerMoveSpeed = 2.5f;
+	float playerMoveSpeed = 25.0f;
 	Vector3 input(0, 0, 0);
 	input.z = Input::GetInstance()->IsKeyDown('W') ? -playerMoveSpeed : input.z;
 	input.z = Input::GetInstance()->IsKeyDown('S') ? playerMoveSpeed : input.z;
@@ -107,7 +120,7 @@ void CShowCase::UpdatePlayerController()
 		direction.Normalize();
 
 		playerTransform->Position(lastPosition);
-		playerTransform->Move(direction);
+		playerTransform->Move(direction * playerMoveSpeed);
 
 
 
