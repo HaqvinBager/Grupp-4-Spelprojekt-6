@@ -56,9 +56,9 @@ void CGame::Init()
 
 	CCamera* camera = CCameraFactory::GetInstance()->CreateCamera(65.0f);
 
-	CModelInstance* cube = new CModelInstance();
+	/*CModelInstance* cube = new CModelInstance();
 	CModel* cubeModel = CModelFactory::GetInstance()->GetCube();
-	cube->Init(cubeModel);
+	cube->Init(cubeModel);*/
 
 	CEnvironmentLight* environmentLight = lightFactory->CreateEnvironmentLight("Yokohama2.dds");
 	environmentLight->SetDirection(SM::Vector3(0, 1, -1));
@@ -67,38 +67,36 @@ void CGame::Init()
 	scene->AddInstance(camera);
 	scene->AddInstance(environmentLight);
 
-	scene->AddInstance(cube);
+	//scene->AddInstance(cube);
 	scene->SetMainCamera(camera);
 
 
 	//GameObjects Boi
-	CGameObject* boi = new CGameObject();
+	CGameObject* player = new CGameObject();
 	/*CTransformComponent* transfComp =*/
-	boi->AddComponent<CTransformComponent>(*boi);
-	CModelComponent* modelComponent = boi->AddComponent<CModelComponent>(*boi);
-	CModel* animModel = CModelFactory::GetInstance()->LoadModelPBR("Ani/CH_NPC_Undead_17G3_SK.fbx");
-	modelComponent->SetMyModel(animModel);
-	//modelComponent->GetMyModel()->SetScale({ 0.25f,0.25f,0.25f });
-	//transfComp->Scale(5.0f);
-	//transfComp->Scale(0.25f);
+	player->AddComponent<CTransformComponent>(*player);
+	CModelComponent* modelComponent = player->AddComponent<CModelComponent>(*player);
+	CModel* playerModel = CModelFactory::GetInstance()->LoadModelPBR("Assets/3D/Character/Npc1/CH_NPC_woman_01_19G4_1_19.fbx");
+	modelComponent->SetMyModel(playerModel);
+	player->GetComponent<CTransformComponent>()->Scale(1.f);
 
-	CAnimationComponent* animComp = boi->AddComponent<CAnimationComponent>(*boi);
-	std::vector<std::string> somePathsToAnimations;
-	somePathsToAnimations.push_back("ani/CH_NPC_Undead@Walk_01_17G3_AN.fbx");
-	somePathsToAnimations.push_back("ani/CH_NPC_Undead@Idle_01_17G3_AN.fbx");
+	//CAnimationComponent* animComp = player->AddComponent<CAnimationComponent>(*player);
+	//std::vector<std::string> somePathsToAnimations;
+	//somePathsToAnimations.push_back("ani/CH_NPC_Undead@Walk_01_17G3_AN.fbx");
+	//somePathsToAnimations.push_back("ani/CH_NPC_Undead@Idle_01_17G3_AN.fbx");
+	//
+	//const std::string rigModel = "Ani/CH_NPC_Undead_17G3_SK.fbx";
+	//animComp->GetMyAnimation()->Init(rigModel.c_str(), somePathsToAnimations);
+	//animModel->AddAnimation(animComp->GetMyAnimation());
+	//animComp->SetBlend(0, 1, 1.0f);
 
-	const std::string rigModel = "Ani/CH_NPC_Undead_17G3_SK.fbx";
-	animComp->GetMyAnimation()->Init(rigModel.c_str(), somePathsToAnimations);
-	animModel->AddAnimation(animComp->GetMyAnimation());
-	animComp->SetBlend(0, 1, 1.0f);
-
-	boi->AddComponent<CCapsuleColliderComponent>(*boi, 0.5f, 2.0f);
+	player->AddComponent<CCapsuleColliderComponent>(*player, 0.5f, 2.0f);
 
 	CGameObject* otherBoi = new CGameObject();
 	otherBoi->AddComponent<CTransformComponent>(*otherBoi);
 	otherBoi->AddComponent<CCapsuleColliderComponent>(*otherBoi, 0.5f, 2.0f);
 
-	scene->AddInstance(boi);
+	scene->AddInstance(player);
 	scene->AddInstance(otherBoi);
 	//!GameObjects Boi
 
@@ -124,28 +122,15 @@ void CGame::Update()
 	{
 		gameobject->Update();
 	}
-	CapsuleColliderTest();
-
-	/*auto models = CScene::GetInstance()->CullGameObjects(CScene::GetInstance()->GetMainCamera());
-	for (CGameObject* go : models)
-	{
-		if (go->GetComponent<CAnimationComponent>())
-		{
-			go->GetComponent<CAnimationComponent>()->SetBlend(0, 1, sinf(CTimer::Time()));
-			go->GetComponent<CAnimationComponent>()->Update();
-		}
-	}
 
 	auto gameobjects = CScene::GetInstance()->CullGameObjects(CScene::GetInstance()->GetMainCamera());
 	if (Input::GetInstance()->IsKeyDown(VK_UP))
 	{
-		gameobjects[0]->GetComponent<CTransformComponent>()->Move({ 0.0f, 100.0f * CTimer::Dt(), 0.0f });
-		std::cout << " X: " << gameobjects[0]->GetComponent<CTransformComponent>()->Position().x << " Y: " << gameobjects[0]->GetComponent<CTransformComponent>()->Position().y << " Z: " << gameobjects[0]->GetComponent<CTransformComponent>()->Position().z << std::endl;
+		gameobjects[0]->GetComponent<CTransformComponent>()->Move({ 0.0f, 0.0f, 100.0f * CTimer::Dt() });
 	}
 	if (Input::GetInstance()->IsKeyDown(VK_DOWN))
 	{
-		gameobjects[0]->GetComponent<CTransformComponent>()->Move({ 0.0f, -100.0f * CTimer::Dt(), 0.0f });
-		std::cout << " X: " << gameobjects[0]->GetComponent<CTransformComponent>()->Position().x << " Y: " << gameobjects[0]->GetComponent<CTransformComponent>()->Position().y << " Z: " << gameobjects[0]->GetComponent<CTransformComponent>()->Position().z << std::endl;
+		gameobjects[0]->GetComponent<CTransformComponent>()->Move({ 0.0f, 0.0f, -100.0f * CTimer::Dt() });
 	}
 	if (Input::GetInstance()->IsKeyDown(VK_LEFT))
 	{
@@ -156,8 +141,18 @@ void CGame::Update()
 		gameobjects[0]->GetComponent<CTransformComponent>()->Move({ 100.0f * CTimer::Dt(), 0.0f , 0.0f });
 	}
 
-
 	UpdateCamera();
+	/*auto models = CScene::GetInstance()->CullGameObjects(CScene::GetInstance()->GetMainCamera());
+	for (CGameObject* go : models)
+	{
+		if (go->GetComponent<CAnimationComponent>())
+		{
+			go->GetComponent<CAnimationComponent>()->SetBlend(0, 1, sinf(CTimer::Time()));
+			go->GetComponent<CAnimationComponent>()->Update();
+		}
+	}
+
+
 
 	if (Input::GetInstance()->IsKeyPressed('1')) {
 		myLevelLoader->LoadNewLevel("Levels/Dungeon_exportedLevelASCII.txt");
