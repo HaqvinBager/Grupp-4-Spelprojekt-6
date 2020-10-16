@@ -31,7 +31,7 @@ CShowCase::~CShowCase() {}
 void CShowCase::Init()
 {
 	myLevelLoader->Init();
-	myLevelLoader->LoadNewLevel("Levels/Dungeon_SP_exportedLevelASCII.txt");
+	myLevelLoader->LoadNewLevel("Levels/Dungeon_SP_1_exportedLevelASCII.txt");
 
 	myPlayer = CreatePlayer({ 0.0f, 0.0f, 0.0f });
 	myEnemy = CreateEnemy({ 0.5f, 0.0f, 0.0f });
@@ -113,22 +113,20 @@ void CShowCase::UpdatePlayerController()
 
 	playerTransform->Move(input);
 
-	CCapsuleColliderComponent* playerCollider = myPlayer->GetComponent<CCapsuleColliderComponent>();
-	CCapsuleColliderComponent* enemyCollider = myEnemy->GetComponent<CCapsuleColliderComponent>();
-	if (CIntersectionManager::CapsuleIntersection(*playerCollider, *enemyCollider))
-	{
-		//Direction from Enemy to Player
-		CTransformComponent* enemyTransform = myEnemy->GetComponent<CTransformComponent>();
-		Vector3 direction = (enemyTransform->Position() - playerTransform->Position());
-		direction.Normalize();
+	//CCapsuleColliderComponent* playerCollider = myPlayer->GetComponent<CCapsuleColliderComponent>();
+	//CCapsuleColliderComponent* enemyCollider = myEnemy->GetComponent<CCapsuleColliderComponent>();
+	//if (CIntersectionManager::CapsuleIntersection(*playerCollider, *enemyCollider))
+	//{
+	//	//Direction from Enemy to Player
+	//	CTransformComponent* enemyTransform = myEnemy->GetComponent<CTransformComponent>();
+	//	Vector3 direction = (enemyTransform->Position() - playerTransform->Position());
+	//	direction.Normalize();
 
-		playerTransform->Position(lastPosition);
-		playerTransform->Move(direction * playerMoveSpeed);
+	//	playerTransform->Position(lastPosition);
+	//	playerTransform->Move(direction * playerMoveSpeed);
 
-
-
-		//playerTransform->Move();
-	}
+	//	//playerTransform->Move();
+	//}
 }
 
 

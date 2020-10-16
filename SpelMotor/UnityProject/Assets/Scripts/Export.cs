@@ -93,6 +93,15 @@ public class MenuItems : MonoBehaviour
                 savingObject.myColliderData.myCenterY = go.GetComponent<SphereCollider>().center.y;
                 savingObject.myColliderData.myCenterZ = go.GetComponent<SphereCollider>().center.z;
             }
+            else if (savingObject.myColliderData.myColliderType == "CapsuleCollider")
+            {
+                print("Getting CapsuleCollider Data");
+                savingObject.myColliderData.myRadius = go.GetComponent<CapsuleCollider>().radius;
+                savingObject.myColliderData.myCenterX = go.GetComponent<CapsuleCollider>().center.x;
+                savingObject.myColliderData.myCenterY = go.GetComponent<CapsuleCollider>().center.y;
+                savingObject.myColliderData.myCenterZ = go.GetComponent<CapsuleCollider>().center.z;
+                savingObject.myColliderData.myHeight = go.GetComponent<CapsuleCollider>().height;
+            }
         }
 
         return savingObject;
@@ -181,6 +190,8 @@ public class MenuItems : MonoBehaviour
         public float mySizeX;
         public float mySizeY;
         public float mySizeZ;
+        //Capsule
+        public float myHeight;
     }
     //public class BoxColliderData : ColliderData {}
     //public class SphereColliderData : ColliderData{}

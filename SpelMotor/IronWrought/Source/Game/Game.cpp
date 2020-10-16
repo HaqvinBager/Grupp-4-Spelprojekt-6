@@ -25,7 +25,7 @@
 #include <iostream>
 #include <CapsuleColliderComponent.h>
 #include <IntersectionManager.h>
-
+#include "CollisionManager.h"
 #include "ShowCase.h"
 
 #ifdef _DEBUG
@@ -50,7 +50,7 @@ CGame::~CGame()
 
 void CGame::Init()
 {
-	myLevelLoader->Init();
+	//myLevelLoader->Init();
 	//myLevelLoader->LoadNewLevel("Levels/SampleScene_exportedLevelASCII.txt");
 	CScene* scene = CScene::GetInstance();
 	CLightFactory* lightFactory = CLightFactory::GetInstance();
@@ -81,6 +81,9 @@ void CGame::Update()
 	//Axel, Alexander M och Gustav Did this. :)
 	//Updaterar alla GameObjects så deras komponenter blir uppdaterade
 	//Gjorde detta så CapsuleColliders Position etc uppdateras!
+	
+	CCollisionManager::GetInstance()->Update();
+
 	std::vector<CGameObject*> gameObjects = CScene::GetInstance()->CullGameObjects(CScene::GetInstance()->GetMainCamera());
 	for (auto& gameobject : gameObjects)
 	{
