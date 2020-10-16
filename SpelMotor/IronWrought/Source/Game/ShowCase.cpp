@@ -48,11 +48,11 @@ CGameObject* CShowCase::CreatePlayer(Vector3 aPosition)
 {
 	CGameObject* player = new CGameObject();
 	CTransformComponent* transform = player->AddComponent<CTransformComponent>(*player, aPosition);
-	transform->Scale(0.35f);
+	transform->Scale(1.0f);
 	transform->Position(aPosition);
 
 	transform->Rotation({ 0.0f, 180.0f, 0.0f });
-	player->AddComponent<CCapsuleColliderComponent>(*player, 0.05f, 0.5f);
+	player->AddComponent<CCapsuleColliderComponent>(*player, 0.35f, 2.0f);
 	CModelComponent* model = player->AddComponent<CModelComponent>(*player);
 	model->SetMyModel(CModelFactory::GetInstance()->GetModelPBR("Assets/3D/Character/Npc1/CH_NPC_woman_01_19G4_1_19.fbx"));
 	CScene::GetInstance()->AddInstance(player);
@@ -63,11 +63,11 @@ CGameObject* CShowCase::CreateEnemy(Vector3 aPosition)
 {
 	CGameObject* enemy = new CGameObject();
 	CTransformComponent* transform = enemy->AddComponent<CTransformComponent>(*enemy, aPosition);
-	transform->Scale(0.35f);
+	transform->Scale(1.0f);
 	transform->Position(aPosition);
 
 	transform->Rotation({ 0.0f, 0.0f, 0.0f });
-	enemy->AddComponent<CCapsuleColliderComponent>(*enemy, 0.1f, 0.5f);
+	enemy->AddComponent<CCapsuleColliderComponent>(*enemy, 0.5f, 2.0f);
 	CModelComponent* model = enemy->AddComponent<CModelComponent>(*enemy);
 	model->SetMyModel(CModelFactory::GetInstance()->GetModelPBR("ani/CH_NPC_Undead_17G3_SK.fbx"));
 	CAnimationComponent* animation = enemy->AddComponent<CAnimationComponent>(*enemy);	
@@ -88,7 +88,7 @@ CGameObject* CShowCase::CreateEnemy(Vector3 aPosition)
 CCamera* CShowCase::CreateCamera(CGameObject* aCameraTarget)
 {
 	CCamera* camera = CCameraFactory::GetInstance()->CreateCamera(45.0f);
-	camera->SetTarget(aCameraTarget->GetComponent<CTransformComponent>(), { -0.05f, 4.5f, -3.0f }, { 50.0f, 0.0f, 0.0f });
+	camera->SetTarget(aCameraTarget->GetComponent<CTransformComponent>(), { -0.05f, 10.5f, -7.0f }, { 50.0f, 0.0f, 0.0f });
 	camera->SetPosition(aCameraTarget->GetComponent<CTransformComponent>()->Position());
 	camera->Move({ 1.5f, 0.0f, -2.0f });
 	CScene::GetInstance()->AddInstance(camera);
@@ -98,7 +98,10 @@ CCamera* CShowCase::CreateCamera(CGameObject* aCameraTarget)
 
 void CShowCase::UpdatePlayerController()
 {
-	float playerMoveSpeed = 25.0f;
+	float playerMoveSpeed = 20.0f;
+
+	playerMoveSpeed = Input::GetInstance()->IsKeyDown(VK_SHIFT) ? playerMoveSpeed * 1.5f : playerMoveSpeed;
+
 	Vector3 input(0, 0, 0);
 	input.z = Input::GetInstance()->IsKeyDown('W') ? -playerMoveSpeed : input.z;
 	input.z = Input::GetInstance()->IsKeyDown('S') ? playerMoveSpeed : input.z;
