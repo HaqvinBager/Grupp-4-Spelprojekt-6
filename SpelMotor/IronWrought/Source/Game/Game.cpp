@@ -12,9 +12,11 @@
 #include <EnvironmentLight.h>
 #include <Timer.h>
 #include "LevelLoader.h"
+#include "NavmeshLoader.h"
 
+#include "DebugTimerUtility.h"
 #include <Animation.h>
-
+#include "AStar.h"
 
 #ifdef _DEBUG
 #pragma comment(lib, "Engine_Debug.lib")
@@ -38,6 +40,10 @@ CGame::~CGame()
 
 void CGame::Init()
 {
+	//CNavmeshLoader *navmeshLoader = new CNavmeshLoader();
+	//LogTime <&CNavmeshLoader::LoadNavmesh>(navmeshLoader, "SP_test_ExportedNavMesh.obj");
+	//CNavmeshLoader::SNavMesh* navMesh = navmeshLoader->LoadNavmesh("SP_test_ExportedNavMesh.obj");
+
 	myLevelLoader->Init();
 	myLevelLoader->LoadNewLevel("Levels/SampleScene_exportedLevelASCII.txt");
 	CScene* scene = CScene::GetInstance();
