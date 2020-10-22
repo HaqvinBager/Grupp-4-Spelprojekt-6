@@ -24,5 +24,6 @@ private:
 	CGameObject* myPlayer;
 	CGameObject* myEnemy;
 	CCamera* myCamera;
+	CCamera* myFreeCamera;
 	CLevelLoader* myLevelLoader;
 };
