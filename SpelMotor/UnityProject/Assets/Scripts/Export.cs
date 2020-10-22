@@ -51,58 +51,58 @@ public class MenuItems : MonoBehaviour
                 }
             }
             // Add prefab instance CharacterData if it has the appropriate component (PH is Player)
-            if (go.GetComponent<CharacterData>() != null)//Player.cs is placeholder
-            {
-                savingObject.myCharacterData = new CharacterDataStruct();
-                savingObject.myCharacterData.myName = go.GetComponent<CharacterData>().myName;
-                savingObject.myCharacterData.myHealth = go.GetComponent<CharacterData>().myHealth;
-                savingObject.myCharacterData.myDamage = go.GetComponent<CharacterData>().myDamage;
-                savingObject.myCharacterData.myAttackSpeed = go.GetComponent<CharacterData>().myAttackSpeed;
-                savingObject.myCharacterData.myMoveSpeed = go.GetComponent<CharacterData>().myMoveSpeed;
-                savingObject.myCharacterData.myCastSpeed = go.GetComponent<CharacterData>().myCastSpeed;
-            }
+            //if (go.GetComponent<CharacterData>() != null)//Player.cs is placeholder
+            //{
+            //    savingObject.myCharacterData = new CharacterDataStruct();
+            //    savingObject.myCharacterData.myName = go.GetComponent<CharacterData>().myName;
+            //    savingObject.myCharacterData.myHealth = go.GetComponent<CharacterData>().myHealth;
+            //    savingObject.myCharacterData.myDamage = go.GetComponent<CharacterData>().myDamage;
+            //    savingObject.myCharacterData.myAttackSpeed = go.GetComponent<CharacterData>().myAttackSpeed;
+            //    savingObject.myCharacterData.myMoveSpeed = go.GetComponent<CharacterData>().myMoveSpeed;
+            //    savingObject.myCharacterData.myCastSpeed = go.GetComponent<CharacterData>().myCastSpeed;
+            //}
         }
         else // it is not a prefab: bare-FBX, Light or Camera, e.g.
         {
             savingObject.myPath = AssetDatabase.GetAssetPath(PrefabUtility.GetCorrespondingObjectFromSource(go));
         }
 
-        if (go.GetComponent<Collider>())
-        {
-            // Int or String? Int -> Enum Clas in C++ faster comparison. String might be fine during load.
-            // UnityEngine.collider, UnityEngine. ends on index 12 
-            savingObject.myColliderData = new ColliderData();
-            savingObject.myColliderData.myColliderType = go.GetComponent<Collider>().GetType().ToString().Remove(0, 12);
-            print(savingObject.myColliderData.myColliderType);
-            if (savingObject.myColliderData.myColliderType == "BoxCollider")
-            {
-                print("Getting BoxCollider Data");
-                savingObject.myColliderData.mySizeX = go.GetComponent<BoxCollider>().size.x;
-                savingObject.myColliderData.mySizeY = go.GetComponent<BoxCollider>().size.y;
-                savingObject.myColliderData.mySizeZ = go.GetComponent<BoxCollider>().size.z;
-                savingObject.myColliderData.myCenterX = go.GetComponent<BoxCollider>().center.x;
-                savingObject.myColliderData.myCenterY = go.GetComponent<BoxCollider>().center.y;
-                savingObject.myColliderData.myCenterZ = go.GetComponent<BoxCollider>().center.z;
+        //if (go.GetComponent<Collider>())
+        //{
+        //    // Int or String? Int -> Enum Clas in C++ faster comparison. String might be fine during load.
+        //    // UnityEngine.collider, UnityEngine. ends on index 12 
+        //    savingObject.myColliderData = new ColliderData();
+        //    savingObject.myColliderData.myColliderType = go.GetComponent<Collider>().GetType().ToString().Remove(0, 12);
+        //    print(savingObject.myColliderData.myColliderType);
+        //    if (savingObject.myColliderData.myColliderType == "BoxCollider")
+        //    {
+        //        print("Getting BoxCollider Data");
+        //        savingObject.myColliderData.mySizeX = go.GetComponent<BoxCollider>().size.x;
+        //        savingObject.myColliderData.mySizeY = go.GetComponent<BoxCollider>().size.y;
+        //        savingObject.myColliderData.mySizeZ = go.GetComponent<BoxCollider>().size.z;
+        //        savingObject.myColliderData.myCenterX = go.GetComponent<BoxCollider>().center.x;
+        //        savingObject.myColliderData.myCenterY = go.GetComponent<BoxCollider>().center.y;
+        //        savingObject.myColliderData.myCenterZ = go.GetComponent<BoxCollider>().center.z;
 
-            }
-            else if (savingObject.myColliderData.myColliderType == "SphereCollider")
-            {
-                print("Getting SphereCollider Data");
-                savingObject.myColliderData.myRadius = go.GetComponent<SphereCollider>().radius;
-                savingObject.myColliderData.myCenterX = go.GetComponent<SphereCollider>().center.x;
-                savingObject.myColliderData.myCenterY = go.GetComponent<SphereCollider>().center.y;
-                savingObject.myColliderData.myCenterZ = go.GetComponent<SphereCollider>().center.z;
-            }
-            else if (savingObject.myColliderData.myColliderType == "CapsuleCollider")
-            {
-                print("Getting CapsuleCollider Data");
-                savingObject.myColliderData.myRadius = go.GetComponent<CapsuleCollider>().radius;
-                savingObject.myColliderData.myCenterX = go.GetComponent<CapsuleCollider>().center.x;
-                savingObject.myColliderData.myCenterY = go.GetComponent<CapsuleCollider>().center.y;
-                savingObject.myColliderData.myCenterZ = go.GetComponent<CapsuleCollider>().center.z;
-                savingObject.myColliderData.myHeight = go.GetComponent<CapsuleCollider>().height;
-            }
-        }
+        //    }
+        //    else if (savingObject.myColliderData.myColliderType == "SphereCollider")
+        //    {
+        //        print("Getting SphereCollider Data");
+        //        savingObject.myColliderData.myRadius = go.GetComponent<SphereCollider>().radius;
+        //        savingObject.myColliderData.myCenterX = go.GetComponent<SphereCollider>().center.x;
+        //        savingObject.myColliderData.myCenterY = go.GetComponent<SphereCollider>().center.y;
+        //        savingObject.myColliderData.myCenterZ = go.GetComponent<SphereCollider>().center.z;
+        //    }
+        //    else if (savingObject.myColliderData.myColliderType == "CapsuleCollider")
+        //    {
+        //        print("Getting CapsuleCollider Data");
+        //        savingObject.myColliderData.myRadius = go.GetComponent<CapsuleCollider>().radius;
+        //        savingObject.myColliderData.myCenterX = go.GetComponent<CapsuleCollider>().center.x;
+        //        savingObject.myColliderData.myCenterY = go.GetComponent<CapsuleCollider>().center.y;
+        //        savingObject.myColliderData.myCenterZ = go.GetComponent<CapsuleCollider>().center.z;
+        //        savingObject.myColliderData.myHeight = go.GetComponent<CapsuleCollider>().height;
+        //    }
+        //}
 
         return savingObject;
     }

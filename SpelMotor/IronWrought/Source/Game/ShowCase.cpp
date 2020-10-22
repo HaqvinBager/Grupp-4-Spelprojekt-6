@@ -31,7 +31,7 @@ CShowCase::~CShowCase() {}
 void CShowCase::Init()
 {
 	myLevelLoader->Init();
-	myLevelLoader->LoadNewLevel("Levels/Dungeon_SP_1_exportedLevelASCII.txt");
+	myLevelLoader->LoadNewLevel("Levels/SampleScene");
 
 	myPlayer = CreatePlayer({ 0.0f, 0.0f, 0.0f });
 	myEnemy = CreateEnemy({ 0.5f, 0.0f, 0.0f });
