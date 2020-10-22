@@ -62,6 +62,7 @@ void CGame::Init()
 	CEnvironmentLight* environmentLight = lightFactory->CreateEnvironmentLight("Yokohama2.dds");
 	environmentLight->SetDirection(SM::Vector3(0, 1, -1));
 	environmentLight->SetColor(SM::Vector3(0.8f, 0.8f, 0.8f));
+	environmentLight->SetIntensity(.5f);
 	scene->AddInstance(environmentLight);
 
 	std::vector<CGameObject*> gameObjects = CScene::GetInstance()->CullGameObjects(CScene::GetInstance()->GetMainCamera());

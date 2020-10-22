@@ -14,10 +14,15 @@
 #include <ModelFactory.h>
 #include <ModelComponent.h>
 
+#include <ParticleFactory.h>
+#include <Particle.h>
+#include <ParticleInstance.h>
+
 #include <IntersectionManager.h>
 #include <iostream>
 #include <AnimationComponent.h>
 #include <Animation.h>
+
 
 #include "LevelLoader.h"
 
@@ -36,6 +41,12 @@ void CShowCase::Init()
 	myPlayer = CreatePlayer({ 0.0f, 0.0f, 0.0f });
 	myEnemy = CreateEnemy({ 0.5f, 0.0f, 0.0f });
 	myCamera = CreateCamera(myPlayer);
+
+	CParticle* particlePrefab = CParticleFactory::GetInstance()->LoadParticle("ParticleData_SmokeEmitter.json");
+	CParticleInstance* particleEmitter = new CParticleInstance();
+	particleEmitter->Init(particlePrefab);
+
+	CScene::GetInstance()->AddInstance(particleEmitter);
 }
 
 void CShowCase::Update()
