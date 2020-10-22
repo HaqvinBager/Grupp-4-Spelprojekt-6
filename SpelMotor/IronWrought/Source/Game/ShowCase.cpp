@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "ShowCase.h"
-#include "LevelLoader.h"
 #include "GameObject.h"
 #include "Scene.h"
 #include "Camera.h"
@@ -26,7 +25,6 @@
 
 #include "LevelLoader.h"
 
-
 using namespace CommonUtilities;
 
 CShowCase::CShowCase() : myLevelLoader(new CLevelLoader()), myPlayer(nullptr), myEnemy(nullptr), myCamera(nullptr) {}
@@ -36,7 +34,7 @@ CShowCase::~CShowCase() {}
 void CShowCase::Init()
 {
 	myLevelLoader->Init();
-	myLevelLoader->LoadNewLevel("Levels/SampleScene");
+	//myLevelLoader->LoadNewLevel("TODO");
 
 	myPlayer = CreatePlayer({ 0.0f, 0.0f, 0.0f });
 	myEnemy = CreateEnemy({ 0.5f, 0.0f, 0.0f });
@@ -101,7 +99,7 @@ CCamera* CShowCase::CreateCamera(CGameObject* aCameraTarget)
 	CCamera* camera = CCameraFactory::GetInstance()->CreateCamera(45.0f);
 	camera->SetTarget(aCameraTarget->GetComponent<CTransformComponent>(), { -0.05f, 10.5f, -7.0f }, { 50.0f, 0.0f, 0.0f });
 	camera->SetPosition(aCameraTarget->GetComponent<CTransformComponent>()->Position());
-	camera->Move({ 1.5f, 0.0f, -2.0f });
+	//camera->Move({ 1.5f, 0.0f, -2.0f });
 	CScene::GetInstance()->AddInstance(camera);
 	CScene::GetInstance()->SetMainCamera(camera);
 	return camera;

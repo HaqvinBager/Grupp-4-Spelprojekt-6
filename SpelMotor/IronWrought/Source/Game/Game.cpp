@@ -34,6 +34,7 @@
 #endif // _DEBUG
 #ifdef NDEBUG
 #pragma comment(lib, "Engine_Release.lib")
+#pragma comment(lib, "UnityImporterApp_Release.lib")
 #endif // NDEBUG
 
 namespace SM = DirectX::SimpleMath;
