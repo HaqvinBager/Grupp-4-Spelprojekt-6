@@ -12,7 +12,7 @@ public class BinaryExporter
     [MenuItem("Tools/Export all BIN #_y")]
     private static void DoExportBinary()
     {
-        string target_path = "..\\Bin\\Unity Level Export\\";
+        string target_path = "..\\IronWrought\\Bin\\Levels\\";
         if (!System.IO.Directory.Exists(target_path))
         {
             System.IO.Directory.CreateDirectory(target_path);
