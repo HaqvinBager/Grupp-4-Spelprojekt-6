@@ -7,6 +7,7 @@ namespace DirectX {
 }
 class CLevelLoader;
 class CModelInstance;
+class CShowCase;
 class CGame
 {
 public:
@@ -16,10 +17,13 @@ public:
 	void Init();
 	void Update();
 
+
 private:
 
-	void UpdateCamera();
+	//void UpdateCamera();
+	//void CapsuleColliderTest();
 
 	CLevelLoader* myLevelLoader;
+	CShowCase* myShowCase;
 };
 
