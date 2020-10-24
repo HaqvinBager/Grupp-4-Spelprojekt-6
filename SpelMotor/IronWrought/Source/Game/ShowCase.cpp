@@ -17,6 +17,9 @@
 #include <Particle.h>
 #include <ParticleInstance.h>
 
+#include <SpriteInstance.h>
+#include <SpriteFactory.h>
+
 #include <IntersectionManager.h>
 #include <iostream>
 #include <AnimationComponent.h>
@@ -27,7 +30,7 @@
 
 using namespace CommonUtilities;
 
-CShowCase::CShowCase() : myLevelLoader(new CLevelLoader()), myPlayer(nullptr), myEnemy(nullptr), myCamera(nullptr) {}
+CShowCase::CShowCase() : myLevelLoader(new CLevelLoader()), myPlayer(nullptr), myEnemy(nullptr), myCamera(nullptr), myFreeCamera(nullptr) {}
 
 CShowCase::~CShowCase() {}
 
@@ -46,6 +49,11 @@ void CShowCase::Init()
 	CScene::GetInstance()->AddInstance(particleEmitter);
 
 	myFreeCamera = CreateCamera(nullptr);
+
+	//CSpriteFactory* spriteFactory = CSpriteFactory::GetInstance();
+	//CSpriteInstance* spriteInstance = new CSpriteInstance();
+	//spriteInstance->Init(spriteFactory->GetSprite("Texture.dds"));
+	//CScene::GetInstance()->AddInstance(spriteInstance);
 }
 
 void CShowCase::Update()

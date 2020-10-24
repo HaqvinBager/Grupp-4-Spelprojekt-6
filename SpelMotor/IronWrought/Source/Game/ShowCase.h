@@ -5,6 +5,7 @@ using namespace DirectX::SimpleMath;
 class CLevelLoader;
 class CGameObject;
 class CCamera;
+
 class CShowCase
 {
 public:
