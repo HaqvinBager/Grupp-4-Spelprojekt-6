@@ -28,7 +28,11 @@
 #include <NavmeshLoader.h>
 #include <MouseTracker.h>
 
+#include <LineFactory.h>
+#include <LineInstance.h>
+
 #include "LevelLoader.h"
+
 
 using namespace CommonUtilities;
 
@@ -89,13 +93,20 @@ void CShowCase::Update()
 	UpdatePlayerController();
 
 	if (Input::GetInstance()->IsMousePressed(Input::MouseButton::Left)) {
+		//DirectX::SimpleMath::Vector4 origin = {0, 0, 0, 0};
 		DirectX::SimpleMath::Vector4 origin = MouseTracker::ScreenPositionToWorldPosition(static_cast<float>(Input::GetInstance()->MouseX()), static_cast<float>(Input::GetInstance()->MouseY()), static_cast<float>(myWindowWidth), static_cast<float>(myWindowHeight));
 		DirectX::SimpleMath::Vector3 cameraForward = CScene::GetInstance()->GetMainCamera()->GetTransform().Forward();
-		DirectX::SimpleMath::Ray* ray = new DirectX::SimpleMath::Ray({ origin.x, origin.y, origin.z }, cameraForward);
+		DirectX::SimpleMath::Ray* ray = new DirectX::SimpleMath::Ray({ origin.x, origin.y, origin.z }, -cameraForward);
 
-		std::cout << "Origin \nX: " << origin.x << std::endl << "Y: " << origin.y << std::endl << "Z: " << origin.z << std::endl;
+		std::cout << "\nOrigin \nX: " << origin.x << std::endl << "Y: " << origin.y << std::endl << "Z: " << origin.z << std::endl;
 		std::cout << "\nDirection \nX: " << cameraForward.x << std::endl << "Y: " << cameraForward.y << std::endl << "Z: " << cameraForward.z << std::endl;
-		
+
+		CLineInstance* lineInstance = new CLineInstance();
+		DirectX::SimpleMath::Vector3 to = ray->position + ray->direction * 100.0f;
+		myFreeCamera->SetPosition(to);
+		lineInstance->Init(CLineFactory::GetInstance()->CreateLine({ origin.x, origin.y, origin.z }, to, {255.f, 0.f ,0.f, 1.f}));
+		CScene::GetInstance()->AddInstance(lineInstance);
+
 		float distToMesh = 0;
 		for (auto& tri : myNavMesh->myTriangles)
 		{
