@@ -25,6 +25,8 @@
 #include <AnimationComponent.h>
 #include <Animation.h>
 
+#include "NavmeshLoader.h"
+
 
 #include "LevelLoader.h"
 
@@ -36,7 +38,24 @@ CShowCase::~CShowCase() {}
 
 void CShowCase::Init()
 {
+	CNavmeshLoader* nav = new CNavmeshLoader();
+	CNavmeshLoader::SNavMesh* navMesh = nav->LoadNavmesh("NavTest_ExportedNavMesh.obj");
+
+	DirectX::SimpleMath::Ray* ray = new DirectX::SimpleMath::Ray({ -1.44f, 1.5f, 1.44f }, { 0, -1, 0 });
+
+	std::cout << "NavMesh Size:" << navMesh->myTriangles.size() << std::endl;
+	for (size_t i = 0; i < navMesh->myTriangles.size(); i++)
+	{
+		std::cout << i << " NavMesh position X:" << navMesh->myTriangles[i]->myCenterPosition.x << " Y: " << navMesh->myTriangles[i]->myCenterPosition.y << " Z: " << navMesh->myTriangles[i]->myCenterPosition.z << std::endl;
+	}
+	STriangle* tri = navMesh->myTriangles[0];
+
+	float dist = 0;
+	if (ray->Intersects({ tri->myVertexPositions[0] }, { tri->myVertexPositions[1] }, { tri->myVertexPositions[2] }, dist)) {
+		std::cout << "IN" << std::endl;
+	}
 	myLevelLoader->Init();
+
 	//myLevelLoader->LoadNewLevel("TODO");
 
 	myPlayer = CreatePlayer({ 0.0f, 0.0f, 0.0f });
