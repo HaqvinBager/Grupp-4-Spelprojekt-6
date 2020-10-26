@@ -1,0 +1,23 @@
+ts_1_Dungeon_D.dds
+ts_1_Dungeon_M.dds
+ts_1_Dungeon_N.dds
+
+ts_2_Castle_D.dds
+ts_2_Castle_M.dds
+ts_2_Castle_N.dds
+
+ts_3_Gardens_D.dds
+ts_3_Gardens_M.dds
+ts_3_Gardens_N.dds
+
+FBX:es that use trimsheets:
+Place them anywhere in Assets/3D/
+make sure they have a suffix that corresponds to the trimsheets they use.
+Ex:
+	EN_W_L1Stair_03_19G4_01_19_ts_1.fbx
+	EN_W_L2Stair_04_19G4_01_19_ts_2.fbx
+
+If the suffix is incorrect (or there is some other issue) the texture won't load. If the trimsheet doesn't exist the same thing will happen.
+Nothing will break. (If it does please send a pm or @: Aki, Emanuel or Ellen.)
+
+Number of trimsheets are decided by SG. Please inform how many trimsheets there are going to be( might be automated in the future)
