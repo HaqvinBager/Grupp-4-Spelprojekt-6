@@ -41,7 +41,7 @@ namespace SM = DirectX::SimpleMath;
 using namespace CommonUtilities;
 
 CGame::CGame() 
-	: myLevelLoader(new CLevelLoader())
+	: myLevelLoader(new CLevelLoader()), myWindowWidth(0), myWindowHeight(0)
 {
 }
 
@@ -59,6 +59,8 @@ void CGame::Init()
 	
 	myShowCase = new CShowCase();
 	myShowCase->Init();
+	myShowCase->myWindowWidth = myWindowWidth;
+	myShowCase->myWindowHeight = myWindowHeight;
 	
 	CEnvironmentLight* environmentLight = lightFactory->CreateEnvironmentLight("Yokohama2.dds");
 	environmentLight->SetDirection(SM::Vector3(0, 1, -1));

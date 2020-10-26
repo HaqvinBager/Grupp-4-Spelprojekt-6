@@ -6,6 +6,8 @@ class CLevelLoader;
 class CGameObject;
 class CCamera;
 
+struct SNavMesh;
+
 class CShowCase
 {
 public:
@@ -14,6 +16,9 @@ public:
 
 	void Init();
 	void Update();
+
+	unsigned int myWindowWidth;
+	unsigned int myWindowHeight;
 
 private:
 	CGameObject* CreatePlayer(Vector3 aPosition);
@@ -27,4 +32,5 @@ private:
 	CCamera* myCamera;
 	CCamera* myFreeCamera;
 	CLevelLoader* myLevelLoader;
+	SNavMesh* myNavMesh;
 };

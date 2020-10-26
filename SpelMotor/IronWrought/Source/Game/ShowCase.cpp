@@ -25,30 +25,30 @@
 #include <AnimationComponent.h>
 #include <Animation.h>
 
-#include "NavmeshLoader.h"
-
+#include <NavmeshLoader.h>
+#include <MouseTracker.h>
 
 #include "LevelLoader.h"
 
 using namespace CommonUtilities;
 
-CShowCase::CShowCase() : myLevelLoader(new CLevelLoader()), myPlayer(nullptr), myEnemy(nullptr), myCamera(nullptr), myFreeCamera(nullptr) {}
+CShowCase::CShowCase() : myLevelLoader(new CLevelLoader()), myPlayer(nullptr), myEnemy(nullptr), myCamera(nullptr), myFreeCamera(nullptr), myWindowWidth(0), myWindowHeight(0) {}
 
 CShowCase::~CShowCase() {}
 
 void CShowCase::Init()
 {
 	CNavmeshLoader* nav = new CNavmeshLoader();
-	CNavmeshLoader::SNavMesh* navMesh = nav->LoadNavmesh("NavTest_ExportedNavMesh.obj");
+	myNavMesh = nav->LoadNavmesh("NavTest_ExportedNavMesh.obj");
 
 	DirectX::SimpleMath::Ray* ray = new DirectX::SimpleMath::Ray({ -1.44f, 1.5f, 1.44f }, { 0, -1, 0 });
 
-	std::cout << "NavMesh Size:" << navMesh->myTriangles.size() << std::endl;
-	for (size_t i = 0; i < navMesh->myTriangles.size(); i++)
+	std::cout << "NavMesh Size:" << myNavMesh->myTriangles.size() << std::endl;
+	for (size_t i = 0; i < myNavMesh->myTriangles.size(); i++)
 	{
-		std::cout << i << " NavMesh position X:" << navMesh->myTriangles[i]->myCenterPosition.x << " Y: " << navMesh->myTriangles[i]->myCenterPosition.y << " Z: " << navMesh->myTriangles[i]->myCenterPosition.z << std::endl;
+		std::cout << i << " NavMesh position X:" << myNavMesh->myTriangles[i]->myCenterPosition.x << " Y: " << myNavMesh->myTriangles[i]->myCenterPosition.y << " Z: " << myNavMesh->myTriangles[i]->myCenterPosition.z << std::endl;
 	}
-	STriangle* tri = navMesh->myTriangles[0];
+	STriangle* tri = myNavMesh->myTriangles[0];
 
 	float dist = 0;
 	if (ray->Intersects({ tri->myVertexPositions[0] }, { tri->myVertexPositions[1] }, { tri->myVertexPositions[2] }, dist)) {
@@ -87,6 +87,23 @@ void CShowCase::Update()
 		}
 	}
 	UpdatePlayerController();
+
+	if (Input::GetInstance()->IsMousePressed(Input::MouseButton::Left)) {
+		DirectX::SimpleMath::Vector4 origin = MouseTracker::ScreenPositionToWorldPosition(static_cast<float>(Input::GetInstance()->MouseX()), static_cast<float>(Input::GetInstance()->MouseY()), static_cast<float>(myWindowWidth), static_cast<float>(myWindowHeight));
+		DirectX::SimpleMath::Vector3 cameraForward = CScene::GetInstance()->GetMainCamera()->GetTransform().Forward();
+		DirectX::SimpleMath::Ray* ray = new DirectX::SimpleMath::Ray({ origin.x, origin.y, origin.z }, cameraForward);
+
+		std::cout << "Origin \nX: " << origin.x << std::endl << "Y: " << origin.y << std::endl << "Z: " << origin.z << std::endl;
+		std::cout << "\nDirection \nX: " << cameraForward.x << std::endl << "Y: " << cameraForward.y << std::endl << "Z: " << cameraForward.z << std::endl;
+		
+		float distToMesh = 0;
+		for (auto& tri : myNavMesh->myTriangles)
+		{
+			if (ray->Intersects({ tri->myVertexPositions[0] }, { tri->myVertexPositions[1] }, { tri->myVertexPositions[2] }, distToMesh)) {
+				std::cout << "Collided with NavMesh!" << std::endl;
+			}
+		}
+	}
 }
 
 CGameObject* CShowCase::CreatePlayer(Vector3 aPosition)

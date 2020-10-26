@@ -64,6 +64,8 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 		return 1;
 
 	CGame game;
+	game.myWindowWidth = engine.GetWindowHandler()->GetWidth();
+	game.myWindowHeight = engine.GetWindowHandler()->GetHeight();
 	game.Init();
 
 	MSG windowMessage = { 0 };
