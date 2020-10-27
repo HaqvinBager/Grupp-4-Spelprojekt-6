@@ -1,0 +1,14 @@
+Last edit: Aki, 2020-10-27 16:35
+
+Instructions for getting started with the Model Viewer:
+	1 Un-zip desired version of ModelViewer, ex: ModelViewer_ver0.1
+	2 In the ModelViewer-ver0.1folder:
+		a) In Assets/3D folder add any models (.fbx) and textures (.dds)
+		you want. Create a folder if you like. 
+		ex: Assets/3D/I_am_testing_this
+		with test_model.fbx, test_model_D.dds/test_model_M.dds/test_model_N.dds
+		
+		b) Run the .exe file: ModelViewer_Debug.exe or ModelViewer_Release.exe.
+	Should work. :U
+
+	If not @ an SP: Aki or Emanuel. In Discord.
