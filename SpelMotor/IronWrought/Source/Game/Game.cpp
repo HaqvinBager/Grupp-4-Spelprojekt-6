@@ -6,7 +6,6 @@
 #include <Camera.h>
 #include <Model.h>
 #include <ModelFactory.h>
-#include <ModelInstance.h>
 #include <Input.h>
 #include <LightFactory.h>
 #include <EnvironmentLight.h>
@@ -20,6 +19,7 @@
 #include <AnimationComponent.h>
 //#include <MouseTracker.h>
 #include <AnimationController.h>
+#include <ModelComponent.h>
 
 #include <Animation.h>
 #include <iostream>

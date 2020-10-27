@@ -9,7 +9,6 @@
 #include <CameraFactory.h>
 #include <CapsuleColliderComponent.h>
 #include <Model.h>
-#include <ModelInstance.h>
 #include <ModelFactory.h>
 #include <ModelComponent.h>
 
@@ -131,9 +130,9 @@ CGameObject* CShowCase::CreatePlayer(Vector3 aPosition)
 
 	transform->Rotation({ 0.0f, 180.0f, 0.0f });
 	player->AddComponent<CCapsuleColliderComponent>(*player, 0.35f, 2.0f);
-	CModelComponent* model = player->AddComponent<CModelComponent>(*player);
+	player->AddComponent<CModelComponent>(*player, "Assets/3D/Character/Npc1/CH_NPC_woman_01_19G4_1_19.fbx");
 	player->AddComponent<CPlayerControllerComponent>(*player);
-	model->SetMyModel(CModelFactory::GetInstance()->GetModelPBR("Assets/3D/Character/Npc1/CH_NPC_woman_01_19G4_1_19.fbx"));
+	//model->SetMyModel(CModelFactory::GetInstance()->GetModelPBR());
 	CScene::GetInstance()->AddInstance(player);
 	return player;
 }
@@ -147,17 +146,16 @@ CGameObject* CShowCase::CreateEnemy(Vector3 aPosition)
 
 	transform->Rotation({ 0.0f, 0.0f, 0.0f });
 	enemy->AddComponent<CCapsuleColliderComponent>(*enemy, 0.5f, 2.0f);
-	CModelComponent* model = enemy->AddComponent<CModelComponent>(*enemy);
-	model->SetMyModel(CModelFactory::GetInstance()->GetModelPBR("ani/CH_NPC_Undead_17G3_SK.fbx"));
-	CAnimationComponent* animation = enemy->AddComponent<CAnimationComponent>(*enemy);
+	auto modelComponent = enemy->AddComponent<CModelComponent>(*enemy, "ani/CH_NPC_Undead_17G3_SK.fbx");
 
+	CAnimationComponent* animation = enemy->AddComponent<CAnimationComponent>(*enemy);
 	std::vector<std::string> somePathsToAnimations;
 	somePathsToAnimations.push_back("ani/CH_NPC_Undead@Walk_01_17G3_AN.fbx");
 	somePathsToAnimations.push_back("ani/CH_NPC_Undead@Idle_01_17G3_AN.fbx");
 
 	const std::string rigModel = "Ani/CH_NPC_Undead_17G3_SK.fbx";
 	animation->GetMyAnimation()->Init(rigModel.c_str(), somePathsToAnimations);
-	model->GetMyModel()->GetModel()->AddAnimation(animation->GetMyAnimation());
+	modelComponent->GetMyModel()->AddAnimation(animation->GetMyAnimation());
 	animation->SetBlend(0, 1, 1.0f);
 
 	CScene::GetInstance()->AddInstance(enemy);
