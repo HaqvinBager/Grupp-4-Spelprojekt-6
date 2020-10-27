@@ -70,9 +70,9 @@ public class BinaryExporter
             if(mesh != null)
             {
                 int index = Getindex(go, filter);
-                bw.Write(go.transform.rotation.eulerAngles.x);
-                bw.Write(go.transform.rotation.eulerAngles.y);
-                bw.Write(go.transform.rotation.eulerAngles.z);
+                bw.Write(-go.transform.rotation.eulerAngles.x - 360.0f);
+                bw.Write(go.transform.rotation.eulerAngles.y + 180.0f);
+                bw.Write(-go.transform.rotation.eulerAngles.z - 360.0f);
                 bw.Write(go.transform.position.x);
                 bw.Write(go.transform.position.y);
                 bw.Write(go.transform.position.z);
