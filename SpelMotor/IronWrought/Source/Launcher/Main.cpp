@@ -1,6 +1,7 @@
 #include "WinInclude.h"
 #include "Engine.h"
 #include "Input.h"
+#include "InputMapper.h"
 #include "Game.h"
 
 #ifdef _DEBUG
@@ -86,7 +87,7 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 		game.Update();
 		engine.RenderFrame();
 		engine.EndFrame();
-		Input::GetInstance()->update();
+		CInputMapper::GetInstance()->Update();
 	}
 
 #ifdef USE_CONSOLE_COMMAND
