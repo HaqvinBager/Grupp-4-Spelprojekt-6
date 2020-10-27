@@ -24,6 +24,8 @@
 #include <iostream>
 #include <AnimationComponent.h>
 #include <Animation.h>
+#include <InputMapper.h>
+#include "PlayerControllerComponent.h"
 
 #include <NavmeshLoader.h>
 #include <MouseTracker.h>
@@ -42,22 +44,22 @@ CShowCase::~CShowCase() {}
 
 void CShowCase::Init()
 {
-	CNavmeshLoader* nav = new CNavmeshLoader();
-	myNavMesh = nav->LoadNavmesh("NavTest_ExportedNavMesh.obj");
+	//CNavmeshLoader* nav = new CNavmeshLoader();
+	//myNavMesh = nav->LoadNavmesh("NavTest_ExportedNavMesh.obj");
 
-	DirectX::SimpleMath::Ray* ray = new DirectX::SimpleMath::Ray({ -1.44f, 1.5f, 1.44f }, { 0, -1, 0 });
+	//DirectX::SimpleMath::Ray* ray = new DirectX::SimpleMath::Ray({ -1.44f, 1.5f, 1.44f }, { 0, -1, 0 });
 
-	std::cout << "NavMesh Size:" << myNavMesh->myTriangles.size() << std::endl;
-	for (size_t i = 0; i < myNavMesh->myTriangles.size(); i++)
-	{
-		std::cout << i << " NavMesh position X:" << myNavMesh->myTriangles[i]->myCenterPosition.x << " Y: " << myNavMesh->myTriangles[i]->myCenterPosition.y << " Z: " << myNavMesh->myTriangles[i]->myCenterPosition.z << std::endl;
-	}
-	STriangle* tri = myNavMesh->myTriangles[0];
+	//std::cout << "NavMesh Size:" << myNavMesh->myTriangles.size() << std::endl;
+	//for (size_t i = 0; i < myNavMesh->myTriangles.size(); i++)
+	//{
+	//	std::cout << i << " NavMesh position X:" << myNavMesh->myTriangles[i]->myCenterPosition.x << " Y: " << myNavMesh->myTriangles[i]->myCenterPosition.y << " Z: " << myNavMesh->myTriangles[i]->myCenterPosition.z << std::endl;
+	//}
+	//STriangle* tri = myNavMesh->myTriangles[0];
 
-	float dist = 0;
-	if (ray->Intersects({ tri->myVertexPositions[0] }, { tri->myVertexPositions[1] }, { tri->myVertexPositions[2] }, dist)) {
-		std::cout << "IN" << std::endl;
-	}
+	//float dist = 0;
+	//if (ray->Intersects({ tri->myVertexPositions[0] }, { tri->myVertexPositions[1] }, { tri->myVertexPositions[2] }, dist)) {
+	//	std::cout << "IN" << std::endl;
+	//}
 	myLevelLoader->Init();
 
 	//myLevelLoader->LoadNewLevel("TODO");
@@ -72,7 +74,10 @@ void CShowCase::Init()
 	CScene::GetInstance()->AddInstance(particleEmitter);
 
 	myFreeCamera = CreateCamera(nullptr);
-
+	//TODO TEMPORARY REMOVE MOvE YES
+	CInputMapper::GetInstance()->MapEvent(CInputObserver::EInputAction::MouseLeft, CInputObserver::EInputEvent::MoveClick);
+	CInputMapper::GetInstance()->MapEvent(CInputObserver::EInputAction::MouseRight, CInputObserver::EInputEvent::AttackClick);
+	//TODO TEMPORARY REMOVE MOVE YES
 	//CSpriteFactory* spriteFactory = CSpriteFactory::GetInstance();
 	//CSpriteInstance* spriteInstance = new CSpriteInstance();
 	//spriteInstance->Init(spriteFactory->GetSprite("Texture.dds"));
@@ -92,29 +97,29 @@ void CShowCase::Update()
 	}
 	UpdatePlayerController();
 
-	if (Input::GetInstance()->IsMousePressed(Input::MouseButton::Left)) {
-		//DirectX::SimpleMath::Vector4 origin = {0, 0, 0, 0};
-		DirectX::SimpleMath::Vector4 origin = MouseTracker::ScreenPositionToWorldPosition(static_cast<float>(Input::GetInstance()->MouseX()), static_cast<float>(Input::GetInstance()->MouseY()), static_cast<float>(myWindowWidth), static_cast<float>(myWindowHeight));
-		DirectX::SimpleMath::Vector3 cameraForward = CScene::GetInstance()->GetMainCamera()->GetTransform().Forward();
-		DirectX::SimpleMath::Ray* ray = new DirectX::SimpleMath::Ray({ origin.x, origin.y, origin.z }, -cameraForward);
+	//if (Input::GetInstance()->IsMousePressed(Input::MouseButton::Left)) {
+	//	//DirectX::SimpleMath::Vector4 origin = {0, 0, 0, 0};
+	//	DirectX::SimpleMath::Vector4 origin = MouseTracker::ScreenPositionToWorldPosition(static_cast<float>(Input::GetInstance()->MouseX()), static_cast<float>(Input::GetInstance()->MouseY()), static_cast<float>(myWindowWidth), static_cast<float>(myWindowHeight));
+	//	DirectX::SimpleMath::Vector3 cameraForward = CScene::GetInstance()->GetMainCamera()->GetTransform().Forward();
+	//	DirectX::SimpleMath::Ray* ray = new DirectX::SimpleMath::Ray({ origin.x, origin.y, origin.z }, -cameraForward);
 
-		std::cout << "\nOrigin \nX: " << origin.x << std::endl << "Y: " << origin.y << std::endl << "Z: " << origin.z << std::endl;
-		std::cout << "\nDirection \nX: " << cameraForward.x << std::endl << "Y: " << cameraForward.y << std::endl << "Z: " << cameraForward.z << std::endl;
+	//	std::cout << "\nOrigin \nX: " << origin.x << std::endl << "Y: " << origin.y << std::endl << "Z: " << origin.z << std::endl;
+	//	std::cout << "\nDirection \nX: " << cameraForward.x << std::endl << "Y: " << cameraForward.y << std::endl << "Z: " << cameraForward.z << std::endl;
 
-		CLineInstance* lineInstance = new CLineInstance();
-		DirectX::SimpleMath::Vector3 to = ray->position + ray->direction * 100.0f;
-		myFreeCamera->SetPosition(to);
-		lineInstance->Init(CLineFactory::GetInstance()->CreateLine({ origin.x, origin.y, origin.z }, to, {255.f, 0.f ,0.f, 1.f}));
-		CScene::GetInstance()->AddInstance(lineInstance);
+	//	CLineInstance* lineInstance = new CLineInstance();
+	//	DirectX::SimpleMath::Vector3 to = ray->position + ray->direction * 100.0f;
+	//	myFreeCamera->SetPosition(to);
+	//	lineInstance->Init(CLineFactory::GetInstance()->CreateLine({ origin.x, origin.y, origin.z }, to, {255.f, 0.f ,0.f, 1.f}));
+	//	CScene::GetInstance()->AddInstance(lineInstance);
 
-		float distToMesh = 0;
-		for (auto& tri : myNavMesh->myTriangles)
-		{
-			if (ray->Intersects({ tri->myVertexPositions[0] }, { tri->myVertexPositions[1] }, { tri->myVertexPositions[2] }, distToMesh)) {
-				std::cout << "Collided with NavMesh!" << std::endl;
-			}
-		}
-	}
+	//	float distToMesh = 0;
+	//	for (auto& tri : myNavMesh->myTriangles)
+	//	{
+	//		if (ray->Intersects({ tri->myVertexPositions[0] }, { tri->myVertexPositions[1] }, { tri->myVertexPositions[2] }, distToMesh)) {
+	//			std::cout << "Collided with NavMesh!" << std::endl;
+	//		}
+	//	}
+	//}
 }
 
 CGameObject* CShowCase::CreatePlayer(Vector3 aPosition)
@@ -127,6 +132,7 @@ CGameObject* CShowCase::CreatePlayer(Vector3 aPosition)
 	transform->Rotation({ 0.0f, 180.0f, 0.0f });
 	player->AddComponent<CCapsuleColliderComponent>(*player, 0.35f, 2.0f);
 	CModelComponent* model = player->AddComponent<CModelComponent>(*player);
+	player->AddComponent<CPlayerControllerComponent>(*player);
 	model->SetMyModel(CModelFactory::GetInstance()->GetModelPBR("Assets/3D/Character/Npc1/CH_NPC_woman_01_19G4_1_19.fbx"));
 	CScene::GetInstance()->AddInstance(player);
 	return player;
