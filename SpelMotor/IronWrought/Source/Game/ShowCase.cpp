@@ -35,6 +35,7 @@
 
 #include "LevelLoader.h"
 
+#include <Debug.h>
 #include <algorithm>
 
 using namespace CommonUtilities;
@@ -74,6 +75,22 @@ void CShowCase::Init()
 
 void CShowCase::Update()
 {
+	/*
+	* Debug.DrawLine(positionA, positionB, color);
+		ENGINE_DRAW_LINE(posA, posB, color);
+	*/
+
+	Vector3 playerPosition = myPlayer->GetComponent<CTransformComponent>()->Position();
+	Vector3 enemyPosition = myEnemy->GetComponent<CTransformComponent>()->Position();
+
+	CDebug::GetInstance()->DrawLine(playerPosition, enemyPosition);
+
+
+	//CLineInstance* line = new CLineInstance();
+	//line->Init(CLineFactory::GetInstance()->CreateLine(fromTest, toTest, { 0.1f, 255.0f, 0.1f, 1.0f }));
+	//CScene::GetInstance()->AddInstance(line);
+
+
 	myCamera->Update();
 	if (Input::GetInstance()->IsKeyPressed('F')) {
 		if (CScene::GetInstance()->GetMainCamera() == myCamera) {
@@ -114,7 +131,7 @@ void CShowCase::Update()
 			std::swap(myPlayerPath[0], myPlayerPath.back());
 			myPlayerPath.pop_back();
 		}
-		myPlayer->GetComponent<CTransformComponent>()->Position(newPos);	
+		myPlayer->GetComponent<CTransformComponent>()->Position(newPos);
 	}
 }
 
