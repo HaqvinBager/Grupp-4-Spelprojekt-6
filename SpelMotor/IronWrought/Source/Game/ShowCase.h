@@ -33,4 +33,5 @@ private:
 	CCamera* myFreeCamera;
 	CLevelLoader* myLevelLoader;
 	SNavMesh* myNavMesh;
+	std::vector<DirectX::SimpleMath::Vector3> myPlayerPath;
 };

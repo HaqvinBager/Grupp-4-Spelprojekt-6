@@ -27,6 +27,7 @@
 #include "PlayerControllerComponent.h"
 
 #include <NavmeshLoader.h>
+#include <AStar.h>
 #include <MouseTracker.h>
 
 #include <LineFactory.h>
@@ -34,6 +35,7 @@
 
 #include "LevelLoader.h"
 
+#include <algorithm>
 
 using namespace CommonUtilities;
 
@@ -95,9 +97,24 @@ void CShowCase::Update()
 		for (auto& tri : myNavMesh->myTriangles)
 		{
 			if (ray.Intersects({ tri->myVertexPositions[0] }, { tri->myVertexPositions[1] }, { tri->myVertexPositions[2] }, distToMesh)) {
+				STriangle* playerPos = myNavMesh->GetTriangleAtPoint(myPlayer->GetComponent<CTransformComponent>()->Position());
+				myPlayerPath.clear();
+				myPlayerPath = CAStar::AStar(myNavMesh, playerPos, tri);
+				//myPlayer->GetComponent<CTransformComponent>()->Position(myPlayerPath.back());
 				std::cout << "Collided with NavMesh!" << std::endl;
 			}
 		}
+	}
+
+	if (myPlayerPath.size() > 0) {
+		DirectX::SimpleMath::Vector3 newPos;
+		DirectX::SimpleMath::Vector3 playerPos = myPlayer->GetComponent<CTransformComponent>()->Position();
+		newPos = DirectX::SimpleMath::Vector3::Lerp(playerPos, myPlayerPath[0], CTimer::Dt());
+		if (DirectX::SimpleMath::Vector3::DistanceSquared(newPos, myPlayerPath[0]) < 0.5f) {
+			std::swap(myPlayerPath[0], myPlayerPath.back());
+			myPlayerPath.pop_back();
+		}
+		myPlayer->GetComponent<CTransformComponent>()->Position(newPos);	
 	}
 }
 
