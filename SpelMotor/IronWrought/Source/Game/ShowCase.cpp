@@ -47,7 +47,7 @@ CShowCase::~CShowCase() {}
 void CShowCase::Init()
 {
 	CNavmeshLoader* nav = new CNavmeshLoader();
-	myNavMesh = nav->LoadNavmesh("NavTest_ExportedNavMesh.obj");
+	myNavMesh = nav->LoadNavmesh("Navmesh/NavTest_ExportedNavMesh.obj");
 
 	myLevelLoader->Init();
 
