@@ -114,25 +114,23 @@ void CShowCase::Update()
 		for (auto& tri : myNavMesh->myTriangles)
 		{
 			if (ray.Intersects({ tri->myVertexPositions[0] }, { tri->myVertexPositions[1] }, { tri->myVertexPositions[2] }, distToMesh)) {
+				DirectX::SimpleMath::Vector3 pickedPosition = ray.position + ray.direction * distToMesh;
+
 				STriangle* playerPos = myNavMesh->GetTriangleAtPoint(myPlayer->GetComponent<CTransformComponent>()->Position());
-				myPlayerPath.clear();
-				myPlayerPath = CAStar::AStar(myNavMesh, playerPos, tri);
-				//myPlayer->GetComponent<CTransformComponent>()->Position(myPlayerPath.back());
-				std::cout << "Collided with NavMesh!" << std::endl;
+				STriangle* pickedTriangle = myNavMesh->GetTriangleAtPoint(pickedPosition);
+				myPlayer->GetComponent<CTransformComponent>()->ClearPath();
+				std::vector<DirectX::SimpleMath::Vector3> aPath;
+				
+				if (playerPos != pickedTriangle) {
+					aPath = CAStar::AStar(myNavMesh, playerPos, tri);
+				}
+				
+				myPlayer->GetComponent<CTransformComponent>()->SetPath(aPath, pickedPosition);
 			}
 		}
 	}
 
-	if (myPlayerPath.size() > 0) {
-		DirectX::SimpleMath::Vector3 newPos;
-		DirectX::SimpleMath::Vector3 playerPos = myPlayer->GetComponent<CTransformComponent>()->Position();
-		newPos = DirectX::SimpleMath::Vector3::Lerp(playerPos, myPlayerPath[0], CTimer::Dt());
-		if (DirectX::SimpleMath::Vector3::DistanceSquared(newPos, myPlayerPath[0]) < 0.5f) {
-			std::swap(myPlayerPath[0], myPlayerPath.back());
-			myPlayerPath.pop_back();
-		}
-		myPlayer->GetComponent<CTransformComponent>()->Position(newPos);
-	}
+	myPlayer->GetComponent<CTransformComponent>()->MoveAlongPath();
 }
 
 CGameObject* CShowCase::CreatePlayer(Vector3 aPosition)
