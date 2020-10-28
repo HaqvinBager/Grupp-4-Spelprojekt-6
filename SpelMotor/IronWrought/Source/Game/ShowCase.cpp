@@ -68,9 +68,11 @@ void CShowCase::Init()
 	CInputMapper::GetInstance()->MapEvent(CInputObserver::EInputAction::MouseRight, CInputObserver::EInputEvent::AttackClick);
 	//TODO TEMPORARY REMOVE MOVE YES
 	//CSpriteFactory* spriteFactory = CSpriteFactory::GetInstance();
-	//CSpriteInstance* spriteInstance = new CSpriteInstance();
-	//spriteInstance->Init(spriteFactory->GetSprite("Texture.dds"));
-	//CScene::GetInstance()->AddInstance(spriteInstance);
+	CSpriteInstance* spriteInstance = new CSpriteInstance();
+	spriteInstance->Init(CSpriteFactory::GetInstance()->GetSprite("tempUI.dds"));
+	spriteInstance->SetSize({ 2.0f,2.0f });
+	spriteInstance->SetPosition({ 0.0f,-0.85f });
+	CScene::GetInstance()->AddInstance(spriteInstance);
 }
 
 void CShowCase::Update()
