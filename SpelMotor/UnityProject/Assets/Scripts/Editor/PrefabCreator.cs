@@ -6,7 +6,7 @@ using UnityEditor.SceneManagement;
 using System.Text;
 using System.Linq;
 
-public class PrefabCreator 
+public class PrefabCreator : Editor
 {
     private static readonly string[] prefabFolders =
     {
