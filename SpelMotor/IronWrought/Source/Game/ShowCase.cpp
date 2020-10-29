@@ -39,6 +39,8 @@
 #include <algorithm>
 
 #include "StateStack.h"
+#include "MenuState.h"
+#include "InGameState.h"
 
 using namespace CommonUtilities;
 
@@ -70,12 +72,14 @@ void CShowCase::Init()
 	CInputMapper::GetInstance()->MapEvent(CInputObserver::EInputAction::MouseRight, CInputObserver::EInputEvent::AttackClick);
 	//TODO TEMPORARY REMOVE MOVE YES
 	//CSpriteFactory* spriteFactory = CSpriteFactory::GetInstance();
-	CSpriteInstance* spriteInstance = new CSpriteInstance();
-	spriteInstance->Init(CSpriteFactory::GetInstance()->GetSprite("tempUI.dds"));
-	spriteInstance->SetSize({ 2.0f,2.0f });
-	spriteInstance->SetPosition({ 0.0f,-0.85f });
-	CScene::GetInstance()->AddInstance(spriteInstance);
+	//CSpriteInstance* spriteInstance = new CSpriteInstance();
+	//spriteInstance->Init(CSpriteFactory::GetInstance()->GetSprite("tempUI.dds"));
+	//spriteInstance->SetSize({ 2.0f,2.0f });
+	//spriteInstance->SetPosition({ 0.0f,-0.85f });
+	//CScene::GetInstance()->AddInstance(spriteInstance);
 	myStateStack = new CStateStack();
+	myMenuState = new CMenuState(*myStateStack);
+	myStateStack->PushState(myMenuState);
 }
 
 void CShowCase::Update()
@@ -90,6 +94,12 @@ void CShowCase::Update()
 
 	CDebug::GetInstance()->DrawLine(playerPosition, enemyPosition);
 
+
+	if (Input::GetInstance()->IsKeyPressed(VK_SPACE) && myStateStack->myStateStack.top() == myMenuState) {
+		CScene::GetInstance()->ClearSprites();
+		myInGameState = new CInGameState(*myStateStack);
+		myStateStack->PushState(myInGameState);
+	}
 
 	//CLineInstance* line = new CLineInstance();
 	//line->Init(CLineFactory::GetInstance()->CreateLine(fromTest, toTest, { 0.1f, 255.0f, 0.1f, 1.0f }));
@@ -136,6 +146,7 @@ void CShowCase::Update()
 	}
 
 	myPlayer->GetComponent<CTransformComponent>()->MoveAlongPath();
+	myStateStack->Update();
 }
 
 CGameObject* CShowCase::CreatePlayer(Vector3 aPosition)
