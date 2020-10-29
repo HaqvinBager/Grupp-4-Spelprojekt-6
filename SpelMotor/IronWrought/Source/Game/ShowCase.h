@@ -34,4 +34,5 @@ private:
 	CLevelLoader* myLevelLoader;
 	SNavMesh* myNavMesh;
 	std::vector<DirectX::SimpleMath::Vector3> myPlayerPath;
+	class CStateStack* myStateStack;
 };

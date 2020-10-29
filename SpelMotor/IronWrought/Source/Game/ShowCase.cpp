@@ -38,6 +38,8 @@
 #include <Debug.h>
 #include <algorithm>
 
+#include "StateStack.h"
+
 using namespace CommonUtilities;
 
 CShowCase::CShowCase() : myLevelLoader(new CLevelLoader()), myPlayer(nullptr), myEnemy(nullptr), myCamera(nullptr), myFreeCamera(nullptr), myWindowWidth(0), myWindowHeight(0) {}
@@ -73,6 +75,7 @@ void CShowCase::Init()
 	spriteInstance->SetSize({ 2.0f,2.0f });
 	spriteInstance->SetPosition({ 0.0f,-0.85f });
 	CScene::GetInstance()->AddInstance(spriteInstance);
+	myStateStack = new CStateStack();
 }
 
 void CShowCase::Update()
