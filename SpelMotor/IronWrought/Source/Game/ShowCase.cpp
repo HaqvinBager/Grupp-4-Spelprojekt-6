@@ -27,6 +27,7 @@
 #include "PlayerControllerComponent.h"
 
 #include <NavmeshLoader.h>
+#include <AStar.h>
 #include <MouseTracker.h>
 
 #include <LineFactory.h>
@@ -34,6 +35,12 @@
 
 #include "LevelLoader.h"
 
+#include <Debug.h>
+#include <algorithm>
+
+#include "StateStack.h"
+#include "MenuState.h"
+#include "InGameState.h"
 
 using namespace CommonUtilities;
 
@@ -44,7 +51,7 @@ CShowCase::~CShowCase() {}
 void CShowCase::Init()
 {
 	CNavmeshLoader* nav = new CNavmeshLoader();
-	myNavMesh = nav->LoadNavmesh("NavTest_ExportedNavMesh.obj");
+	myNavMesh = nav->LoadNavmesh("Navmesh/NavTest_ExportedNavMesh.obj");
 
 	myLevelLoader->Init();
 
@@ -66,12 +73,39 @@ void CShowCase::Init()
 	//TODO TEMPORARY REMOVE MOVE YES
 	//CSpriteFactory* spriteFactory = CSpriteFactory::GetInstance();
 	//CSpriteInstance* spriteInstance = new CSpriteInstance();
-	//spriteInstance->Init(spriteFactory->GetSprite("Texture.dds"));
+	//spriteInstance->Init(CSpriteFactory::GetInstance()->GetSprite("tempUI.dds"));
+	//spriteInstance->SetSize({ 2.0f,2.0f });
+	//spriteInstance->SetPosition({ 0.0f,-0.85f });
 	//CScene::GetInstance()->AddInstance(spriteInstance);
+	myStateStack = new CStateStack();
+	myMenuState = new CMenuState(*myStateStack);
+	myStateStack->PushState(myMenuState);
 }
 
 void CShowCase::Update()
 {
+	/*
+	* Debug.DrawLine(positionA, positionB, color);
+		ENGINE_DRAW_LINE(posA, posB, color);
+	*/
+
+	Vector3 playerPosition = myPlayer->GetComponent<CTransformComponent>()->Position();
+	Vector3 enemyPosition = myEnemy->GetComponent<CTransformComponent>()->Position();
+
+	CDebug::GetInstance()->DrawLine(playerPosition, enemyPosition);
+
+
+	if (Input::GetInstance()->IsKeyPressed(VK_SPACE) && myStateStack->myStateStack.top() == myMenuState) {
+		CScene::GetInstance()->ClearSprites();
+		myInGameState = new CInGameState(*myStateStack);
+		myStateStack->PushState(myInGameState);
+	}
+
+	//CLineInstance* line = new CLineInstance();
+	//line->Init(CLineFactory::GetInstance()->CreateLine(fromTest, toTest, { 0.1f, 255.0f, 0.1f, 1.0f }));
+	//CScene::GetInstance()->AddInstance(line);
+
+
 	myCamera->Update();
 	if (Input::GetInstance()->IsKeyPressed('F')) {
 		if (CScene::GetInstance()->GetMainCamera() == myCamera) {
@@ -95,10 +129,24 @@ void CShowCase::Update()
 		for (auto& tri : myNavMesh->myTriangles)
 		{
 			if (ray.Intersects({ tri->myVertexPositions[0] }, { tri->myVertexPositions[1] }, { tri->myVertexPositions[2] }, distToMesh)) {
-				std::cout << "Collided with NavMesh!" << std::endl;
+				DirectX::SimpleMath::Vector3 pickedPosition = ray.position + ray.direction * distToMesh;
+
+				STriangle* playerPos = myNavMesh->GetTriangleAtPoint(myPlayer->GetComponent<CTransformComponent>()->Position());
+				STriangle* pickedTriangle = myNavMesh->GetTriangleAtPoint(pickedPosition);
+				myPlayer->GetComponent<CTransformComponent>()->ClearPath();
+				std::vector<DirectX::SimpleMath::Vector3> aPath;
+				
+				if (playerPos != pickedTriangle) {
+					aPath = CAStar::AStar(myNavMesh, playerPos, tri);
+				}
+				
+				myPlayer->GetComponent<CTransformComponent>()->SetPath(aPath, pickedPosition);
 			}
 		}
 	}
+
+	myPlayer->GetComponent<CTransformComponent>()->MoveAlongPath();
+	myStateStack->Update();
 }
 
 CGameObject* CShowCase::CreatePlayer(Vector3 aPosition)

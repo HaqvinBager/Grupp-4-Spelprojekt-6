@@ -4,8 +4,9 @@ using UnityEngine;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using System.Text;
+using System.Linq;
 
-public class PrefabCreator
+public class PrefabCreator : Editor
 {
     private static readonly string[] prefabFolders =
     {
@@ -18,22 +19,101 @@ public class PrefabCreator
     [MenuItem("Tools/Create Prefabs")]
     public static void CreatePrefabs()
     {
-        SceneSetup[] setup = EditorSceneManager.GetSceneManagerSetup();
 
-        GetAllSourceAssetNamesAndGameObjects(out List<string> sourceAssetNames, out List<GameObject> uniqueAssetsToMakeIntoPrefabs);
-        PrintAssetNames(sourceAssetNames);
 
+        //SceneSetup[] setup = EditorSceneManager.GetSceneManagerSetup();
+        //PrintAssetNames(sourceAssetNames);
+
+        GetAllOriginalSourceAssets(out List<string> sourceAssetNames, out List<GameObject> sourceAssets);
+        CreatePrefabsFromSourceAssets(sourceAssetNames, sourceAssets);
+
+        Dictionary<string, List<Object>> allPrefabs = new Dictionary<string, List<Object>>();
+
+        string prefabFolder = "Assets/Prefab/";
+        allPrefabs.Add(prefabFolders[0], AssetDatabase.LoadAllAssetsAtPath(prefabFolder + prefabFolder[0]).ToList<Object>());
+
+        List<string> allPaths = AssetDatabase.GetAllAssetPaths().ToList<string>();
+        List<string> prefabPaths = new List<string>();
+        foreach (string path in allPaths)
+        {
+            if (path.Contains("Assets/Prefabs/"))
+            {
+                if (path.Contains("Assets/Prefabs/EN/") || path.Contains("Assets/Prefabs/CH/") || path.Contains("Assets/Prefabs/VF/") || path.Contains("Assets/Prefabs/UI/"))
+                {
+                    prefabPaths.Add(path);
+                }
+            }
+        }
+
+        Stack<GameObject> objectsThatCouldNotBeReplaced = new Stack<GameObject>();
+
+        Stack<GameObject> toBeDestroyed = new Stack<GameObject>();
+        GameObject[] sceneGameObjects = FindObjectsOfType<GameObject>();
+        Undo.RecordObjects(sceneGameObjects, "Before Change");
+        foreach (GameObject gameObject in sceneGameObjects)
+        {
+            if (PrefabUtility.GetPrefabAssetType(gameObject) == PrefabAssetType.Regular)
+                continue;
+
+            if (IsValidPrefab(gameObject.name))
+            {
+                GameObject originalSource = PrefabUtility.GetCorrespondingObjectFromOriginalSource(gameObject);
+                //Formatera om Namnet
+                if (originalSource == null)
+                {
+                    objectsThatCouldNotBeReplaced.Push(gameObject);
+                    //Debug.LogWarning(gameObject.name + " Has No Corresponding Object From Original Source", gameObject);
+                    continue;
+                }
+                string prefabName = originalSource.name + "_Prefab.prefab";
+                string prefabPath = prefabPaths.Find(e => e.Contains(prefabName));
+
+                GameObject clone = PrefabUtility.InstantiatePrefab(AssetDatabase.LoadAssetAtPath<GameObject>(prefabPath), gameObject.transform.parent) as GameObject;
+                clone.name = gameObject.name;
+                clone.transform.position = gameObject.transform.position;
+                clone.transform.rotation = gameObject.transform.rotation;
+                clone.transform.localScale = gameObject.transform.localScale;
+
+                toBeDestroyed.Push(gameObject);
+            }
+        }
+
+        while (toBeDestroyed.Count > 0)
+        {
+            DestroyImmediate(toBeDestroyed.Pop());
+        }
+
+        GameObject noReplaceParent = null;
+        if (objectsThatCouldNotBeReplaced.Count > 0)
+        {
+            noReplaceParent = new GameObject("___Could Not be Replaced____");
+
+            while (objectsThatCouldNotBeReplaced.Count > 0)
+            {
+                GameObject temp = objectsThatCouldNotBeReplaced.Pop();
+                if(temp != null) {
+                    temp.transform.SetParent(noReplaceParent.transform);
+                }
+            }
+            //Debug.LogWarning("Objects that could must be replaced by Hand", noReplaceParent);
+            EditorGUIUtility.PingObject(noReplaceParent);
+        }
+    }
+
+    private static void CreatePrefabsFromSourceAssets(List<string> sourceAssetNames, List<GameObject> sourceAssets)
+    {
         List<GameObject> createdPrefabs = new List<GameObject>();
         int index = 0;
-        foreach (GameObject sourceAsset in uniqueAssetsToMakeIntoPrefabs)
+        foreach (GameObject sourceAsset in sourceAssets)
         {
             GameObject newPrefab = new GameObject(sourceAssetNames[index]);
             Undo.RecordObject(newPrefab, "Created Temporary GameObject");
 
-            GameObject newChild = GameObject.Instantiate(sourceAsset, newPrefab.transform);
+            GameObject newChild = PrefabUtility.InstantiatePrefab(sourceAsset, newPrefab.transform) as GameObject;
             newChild.transform.position = Vector3.zero;
             newChild.transform.rotation = Quaternion.identity;
             newChild.transform.localScale = new Vector3(1, 1, 1);
+            newChild.name = sourceAsset.name;
             Undo.RecordObject(newChild, "Created a Copy of the Source Source Asset");
 
             GameObject createdPrefab = PrefabUtility.SaveAsPrefabAssetAndConnect(newPrefab, GetCreatePrefabPath(sourceAsset.name), InteractionMode.UserAction);
@@ -42,15 +122,7 @@ public class PrefabCreator
 
             index++;
         }
-
         AssetDatabase.Refresh();
-
-
-        if (!EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo())
-        {
-            EditorSceneManager.RestoreSceneManagerSetup(setup);
-        }
-
     }
 
     private static bool IsValidPrefab(string assetName)
@@ -70,6 +142,12 @@ public class PrefabCreator
     private static string GetCreatePrefabPath(string assetName)
     {
         string prefabPath = "Assets/Prefabs/";
+        if (!AssetDatabase.IsValidFolder("Assets/Prefabs"))
+        {
+            AssetDatabase.CreateFolder("Assets", "Prefabs");
+        }
+
+
         foreach (string prefabFolder in prefabFolders)
         {
             if (assetName.Substring(0, 2).Equals(prefabFolder))
@@ -87,32 +165,32 @@ public class PrefabCreator
         return "Assets/NA";
     }
 
-    private static void GetAllSourceAssetNamesAndGameObjects(out List<string> sourceAssetNames, out List<GameObject> uniqueAssetsToMakeIntoPrefabs)
+    private static void GetAllOriginalSourceAssets(out List<string> sourceAssetNames, out List<GameObject> sourceAssets)
     {
         sourceAssetNames = new List<string>();
-        uniqueAssetsToMakeIntoPrefabs = new List<GameObject>();
+        sourceAssets = new List<GameObject>();
         GameObject[] allGameObjects = GameObject.FindObjectsOfType<GameObject>();
         foreach (GameObject gameObject in allGameObjects)
         {
             if (!IsValidPrefab(gameObject.name))
                 continue;
 
-            PrefabAssetType type = PrefabUtility.GetPrefabAssetType(gameObject);
-            if (type == PrefabAssetType.Model)
+            GameObject originalSource = PrefabUtility.GetCorrespondingObjectFromOriginalSource(gameObject);
+            if (originalSource != null)
             {
-                GameObject originalSource = PrefabUtility.GetCorrespondingObjectFromOriginalSource(gameObject);
-                if (originalSource != null)
+                PrefabAssetType type = PrefabUtility.GetPrefabAssetType(originalSource);
+                if (type == PrefabAssetType.Model)
                 {
-                    if (gameObject.transform.childCount == 0)
+                    //if (gameObject.transform.childCount == 0)
+                    //{
+                    string assetName = originalSource.name;
+                    if (!sourceAssetNames.Contains(assetName))
                     {
-                        string assetName = originalSource.name;
-                        if (!sourceAssetNames.Contains(assetName))
-                        {
-                            sourceAssetNames.Add(assetName);
-                            uniqueAssetsToMakeIntoPrefabs.Add(originalSource);
-                            Debug.Log("Unique Asset: " + originalSource.name, originalSource);
-                        }
+                        sourceAssetNames.Add(assetName);
+                        sourceAssets.Add(originalSource);
+                        // Debug.Log("Unique Asset: " + originalSource.name, originalSource);
                     }
+                    //}
                 }
             }
         }

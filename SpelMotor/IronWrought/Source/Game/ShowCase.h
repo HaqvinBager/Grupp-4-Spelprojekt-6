@@ -33,4 +33,8 @@ private:
 	CCamera* myFreeCamera;
 	CLevelLoader* myLevelLoader;
 	SNavMesh* myNavMesh;
+	std::vector<DirectX::SimpleMath::Vector3> myPlayerPath;
+	class CStateStack* myStateStack;
+	class CMenuState* myMenuState;
+	class CInGameState* myInGameState;
 };
