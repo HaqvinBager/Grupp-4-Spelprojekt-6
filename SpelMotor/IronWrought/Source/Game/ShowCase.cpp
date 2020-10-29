@@ -50,10 +50,10 @@ CShowCase::~CShowCase() {}
 
 void CShowCase::Init()
 {
-	CNavmeshLoader* nav = new CNavmeshLoader();
-	myNavMesh = nav->LoadNavmesh("Navmesh/NavTest_ExportedNavMesh.obj");
+	//CNavmeshLoader* nav = new CNavmeshLoader();
+	//myNavMesh = nav->LoadNavmesh("Navmesh/NavTest_ExportedNavMesh.obj");
 
-	myLevelLoader->Init();
+	//myLevelLoader->Init();
 
 	//myLevelLoader->LoadNewLevel("TODO");
 
@@ -64,7 +64,7 @@ void CShowCase::Init()
 	CParticle* particlePrefab = CParticleFactory::GetInstance()->LoadParticle("ParticleData_SmokeEmitter.json");
 	CParticleInstance* particleEmitter = new CParticleInstance();
 	particleEmitter->Init(particlePrefab);
-	CScene::GetInstance()->AddInstance(particleEmitter);
+	//CScene::GetInstance()->AddInstance(particleEmitter);
 
 	myFreeCamera = CreateCamera(nullptr);
 	//TODO TEMPORARY REMOVE MOvE YES
@@ -80,6 +80,7 @@ void CShowCase::Init()
 	myStateStack = new CStateStack();
 	myMenuState = new CMenuState(*myStateStack);
 	myStateStack->PushState(myMenuState);
+
 }
 
 void CShowCase::Update()
@@ -88,6 +89,8 @@ void CShowCase::Update()
 	* Debug.DrawLine(positionA, positionB, color);
 		ENGINE_DRAW_LINE(posA, posB, color);
 	*/
+
+	CDebug::GetInstance()->DrawLine(myPlayer->GetComponent<CTransformComponent>()->Position(), myEnemy->GetComponent<CTransformComponent>()->Position());
 
 	Vector3 playerPosition = myPlayer->GetComponent<CTransformComponent>()->Position();
 	Vector3 enemyPosition = myEnemy->GetComponent<CTransformComponent>()->Position();
@@ -117,35 +120,35 @@ void CShowCase::Update()
 	}
 	UpdatePlayerController();
 
-	if (Input::GetInstance()->IsMousePressed(Input::MouseButton::Left)) {
-		DirectX::SimpleMath::Ray ray = MouseTracker::WorldSpacePick(myWindowWidth, myWindowHeight);
+	//if (Input::GetInstance()->IsMousePressed(Input::MouseButton::Left)) {
+	//	DirectX::SimpleMath::Ray ray = MouseTracker::WorldSpacePick(myWindowWidth, myWindowHeight);
 
-		CLineInstance* lineInstance = new CLineInstance();
-		DirectX::SimpleMath::Vector3 to = ray.position + ray.direction * 100.0f;
-		lineInstance->Init(CLineFactory::GetInstance()->CreateLine({ ray.position.x, ray.position.y, ray.position.z }, to, {255.f, 0.f ,0.f, 1.f}));
-		CScene::GetInstance()->AddInstance(lineInstance);
+	//	CLineInstance* lineInstance = new CLineInstance();
+	//	DirectX::SimpleMath::Vector3 to = ray.position + ray.direction * 100.0f;
+	//	lineInstance->Init(CLineFactory::GetInstance()->CreateLine({ ray.position.x, ray.position.y, ray.position.z }, to, {255.f, 0.f ,0.f, 1.f}));
+	//	CScene::GetInstance()->AddInstance(lineInstance);
 
-		float distToMesh = 0;
-		for (auto& tri : myNavMesh->myTriangles)
-		{
-			if (ray.Intersects({ tri->myVertexPositions[0] }, { tri->myVertexPositions[1] }, { tri->myVertexPositions[2] }, distToMesh)) {
-				DirectX::SimpleMath::Vector3 pickedPosition = ray.position + ray.direction * distToMesh;
+	//	float distToMesh = 0;
+	//	for (auto& tri : myNavMesh->myTriangles)
+	//	{
+	//		if (ray.Intersects({ tri->myVertexPositions[0] }, { tri->myVertexPositions[1] }, { tri->myVertexPositions[2] }, distToMesh)) {
+	//			DirectX::SimpleMath::Vector3 pickedPosition = ray.position + ray.direction * distToMesh;
 
-				STriangle* playerPos = myNavMesh->GetTriangleAtPoint(myPlayer->GetComponent<CTransformComponent>()->Position());
-				STriangle* pickedTriangle = myNavMesh->GetTriangleAtPoint(pickedPosition);
-				myPlayer->GetComponent<CTransformComponent>()->ClearPath();
-				std::vector<DirectX::SimpleMath::Vector3> aPath;
-				
-				if (playerPos != pickedTriangle) {
-					aPath = CAStar::AStar(myNavMesh, playerPos, tri);
-				}
-				
-				myPlayer->GetComponent<CTransformComponent>()->SetPath(aPath, pickedPosition);
-			}
-		}
-	}
+	//			STriangle* playerPos = myNavMesh->GetTriangleAtPoint(myPlayer->GetComponent<CTransformComponent>()->Position());
+	//			STriangle* pickedTriangle = myNavMesh->GetTriangleAtPoint(pickedPosition);
+	//			myPlayer->GetComponent<CTransformComponent>()->ClearPath();
+	//			std::vector<DirectX::SimpleMath::Vector3> aPath;
+	//			
+	//			if (playerPos != pickedTriangle) {
+	//				aPath = CAStar::AStar(myNavMesh, playerPos, tri);
+	//			}
+	//			
+	//			myPlayer->GetComponent<CTransformComponent>()->SetPath(aPath, pickedPosition);
+	//		}
+	//	}
+	//}
 
-	myPlayer->GetComponent<CTransformComponent>()->MoveAlongPath();
+	//myPlayer->GetComponent<CTransformComponent>()->MoveAlongPath();
 	myStateStack->Update();
 }
 
@@ -167,7 +170,29 @@ CGameObject* CShowCase::CreatePlayer(Vector3 aPosition)
 
 CGameObject* CShowCase::CreateEnemy(Vector3 aPosition)
 {
-	CGameObject* enemy = new CGameObject();
+	/*CGameObject* enemy = new CGameObject();
+	CTransformComponent* transform = enemy->AddComponent<CTransformComponent>(*enemy, aPosition);
+	transform->Scale(1.0f);
+	transform->Position(aPosition);
+
+	transform->Rotation({ 0.0f, 0.0f, 0.0f });
+	enemy->AddComponent<CCapsuleColliderComponent>(*enemy, 0.5f, 2.0f);
+	auto modelComponent = enemy->AddComponent<CModelComponent>(*enemy, "Assets/3D/Character/Enemy1/enemy_sk.fbx");
+
+	CAnimationComponent* animation = enemy->AddComponent<CAnimationComponent>(*enemy);
+	std::vector<std::string> somePathsToAnimations;
+	somePathsToAnimations.push_back("Assets/3D/Character/Enemy1/enemy_Idle.fbx");
+	somePathsToAnimations.push_back("Assets/3D/Character/Enemy1/enemy_excitedJump.fbx");
+
+	const std::string rigModel = "Assets/3D/Character/Enemy1/enemy_sk.fbx";
+	animation->GetMyAnimation()->Init(rigModel.c_str(), somePathsToAnimations);
+	modelComponent->GetMyModel()->AddAnimation(animation->GetMyAnimation());
+	animation->SetBlend(0, 1, 0.0f);
+
+	CScene::GetInstance()->AddInstance(enemy);*/
+
+	
+		CGameObject* enemy = new CGameObject();
 	CTransformComponent* transform = enemy->AddComponent<CTransformComponent>(*enemy, aPosition);
 	transform->Scale(1.0f);
 	transform->Position(aPosition);
@@ -187,6 +212,22 @@ CGameObject* CShowCase::CreateEnemy(Vector3 aPosition)
 	animation->SetBlend(0, 1, 1.0f);
 
 	CScene::GetInstance()->AddInstance(enemy);
+
+	
+	
+
+	/*CGameObject* enemy1 = new CGameObject();
+	enemy1->AddComponent<CTransformComponent>(*enemy);
+	enemy1->AddComponent<CModelComponent>(*enemy, "Assets/3D/Character/Enemy1/enemy_sk.fbx");
+
+	CAnimation* anim = new CAnimation();
+	std::vector < std::string> animationClips = {
+		"Assets/3D/Character/Enemy1/enemy_excitedJump.fbx"
+	};
+	anim->Init("Assets/3D/Character/Enemy1/enemy_sk.fbx", animationClips);
+	enemy1->AddComponent<CAnimationComponent>(*enemy1);
+	CScene::GetInstance()->AddInstance(enemy1);*/
+
 	return enemy;
 }
 
@@ -211,7 +252,7 @@ CCamera* CShowCase::CreateCamera(CGameObject* aCameraTarget)
 void CShowCase::UpdatePlayerController()
 {
 	if (CScene::GetInstance()->GetMainCamera() == myCamera) {
-		float playerMoveSpeed = 20.0f;
+		float playerMoveSpeed = -10.0f;
 
 		playerMoveSpeed = Input::GetInstance()->IsKeyDown(VK_SHIFT) ? playerMoveSpeed * 1.5f : playerMoveSpeed;
 
@@ -224,7 +265,7 @@ void CShowCase::UpdatePlayerController()
 		CTransformComponent* playerTransform = myPlayer->GetComponent<CTransformComponent>();
 		Vector3 lastPosition = playerTransform->Position();
 
-		playerTransform->Move(input);
+		playerTransform->Move(input * CTimer::Dt());
 	}
 
 	if (CScene::GetInstance()->GetMainCamera() == myFreeCamera) {
