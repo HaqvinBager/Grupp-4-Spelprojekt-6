@@ -56,6 +56,7 @@ Generated\ Files/
 *.ilk
 *.meta
 *.obj
+!*/IronWrought/Bin/NavMesh/*
 *.iobj
 *.pch
 *.pdb
@@ -279,7 +280,7 @@ SpelMotor/IronWrought/Lib/ModelLoader_Debug.lib
 
 *.cso 
 
-SpelMotor/IronWrought/Bin/AnimatedVertexShader.cso
+#SpelMotor/IronWrought/Bin/AnimatedVertexShader.cso
 #SpelMotor/IronWrought/Bin/CubePixelShader.cso
 #SpelMotor/IronWrought/Bin/CubeVertexShader.cso
 #SpelMotor/IronWrought/Bin/PBRPixelShader.cso
