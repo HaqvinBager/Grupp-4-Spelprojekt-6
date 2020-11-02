@@ -4,7 +4,8 @@
 using namespace DirectX::SimpleMath;
 class CLevelLoader;
 class CGameObject;
-class CCamera;
+class CCamera; 
+class CDialogueSystem;
 
 struct SNavMesh;
 
@@ -37,4 +38,5 @@ private:
 	class CStateStack* myStateStack;
 	class CMenuState* myMenuState;
 	class CInGameState* myInGameState;
+	CDialogueSystem* myDialogueSystem;
 };

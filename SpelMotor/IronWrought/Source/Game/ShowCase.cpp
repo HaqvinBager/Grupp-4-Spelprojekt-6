@@ -41,6 +41,7 @@
 #include "StateStack.h"
 #include "MenuState.h"
 #include "InGameState.h"
+#include "DialogueSystem.h"
 
 using namespace CommonUtilities;
 
@@ -81,6 +82,7 @@ void CShowCase::Init()
 	myMenuState = new CMenuState(*myStateStack);
 	myStateStack->PushState(myMenuState);
 
+	//myDialogueSystem = new CDialogueSystem();
 }
 
 void CShowCase::Update()
@@ -150,6 +152,7 @@ void CShowCase::Update()
 
 	//myPlayer->GetComponent<CTransformComponent>()->MoveAlongPath();
 	myStateStack->Update();
+	//myDialogueSystem->Update(CTimer::Dt());
 }
 
 CGameObject* CShowCase::CreatePlayer(Vector3 aPosition)
