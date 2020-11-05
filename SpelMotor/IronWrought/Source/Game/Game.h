@@ -7,6 +7,7 @@ namespace DirectX {
 }
 class CLevelLoader;
 class CShowCase;
+
 class CGame
 {
 public:

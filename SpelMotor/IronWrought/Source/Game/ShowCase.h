@@ -6,6 +6,7 @@ class CLevelLoader;
 class CGameObject;
 class CCamera; 
 class CDialogueSystem;
+class CObjectPool;
 
 struct SNavMesh;
 
@@ -29,7 +30,7 @@ private:
 
 private:
 	CGameObject* myPlayer;
-	CGameObject* myEnemy;
+	std::vector<CGameObject*> myEnemies;
 	CCamera* myCamera;
 	CCamera* myFreeCamera;
 	CLevelLoader* myLevelLoader;
@@ -39,4 +40,5 @@ private:
 	class CMenuState* myMenuState;
 	class CInGameState* myInGameState;
 	CDialogueSystem* myDialogueSystem;
+	CObjectPool* myEnemyPool;
 };
