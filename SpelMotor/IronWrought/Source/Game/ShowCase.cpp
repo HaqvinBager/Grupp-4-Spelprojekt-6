@@ -60,7 +60,7 @@ void CShowCase::Init()
 	CNavmeshLoader* nav = new CNavmeshLoader();
 	myNavMesh = nav->LoadNavmesh("Navmesh/Dungeon_ExportedNavMesh.obj");
 
-	myLevelLoader->Init();
+	//myLevelLoader->Init();
 
 	//myLevelLoader->LoadNewLevel("TODO");
 
