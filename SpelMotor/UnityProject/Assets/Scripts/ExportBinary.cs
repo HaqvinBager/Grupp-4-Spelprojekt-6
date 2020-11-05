@@ -26,11 +26,15 @@ public class BinaryExporter
         GameObject[] allModels = UnityEngine.Object.FindObjectsOfType<GameObject>();
         foreach (GameObject go in allModels)
         {
-            MeshFilter mesh = go.GetComponent<MeshFilter>();
+            if (go.transform.childCount == 0)
+                continue;
+            GameObject child = go.transform.GetChild(0).gameObject;
+
+            MeshFilter mesh = child.GetComponent<MeshFilter>();
             if (mesh != null)
             {
                     
-                string path = AssetDatabase.GetAssetPath(PrefabUtility.GetCorrespondingObjectFromSource(go));
+                string path = AssetDatabase.GetAssetPath(PrefabUtility.GetCorrespondingObjectFromOriginalSource(mesh));
                 filter[path] = path;
                 //
             }
@@ -55,7 +59,11 @@ public class BinaryExporter
         int totalAssetsSizeToExport = 0;
         foreach (GameObject go in allObjects)
         {
-            MeshFilter mesh = go.GetComponent<MeshFilter>();
+            if (go.transform.childCount == 0)
+                continue;
+
+            GameObject child = go.transform.GetChild(0).gameObject;
+            MeshFilter mesh = child.GetComponent<MeshFilter>();
             if (mesh != null)
             {
                 totalAssetsSizeToExport++;
@@ -66,10 +74,16 @@ public class BinaryExporter
         bw.Write(totalAssetsSizeToExport);
         foreach (GameObject go in allObjects)
         {
-            MeshFilter mesh = go.GetComponent<MeshFilter>();
+            if (go.transform.childCount == 0)
+                continue;
+
+            GameObject child = go.transform.GetChild(0).gameObject;
+
+            MeshFilter mesh = child.GetComponent<MeshFilter>();
             if(mesh != null)
             {
-                int index = Getindex(go, filter);
+                int index = Getindex(PrefabUtility.GetCorrespondingObjectFromOriginalSource<GameObject>(child), filter);
+                Debug.Log(index);
                 bw.Write(-go.transform.rotation.eulerAngles.x - 360.0f);
                 bw.Write(go.transform.rotation.eulerAngles.y + 180.0f);
                 bw.Write(-go.transform.rotation.eulerAngles.z - 360.0f);
@@ -82,8 +96,6 @@ public class BinaryExporter
                 bw.Write(go.transform.localScale.z);
                 bw.Write(index);
             }
-
-
         }
 
         bw.Close();
@@ -97,7 +109,7 @@ public class BinaryExporter
         {
             index++;
 
-            string path = AssetDatabase.GetAssetPath(PrefabUtility.GetCorrespondingObjectFromSource(go));
+            string path = AssetDatabase.GetAssetPath(PrefabUtility.GetCorrespondingObjectFromOriginalSource(go));
 
             if (entry.Value == path)
             {
