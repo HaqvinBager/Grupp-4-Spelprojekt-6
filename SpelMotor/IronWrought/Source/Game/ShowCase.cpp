@@ -110,6 +110,9 @@ void CShowCase::Update()
 	//line->Init(CLineFactory::GetInstance()->CreateLine(fromTest, toTest, { 0.1f, 255.0f, 0.1f, 1.0f }));
 	//CScene::GetInstance()->AddInstance(line);
 
+	if (Input::GetInstance()->IsKeyPressed(VK_ESCAPE)) {
+		myPlayer = nullptr;
+	}
 
 	myCamera->Update();
 	if (Input::GetInstance()->IsKeyPressed('F')) {
