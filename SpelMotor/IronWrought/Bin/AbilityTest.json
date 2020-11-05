@@ -6,7 +6,7 @@
 	},
 
 	"VFX": {
-
+		"Path": "VFXData_FogWall.json"
 	},
 
 	"ParticleSystems": [

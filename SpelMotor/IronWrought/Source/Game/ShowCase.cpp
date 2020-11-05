@@ -46,6 +46,9 @@
 #include "VFXComponent.h"
 #include "VFXFactory.h"
 
+#include "ProjectileBehavior.h"
+#include "AbilityBehaviorComponent.h"
+
 using namespace CommonUtilities;
 
 CShowCase::CShowCase() : myLevelLoader(new CLevelLoader()), myPlayer(nullptr), myEnemy(nullptr), myCamera(nullptr), myFreeCamera(nullptr), myWindowWidth(0), myWindowHeight(0) {}
@@ -63,16 +66,6 @@ void CShowCase::Init()
 
 	myPlayer = CreatePlayer({ 0.0f, 0.0f, -5.0f });
 	myEnemy = CreateEnemy({ 1.0f, 0.0f, -5.0f });
-
-	Vector3 position = { 0.0f, 0.0f, 0.0f };
-	CGameObject* VFX = new CGameObject();
-	CTransformComponent* transform = VFX->AddComponent<CTransformComponent>(*VFX, position);
-	transform->Scale(1.0f);
-	VFX->AddComponent<CVFXComponent>(*VFX);
-	VFX->GetComponent<CVFXComponent>()->Init(CVFXFactory::GetInstance()->GetVFXBase("Assets/3D/VFX/Disc_test.fbx", "VFXData_FogWall.json"));
-	VFX->GetComponent<CVFXComponent>()->SetScale(1.0f);
-	VFX->GetComponent<CVFXComponent>()->SetPosition({ 10.0f, 0.0f, 0.0f });
-	CScene::GetInstance()->AddInstance(VFX);
 
 	myCamera = CreateCamera(myPlayer);
 	CParticle* particlePrefab = CParticleFactory::GetInstance()->LoadParticle("ParticleData_SmokeEmitter.json");
@@ -130,6 +123,10 @@ void CShowCase::Update()
 
 	if (Input::GetInstance()->IsKeyPressed(VK_F7)) {
 		myPlayer = nullptr;
+	}
+
+	if (Input::GetInstance()->IsKeyPressed('G')) {
+		CreateAbility(myPlayer->GetComponent<CTransformComponent>()->Position());
 	}
 
 	myCamera->Update();
@@ -245,6 +242,21 @@ CCamera* CShowCase::CreateCamera(CGameObject* aCameraTarget)
 		CScene::GetInstance()->SetMainCamera(camera);
 	}
 	return camera;
+}
+
+void CShowCase::CreateAbility(Vector3 aPosition)
+{
+	CGameObject* abilityTest = new CGameObject();
+	CTransformComponent* transform = abilityTest->AddComponent<CTransformComponent>(*abilityTest, aPosition);
+	transform->Scale(1.0f);
+	abilityTest->AddComponent<CVFXComponent>(*abilityTest);
+	abilityTest->GetComponent<CVFXComponent>()->Init(CVFXFactory::GetInstance()->GetVFXBase("Assets/3D/VFX/Disc_test.fbx", "VFXData_FogWall.json"));
+	abilityTest->GetComponent<CVFXComponent>()->SetPosition(aPosition);
+	abilityTest->GetComponent<CVFXComponent>()->SetScale(1.0f);
+
+	CProjectileBehavior* projectileBehavior = new CProjectileBehavior({ 1.0f, 0.0f, 0.0f }, 3.0f);
+	abilityTest->AddComponent<CAbilityBehaviorComponent>(*abilityTest, projectileBehavior);
+	CScene::GetInstance()->AddInstance(abilityTest);
 }
 
 void CShowCase::UpdatePlayerController()

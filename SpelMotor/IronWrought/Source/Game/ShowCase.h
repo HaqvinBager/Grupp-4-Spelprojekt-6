@@ -25,6 +25,7 @@ private:
 	CGameObject* CreatePlayer(Vector3 aPosition);
 	CGameObject* CreateEnemy(Vector3 aPosition);
 	CCamera* CreateCamera(CGameObject* aCameraTarget);
+	void CreateAbility(Vector3 aPosition);
 	void UpdatePlayerController();
 
 private:
