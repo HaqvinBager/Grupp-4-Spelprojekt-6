@@ -208,10 +208,8 @@ CGameObject* CShowCase::CreateEnemy(Vector3 aPosition)
 
 	enemy->AddComponent<CStatsComponent>(*enemy, 100.f, 10.f, 3.f, 1.f);
 	CScene::GetInstance()->AddInstance(enemy);
-	
-	
 
-	/*CGameObject* enemy1 = new CGameObject();
+	CGameObject* enemy1 = new CGameObject();
 	enemy1->AddComponent<CTransformComponent>(*enemy);
 	enemy1->AddComponent<CModelComponent>(*enemy, "Assets/3D/Character/Enemy1/enemy_sk.fbx");
 	CScene::GetInstance()->AddInstance(enemy);
@@ -293,12 +291,12 @@ void CShowCase::UpdatePlayerController()
 		//playerTransform->Move();
 	}
 
-	/*CTransformComponent* enemyTransform = myEnemy->GetComponent<CTransformComponent>();
-	Vector3 direction = (enemyTransform->Position() - playerTransform->Position());
-	direction.Normalize();
+	//CTransformComponent* enemyTransform = myEnemy->GetComponent<CTransformComponent>();
+	//Vector3 direction = (enemyTransform->Position() - playerTransform->Position());
+	//direction.Normalize();
 
-	playerTransform->Position(lastPosition);
-	playerTransform->Move(direction * playerMoveSpeed);*/
+	//playerTransform->Position(lastPosition);
+	//playerTransform->Move(direction * playerMoveSpeed);
 }
 
 

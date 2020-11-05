@@ -4,6 +4,8 @@
 #include "ModelComponent.h"
 #include "Scene.h"
 
+#include <iostream>
+
 CStatsComponent::CStatsComponent(CGameObject& aParent, float aHealth, float aDamage, float aMoveSpeed, float aDamageCooldown)
 	: CComponent(aParent)
 	, myHealth(aHealth)
