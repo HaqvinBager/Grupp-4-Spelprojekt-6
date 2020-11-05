@@ -98,7 +98,8 @@ ipch/
 *.e2e
 
 
-
+# MAC files
+.DS_Store
 
 
 
