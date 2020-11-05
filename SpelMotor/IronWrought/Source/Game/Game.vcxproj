@@ -108,12 +108,14 @@
     <ClInclude Include="DialogueSystem.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="ShowCase.h" />
+    <ClInclude Include="StatsComponent.h" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DialogueSystem.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="ShowCase.cpp" />
+    <ClCompile Include="StatsComponent.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>

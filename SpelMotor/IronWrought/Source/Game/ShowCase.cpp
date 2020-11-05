@@ -25,6 +25,7 @@
 #include <Animation.h>
 #include <InputMapper.h>
 #include "PlayerControllerComponent.h"
+#include "StatsComponent.h"
 
 #include <NavmeshLoader.h>
 #include <AStar.h>
@@ -92,12 +93,12 @@ void CShowCase::Update()
 		ENGINE_DRAW_LINE(posA, posB, color);
 	*/
 
-	CDebug::GetInstance()->DrawLine(myPlayer->GetComponent<CTransformComponent>()->Position(), myEnemy->GetComponent<CTransformComponent>()->Position());
+	//CDebug::GetInstance()->DrawLine(myPlayer->GetComponent<CTransformComponent>()->Position(), myEnemy->GetComponent<CTransformComponent>()->Position());
 
 	Vector3 playerPosition = myPlayer->GetComponent<CTransformComponent>()->Position();
 	Vector3 enemyPosition = myEnemy->GetComponent<CTransformComponent>()->Position();
 
-	CDebug::GetInstance()->DrawLine(playerPosition, enemyPosition);
+	//CDebug::GetInstance()->DrawLine(playerPosition, enemyPosition);
 
 
 	if (Input::GetInstance()->IsKeyPressed(VK_SPACE) && myStateStack->myStateStack.top() == myMenuState) {
@@ -167,35 +168,15 @@ CGameObject* CShowCase::CreatePlayer(Vector3 aPosition)
 	player->AddComponent<CModelComponent>(*player, "Assets/3D/Character/Npc1/CH_NPC_woman_01_19G4_1_19.fbx");
 	player->AddComponent<CPlayerControllerComponent>(*player);
 	//model->SetMyModel(CModelFactory::GetInstance()->GetModelPBR());
+
+	player->AddComponent<CStatsComponent>(*player, 100.f, 10.f, 5.f);
 	CScene::GetInstance()->AddInstance(player);
 	return player;
 }
 
 CGameObject* CShowCase::CreateEnemy(Vector3 aPosition)
 {
-	/*CGameObject* enemy = new CGameObject();
-	CTransformComponent* transform = enemy->AddComponent<CTransformComponent>(*enemy, aPosition);
-	transform->Scale(1.0f);
-	transform->Position(aPosition);
-
-	transform->Rotation({ 0.0f, 0.0f, 0.0f });
-	enemy->AddComponent<CCapsuleColliderComponent>(*enemy, 0.5f, 2.0f);
-	auto modelComponent = enemy->AddComponent<CModelComponent>(*enemy, "Assets/3D/Character/Enemy1/enemy_sk.fbx");
-
-	CAnimationComponent* animation = enemy->AddComponent<CAnimationComponent>(*enemy);
-	std::vector<std::string> somePathsToAnimations;
-	somePathsToAnimations.push_back("Assets/3D/Character/Enemy1/enemy_Idle.fbx");
-	somePathsToAnimations.push_back("Assets/3D/Character/Enemy1/enemy_excitedJump.fbx");
-
-	const std::string rigModel = "Assets/3D/Character/Enemy1/enemy_sk.fbx";
-	animation->GetMyAnimation()->Init(rigModel.c_str(), somePathsToAnimations);
-	modelComponent->GetMyModel()->AddAnimation(animation->GetMyAnimation());
-	animation->SetBlend(0, 1, 0.0f);
-
-	CScene::GetInstance()->AddInstance(enemy);*/
-
-	
-		CGameObject* enemy = new CGameObject();
+	CGameObject* enemy = new CGameObject();
 	CTransformComponent* transform = enemy->AddComponent<CTransformComponent>(*enemy, aPosition);
 	transform->Scale(1.0f);
 	transform->Position(aPosition);
@@ -214,22 +195,9 @@ CGameObject* CShowCase::CreateEnemy(Vector3 aPosition)
 	modelComponent->GetMyModel()->AddAnimation(animation->GetMyAnimation());
 	animation->SetBlend(0, 1, 1.0f);
 
+	enemy->AddComponent<CStatsComponent>(*enemy, 100.f, 10.f, 3.f, 1.f);
+
 	CScene::GetInstance()->AddInstance(enemy);
-
-	
-	
-
-	/*CGameObject* enemy1 = new CGameObject();
-	enemy1->AddComponent<CTransformComponent>(*enemy);
-	enemy1->AddComponent<CModelComponent>(*enemy, "Assets/3D/Character/Enemy1/enemy_sk.fbx");
-
-	CAnimation* anim = new CAnimation();
-	std::vector < std::string> animationClips = {
-		"Assets/3D/Character/Enemy1/enemy_excitedJump.fbx"
-	};
-	anim->Init("Assets/3D/Character/Enemy1/enemy_sk.fbx", animationClips);
-	enemy1->AddComponent<CAnimationComponent>(*enemy1);
-	CScene::GetInstance()->AddInstance(enemy1);*/
 
 	return enemy;
 }
@@ -295,20 +263,25 @@ void CShowCase::UpdatePlayerController()
 
 
 
-	//CCapsuleColliderComponent* playerCollider = myPlayer->GetComponent<CCapsuleColliderComponent>();
-	//CCapsuleColliderComponent* enemyCollider = myEnemy->GetComponent<CCapsuleColliderComponent>();
-	//if (CIntersectionManager::CapsuleIntersection(*playerCollider, *enemyCollider))
-	//{
-	//	//Direction from Enemy to Player
-	//	CTransformComponent* enemyTransform = myEnemy->GetComponent<CTransformComponent>();
-	//	Vector3 direction = (enemyTransform->Position() - playerTransform->Position());
-	//	direction.Normalize();
+	CCapsuleColliderComponent* playerCollider = myPlayer->GetComponent<CCapsuleColliderComponent>();
+	CCapsuleColliderComponent* enemyCollider = myEnemy->GetComponent<CCapsuleColliderComponent>();
+	if (CIntersectionManager::CapsuleIntersection(*playerCollider, *enemyCollider))
+	{
 
-	//	playerTransform->Position(lastPosition);
-	//	playerTransform->Move(direction * playerMoveSpeed);
+		myEnemy->GetComponent<CStatsComponent>()->TakeDamage(myPlayer->GetComponent<CStatsComponent>()->GetDamage());
 
-	//	//playerTransform->Move();
-	//}
+		//Direction from Enemy to Player
+		
+
+		//playerTransform->Move();
+	}
+
+	/*CTransformComponent* enemyTransform = myEnemy->GetComponent<CTransformComponent>();
+	Vector3 direction = (enemyTransform->Position() - playerTransform->Position());
+	direction.Normalize();
+
+	playerTransform->Position(lastPosition);
+	playerTransform->Move(direction * playerMoveSpeed);*/
 }
 
 
