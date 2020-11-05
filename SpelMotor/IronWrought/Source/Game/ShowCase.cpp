@@ -43,6 +43,8 @@
 #include "MenuState.h"
 #include "InGameState.h"
 #include "DialogueSystem.h"
+#include "VFXComponent.h"
+#include "VFXFactory.h"
 
 using namespace CommonUtilities;
 
@@ -61,6 +63,16 @@ void CShowCase::Init()
 
 	myPlayer = CreatePlayer({ 0.0f, 0.0f, -5.0f });
 	myEnemy = CreateEnemy({ 1.0f, 0.0f, -5.0f });
+
+	Vector3 position = { 0.0f, 0.0f, 0.0f };
+	CGameObject* VFX = new CGameObject();
+	CTransformComponent* transform = VFX->AddComponent<CTransformComponent>(*VFX, position);
+	transform->Scale(1.0f);
+	VFX->AddComponent<CVFXComponent>(*VFX);
+	VFX->GetComponent<CVFXComponent>()->Init(CVFXFactory::GetInstance()->GetVFXBase("Assets/3D/VFX/Disc_test.fbx", "VFXData_FogWall.json"));
+	VFX->GetComponent<CVFXComponent>()->SetScale(1.0f);
+	VFX->GetComponent<CVFXComponent>()->SetPosition({ 10.0f, 0.0f, 0.0f });
+	CScene::GetInstance()->AddInstance(VFX);
 
 	myCamera = CreateCamera(myPlayer);
 	CParticle* particlePrefab = CParticleFactory::GetInstance()->LoadParticle("ParticleData_SmokeEmitter.json");
@@ -116,7 +128,7 @@ void CShowCase::Update()
 	//line->Init(CLineFactory::GetInstance()->CreateLine(fromTest, toTest, { 0.1f, 255.0f, 0.1f, 1.0f }));
 	//CScene::GetInstance()->AddInstance(line);
 
-	if (Input::GetInstance()->IsKeyPressed(VK_ESCAPE)) {
+	if (Input::GetInstance()->IsKeyPressed(VK_F7)) {
 		myPlayer = nullptr;
 	}
 
