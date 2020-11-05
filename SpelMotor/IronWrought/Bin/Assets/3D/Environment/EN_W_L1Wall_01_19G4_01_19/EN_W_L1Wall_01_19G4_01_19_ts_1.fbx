@@ -9,9 +9,9 @@ FBXHeaderExtension:  {
 		Year: 2020
 		Month: 11
 		Day: 5
-		Hour: 14
-		Minute: 43
-		Second: 26
+		Hour: 15
+		Minute: 18
+		Second: 1
 		Millisecond: 0
 	}
 	Creator: "FBX SDK/FBX Plugins version 2019.2"
@@ -28,22 +28,22 @@ FBXHeaderExtension:  {
 			Comment: ""
 		}
 		Properties70:  {
-			P: "DocumentUrl", "KString", "Url", "", "/Users/DavidRubarth/Dropbox (Personlig)/000 - TGA/2020-2021/Spelprojekt/SP6/GIT/Grupp-4-Spelprojekt-6/SpelMotor/IronWrought/Bin/Assets/3D/Environment/EN_W_L1Wall_01_19G4_01_19/EN_W_L1Wall_01_19G4_01_19_ts1.fbx"
+			P: "DocumentUrl", "KString", "Url", "", "/Users/DavidRubarth/Dropbox (Personlig)/000 - TGA/2020-2021/Spelprojekt/SP6/GIT/Grupp-4-Spelprojekt-6/SpelMotor/IronWrought/Bin/Assets/3D/Environment/EN_W_L1Wall_01_19G4_01_19/EN_W_L1Wall_01_19G4_01_19_ts_1.fbx"
              
-			P: "SrcDocumentUrl", "KString", "Url", "", "/Users/DavidRubarth/Dropbox (Personlig)/000 - TGA/2020-2021/Spelprojekt/SP6/GIT/Grupp-4-Spelprojekt-6/SpelMotor/IronWrought/Bin/Assets/3D/Environment/EN_W_L1Wall_01_19G4_01_19/EN_W_L1Wall_01_19G4_01_19_ts1.fbx"
+			P: "SrcDocumentUrl", "KString", "Url", "", "/Users/DavidRubarth/Dropbox (Personlig)/000 - TGA/2020-2021/Spelprojekt/SP6/GIT/Grupp-4-Spelprojekt-6/SpelMotor/IronWrought/Bin/Assets/3D/Environment/EN_W_L1Wall_01_19G4_01_19/EN_W_L1Wall_01_19G4_01_19_ts_1.fbx"
              
 			P: "Original", "Compound", "", ""
 			P: "Original|ApplicationVendor", "KString", "", "", "Autodesk"
 			P: "Original|ApplicationName", "KString", "", "", "Maya"
 			P: "Original|ApplicationVersion", "KString", "", "", "201900"
-			P: "Original|DateTime_GMT", "DateTime", "", "", "05/11/2020 14:43:26.000"
-			P: "Original|FileName", "KString", "", "", "/Users/DavidRubarth/Dropbox (Personlig)/000 - TGA/2020-2021/Spelprojekt/SP6/GIT/Grupp-4-Spelprojekt-6/SpelMotor/IronWrought/Bin/Assets/3D/Environment/EN_W_L1Wall_01_19G4_01_19/EN_W_L1Wall_01_19G4_01_19_ts1.fbx"
+			P: "Original|DateTime_GMT", "DateTime", "", "", "05/11/2020 15:18:01.000"
+			P: "Original|FileName", "KString", "", "", "/Users/DavidRubarth/Dropbox (Personlig)/000 - TGA/2020-2021/Spelprojekt/SP6/GIT/Grupp-4-Spelprojekt-6/SpelMotor/IronWrought/Bin/Assets/3D/Environment/EN_W_L1Wall_01_19G4_01_19/EN_W_L1Wall_01_19G4_01_19_ts_1.fbx"
              
 			P: "LastSaved", "Compound", "", ""
 			P: "LastSaved|ApplicationVendor", "KString", "", "", "Autodesk"
 			P: "LastSaved|ApplicationName", "KString", "", "", "Maya"
 			P: "LastSaved|ApplicationVersion", "KString", "", "", "201900"
-			P: "LastSaved|DateTime_GMT", "DateTime", "", "", "05/11/2020 14:43:26.000"
+			P: "LastSaved|DateTime_GMT", "DateTime", "", "", "05/11/2020 15:18:01.000"
 			P: "Original|ApplicationActiveProject", "KString", "", "", "/Users/DavidRubarth/Dropbox (Personlig)/000 - TGA/2020-2021/Spelprojekt/SP6/GIT/Grupp-4-Spelprojekt-6/SpelMotor/IronWrought/Bin/Assets/3D/Environment/EN_W_L1Wall_01_19G4_01_19"
 			P: "Original|ApplicationNativeFile", "KString", "", "", "/Users/DavidRubarth/Dropbox (Personlig)/000 - TGA/2020-2021/Spelprojekt/SP6/Environment/Workfiles/Maya/Lv1_Wall_04.ma"
 		}
@@ -80,7 +80,7 @@ GlobalSettings:  {
 
 Documents:  {
 	Count: 1
-	Document: 105553328497664, "", "Scene" {
+	Document: 105553329161472, "", "Scene" {
 		Properties70:  {
 			P: "SourceObject", "object", "", ""
 			P: "ActiveAnimStackName", "KString", "", "", "Take 001"
@@ -285,13 +285,13 @@ Definitions:  {
 ;------------------------------------------------------------------
 
 Objects:  {
-	NodeAttribute: 105553117708464, "NodeAttribute::", "Null" {
+	NodeAttribute: 105553117429760, "NodeAttribute::", "Null" {
 		Properties70:  {
 			P: "Look", "enum", "", "",0
 		}
 		TypeFlags: "Null"
 	}
-	Geometry: 140363283948416, "Geometry::", "Mesh" {
+	Geometry: 140363281751808, "Geometry::", "Mesh" {
 		Vertices: *216 {
 			a: 0,0,40,400,0,40,0,400,40,400,400,40,0,400,0,400,400,0,0,0,0,400,0,0,400,100,40,400,100,0,0,100,0,0,100,40,0,300,0,400,300,0,400,300,40,0,300,40,20,0,40,20,0,0,20,100,0,20,300,0,20,400,0,20,400,40,20,300,40,20,100,40,380,100,0,380,0,0,380,0,40,380,100,40,380,300,40,380,400,40,380,400,0,380,300,0,0,354.338806152344,0,20,354.338806152344,0,380,354.338806152344,0,400,354.338806152344,0,400,354.338806152344,40,380,354.338806152344,40,20,354.338806152344,40,0,354.338806152344,40,0,380.253326416016,0,20,380.253326416016,0,380,380.253326416016,0,400,380.253326416016,0,400,380.253326416016,40,380,380.253326416016,40,20,380.253326416016,40,0,380.253326416016,40,20,300,46.3570861816406,0,300,46.3570861816406,20,354.338806152344,46.3570861816406,0,354.338806152344,46.3570861816406,0,100,46.3570861816406,20,100,46.3570861816406,0,0,46.3570861816406,20,0,46.3570861816406,20,380.253326416016,46.3570861816406,0,380.253326416016,46.3570861816406,20,400,46.3570861816406,0,400,46.3570861816406,380,100,46.3570861816406,400,100,46.3570861816406,380,300,46.3570861816406,400,300,46.3570861816406,400,354.338806152344,46.3570861816406,380,354.338806152344,46.3570861816406,380,6.80011602582908e-15,46.3570861816406,400,6.93889390390723e-15,46.3570861816406,400,380.253326416016,46.3570861816406,380,380.253326416016,46.3570861816406,380,400,46.3570861816406,400,400,46.3570861816406
 		} 
@@ -392,7 +392,7 @@ Objects:  {
 			}
 		}
 	}
-	Model: 140363290271232, "Model::klar", "Null" {
+	Model: 140363278605824, "Model::klar", "Null" {
 		Version: 232
 		Properties70:  {
 			P: "RotationActive", "bool", "", "",1
@@ -404,20 +404,19 @@ Objects:  {
 		Shading: Y
 		Culling: "CullingOff"
 	}
-	Model: 140363193094144, "Model::EN_W_L1Wall_01_19G4_01_19", "Mesh" {
+	Model: 140363178321920, "Model::EN_W_L1Wall_01_19G4_01_19", "Mesh" {
 		Version: 232
 		Properties70:  {
 			P: "RotationActive", "bool", "", "",1
 			P: "InheritType", "enum", "", "",1
 			P: "ScalingMax", "Vector3D", "Vector", "",0,0,0
 			P: "DefaultAttributeIndex", "int", "Integer", "",0
-			P: "Lcl Translation", "Lcl Translation", "", "A",600,0,-200
 			P: "currentUVSet", "KString", "", "U", "map1"
 		}
 		Shading: T
 		Culling: "CullingOff"
 	}
-	Material: 140363283597056, "Material::lambert1", "" {
+	Material: 140363281668912, "Material::lambert1", "" {
 		Version: 102
 		ShadingModel: "lambert"
 		MultiLayer: 0
@@ -432,7 +431,7 @@ Objects:  {
 			P: "Opacity", "double", "Number", "",1
 		}
 	}
-	Video: 140363283931184, "Video::file3", "Clip" {
+	Video: 140363264660992, "Video::file3", "Clip" {
 		Type: "Clip"
 		Properties70:  {
 			P: "Path", "KString", "XRefUrl", "", "/Users/DavidRubarth/Dropbox (Personlig)/000 - TGA/2020-2021/Spelprojekt/SP6/Environment/Workfiles/Textures/EN_W_L2Wall_01_19G4_01_19_D.png"
@@ -442,7 +441,7 @@ Objects:  {
 		Filename: "/Users/DavidRubarth/Dropbox (Personlig)/000 - TGA/2020-2021/Spelprojekt/SP6/Environment/Workfiles/Textures/EN_W_L2Wall_01_19G4_01_19_D.png"
 		RelativeFilename: "../../../../../../../../../Environment/Workfiles/Textures/EN_W_L2Wall_01_19G4_01_19_D.png"
 	}
-	Video: 140363283931648, "Video::file4", "Clip" {
+	Video: 140363283911744, "Video::file4", "Clip" {
 		Type: "Clip"
 		Properties70:  {
 			P: "Path", "KString", "XRefUrl", "", "/Users/DavidRubarth/Dropbox (Personlig)/000 - TGA/2020-2021/Spelprojekt/SP6/Environment/Workfiles/Textures/EN_W_L2Wall_01_19G4_01_19_N.png"
@@ -452,7 +451,7 @@ Objects:  {
 		Filename: "/Users/DavidRubarth/Dropbox (Personlig)/000 - TGA/2020-2021/Spelprojekt/SP6/Environment/Workfiles/Textures/EN_W_L2Wall_01_19G4_01_19_N.png"
 		RelativeFilename: "../../../../../../../../../Environment/Workfiles/Textures/EN_W_L2Wall_01_19G4_01_19_N.png"
 	}
-	Texture: 140363283930256, "Texture::file3", "" {
+	Texture: 140363281759968, "Texture::file3", "" {
 		Type: "TextureVideoClip"
 		Version: 202
 		TextureName: "Texture::file3"
@@ -469,7 +468,7 @@ Objects:  {
 		Texture_Alpha_Source: "None"
 		Cropping: 0,0,0,0
 	}
-	Texture: 140363283930720, "Texture::file4", "" {
+	Texture: 140363281800272, "Texture::file4", "" {
 		Type: "TextureVideoClip"
 		Version: 202
 		TextureName: "Texture::file4"
@@ -494,29 +493,29 @@ Objects:  {
 Connections:  {
 	
 	;Model::klar, Model::RootNode
-	C: "OO",140363290271232,0
+	C: "OO",140363278605824,0
 	
 	;NodeAttribute::, Model::klar
-	C: "OO",105553117708464,140363290271232
+	C: "OO",105553117429760,140363278605824
 	
 	;Model::EN_W_L1Wall_01_19G4_01_19, Model::klar
-	C: "OO",140363193094144,140363290271232
+	C: "OO",140363178321920,140363278605824
 	
 	;Texture::file3, Material::lambert1
-	C: "OP",140363283930256,140363283597056, "DiffuseColor"
+	C: "OP",140363281759968,140363281668912, "DiffuseColor"
 	
 	;Texture::file4, Material::lambert1
-	C: "OP",140363283930720,140363283597056, "Bump"
+	C: "OP",140363281800272,140363281668912, "Bump"
 	
 	;Video::file3, Texture::file3
-	C: "OO",140363283931184,140363283930256
+	C: "OO",140363264660992,140363281759968
 	
 	;Video::file4, Texture::file4
-	C: "OO",140363283931648,140363283930720
+	C: "OO",140363283911744,140363281800272
 	
 	;Geometry::, Model::EN_W_L1Wall_01_19G4_01_19
-	C: "OO",140363283948416,140363193094144
+	C: "OO",140363281751808,140363178321920
 	
 	;Material::lambert1, Model::EN_W_L1Wall_01_19G4_01_19
-	C: "OO",140363283597056,140363193094144
+	C: "OO",140363281668912,140363178321920
 }
