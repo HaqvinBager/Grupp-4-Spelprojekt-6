@@ -9,9 +9,9 @@ FBXHeaderExtension:  {
 		Year: 2020
 		Month: 11
 		Day: 5
-		Hour: 14
-		Minute: 36
-		Second: 54
+		Hour: 15
+		Minute: 18
+		Second: 14
 		Millisecond: 0
 	}
 	Creator: "FBX SDK/FBX Plugins version 2019.2"
@@ -28,22 +28,22 @@ FBXHeaderExtension:  {
 			Comment: ""
 		}
 		Properties70:  {
-			P: "DocumentUrl", "KString", "Url", "", "/Users/DavidRubarth/Dropbox (Personlig)/000 - TGA/2020-2021/Spelprojekt/SP6/GIT/Grupp-4-Spelprojekt-6/SpelMotor/IronWrought/Bin/Assets/3D/Environment/EN_W_L1Wall_03_19G4_01_19/EN_W_L1Wall_03_19G4_01_19.fbx"
+			P: "DocumentUrl", "KString", "Url", "", "/Users/DavidRubarth/Dropbox (Personlig)/000 - TGA/2020-2021/Spelprojekt/SP6/GIT/Grupp-4-Spelprojekt-6/SpelMotor/IronWrought/Bin/Assets/3D/Environment/EN_W_L1Wall_03_19G4_01_19/EN_W_L1Wall_03_19G4_01_19_ts_1.fbx"
              
-			P: "SrcDocumentUrl", "KString", "Url", "", "/Users/DavidRubarth/Dropbox (Personlig)/000 - TGA/2020-2021/Spelprojekt/SP6/GIT/Grupp-4-Spelprojekt-6/SpelMotor/IronWrought/Bin/Assets/3D/Environment/EN_W_L1Wall_03_19G4_01_19/EN_W_L1Wall_03_19G4_01_19.fbx"
+			P: "SrcDocumentUrl", "KString", "Url", "", "/Users/DavidRubarth/Dropbox (Personlig)/000 - TGA/2020-2021/Spelprojekt/SP6/GIT/Grupp-4-Spelprojekt-6/SpelMotor/IronWrought/Bin/Assets/3D/Environment/EN_W_L1Wall_03_19G4_01_19/EN_W_L1Wall_03_19G4_01_19_ts_1.fbx"
              
 			P: "Original", "Compound", "", ""
 			P: "Original|ApplicationVendor", "KString", "", "", "Autodesk"
 			P: "Original|ApplicationName", "KString", "", "", "Maya"
 			P: "Original|ApplicationVersion", "KString", "", "", "201900"
-			P: "Original|DateTime_GMT", "DateTime", "", "", "05/11/2020 14:36:54.000"
-			P: "Original|FileName", "KString", "", "", "/Users/DavidRubarth/Dropbox (Personlig)/000 - TGA/2020-2021/Spelprojekt/SP6/GIT/Grupp-4-Spelprojekt-6/SpelMotor/IronWrought/Bin/Assets/3D/Environment/EN_W_L1Wall_03_19G4_01_19/EN_W_L1Wall_03_19G4_01_19.fbx"
+			P: "Original|DateTime_GMT", "DateTime", "", "", "05/11/2020 15:18:14.000"
+			P: "Original|FileName", "KString", "", "", "/Users/DavidRubarth/Dropbox (Personlig)/000 - TGA/2020-2021/Spelprojekt/SP6/GIT/Grupp-4-Spelprojekt-6/SpelMotor/IronWrought/Bin/Assets/3D/Environment/EN_W_L1Wall_03_19G4_01_19/EN_W_L1Wall_03_19G4_01_19_ts_1.fbx"
              
 			P: "LastSaved", "Compound", "", ""
 			P: "LastSaved|ApplicationVendor", "KString", "", "", "Autodesk"
 			P: "LastSaved|ApplicationName", "KString", "", "", "Maya"
 			P: "LastSaved|ApplicationVersion", "KString", "", "", "201900"
-			P: "LastSaved|DateTime_GMT", "DateTime", "", "", "05/11/2020 14:36:54.000"
+			P: "LastSaved|DateTime_GMT", "DateTime", "", "", "05/11/2020 15:18:14.000"
 			P: "Original|ApplicationActiveProject", "KString", "", "", "/Users/DavidRubarth/Dropbox (Personlig)/000 - TGA/2020-2021/Spelprojekt/SP6/GIT/Grupp-4-Spelprojekt-6/SpelMotor/IronWrought/Bin/Assets/3D/Environment/EN_W_L1Wall_03_19G4_01_19"
 			P: "Original|ApplicationNativeFile", "KString", "", "", "/Users/DavidRubarth/Dropbox (Personlig)/000 - TGA/2020-2021/Spelprojekt/SP6/Environment/Workfiles/Maya/Lv1_Wall_04.ma"
 		}
@@ -80,7 +80,7 @@ GlobalSettings:  {
 
 Documents:  {
 	Count: 1
-	Document: 105553329145344, "", "Scene" {
+	Document: 105553330094848, "", "Scene" {
 		Properties70:  {
 			P: "SourceObject", "object", "", ""
 			P: "ActiveAnimStackName", "KString", "", "", "Take 001"
@@ -285,13 +285,13 @@ Definitions:  {
 ;------------------------------------------------------------------
 
 Objects:  {
-	NodeAttribute: 105553117631296, "NodeAttribute::", "Null" {
+	NodeAttribute: 105553117331456, "NodeAttribute::", "Null" {
 		Properties70:  {
 			P: "Look", "enum", "", "",0
 		}
 		TypeFlags: "Null"
 	}
-	Geometry: 140363283737328, "Geometry::", "Mesh" {
+	Geometry: 140363281561600, "Geometry::", "Mesh" {
 		Vertices: *1299 {
 			a: -0.705886840820312,0,37.9434661865234,399.294128417969,0,37.9434661865234,-0.705886840820312,400,37.9434661865234,399.294128417969,400,37.9434661865234,-0.705886840820312,400,0,399.294128417969,400,0,-0.705886840820312,0,0,399.294128417969,0,0,399.294128417969,200,37.9434661865234,-0.705886840820312,200,37.9434661865234,-0.705886840820312,200,0,399.294128417969,200,0,85.7055511474609,400,37.9434661865234,85.7055511474609,400,0,99.2941131591797,200,0.165740966796875,99.2941131591797,0,0,99.2941131591797,0,37.9434661865234,99.2941131591797,200,37.9434661865234,312.882690429688,400,37.9434661865234,312.882690429688,400,0,299.294128417969,200,0.165740966796875,299.294128417969,0,0,299.294128417969,0,37.9434661865234,299.294128417969,200,37.9434661865234,312.3779296875,300.362548828125,37.9434661865234,296.598449707031,229.792251586914,37.9434661865234,101.989791870117,229.792251586914,37.9434661865234,86.2103118896484,300.362548828125,37.9434661865234,-0.705886840820312,236.054550170898,37.9434661865234,-0.705886840820312,287.650054931641,37.9434661865234,-0.705886840820312,300.362548828125,37.9434661865234,-0.705886840820312,236.054550170898,0,-0.705886840820312,287.650054931641,0,-0.705886840820312,300.362548828125,0,101.989791870117,229.792251586914,0.165740966796875,83.9277191162109,300.362548828125,1.52587890625e-05,296.598449707031,229.792251586914,0.165740966796875,314.660522460938,300.362548828125,0,399.294128417969,236.054550170898,0,399.294128417969,287.650054931641,0,399.294128417969,300.362548828125,0,399.294128417969,236.054550170898,37.9434661865234,399.294128417969,287.650054931641,37.9434661865234,399.294128417969,300.362548828125,37.9434661865234,59.2941131591797,400,37.9434661865234,59.2941131591797,400,0,59.2940826416016,300.362548828125,0,59.2941131591797,287.650054931641,0,59.2941436767578,236.054550170898,0,59.2941131591797,200,0,59.2941131591797,0,0,59.2941131591797,0,37.9434661865234,59.2941131591797,200,37.9434661865234,59.2941436767578,236.054550170898,37.9434661865234,59.2941131591797,287.650054931641,37.9434661865234,
 59.2940826416016,300.362548828125,37.9434661865234,339.294128417969,400,37.9434661865234,339.294128417969,400,0,339.294128417969,300.362548828125,0,339.294128417969,287.650054931641,0,339.294128417969,236.054550170898,0,339.294128417969,200,0,339.294128417969,0,0,339.294128417969,0,37.9434661865234,339.294128417969,200,37.9434661865234,339.294128417969,236.054550170898,37.9434661865234,339.294128417969,287.650054931641,37.9434661865234,339.294128417969,300.362548828125,37.9434661865234,399.294128417969,26.9974708557129,37.9434661865234,339.294128417969,26.9974708557129,37.9434661865234,299.294128417969,26.9974708557129,37.9434661865234,99.2941131591797,26.9974708557129,37.9434661865234,59.2941131591797,26.9974708557129,37.9434661865234,-0.705886840820312,26.9974708557129,37.9434661865234,-0.705886840820312,26.9974708557129,0,59.2941131591797,26.9974708557129,0,99.2941131591797,26.9974708557129,0.165740966796875,299.294128417969,26.9974708557129,0.165740966796875,339.294128417969,26.9974708557129,0,399.294128417969,26.9974708557129,0,339.294128417969,354.338775634766,37.9434661865234,313.146301269531,354.338775634766,37.9434661865234,85.4418792724609,354.338775634766,37.9434661865234,59.2941131591797,354.338775634766,37.9434661865234,-0.705886840820312,354.338806152344,37.9434661865234,-0.705886840820312,354.338806152344,0,59.2941131591797,354.338806152344,0,85.4418792724609,354.338806152344,0,313.146301269531,354.338806152344,0,339.294128417969,354.338806152344,0,399.294128417969,354.338806152344,0,399.294128417969,354.338806152344,37.9434661865234,296.598449707031,229.792251586914,46.3570861816406,339.294128417969,236.054550170898,46.3570861816406,299.294128417969,200,46.3570861816406,339.294128417969,200,46.3570861816406,312.3779296875,300.362548828125,46.3570861816406,304.982971191406,290.871795654297,46.3570861816406,299.294128417969,26.9974708557129,46.3570861816406,339.294128417969,26.9974708557129,46.3570861816406,59.2941131591797,200,46.3570861816406,59.2941436767578,236.054550170898,46.3570861816406,99.2941131591797,200,46.3570861816406,
@@ -498,7 +498,7 @@ Objects:  {
 			}
 		}
 	}
-	Model: 140363194329088, "Model::klar", "Null" {
+	Model: 140363290929664, "Model::klar", "Null" {
 		Version: 232
 		Properties70:  {
 			P: "RotationActive", "bool", "", "",1
@@ -510,7 +510,7 @@ Objects:  {
 		Shading: Y
 		Culling: "CullingOff"
 	}
-	Model: 140363194380800, "Model::EN_W_L1Wall_03_19G4_01_19_fbx", "Mesh" {
+	Model: 140363178845184, "Model::EN_W_L1Wall_03_19G4_01_19_fbx", "Mesh" {
 		Version: 232
 		Properties70:  {
 			P: "RotationPivot", "Vector3D", "Vector", "",-0.705888455856464,0,0
@@ -519,13 +519,12 @@ Objects:  {
 			P: "InheritType", "enum", "", "",1
 			P: "ScalingMax", "Vector3D", "Vector", "",0,0,0
 			P: "DefaultAttributeIndex", "int", "Integer", "",0
-			P: "Lcl Translation", "Lcl Translation", "", "A",200.705888455856,0,-200
 			P: "currentUVSet", "KString", "", "U", "map1"
 		}
 		Shading: T
 		Culling: "CullingOff"
 	}
-	Material: 140363283712288, "Material::lambert1", "" {
+	Material: 140363282732768, "Material::lambert1", "" {
 		Version: 102
 		ShadingModel: "lambert"
 		MultiLayer: 0
@@ -540,7 +539,7 @@ Objects:  {
 			P: "Opacity", "double", "Number", "",1
 		}
 	}
-	Video: 140363283665696, "Video::file3", "Clip" {
+	Video: 140363285420176, "Video::file3", "Clip" {
 		Type: "Clip"
 		Properties70:  {
 			P: "Path", "KString", "XRefUrl", "", "/Users/DavidRubarth/Dropbox (Personlig)/000 - TGA/2020-2021/Spelprojekt/SP6/Environment/Workfiles/Textures/EN_W_L2Wall_01_19G4_01_19_D.png"
@@ -550,7 +549,7 @@ Objects:  {
 		Filename: "/Users/DavidRubarth/Dropbox (Personlig)/000 - TGA/2020-2021/Spelprojekt/SP6/Environment/Workfiles/Textures/EN_W_L2Wall_01_19G4_01_19_D.png"
 		RelativeFilename: "../../../../../../../../../Environment/Workfiles/Textures/EN_W_L2Wall_01_19G4_01_19_D.png"
 	}
-	Video: 140363282445568, "Video::file4", "Clip" {
+	Video: 140363285438832, "Video::file4", "Clip" {
 		Type: "Clip"
 		Properties70:  {
 			P: "Path", "KString", "XRefUrl", "", "/Users/DavidRubarth/Dropbox (Personlig)/000 - TGA/2020-2021/Spelprojekt/SP6/Environment/Workfiles/Textures/EN_W_L2Wall_01_19G4_01_19_N.png"
@@ -560,7 +559,7 @@ Objects:  {
 		Filename: "/Users/DavidRubarth/Dropbox (Personlig)/000 - TGA/2020-2021/Spelprojekt/SP6/Environment/Workfiles/Textures/EN_W_L2Wall_01_19G4_01_19_N.png"
 		RelativeFilename: "../../../../../../../../../Environment/Workfiles/Textures/EN_W_L2Wall_01_19G4_01_19_N.png"
 	}
-	Texture: 140363285474288, "Texture::file3", "" {
+	Texture: 140363285987664, "Texture::file3", "" {
 		Type: "TextureVideoClip"
 		Version: 202
 		TextureName: "Texture::file3"
@@ -577,7 +576,7 @@ Objects:  {
 		Texture_Alpha_Source: "None"
 		Cropping: 0,0,0,0
 	}
-	Texture: 140363285465632, "Texture::file4", "" {
+	Texture: 140363269088928, "Texture::file4", "" {
 		Type: "TextureVideoClip"
 		Version: 202
 		TextureName: "Texture::file4"
@@ -602,29 +601,29 @@ Objects:  {
 Connections:  {
 	
 	;Model::klar, Model::RootNode
-	C: "OO",140363194329088,0
+	C: "OO",140363290929664,0
 	
 	;NodeAttribute::, Model::klar
-	C: "OO",105553117631296,140363194329088
+	C: "OO",105553117331456,140363290929664
 	
 	;Model::EN_W_L1Wall_03_19G4_01_19_fbx, Model::klar
-	C: "OO",140363194380800,140363194329088
+	C: "OO",140363178845184,140363290929664
 	
 	;Texture::file3, Material::lambert1
-	C: "OP",140363285474288,140363283712288, "DiffuseColor"
+	C: "OP",140363285987664,140363282732768, "DiffuseColor"
 	
 	;Texture::file4, Material::lambert1
-	C: "OP",140363285465632,140363283712288, "Bump"
+	C: "OP",140363269088928,140363282732768, "Bump"
 	
 	;Video::file3, Texture::file3
-	C: "OO",140363283665696,140363285474288
+	C: "OO",140363285420176,140363285987664
 	
 	;Video::file4, Texture::file4
-	C: "OO",140363282445568,140363285465632
+	C: "OO",140363285438832,140363269088928
 	
 	;Geometry::, Model::EN_W_L1Wall_03_19G4_01_19_fbx
-	C: "OO",140363283737328,140363194380800
+	C: "OO",140363281561600,140363178845184
 	
 	;Material::lambert1, Model::EN_W_L1Wall_03_19G4_01_19_fbx
-	C: "OO",140363283712288,140363194380800
+	C: "OO",140363282732768,140363178845184
 }
