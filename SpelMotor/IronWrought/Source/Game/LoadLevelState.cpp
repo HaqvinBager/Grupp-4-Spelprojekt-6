@@ -29,7 +29,7 @@ void CLoadLevelState::Awake() {
 	//levelLoader.LoadNewLevel("Levels/NavTest");
 
 	CGameObject* player = new CGameObject();
-	player->AddComponent<CTransformComponent>(*player);
+	//player->AddComponent<CTransformComponent>(*player);
 	player->AddComponent<CModelComponent>(*player, "Assets/3D/Character/MainCharacter/CH_PL_Daughter_01_19G4_1_19.fbx" );
 
 	CCamera* camera = CCameraFactory::GetInstance()->CreateCamera(65.0f);
