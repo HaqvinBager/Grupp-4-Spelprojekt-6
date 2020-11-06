@@ -2,7 +2,7 @@
   "Max Number Of Particles": 100,
   "Spawn Rate": 30.0,
   "Lifetime": 2.0,
-  "Speed": 2.0,
+  "Speed": 200.0,
   "Start Color R": 1.0,
   "Start Color G": 1.0,
   "Start Color B": 1.0,

@@ -14,7 +14,8 @@
 
 #include <ParticleFactory.h>
 #include <Particle.h>
-#include <ParticleInstance.h>
+#include <ParticleEmitterComponent.h>
+//#include <ParticleInstance.h>
 
 #include <SpriteInstance.h>
 #include <SpriteFactory.h>
@@ -72,36 +73,21 @@ void CShowCase::Init()
 	CNavmeshLoader* nav = new CNavmeshLoader();
 	myNavMesh = nav->LoadNavmesh("Navmesh/Dungeon_ExportedNavMesh.obj");
 
-	//myLevelLoader->Init();
+	myLevelLoader->Init();
 
 	//myLevelLoader->LoadNewLevel("TODO");
 
 	myPlayer = CreatePlayer({ 0.0f, 0.0f, -5.0f });
 	myEnemies.emplace_back(myEnemyPool->Create({ 1.0f, 0.0f, 0.0f }, 10.f, 0.f, 0.f, 1.f));
 
-
 	myCamera = CreateCamera(myPlayer);
-	CParticle* particlePrefab = CParticleFactory::GetInstance()->LoadParticle("ParticleData_SmokeEmitter.json");
-	CParticleInstance* particleEmitter = new CParticleInstance();
-	particleEmitter->Init(particlePrefab);
-	particleEmitter->SetPosition({0.0f, 0.0f, -5.5f});
-	CScene::GetInstance()->AddInstance(particleEmitter);
-	particleEmitter = new CParticleInstance();
-	particleEmitter->Init(particlePrefab);
-	particleEmitter->SetPosition({ 6.0f, 0.0f, -5.5f });
-	CScene::GetInstance()->AddInstance(particleEmitter);
 
 	myFreeCamera = CreateCamera(nullptr);
 	//TODO TEMPORARY REMOVE MOvE YES
 	CInputMapper::GetInstance()->MapEvent(CInputObserver::EInputAction::MouseLeft, CInputObserver::EInputEvent::MoveClick);
 	CInputMapper::GetInstance()->MapEvent(CInputObserver::EInputAction::MouseRight, CInputObserver::EInputEvent::AttackClick);
 	//TODO TEMPORARY REMOVE MOVE YES
-	//CSpriteFactory* spriteFactory = CSpriteFactory::GetInstance();
-	//CSpriteInstance* spriteInstance = new CSpriteInstance();
-	//spriteInstance->Init(CSpriteFactory::GetInstance()->GetSprite("tempUI.dds"));
-	//spriteInstance->SetSize({ 2.0f,2.0f });
-	//spriteInstance->SetPosition({ 0.0f,-0.85f });
-	//CScene::GetInstance()->AddInstance(spriteInstance);
+
 	myStateStack = new CStateStack();
 	myMenuState = new CMenuState(*myStateStack);
 	myStateStack->PushState(myMenuState);
@@ -140,12 +126,6 @@ void CShowCase::Update()
 
 	if (Input::GetInstance()->IsKeyPressed('G')) {
 		CreateAbility(myPlayer->GetComponent<CTransformComponent>()->Position());
-
-		//CreateAbility({-1.f, 0.f, 0.f});
-		//CreateAbility({ 0.f, 0.f, 0.f });
-		//CreateAbility({ 1.f, 0.f, 0.f });
-
-
 	}
 
 	myCamera->Update();
@@ -164,7 +144,7 @@ void CShowCase::Update()
 
 		CLineInstance* lineInstance = new CLineInstance();
 		DirectX::SimpleMath::Vector3 to = ray.position + ray.direction * 100.0f;
-		lineInstance->Init(CLineFactory::GetInstance()->CreateLine({ ray.position.x, ray.position.y, ray.position.z }, to, {255.f, 0.f ,0.f, 1.f}));
+		lineInstance->Init(CLineFactory::GetInstance()->CreateLine({ ray.position.x, ray.position.y, ray.position.z }, to, { 255.f, 0.f ,0.f, 1.f }));
 		CScene::GetInstance()->AddInstance(lineInstance);
 
 		float distToMesh = 0;
@@ -195,20 +175,20 @@ void CShowCase::Update()
 	if (Input::GetInstance()->IsKeyPressed('O')) {
 		myEnemies.emplace_back(myEnemyPool->Create({ 0.0f, 0.0f, 0.0f }, 10.f, 0.f, 0.f, 1.f));
 	}
+	for (int i = 0; i < myEnemies.size(); ++i) {
+		myEnemies[i]->GetComponent<CStatsComponent>()->FindATarget(*myPlayer);
+	}
 	//myDialogueSystem->Update(CTimer::Dt());
 }
 
 CGameObject* CShowCase::CreatePlayer(Vector3 aPosition)
 {
 	CGameObject* player = new CGameObject();
-	//CTransformComponent* transform = player->AddComponent<CTransformComponent>(*player, aPosition);
-	player->myTransform->Scale(1.0f);
 	player->myTransform->Position(aPosition);
 	player->myTransform->Rotation({ 0.0f, 180.0f, 0.0f });
 	player->AddComponent<CCapsuleColliderComponent>(*player, 0.35f, 2.0f);
 	player->AddComponent<CModelComponent>(*player, "Assets/3D/Character/Enemy1/CH_NPC_enemy_01_19G4_1_19.fbx");
 	player->AddComponent<CPlayerControllerComponent>(*player);
-	//model->SetMyModel(CModelFactory::GetInstance()->GetModelPBR());
 
 	player->AddComponent<CStatsComponent>(*player, 100.f, 10.f, 5.f);
 	CScene::GetInstance()->AddInstance(player);
@@ -257,7 +237,7 @@ CCamera* CShowCase::CreateCamera(CGameObject* aCameraTarget)
 		camera->SetPosition(aCameraTarget->GetComponent<CTransformComponent>()->Position());
 	}
 	else {
-		camera->SetPosition({0.0f, 0.0f, 0.0f});
+		camera->SetPosition({ 0.0f, 0.0f, 0.0f });
 	}
 	//camera->Move({ 1.5f, 0.0f, -2.0f });
 	CScene::GetInstance()->AddInstance(camera);
@@ -273,10 +253,14 @@ void CShowCase::CreateAbility(Vector3 aPosition)
 	abilityTest->myTransform->Position(aPosition);
 	abilityTest->AddComponent<CVFXComponent>(*abilityTest);
 	abilityTest->GetComponent<CVFXComponent>()->Init(CVFXFactory::GetInstance()->GetVFXBase("Assets/3D/VFX/Disc_test.fbx", "VFXData_FogWall.json"));
-	abilityTest->GetComponent<CVFXComponent>()->SetScale(1.0f);
-	abilityTest->GetComponent<CVFXComponent>()->SetPosition(aPosition);
 
-	CProjectileBehavior* projectileBehavior = new CProjectileBehavior({ 1.0f, 0.0f, 0.0f }, 3.0f);
+	abilityTest->AddComponent<CParticleEmitterComponent>(*abilityTest);
+	abilityTest->GetComponent<CParticleEmitterComponent>()->Init(CParticleFactory::GetInstance()->GetParticle("ParticleData_SmokeEmitter.json"));
+
+	DirectX::SimpleMath::Vector3 abilityDirection{ 1.0f, 0.0f, 0.0f };
+	abilityDirection = MouseTracker::ScreenPositionToWorldPosition(myWindowWidth, myWindowHeight) - myPlayer->myTransform->Position();
+
+	CProjectileBehavior* projectileBehavior = new CProjectileBehavior(abilityDirection, 3.0f);
 	abilityTest->AddComponent<CAbilityBehaviorComponent>(*abilityTest, projectileBehavior);
 	CScene::GetInstance()->AddInstance(abilityTest);
 }
@@ -329,7 +313,9 @@ void CShowCase::UpdatePlayerController()
 		if (CIntersectionManager::CapsuleIntersection(*playerCollider, *myEnemies[i]->GetComponent<CCapsuleColliderComponent>()))
 		{
 			myEnemies[i]->GetComponent<CStatsComponent>()->TakeDamage(myPlayer->GetComponent<CStatsComponent>()->GetDamage());
-
+			if (myEnemies[i]->GetComponent<CStatsComponent>()->GetHealth() <= 0) {
+				myEnemies.erase(myEnemies.begin() + i);
+			}
 			//Direction from Enemy to Player
 
 
