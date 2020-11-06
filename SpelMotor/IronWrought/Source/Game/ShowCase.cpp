@@ -48,12 +48,24 @@
 
 #include "ProjectileBehavior.h"
 #include "AbilityBehaviorComponent.h"
+#include "ObjectPool.h"
 
 using namespace CommonUtilities;
 
-CShowCase::CShowCase() : myLevelLoader(new CLevelLoader()), myPlayer(nullptr), myEnemy(nullptr), myCamera(nullptr), myFreeCamera(nullptr), myWindowWidth(0), myWindowHeight(0) {}
+CShowCase::CShowCase()
+	: myLevelLoader(new CLevelLoader())
+	, myPlayer(nullptr)
+	, myCamera(nullptr), myFreeCamera(nullptr)
+	, myWindowWidth(0)
+	, myWindowHeight(0)
+	, myEnemyPool(new CObjectPool())
+{
+}
 
-CShowCase::~CShowCase() {}
+CShowCase::~CShowCase() {
+	delete myEnemyPool;
+	myEnemyPool = nullptr;
+}
 
 void CShowCase::Init()
 {
@@ -65,7 +77,8 @@ void CShowCase::Init()
 	//myLevelLoader->LoadNewLevel("TODO");
 
 	myPlayer = CreatePlayer({ 0.0f, 0.0f, -5.0f });
-	myEnemy = CreateEnemy({ 1.0f, 0.0f, -5.0f });
+	myEnemies.emplace_back(myEnemyPool->Create({ 1.0f, 0.0f, 0.0f }, 10.f, 0.f, 0.f, 1.f));
+
 
 	myCamera = CreateCamera(myPlayer);
 	CParticle* particlePrefab = CParticleFactory::GetInstance()->LoadParticle("ParticleData_SmokeEmitter.json");
@@ -106,7 +119,7 @@ void CShowCase::Update()
 	//CDebug::GetInstance()->DrawLine(myPlayer->GetComponent<CTransformComponent>()->Position(), myEnemy->GetComponent<CTransformComponent>()->Position());
 
 	Vector3 playerPosition = myPlayer->GetComponent<CTransformComponent>()->Position();
-	Vector3 enemyPosition = myEnemy->GetComponent<CTransformComponent>()->Position();
+	//Vector3 enemyPosition = myEnemy->GetComponent<CTransformComponent>()->Position();
 
 	//CDebug::GetInstance()->DrawLine(playerPosition, enemyPosition);
 
@@ -164,11 +177,11 @@ void CShowCase::Update()
 				STriangle* pickedTriangle = myNavMesh->GetTriangleAtPoint(pickedPosition);
 				myPlayer->GetComponent<CTransformComponent>()->ClearPath();
 				std::vector<DirectX::SimpleMath::Vector3> aPath;
-				
+
 				if (playerPos != pickedTriangle) {
 					aPath = CAStar::AStar(myNavMesh, playerPos, tri);
 				}
-				
+
 				myPlayer->GetComponent<CTransformComponent>()->SetPath(aPath, pickedPosition);
 			}
 		}
@@ -177,6 +190,11 @@ void CShowCase::Update()
 	myPlayer->GetComponent<CTransformComponent>()->MoveAlongPath();
 	myPlayer->Update();
 	myStateStack->Update();
+
+	//spawn enemy
+	if (Input::GetInstance()->IsKeyPressed('O')) {
+		myEnemies.emplace_back(myEnemyPool->Create({ 0.0f, 0.0f, 0.0f }, 10.f, 0.f, 0.f, 1.f));
+	}
 	//myDialogueSystem->Update(CTimer::Dt());
 }
 
@@ -307,16 +325,16 @@ void CShowCase::UpdatePlayerController()
 
 
 	CCapsuleColliderComponent* playerCollider = myPlayer->GetComponent<CCapsuleColliderComponent>();
-	CCapsuleColliderComponent* enemyCollider = myEnemy->GetComponent<CCapsuleColliderComponent>();
-	if (CIntersectionManager::CapsuleIntersection(*playerCollider, *enemyCollider))
-	{
+	for (int i = 0; i < myEnemies.size(); ++i) {
+		if (CIntersectionManager::CapsuleIntersection(*playerCollider, *myEnemies[i]->GetComponent<CCapsuleColliderComponent>()))
+		{
+			myEnemies[i]->GetComponent<CStatsComponent>()->TakeDamage(myPlayer->GetComponent<CStatsComponent>()->GetDamage());
 
-		myEnemy->GetComponent<CStatsComponent>()->TakeDamage(myPlayer->GetComponent<CStatsComponent>()->GetDamage());
+			//Direction from Enemy to Player
 
-		//Direction from Enemy to Player
-		
 
-		//playerTransform->Move();
+			//playerTransform->Move();
+		}
 	}
 
 	//CTransformComponent* enemyTransform = myEnemy->GetComponent<CTransformComponent>();
