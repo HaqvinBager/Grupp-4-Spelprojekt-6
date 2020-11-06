@@ -41,7 +41,9 @@ namespace SM = DirectX::SimpleMath;
 using namespace CommonUtilities;
 
 CGame::CGame() 
-	: myLevelLoader(new CLevelLoader()), myWindowWidth(0), myWindowHeight(0)
+	: myLevelLoader(new CLevelLoader())
+	, myWindowWidth(0)
+	, myWindowHeight(0)
 {
 }
 
