@@ -176,6 +176,7 @@ void CShowCase::Update()
 	myPlayer->Update();
 	myStateStack->Update();
 
+	//spawn enemy
 	if (Input::GetInstance()->IsKeyPressed('O')) {
 		myEnemies.emplace_back(myEnemyPool->Create({ 0.0f, 0.0f, 0.0f }, 10.f, 0.f, 0.f, 1.f));
 	}
