@@ -127,6 +127,12 @@ void CShowCase::Update()
 
 	if (Input::GetInstance()->IsKeyPressed('G')) {
 		CreateAbility(myPlayer->GetComponent<CTransformComponent>()->Position());
+
+		//CreateAbility({-1.f, 0.f, 0.f});
+		//CreateAbility({ 0.f, 0.f, 0.f });
+		//CreateAbility({ 1.f, 0.f, 0.f });
+
+
 	}
 
 	myCamera->Update();
@@ -177,11 +183,10 @@ void CShowCase::Update()
 CGameObject* CShowCase::CreatePlayer(Vector3 aPosition)
 {
 	CGameObject* player = new CGameObject();
-	CTransformComponent* transform = player->AddComponent<CTransformComponent>(*player, aPosition);
-	transform->Scale(1.0f);
-	transform->Position(aPosition);
-
-	transform->Rotation({ 0.0f, 180.0f, 0.0f });
+	//CTransformComponent* transform = player->AddComponent<CTransformComponent>(*player, aPosition);
+	player->myTransform->Scale(1.0f);
+	player->myTransform->Position(aPosition);
+	player->myTransform->Rotation({ 0.0f, 180.0f, 0.0f });
 	player->AddComponent<CCapsuleColliderComponent>(*player, 0.35f, 2.0f);
 	player->AddComponent<CModelComponent>(*player, "Assets/3D/Character/Enemy1/CH_NPC_enemy_01_19G4_1_19.fbx");
 	player->AddComponent<CPlayerControllerComponent>(*player);
@@ -197,11 +202,11 @@ CGameObject* CShowCase::CreatePlayer(Vector3 aPosition)
 CGameObject* CShowCase::CreateEnemy(Vector3 aPosition)
 {
 	CGameObject* enemy = new CGameObject();
-	CTransformComponent* transform = enemy->AddComponent<CTransformComponent>(*enemy, aPosition);
-	transform->Scale(1.0f);
-	transform->Position(aPosition);
+	//CTransformComponent* transform = enemy->AddComponent<CTransformComponent>(*enemy, aPosition);
+	enemy->myTransform->Scale(1.0f);
+	enemy->myTransform->Position(aPosition);
 
-	transform->Rotation({ 0.0f, 0.0f, 0.0f });
+	enemy->myTransform->Rotation({ 0.0f, 0.0f, 0.0f });
 	enemy->AddComponent<CCapsuleColliderComponent>(*enemy, 0.5f, 2.0f);
 	auto modelComponent = enemy->AddComponent<CModelComponent>(*enemy, "ani/CH_NPC_Undead_17G3_SK.fbx");
 
@@ -219,7 +224,7 @@ CGameObject* CShowCase::CreateEnemy(Vector3 aPosition)
 	CScene::GetInstance()->AddInstance(enemy);
 
 	CGameObject* enemy1 = new CGameObject();
-	enemy1->AddComponent<CTransformComponent>(*enemy);
+	//enemy1->AddComponent<CTransformComponent>(*enemy);
 	enemy1->AddComponent<CModelComponent>(*enemy, "Assets/3D/Character/Enemy1/enemy_sk.fbx");
 	CScene::GetInstance()->AddInstance(enemy);
 
@@ -247,12 +252,11 @@ CCamera* CShowCase::CreateCamera(CGameObject* aCameraTarget)
 void CShowCase::CreateAbility(Vector3 aPosition)
 {
 	CGameObject* abilityTest = new CGameObject();
-	CTransformComponent* transform = abilityTest->AddComponent<CTransformComponent>(*abilityTest, aPosition);
-	transform->Scale(1.0f);
+	abilityTest->myTransform->Position(aPosition);
 	abilityTest->AddComponent<CVFXComponent>(*abilityTest);
 	abilityTest->GetComponent<CVFXComponent>()->Init(CVFXFactory::GetInstance()->GetVFXBase("Assets/3D/VFX/Disc_test.fbx", "VFXData_FogWall.json"));
-	abilityTest->GetComponent<CVFXComponent>()->SetPosition(aPosition);
 	abilityTest->GetComponent<CVFXComponent>()->SetScale(1.0f);
+	abilityTest->GetComponent<CVFXComponent>()->SetPosition(aPosition);
 
 	CProjectileBehavior* projectileBehavior = new CProjectileBehavior({ 1.0f, 0.0f, 0.0f }, 3.0f);
 	abilityTest->AddComponent<CAbilityBehaviorComponent>(*abilityTest, projectileBehavior);
