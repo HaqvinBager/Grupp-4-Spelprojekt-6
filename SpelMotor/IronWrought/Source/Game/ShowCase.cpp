@@ -73,7 +73,7 @@ void CShowCase::Init()
 	CNavmeshLoader* nav = new CNavmeshLoader();
 	myNavMesh = nav->LoadNavmesh("Navmesh/Dungeon_ExportedNavMesh.obj");
 
-	//myLevelLoader->Init();
+	myLevelLoader->Init();
 
 	//myLevelLoader->LoadNewLevel("TODO");
 
@@ -189,6 +189,9 @@ void CShowCase::Update()
 	//spawn enemy
 	if (Input::GetInstance()->IsKeyPressed('O')) {
 		myEnemies.emplace_back(myEnemyPool->Create({ 0.0f, 0.0f, 0.0f }, 10.f, 0.f, 0.f, 1.f));
+	}
+	for (int i = 0; i < myEnemies.size(); ++i) {
+		myEnemies[i]->GetComponent<CStatsComponent>()->FindATarget(*myPlayer);
 	}
 	//myDialogueSystem->Update(CTimer::Dt());
 }
@@ -328,7 +331,9 @@ void CShowCase::UpdatePlayerController()
 		if (CIntersectionManager::CapsuleIntersection(*playerCollider, *myEnemies[i]->GetComponent<CCapsuleColliderComponent>()))
 		{
 			myEnemies[i]->GetComponent<CStatsComponent>()->TakeDamage(myPlayer->GetComponent<CStatsComponent>()->GetDamage());
-
+			if (myEnemies[i]->GetComponent<CStatsComponent>()->GetHealth() <= 0) {
+				myEnemies.erase(myEnemies.begin() + i);
+			}
 			//Direction from Enemy to Player
 
 
