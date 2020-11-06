@@ -6,10 +6,13 @@
 #include <DbgHelp.h>
 #include <strsafe.h>
 #include "EngineException.h"
+#include "DL_Debug.h"
 
 #ifdef _DEBUG
 #pragma comment(lib, "Game_Debug.lib")
 #pragma comment(lib, "dbghelp.lib")
+#define USE_DEBUG_LOG
+#define USE_FILTER_LOG
 #endif // _DEBUG
 #ifdef NDEBUG
 #pragma comment(lib, "Game_Release.lib")
@@ -94,20 +97,29 @@ LONG WINAPI ExceptionFilterFunction(_EXCEPTION_POINTERS* aExceptionP, std::wstri
 	return EXCEPTION_EXECUTE_HANDLER;
 }
 
-void RunGame(CEngine &anEngine) {
+void RunGame(LPWSTR lpCmdLine) 
+{
+	DL_Debug::CDebug::Create();
+	DL_Debug::CDebug::GetInstance()->ReadCommandLineArguments(lpCmdLine);
+	DL_Debug::CDebug::GetInstance()->WriteLog("resource", "resource message");
+	DL_Debug::CDebug::GetInstance()->WriteLog("ingame", "ingame message");
+	DL_Debug::CDebug::GetInstance()->WriteLog("engine", "engine message");
+
 	CWindowHandler::SWindowData windowData;
 	windowData.myX = 100;
 	windowData.myY = 100;
 	windowData.myWidth = 1280;
 	windowData.myHeight = 720;
 
-	bool shouldRun = anEngine.Init(windowData);
+	static CEngine engine;
+
+	bool shouldRun = engine.Init(windowData);
 	if (!shouldRun)
 		return;
 
 	CGame game;
-	game.myWindowWidth = anEngine.GetWindowHandler()->GetWidth();
-	game.myWindowHeight = anEngine.GetWindowHandler()->GetHeight();
+	game.myWindowWidth = engine.GetWindowHandler()->GetWidth();
+	game.myWindowHeight = engine.GetWindowHandler()->GetHeight();
 	game.Init();
 
 	MSG windowMessage = { 0 };
@@ -124,19 +136,20 @@ void RunGame(CEngine &anEngine) {
 			}
 		}
 
-		anEngine.BeginFrame();
+		engine.BeginFrame();
 		game.Update();
-		anEngine.RenderFrame();
-		anEngine.EndFrame();
+		engine.RenderFrame();
+		engine.EndFrame();
 		CInputMapper::GetInstance()->Update();
 	}
+
+	DL_Debug::CDebug::Destroy();
 }
-	CEngine engine;
+
 	std::wstring subPath = L"";
 
 int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPWSTR lpCmdLine, _In_ int nShowCmd)
 {
-
 	hInstance;
 	hPrevInstance;
 	lpCmdLine;
@@ -147,16 +160,17 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 #endif
 
 	__try {
-		RunGame(engine);
+		RunGame(lpCmdLine);
 	}
 	__except (ExceptionFilterFunction(GetExceptionInformation(), subPath)) 
 	{
-		engine.ScreenShot(subPath);
+		CEngine::GetInstance()->CrashWithScreenShot(subPath);
 		ENGINE_ERROR_BOOL_MESSAGE(false, "Program crashed! A minidump was created at Bin/Crashes, please tell a programmer.");
 	}
 
 #ifdef USE_CONSOLE_COMMAND
 	CloseConsole();
 #endif
+
 	return 0;
 }
