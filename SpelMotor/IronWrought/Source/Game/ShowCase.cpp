@@ -80,29 +80,14 @@ void CShowCase::Init()
 	myPlayer = CreatePlayer({ 0.0f, 0.0f, -5.0f });
 	myEnemies.emplace_back(myEnemyPool->Create({ 1.0f, 0.0f, 0.0f }, 10.f, 0.f, 0.f, 1.f));
 
-
 	myCamera = CreateCamera(myPlayer);
-	//CParticle* particlePrefab = CParticleFactory::GetInstance()->LoadParticle("ParticleData_SmokeEmitter.json");
-	//CParticleInstance* particleEmitter = new CParticleInstance();
-	//particleEmitter->Init(particlePrefab);
-	//particleEmitter->SetPosition({ 0.0f, 0.0f, -5.5f });
-	//CScene::GetInstance()->AddInstance(particleEmitter);
-	//particleEmitter = new CParticleInstance();
-	//particleEmitter->Init(particlePrefab);
-	//particleEmitter->SetPosition({ 6.0f, 0.0f, -5.5f });
-	//CScene::GetInstance()->AddInstance(particleEmitter);
 
 	myFreeCamera = CreateCamera(nullptr);
 	//TODO TEMPORARY REMOVE MOvE YES
 	CInputMapper::GetInstance()->MapEvent(CInputObserver::EInputAction::MouseLeft, CInputObserver::EInputEvent::MoveClick);
 	CInputMapper::GetInstance()->MapEvent(CInputObserver::EInputAction::MouseRight, CInputObserver::EInputEvent::AttackClick);
 	//TODO TEMPORARY REMOVE MOVE YES
-	//CSpriteFactory* spriteFactory = CSpriteFactory::GetInstance();
-	//CSpriteInstance* spriteInstance = new CSpriteInstance();
-	//spriteInstance->Init(CSpriteFactory::GetInstance()->GetSprite("tempUI.dds"));
-	//spriteInstance->SetSize({ 2.0f,2.0f });
-	//spriteInstance->SetPosition({ 0.0f,-0.85f });
-	//CScene::GetInstance()->AddInstance(spriteInstance);
+
 	myStateStack = new CStateStack();
 	myMenuState = new CMenuState(*myStateStack);
 	myStateStack->PushState(myMenuState);
@@ -199,14 +184,11 @@ void CShowCase::Update()
 CGameObject* CShowCase::CreatePlayer(Vector3 aPosition)
 {
 	CGameObject* player = new CGameObject();
-	//CTransformComponent* transform = player->AddComponent<CTransformComponent>(*player, aPosition);
-	//player->myTransform->Scale(1.0f);
 	player->myTransform->Position(aPosition);
 	player->myTransform->Rotation({ 0.0f, 180.0f, 0.0f });
 	player->AddComponent<CCapsuleColliderComponent>(*player, 0.35f, 2.0f);
 	player->AddComponent<CModelComponent>(*player, "Assets/3D/Character/Enemy1/CH_NPC_enemy_01_19G4_1_19.fbx");
 	player->AddComponent<CPlayerControllerComponent>(*player);
-	//model->SetMyModel(CModelFactory::GetInstance()->GetModelPBR());
 
 	player->AddComponent<CStatsComponent>(*player, 100.f, 10.f, 5.f);
 	CScene::GetInstance()->AddInstance(player);
