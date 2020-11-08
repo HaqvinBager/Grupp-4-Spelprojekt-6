@@ -10,8 +10,8 @@ FBXHeaderExtension:  {
 		Month: 11
 		Day: 8
 		Hour: 1
-		Minute: 25
-		Second: 27
+		Minute: 47
+		Second: 18
 		Millisecond: 0
 	}
 	Creator: "FBX SDK/FBX Plugins version 2019.2"
@@ -36,14 +36,14 @@ FBXHeaderExtension:  {
 			P: "Original|ApplicationVendor", "KString", "", "", "Autodesk"
 			P: "Original|ApplicationName", "KString", "", "", "Maya"
 			P: "Original|ApplicationVersion", "KString", "", "", "201900"
-			P: "Original|DateTime_GMT", "DateTime", "", "", "08/11/2020 01:25:27.000"
+			P: "Original|DateTime_GMT", "DateTime", "", "", "08/11/2020 01:47:18.000"
 			P: "Original|FileName", "KString", "", "", "/Users/DavidRubarth/Dropbox (Personlig)/000 - TGA/2020-2021/Spelprojekt/SP6/GIT/Grupp-4-Spelprojekt-6/SpelMotor/IronWrought/Bin/Assets/3D/Environment/EN_P_L2Fence_01_19G4_01_19/EN_P_L2Fence_01_19G4_01_19.fbx"
              
 			P: "LastSaved", "Compound", "", ""
 			P: "LastSaved|ApplicationVendor", "KString", "", "", "Autodesk"
 			P: "LastSaved|ApplicationName", "KString", "", "", "Maya"
 			P: "LastSaved|ApplicationVersion", "KString", "", "", "201900"
-			P: "LastSaved|DateTime_GMT", "DateTime", "", "", "08/11/2020 01:25:27.000"
+			P: "LastSaved|DateTime_GMT", "DateTime", "", "", "08/11/2020 01:47:18.000"
 			P: "Original|ApplicationActiveProject", "KString", "", "", "/Users/DavidRubarth/Dropbox (Personlig)/000 - TGA/2020-2021/Spelprojekt/SP6/GIT/Grupp-4-Spelprojekt-6/SpelMotor/IronWrought/Bin/Assets/3D/Environment/EN_P_L2Fence_01_19G4_01_19"
 			P: "Original|ApplicationNativeFile", "KString", "", "", "/Users/DavidRubarth/Dropbox (Personlig)/000 - TGA/2020-2021/Spelprojekt/SP6/GIT/Grupp-4-Spelprojekt-6/Resources/Grafik/Lv2.mb"
 		}
@@ -60,7 +60,7 @@ GlobalSettings:  {
 		P: "CoordAxisSign", "int", "Integer", "",1
 		P: "OriginalUpAxis", "int", "Integer", "",1
 		P: "OriginalUpAxisSign", "int", "Integer", "",1
-		P: "UnitScaleFactor", "double", "Number", "",100
+		P: "UnitScaleFactor", "double", "Number", "",1
 		P: "OriginalUnitScaleFactor", "double", "Number", "",1
 		P: "AmbientColor", "ColorRGB", "Color", "",0,0,0
 		P: "DefaultCamera", "KString", "", "", "Producer Perspective"
@@ -80,7 +80,7 @@ GlobalSettings:  {
 
 Documents:  {
 	Count: 1
-	Document: 105553393977600, "", "Scene" {
+	Document: 105553320592128, "", "Scene" {
 		Properties70:  {
 			P: "SourceObject", "object", "", ""
 			P: "ActiveAnimStackName", "KString", "", "", "Take 001"
@@ -235,13 +235,13 @@ Definitions:  {
 ;------------------------------------------------------------------
 
 Objects:  {
-	NodeAttribute: 105553116851552, "NodeAttribute::", "Null" {
+	NodeAttribute: 105553126606736, "NodeAttribute::", "Null" {
 		Properties70:  {
 			P: "Look", "enum", "", "",0
 		}
 		TypeFlags: "Null"
 	}
-	Geometry: 140495463580512, "Geometry::", "Mesh" {
+	Geometry: 140585031232864, "Geometry::", "Mesh" {
 		Vertices: *72 {
 			a: 152.375915527344,0,0,152.375915527344,0,29.1919136047363,152.375915527344,16.2238693237305,0,152.375915527344,16.2238693237305,29.1919136047363,198.927383422852,16.2238693237305,-1.9073486328125e-06,198.927383422852,16.2238693237305,29.1919136047363,198.927383422852,0,-1.9073486328125e-06,198.927383422852,0,29.1919136047363,0,0,0,0,0,29.1919136047363,0,16.2238693237305,0,0,16.2238693237305,29.1919136047363,58.1661682128906,16.2238693237305,-1.9073486328125e-06,58.1661682128906,16.2238693237305,29.1919136047363,58.1661682128906,0,-1.9073486328125e-06,58.1661682128906,0,29.1919136047363,59.3239974975586,0,0,59.3239974975586,0,29.1919136047363,59.3239974975586,16.2238693237305,0,59.3239974975586,16.2238693237305,29.1919136047363,150.13655090332,16.2238693237305,-1.9073486328125e-06,150.13655090332,16.2238693237305,29.1919136047363,150.13655090332,0,-1.9073486328125e-06,150.13655090332,0,29.1919136047363
 		} 
@@ -334,20 +334,18 @@ Objects:  {
 			}
 		}
 	}
-	Model: 140495431448064, "Model::Done", "Null" {
+	Model: 140585053336576, "Model::Done", "Null" {
 		Version: 232
 		Properties70:  {
 			P: "RotationActive", "bool", "", "",1
 			P: "InheritType", "enum", "", "",1
 			P: "ScalingMax", "Vector3D", "Vector", "",0,0,0
 			P: "DefaultAttributeIndex", "int", "Integer", "",0
-			P: "Lcl Scaling", "Lcl Scaling", "", "A",0.01,0.01,0.01
-			P: "Visibility", "Visibility", "", "A",0
 		}
 		Shading: Y
 		Culling: "CullingOff"
 	}
-	Model: 140495449832448, "Model::EN_P_L2Fence_01_19G4_01_19", "Mesh" {
+	Model: 140585043655680, "Model::EN_P_L2Fence_01_19G4_01_19", "Mesh" {
 		Version: 232
 		Properties70:  {
 			P: "RotationActive", "bool", "", "",1
@@ -359,7 +357,7 @@ Objects:  {
 		Shading: T
 		Culling: "CullingOff"
 	}
-	Material: 140495400373712, "Material::lambert1", "" {
+	Material: 140585031238160, "Material::lambert1", "" {
 		Version: 102
 		ShadingModel: "lambert"
 		MultiLayer: 0
@@ -382,17 +380,17 @@ Objects:  {
 Connections:  {
 	
 	;Model::Done, Model::RootNode
-	C: "OO",140495431448064,0
+	C: "OO",140585053336576,0
 	
 	;NodeAttribute::, Model::Done
-	C: "OO",105553116851552,140495431448064
+	C: "OO",105553126606736,140585053336576
 	
 	;Model::EN_P_L2Fence_01_19G4_01_19, Model::Done
-	C: "OO",140495449832448,140495431448064
+	C: "OO",140585043655680,140585053336576
 	
 	;Geometry::, Model::EN_P_L2Fence_01_19G4_01_19
-	C: "OO",140495463580512,140495449832448
+	C: "OO",140585031232864,140585043655680
 	
 	;Material::lambert1, Model::EN_P_L2Fence_01_19G4_01_19
-	C: "OO",140495400373712,140495449832448
+	C: "OO",140585031238160,140585043655680
 }

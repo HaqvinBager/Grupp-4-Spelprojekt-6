@@ -10,8 +10,8 @@ FBXHeaderExtension:  {
 		Month: 11
 		Day: 8
 		Hour: 1
-		Minute: 12
-		Second: 37
+		Minute: 45
+		Second: 39
 		Millisecond: 0
 	}
 	Creator: "FBX SDK/FBX Plugins version 2019.2"
@@ -36,14 +36,14 @@ FBXHeaderExtension:  {
 			P: "Original|ApplicationVendor", "KString", "", "", "Autodesk"
 			P: "Original|ApplicationName", "KString", "", "", "Maya"
 			P: "Original|ApplicationVersion", "KString", "", "", "201900"
-			P: "Original|DateTime_GMT", "DateTime", "", "", "08/11/2020 01:12:37.000"
+			P: "Original|DateTime_GMT", "DateTime", "", "", "08/11/2020 01:45:39.000"
 			P: "Original|FileName", "KString", "", "", "/Users/DavidRubarth/Dropbox (Personlig)/000 - TGA/2020-2021/Spelprojekt/SP6/GIT/Grupp-4-Spelprojekt-6/SpelMotor/IronWrought/Bin/Assets/3D/Environment/EN_P_L2Bush_01_19G4_01_19/EN_P_L2Bush_01_19G4_01_19.fbx"
              
 			P: "LastSaved", "Compound", "", ""
 			P: "LastSaved|ApplicationVendor", "KString", "", "", "Autodesk"
 			P: "LastSaved|ApplicationName", "KString", "", "", "Maya"
 			P: "LastSaved|ApplicationVersion", "KString", "", "", "201900"
-			P: "LastSaved|DateTime_GMT", "DateTime", "", "", "08/11/2020 01:12:37.000"
+			P: "LastSaved|DateTime_GMT", "DateTime", "", "", "08/11/2020 01:45:39.000"
 			P: "Original|ApplicationActiveProject", "KString", "", "", "/Users/DavidRubarth/Dropbox (Personlig)/000 - TGA/2020-2021/Spelprojekt/SP6/GIT/Grupp-4-Spelprojekt-6/SpelMotor/IronWrought/Bin/Assets/3D/Environment/EN_P_L2Bush_01_19G4_01_19"
 			P: "Original|ApplicationNativeFile", "KString", "", "", "/Users/DavidRubarth/Dropbox (Personlig)/000 - TGA/2020-2021/Spelprojekt/SP6/GIT/Grupp-4-Spelprojekt-6/Resources/Grafik/Lv2.mb"
 		}
@@ -60,7 +60,7 @@ GlobalSettings:  {
 		P: "CoordAxisSign", "int", "Integer", "",1
 		P: "OriginalUpAxis", "int", "Integer", "",1
 		P: "OriginalUpAxisSign", "int", "Integer", "",1
-		P: "UnitScaleFactor", "double", "Number", "",100
+		P: "UnitScaleFactor", "double", "Number", "",1
 		P: "OriginalUnitScaleFactor", "double", "Number", "",1
 		P: "AmbientColor", "ColorRGB", "Color", "",0,0,0
 		P: "DefaultCamera", "KString", "", "", "Producer Perspective"
@@ -80,7 +80,7 @@ GlobalSettings:  {
 
 Documents:  {
 	Count: 1
-	Document: 105553394124544, "", "Scene" {
+	Document: 105553320512256, "", "Scene" {
 		Properties70:  {
 			P: "SourceObject", "object", "", ""
 			P: "ActiveAnimStackName", "KString", "", "", "Take 001"
@@ -235,13 +235,13 @@ Definitions:  {
 ;------------------------------------------------------------------
 
 Objects:  {
-	NodeAttribute: 105553119845600, "NodeAttribute::", "Null" {
+	NodeAttribute: 105553126714368, "NodeAttribute::", "Null" {
 		Properties70:  {
 			P: "Look", "enum", "", "",0
 		}
 		TypeFlags: "Null"
 	}
-	Geometry: 140495399336656, "Geometry::", "Mesh" {
+	Geometry: 140585032588480, "Geometry::", "Mesh" {
 		Vertices: *24 {
 			a: 0,0,80,200,0,80,0,100,80,200,100,80,0,100,0,200,100,0,0,0,0,200,0,0
 		} 
@@ -334,19 +334,18 @@ Objects:  {
 			}
 		}
 	}
-	Model: 140495469289984, "Model::Done", "Null" {
+	Model: 140585052007424, "Model::Done", "Null" {
 		Version: 232
 		Properties70:  {
 			P: "RotationActive", "bool", "", "",1
 			P: "InheritType", "enum", "", "",1
 			P: "ScalingMax", "Vector3D", "Vector", "",0,0,0
 			P: "DefaultAttributeIndex", "int", "Integer", "",0
-			P: "Lcl Scaling", "Lcl Scaling", "", "A",0.01,0.01,0.01
 		}
 		Shading: Y
 		Culling: "CullingOff"
 	}
-	Model: 140495469367296, "Model::EN_P_L2Bush_01_19G4_01_19", "Mesh" {
+	Model: 140585052014592, "Model::EN_P_L2Bush_01_19G4_01_19", "Mesh" {
 		Version: 232
 		Properties70:  {
 			P: "RotationActive", "bool", "", "",1
@@ -358,7 +357,7 @@ Objects:  {
 		Shading: T
 		Culling: "CullingOff"
 	}
-	Material: 140495462342288, "Material::lambert1", "" {
+	Material: 140585032326320, "Material::lambert1", "" {
 		Version: 102
 		ShadingModel: "lambert"
 		MultiLayer: 0
@@ -381,17 +380,17 @@ Objects:  {
 Connections:  {
 	
 	;Model::Done, Model::RootNode
-	C: "OO",140495469289984,0
+	C: "OO",140585052007424,0
 	
 	;NodeAttribute::, Model::Done
-	C: "OO",105553119845600,140495469289984
+	C: "OO",105553126714368,140585052007424
 	
 	;Model::EN_P_L2Bush_01_19G4_01_19, Model::Done
-	C: "OO",140495469367296,140495469289984
+	C: "OO",140585052014592,140585052007424
 	
 	;Geometry::, Model::EN_P_L2Bush_01_19G4_01_19
-	C: "OO",140495399336656,140495469367296
+	C: "OO",140585032588480,140585052014592
 	
 	;Material::lambert1, Model::EN_P_L2Bush_01_19G4_01_19
-	C: "OO",140495462342288,140495469367296
+	C: "OO",140585032326320,140585052014592
 }

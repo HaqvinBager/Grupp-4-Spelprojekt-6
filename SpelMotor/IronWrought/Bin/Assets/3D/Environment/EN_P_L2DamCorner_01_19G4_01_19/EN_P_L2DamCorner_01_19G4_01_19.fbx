@@ -10,8 +10,8 @@ FBXHeaderExtension:  {
 		Month: 11
 		Day: 8
 		Hour: 1
-		Minute: 9
-		Second: 51
+		Minute: 44
+		Second: 39
 		Millisecond: 0
 	}
 	Creator: "FBX SDK/FBX Plugins version 2019.2"
@@ -36,14 +36,14 @@ FBXHeaderExtension:  {
 			P: "Original|ApplicationVendor", "KString", "", "", "Autodesk"
 			P: "Original|ApplicationName", "KString", "", "", "Maya"
 			P: "Original|ApplicationVersion", "KString", "", "", "201900"
-			P: "Original|DateTime_GMT", "DateTime", "", "", "08/11/2020 01:09:51.000"
+			P: "Original|DateTime_GMT", "DateTime", "", "", "08/11/2020 01:44:39.000"
 			P: "Original|FileName", "KString", "", "", "/Users/DavidRubarth/Dropbox (Personlig)/000 - TGA/2020-2021/Spelprojekt/SP6/GIT/Grupp-4-Spelprojekt-6/SpelMotor/IronWrought/Bin/Assets/3D/Environment/EN_P_L2DamCorner_01_19G4_01_19/EN_P_L2DamCorner_01_19G4_01_19.fbx"
              
 			P: "LastSaved", "Compound", "", ""
 			P: "LastSaved|ApplicationVendor", "KString", "", "", "Autodesk"
 			P: "LastSaved|ApplicationName", "KString", "", "", "Maya"
 			P: "LastSaved|ApplicationVersion", "KString", "", "", "201900"
-			P: "LastSaved|DateTime_GMT", "DateTime", "", "", "08/11/2020 01:09:51.000"
+			P: "LastSaved|DateTime_GMT", "DateTime", "", "", "08/11/2020 01:44:39.000"
 			P: "Original|ApplicationActiveProject", "KString", "", "", "/Users/DavidRubarth/Dropbox (Personlig)/000 - TGA/2020-2021/Spelprojekt/SP6/GIT/Grupp-4-Spelprojekt-6/SpelMotor/IronWrought/Bin/Assets/3D/Environment/EN_P_L2DamCorner_01_19G4_01_19"
 			P: "Original|ApplicationNativeFile", "KString", "", "", "/Users/DavidRubarth/Dropbox (Personlig)/000 - TGA/2020-2021/Spelprojekt/SP6/GIT/Grupp-4-Spelprojekt-6/Resources/Grafik/Lv2.mb"
 		}
@@ -60,7 +60,7 @@ GlobalSettings:  {
 		P: "CoordAxisSign", "int", "Integer", "",1
 		P: "OriginalUpAxis", "int", "Integer", "",1
 		P: "OriginalUpAxisSign", "int", "Integer", "",1
-		P: "UnitScaleFactor", "double", "Number", "",100
+		P: "UnitScaleFactor", "double", "Number", "",1
 		P: "OriginalUnitScaleFactor", "double", "Number", "",1
 		P: "AmbientColor", "ColorRGB", "Color", "",0,0,0
 		P: "DefaultCamera", "KString", "", "", "Producer Perspective"
@@ -80,7 +80,7 @@ GlobalSettings:  {
 
 Documents:  {
 	Count: 1
-	Document: 105553393943040, "", "Scene" {
+	Document: 105553320689920, "", "Scene" {
 		Properties70:  {
 			P: "SourceObject", "object", "", ""
 			P: "ActiveAnimStackName", "KString", "", "", "Take 001"
@@ -235,13 +235,13 @@ Definitions:  {
 ;------------------------------------------------------------------
 
 Objects:  {
-	NodeAttribute: 105553119666960, "NodeAttribute::", "Null" {
+	NodeAttribute: 105553126345120, "NodeAttribute::", "Null" {
 		Properties70:  {
 			P: "Look", "enum", "", "",0
 		}
 		TypeFlags: "Null"
 	}
-	Geometry: 140495417531600, "Geometry::", "Mesh" {
+	Geometry: 140585026551360, "Geometry::", "Mesh" {
 		Vertices: *78 {
 			a: -5.7969427871285e-06,0.280460238456726,194.513137817383,60.1078567504883,0.280460238456726,184.99299621582,114.331962585449,0.280460238456726,157.36442565918,157.364456176758,0.280460238456726,114.331939697266,184.992980957031,0.280460238456726,60.1078491210938,194.513122558594,0.280460238456726,-1.52587890625e-05,-5.7969427871285e-06,83.0922317504883,194.513137817383,60.1078567504883,83.0922317504883,184.99299621582,114.331962585449,83.0922317504883,157.36442565918,157.364456176758,83.0922317504883,114.331939697266,184.992980957031,83.0922317504883,60.1078491210938,194.513122558594,83.0922317504883,-1.52587890625e-05,0,0.280460238456726,-1.52587890625e-05,2.9555301352957e-06,83.0922317504883,166.421432495117,166.421432495117,83.0922317504883,0,158.275924682617,83.0922317504883,51.4270324707031,134.6376953125,83.0922317504883,97.8200378417969,97.8200454711914,83.0922317504883,134.637680053711,51.4270401000977,83.0922317504883,158.275924682617,2.9555301352957e-06,43.8736763000488,166.421432495117,0,43.8736763000488,-1.52587890625e-05,166.421432495117,43.8736763000488,0,158.275924682617,43.8736763000488,51.4270324707031,134.6376953125,43.8736763000488,97.8200378417969,97.8200454711914,43.8736763000488,134.637680053711,51.4270401000977,43.8736763000488,158.275924682617
 		} 
@@ -338,19 +338,18 @@ Objects:  {
 			}
 		}
 	}
-	Model: 140495431434240, "Model::Done", "Null" {
+	Model: 140585013408256, "Model::Done", "Null" {
 		Version: 232
 		Properties70:  {
 			P: "RotationActive", "bool", "", "",1
 			P: "InheritType", "enum", "", "",1
 			P: "ScalingMax", "Vector3D", "Vector", "",0,0,0
 			P: "DefaultAttributeIndex", "int", "Integer", "",0
-			P: "Lcl Scaling", "Lcl Scaling", "", "A",0.01,0.01,0.01
 		}
 		Shading: Y
 		Culling: "CullingOff"
 	}
-	Model: 140495346060288, "Model::EN_P_L2DamCorner_01_19G4_01_19", "Mesh" {
+	Model: 140584915192320, "Model::EN_P_L2DamCorner_01_19G4_01_19", "Mesh" {
 		Version: 232
 		Properties70:  {
 			P: "RotationPivot", "Vector3D", "Vector", "",0,0.280460244317624,0
@@ -364,7 +363,7 @@ Objects:  {
 		Shading: T
 		Culling: "CullingOff"
 	}
-	Material: 140495419295728, "Material::lambert1", "" {
+	Material: 140585026498928, "Material::lambert1", "" {
 		Version: 102
 		ShadingModel: "lambert"
 		MultiLayer: 0
@@ -379,7 +378,7 @@ Objects:  {
 			P: "Opacity", "double", "Number", "",1
 		}
 	}
-	Material: 140495426001408, "Material::blood", "" {
+	Material: 140585027214688, "Material::blood", "" {
 		Version: 102
 		ShadingModel: "lambert"
 		MultiLayer: 0
@@ -402,20 +401,20 @@ Objects:  {
 Connections:  {
 	
 	;Model::Done, Model::RootNode
-	C: "OO",140495431434240,0
+	C: "OO",140585013408256,0
 	
 	;NodeAttribute::, Model::Done
-	C: "OO",105553119666960,140495431434240
+	C: "OO",105553126345120,140585013408256
 	
 	;Model::EN_P_L2DamCorner_01_19G4_01_19, Model::Done
-	C: "OO",140495346060288,140495431434240
+	C: "OO",140584915192320,140585013408256
 	
 	;Geometry::, Model::EN_P_L2DamCorner_01_19G4_01_19
-	C: "OO",140495417531600,140495346060288
+	C: "OO",140585026551360,140584915192320
 	
 	;Material::lambert1, Model::EN_P_L2DamCorner_01_19G4_01_19
-	C: "OO",140495419295728,140495346060288
+	C: "OO",140585026498928,140584915192320
 	
 	;Material::blood, Model::EN_P_L2DamCorner_01_19G4_01_19
-	C: "OO",140495426001408,140495346060288
+	C: "OO",140585027214688,140584915192320
 }

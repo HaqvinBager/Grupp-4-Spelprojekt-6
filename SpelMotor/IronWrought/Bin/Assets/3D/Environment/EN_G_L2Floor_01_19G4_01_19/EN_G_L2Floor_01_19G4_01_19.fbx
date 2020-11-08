@@ -10,8 +10,8 @@ FBXHeaderExtension:  {
 		Month: 11
 		Day: 8
 		Hour: 1
-		Minute: 7
-		Second: 44
+		Minute: 43
+		Second: 43
 		Millisecond: 0
 	}
 	Creator: "FBX SDK/FBX Plugins version 2019.2"
@@ -36,14 +36,14 @@ FBXHeaderExtension:  {
 			P: "Original|ApplicationVendor", "KString", "", "", "Autodesk"
 			P: "Original|ApplicationName", "KString", "", "", "Maya"
 			P: "Original|ApplicationVersion", "KString", "", "", "201900"
-			P: "Original|DateTime_GMT", "DateTime", "", "", "08/11/2020 01:07:44.000"
+			P: "Original|DateTime_GMT", "DateTime", "", "", "08/11/2020 01:43:43.000"
 			P: "Original|FileName", "KString", "", "", "/Users/DavidRubarth/Dropbox (Personlig)/000 - TGA/2020-2021/Spelprojekt/SP6/GIT/Grupp-4-Spelprojekt-6/SpelMotor/IronWrought/Bin/Assets/3D/Environment/EN_G_L2Floor_01_19G4_01_19/EN_G_L2Floor_01_19G4_01_19.fbx"
              
 			P: "LastSaved", "Compound", "", ""
 			P: "LastSaved|ApplicationVendor", "KString", "", "", "Autodesk"
 			P: "LastSaved|ApplicationName", "KString", "", "", "Maya"
 			P: "LastSaved|ApplicationVersion", "KString", "", "", "201900"
-			P: "LastSaved|DateTime_GMT", "DateTime", "", "", "08/11/2020 01:07:44.000"
+			P: "LastSaved|DateTime_GMT", "DateTime", "", "", "08/11/2020 01:43:43.000"
 			P: "Original|ApplicationActiveProject", "KString", "", "", "/Users/DavidRubarth/Dropbox (Personlig)/000 - TGA/2020-2021/Spelprojekt/SP6/GIT/Grupp-4-Spelprojekt-6/SpelMotor/IronWrought/Bin/Assets/3D/Environment/EN_G_L2Floor_01_19G4_01_19"
 			P: "Original|ApplicationNativeFile", "KString", "", "", "/Users/DavidRubarth/Dropbox (Personlig)/000 - TGA/2020-2021/Spelprojekt/SP6/GIT/Grupp-4-Spelprojekt-6/Resources/Grafik/Lv2.mb"
 		}
@@ -60,7 +60,7 @@ GlobalSettings:  {
 		P: "CoordAxisSign", "int", "Integer", "",1
 		P: "OriginalUpAxis", "int", "Integer", "",1
 		P: "OriginalUpAxisSign", "int", "Integer", "",1
-		P: "UnitScaleFactor", "double", "Number", "",100
+		P: "UnitScaleFactor", "double", "Number", "",1
 		P: "OriginalUnitScaleFactor", "double", "Number", "",1
 		P: "AmbientColor", "ColorRGB", "Color", "",0,0,0
 		P: "DefaultCamera", "KString", "", "", "Producer Perspective"
@@ -80,7 +80,7 @@ GlobalSettings:  {
 
 Documents:  {
 	Count: 1
-	Document: 105553327161600, "", "Scene" {
+	Document: 105553320247552, "", "Scene" {
 		Properties70:  {
 			P: "SourceObject", "object", "", ""
 			P: "ActiveAnimStackName", "KString", "", "", "Take 001"
@@ -235,13 +235,13 @@ Definitions:  {
 ;------------------------------------------------------------------
 
 Objects:  {
-	NodeAttribute: 105553119541344, "NodeAttribute::", "Null" {
+	NodeAttribute: 105553126359568, "NodeAttribute::", "Null" {
 		Properties70:  {
 			P: "Look", "enum", "", "",0
 		}
 		TypeFlags: "Null"
 	}
-	Geometry: 140495426121408, "Geometry::", "Mesh" {
+	Geometry: 140585026537680, "Geometry::", "Mesh" {
 		Vertices: *12 {
 			a: 0,-1.42108538681691e-14,400,400,-1.42108538681691e-14,400,0,-1.42108538681691e-14,0,400,-1.42108538681691e-14,0
 		} 
@@ -334,19 +334,18 @@ Objects:  {
 			}
 		}
 	}
-	Model: 140495438005248, "Model::Done", "Null" {
+	Model: 140584921420800, "Model::Done", "Null" {
 		Version: 232
 		Properties70:  {
 			P: "RotationActive", "bool", "", "",1
 			P: "InheritType", "enum", "", "",1
 			P: "ScalingMax", "Vector3D", "Vector", "",0,0,0
 			P: "DefaultAttributeIndex", "int", "Integer", "",0
-			P: "Lcl Scaling", "Lcl Scaling", "", "A",0.01,0.01,0.01
 		}
 		Shading: Y
 		Culling: "CullingOff"
 	}
-	Model: 140495438014464, "Model::EN_G_L2Floor_01_19G4_01_19", "Mesh" {
+	Model: 140584921155072, "Model::EN_G_L2Floor_01_19G4_01_19", "Mesh" {
 		Version: 232
 		Properties70:  {
 			P: "RotationActive", "bool", "", "",1
@@ -358,7 +357,7 @@ Objects:  {
 		Shading: T
 		Culling: "CullingOff"
 	}
-	Material: 140495410598096, "Material::lambert1", "" {
+	Material: 140585026530144, "Material::lambert1", "" {
 		Version: 102
 		ShadingModel: "lambert"
 		MultiLayer: 0
@@ -381,17 +380,17 @@ Objects:  {
 Connections:  {
 	
 	;Model::Done, Model::RootNode
-	C: "OO",140495438005248,0
+	C: "OO",140584921420800,0
 	
 	;NodeAttribute::, Model::Done
-	C: "OO",105553119541344,140495438005248
+	C: "OO",105553126359568,140584921420800
 	
 	;Model::EN_G_L2Floor_01_19G4_01_19, Model::Done
-	C: "OO",140495438014464,140495438005248
+	C: "OO",140584921155072,140584921420800
 	
 	;Geometry::, Model::EN_G_L2Floor_01_19G4_01_19
-	C: "OO",140495426121408,140495438014464
+	C: "OO",140585026537680,140584921155072
 	
 	;Material::lambert1, Model::EN_G_L2Floor_01_19G4_01_19
-	C: "OO",140495410598096,140495438014464
+	C: "OO",140585026530144,140584921155072
 }
