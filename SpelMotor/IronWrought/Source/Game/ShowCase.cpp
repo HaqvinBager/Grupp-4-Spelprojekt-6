@@ -55,7 +55,7 @@ CShowCase::CShowCase()
 	, myWindowWidth(0)
 	, myWindowHeight(0)
 	, myEnemyPool(new CObjectPool())
-	, myTokenPool(new CTokenPool(2))
+	, myTokenPool(new CTokenPool(2, 1.f))
 {
 }
 
@@ -308,8 +308,12 @@ void CShowCase::UpdatePlayerController()
 		if (CIntersectionManager::CapsuleIntersection(*playerCollider, *myEnemies[i]->GetComponent<CCapsuleColliderComponent>()))
 		{
 			//-------temp move out from collider!!---------
-			myPlayer->GetComponent<CTransformComponent>()->Move(CIntersectionManager::GetPenetrationCapsule());
+			myPlayer->GetComponent<CTransformComponent>()->Move(CIntersectionManager::GetCapsulePenetration());
 			//---------------------------------------------
+
+			if (myEnemies[i]->GetComponent<CStatsComponent>()->GetToken() != nullptr) {
+				myPlayer->GetComponent<CStatsComponent>()->TakeDamage(myEnemies[i]->GetComponent<CStatsComponent>()->GetDamage());
+			}
 
 			myEnemies[i]->GetComponent<CStatsComponent>()->TakeDamage(myPlayer->GetComponent<CStatsComponent>()->GetDamage());
 			if (myEnemies[i]->GetComponent<CStatsComponent>()->GetHealth() <= 0) {
