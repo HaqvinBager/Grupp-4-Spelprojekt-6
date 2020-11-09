@@ -41,7 +41,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 82c5e80cc95c64c48969c196da7a3eec,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 82c5e80cc95c64c48969c196da7a3eec,
         type: 3}
@@ -56,7 +56,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 82c5e80cc95c64c48969c196da7a3eec,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 82c5e80cc95c64c48969c196da7a3eec,
         type: 3}
@@ -97,6 +97,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: EN_W_L1Stair_03_19G4_01_19
+      objectReference: {fileID: 0}
+    - target: {fileID: 942896201569231847, guid: 82c5e80cc95c64c48969c196da7a3eec,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 942896201569231847, guid: 82c5e80cc95c64c48969c196da7a3eec,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 82c5e80cc95c64c48969c196da7a3eec, type: 3}

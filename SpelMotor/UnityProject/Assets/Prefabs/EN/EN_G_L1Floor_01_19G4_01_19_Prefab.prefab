@@ -41,7 +41,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: f45983b556643fa4fb348e20bf1bbf18,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f45983b556643fa4fb348e20bf1bbf18,
         type: 3}
@@ -56,7 +56,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: f45983b556643fa4fb348e20bf1bbf18,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f45983b556643fa4fb348e20bf1bbf18,
         type: 3}
@@ -97,6 +97,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: EN_G_L1Floor_01_19G4_01_19
+      objectReference: {fileID: 0}
+    - target: {fileID: 4270961778969098375, guid: f45983b556643fa4fb348e20bf1bbf18,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4270961778969098375, guid: f45983b556643fa4fb348e20bf1bbf18,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f45983b556643fa4fb348e20bf1bbf18, type: 3}

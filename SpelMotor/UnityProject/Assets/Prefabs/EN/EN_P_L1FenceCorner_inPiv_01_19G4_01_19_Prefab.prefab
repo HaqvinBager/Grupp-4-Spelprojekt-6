@@ -41,7 +41,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 4267e1c48f495864eb20a40f865001d6,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4267e1c48f495864eb20a40f865001d6,
         type: 3}
@@ -56,7 +56,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 4267e1c48f495864eb20a40f865001d6,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4267e1c48f495864eb20a40f865001d6,
         type: 3}
@@ -97,6 +97,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: EN_P_L1FenceCorner_inPiv_01_19G4_01_19
+      objectReference: {fileID: 0}
+    - target: {fileID: 1389973236346854414, guid: 4267e1c48f495864eb20a40f865001d6,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1389973236346854414, guid: 4267e1c48f495864eb20a40f865001d6,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4267e1c48f495864eb20a40f865001d6, type: 3}
