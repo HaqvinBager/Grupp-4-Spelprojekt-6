@@ -74,7 +74,7 @@ void CShowCase::Init()
 {
 	CNavmeshLoader* nav = new CNavmeshLoader();
 	myNavMesh = nav->LoadNavmesh("Navmesh/Dungeon_ExportedNavMesh.obj");
-
+	
 	myLevelLoader->Init();
 
 	//myLevelLoader->LoadNewLevel("TODO");
@@ -176,7 +176,7 @@ void CShowCase::Update()
 
 	//spawn enemy
 	if (Input::GetInstance()->IsKeyPressed('O')) {
-		myEnemies.emplace_back(myEnemyPool->Create({ 0.0f, 0.0f, 0.0f }, 50.f, 0.f, 0.f, 1.f));
+		myEnemies.emplace_back(myEnemyPool->Create({ 0.0f, 0.0f, 0.0f }, 50.f, 5.f, 0.f, 1.f));
 		std::cout << myEnemies.size() << std::endl;
 	}
 	for (int i = 0; i < myEnemies.size(); ++i) {
