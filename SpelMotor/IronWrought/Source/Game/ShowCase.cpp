@@ -44,16 +44,18 @@
 #include "InGameState.h"
 #include "DialogueSystem.h"
 #include "ObjectPool.h"
+#include "TokenPool.h"
 
 using namespace CommonUtilities;
 
-CShowCase::CShowCase() 
+CShowCase::CShowCase()
 	: myLevelLoader(new CLevelLoader())
 	, myPlayer(nullptr)
 	, myCamera(nullptr), myFreeCamera(nullptr)
 	, myWindowWidth(0)
 	, myWindowHeight(0)
 	, myEnemyPool(new CObjectPool())
+	, myTokenPool(new CTokenPool(2))
 {
 }
 
@@ -106,6 +108,7 @@ void CShowCase::Init()
 
 void CShowCase::Update()
 {
+	myTokenPool->Update();
 	/*
 	* Debug.DrawLine(positionA, positionB, color);
 		ENGINE_DRAW_LINE(posA, posB, color);
@@ -178,7 +181,8 @@ void CShowCase::Update()
 
 	//spawn enemy
 	if (Input::GetInstance()->IsKeyPressed('O')) {
-		myEnemies.emplace_back(myEnemyPool->Create({ 0.0f, 0.0f, 0.0f }, 10.f, 0.f, 0.f, 1.f));
+		myEnemies.emplace_back(myEnemyPool->Create({ 0.0f, 0.0f, 0.0f }, 50.f, 0.f, 0.f, 1.f));
+		std::cout << myEnemies.size() << std::endl;
 	}
 	for (int i = 0; i < myEnemies.size(); ++i) {
 		myEnemies[i]->GetComponent<CStatsComponent>()->FindATarget(*myPlayer);
@@ -303,6 +307,10 @@ void CShowCase::UpdatePlayerController()
 	for (int i = 0; i < myEnemies.size(); ++i) {
 		if (CIntersectionManager::CapsuleIntersection(*playerCollider, *myEnemies[i]->GetComponent<CCapsuleColliderComponent>()))
 		{
+			//-------temp move out from collider!!---------
+			myPlayer->GetComponent<CTransformComponent>()->Move(CIntersectionManager::GetPenetrationCapsule());
+			//---------------------------------------------
+
 			myEnemies[i]->GetComponent<CStatsComponent>()->TakeDamage(myPlayer->GetComponent<CStatsComponent>()->GetDamage());
 			if (myEnemies[i]->GetComponent<CStatsComponent>()->GetHealth() <= 0) {
 				myEnemies.erase(myEnemies.begin() + i);
