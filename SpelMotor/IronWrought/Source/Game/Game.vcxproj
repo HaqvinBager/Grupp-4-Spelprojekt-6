@@ -106,6 +106,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="AbilityBehaviorComponent.h" />
+    <ClInclude Include="AbilityComponent.h" />
     <ClInclude Include="DialogueSystem.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="AbilityBehavior.h" />
@@ -118,6 +119,7 @@
   <ItemGroup>
     <ClCompile Include="AbilityBehavior.cpp" />
     <ClCompile Include="AbilityBehaviorComponent.cpp" />
+    <ClCompile Include="AbilityComponent.cpp" />
     <ClCompile Include="DialogueSystem.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="InGameState.cpp" />

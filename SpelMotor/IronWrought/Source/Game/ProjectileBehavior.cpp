@@ -3,6 +3,8 @@
 #include "GameObject.h"
 #include "TransformComponent.h"
 #include "Timer.h"
+#include "MouseTracker.h"
+#include "Engine.h"
 
 namespace SM = DirectX::SimpleMath;
 
@@ -11,6 +13,9 @@ CProjectileBehavior::CProjectileBehavior(SM::Vector3 aDirection, float aSpeed)
 	myDirection = aDirection;
 	myDirection.Normalize();
 	mySpeed = aSpeed;
+
+	myDuration = 3.0f;
+	myTimer = 0.0f;
 }
 
 CProjectileBehavior::~CProjectileBehavior()
@@ -19,10 +24,16 @@ CProjectileBehavior::~CProjectileBehavior()
 
 void CProjectileBehavior::Update(CGameObject* aParent)
 {
+	myTimer += CTimer::Dt();
+	if (myTimer > myDuration) {
+		myTimer = 0.0f;
+		aParent->Enabled(false);
+	}
 	aParent->GetComponent<CTransformComponent>()->Move(myDirection * mySpeed * CTimer::Dt());
-	//someAbilityData.myCollider->SetPosition(aParent.Position() + direction);
-	//someAbilityData.myVFX->SetPosition(aParent.Position() + direction);
-	//for (unsigned int i = 0; i < someAbilityData.myParticleSystems.size(); ++i) {
-	//	someAbilityData.myParticleSystems[i]->SetPosition(aParent.Position() + direction);
-	//}
+}
+
+void CProjectileBehavior::Init(DirectX::SimpleMath::Vector3 aCasterPosition)
+{
+	myDirection = MouseTracker::ScreenPositionToWorldPosition(CEngine::GetInstance()->GetWindowHandler()->GetWidth(), CEngine::GetInstance()->GetWindowHandler()->GetHeight()) - aCasterPosition;
+	myDirection.Normalize();
 }
