@@ -27,11 +27,6 @@ public class PrefabCreator : Editor
         GetAllOriginalSourceAssets(out List<string> sourceAssetNames, out List<GameObject> sourceAssets);
         CreatePrefabsFromSourceAssets(sourceAssetNames, sourceAssets);
 
-        Dictionary<string, List<Object>> allPrefabs = new Dictionary<string, List<Object>>();
-
-        string prefabFolder = "Assets/Prefab/";
-        allPrefabs.Add(prefabFolders[0], AssetDatabase.LoadAllAssetsAtPath(prefabFolder + prefabFolder[0]).ToList<Object>());
-
         List<string> allPaths = AssetDatabase.GetAllAssetPaths().ToList<string>();
         List<string> prefabPaths = new List<string>();
         foreach (string path in allPaths)
@@ -43,6 +38,22 @@ public class PrefabCreator : Editor
                     prefabPaths.Add(path);
                 }
             }
+        }
+
+        List<Object> allPrefabs = new List<Object>();
+        foreach (string prefabPath in prefabPaths)
+        {
+            allPrefabs.Add(AssetDatabase.LoadAssetAtPath<Object>(prefabPath));
+        }
+
+        foreach (GameObject prefab in allPrefabs)
+        {
+            if (prefab.TryGetComponent(out EditorConstraint editorConstraint))
+            {
+                continue;
+            }
+
+            ObjectFactory.AddComponent(prefab, typeof(EditorConstraint));
         }
 
         Stack<GameObject> objectsThatCouldNotBeReplaced = new Stack<GameObject>();
