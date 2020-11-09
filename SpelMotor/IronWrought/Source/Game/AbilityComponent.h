@@ -10,7 +10,7 @@ enum class EAbilityType {
 class CAbilityComponent : public CComponent
 {
 public:
-	CAbilityComponent(CGameObject& aParent, std::vector<std::pair<EAbilityType, int>> someAbilities);
+	CAbilityComponent(CGameObject& aParent, std::vector<std::pair<EAbilityType, unsigned int>> someAbilities);
 	~CAbilityComponent();
 
 	void Awake() override;
