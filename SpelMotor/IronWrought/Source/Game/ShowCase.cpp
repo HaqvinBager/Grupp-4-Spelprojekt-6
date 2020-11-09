@@ -256,7 +256,7 @@ void CShowCase::CreateAbility(Vector3 aPosition)
 	CGameObject* abilityTest = new CGameObject();
 	abilityTest->myTransform->Position(aPosition);
 	abilityTest->AddComponent<CVFXComponent>(*abilityTest);
-	abilityTest->GetComponent<CVFXComponent>()->Init(CVFXFactory::GetInstance()->GetVFXBase("Assets/3D/VFX/Disc_test.fbx", "VFXData_FogWall.json"));
+	abilityTest->GetComponent<CVFXComponent>()->Init(CVFXFactory::GetInstance()->GetVFXBase("Assets/3D/VFX/VFX_mesh_disc_01_19G4.fbx", "VFXData_FogWall.json"));
 
 	abilityTest->AddComponent<CParticleEmitterComponent>(*abilityTest);
 	abilityTest->GetComponent<CParticleEmitterComponent>()->Init(CParticleFactory::GetInstance()->GetParticle("ParticleData_SmokeEmitter.json"));
