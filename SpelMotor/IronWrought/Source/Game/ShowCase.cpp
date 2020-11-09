@@ -191,7 +191,7 @@ CGameObject* CShowCase::CreatePlayer(Vector3 aPosition)
 	player->myTransform->Position(aPosition);
 	player->myTransform->Rotation({ 0.0f, 180.0f, 0.0f });
 	player->AddComponent<CCapsuleColliderComponent>(*player, 0.35f, 2.0f);
-	player->AddComponent<CModelComponent>(*player, "Assets/3D/Character/Enemy1/CH_NPC_enemy_01_19G4_1_19.fbx");
+	player->AddComponent<CModelComponent>(*player, "Assets/3D/Character/CH_NPC_enemy_01_19G4_1_19/CH_NPC_enemy_01_19G4_1_19.fbx");
 	player->AddComponent<CPlayerControllerComponent>(*player);
 
 	player->AddComponent<CStatsComponent>(*player, 100.f, 10.f, 5.f);
