@@ -7,6 +7,7 @@ class CGameObject;
 class CCamera; 
 class CDialogueSystem;
 class CObjectPool;
+class CTokenPool;
 
 struct SNavMesh;
 
@@ -42,4 +43,5 @@ private:
 	class CInGameState* myInGameState;
 	CDialogueSystem* myDialogueSystem;
 	CObjectPool* myEnemyPool;
+	CTokenPool* myTokenPool;
 };
