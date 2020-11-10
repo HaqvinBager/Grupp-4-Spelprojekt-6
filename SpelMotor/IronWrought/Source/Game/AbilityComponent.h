@@ -1,5 +1,5 @@
 #pragma once
-#include "Component.h"
+#include "Behaviour.h"
 
 class CGameObject;
 
@@ -7,7 +7,7 @@ enum class EAbilityType {
 	WHIRLWIND
 };
 
-class CAbilityComponent : public CComponent
+class CAbilityComponent : public CBehaviour
 {
 public:
 	CAbilityComponent(CGameObject& aParent, std::vector<std::pair<EAbilityType, unsigned int>> someAbilities);
@@ -16,6 +16,9 @@ public:
 	void Awake() override;
 	void Start() override;
 	void Update() override;
+
+	void OnEnable() override;
+	void OnDisable() override;
 
 	void UseAbility(EAbilityType anAbilityType, DirectX::SimpleMath::Vector3 aSpawnPosition);
 

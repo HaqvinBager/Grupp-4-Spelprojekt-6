@@ -1,11 +1,11 @@
 #pragma once
-#include <Component.h>
+#include <Behaviour.h>
 #include "AbilityComponent.h"
 
 class CGameObject;
 class IAbilityBehavior;
 
-class CAbilityBehaviorComponent : public CComponent
+class CAbilityBehaviorComponent : public CBehaviour
 {
 public:
 	CAbilityBehaviorComponent(CGameObject& aParent, IAbilityBehavior* aBehavior, EAbilityType anAbilityType);
@@ -14,6 +14,9 @@ public:
 	void Awake() override;
 	void Start() override;
 	void Update() override;
+
+	void OnEnable() override;
+	void OnDisable() override;
 
 	EAbilityType GetAbilityType() const;
 

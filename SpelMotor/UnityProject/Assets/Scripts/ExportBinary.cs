@@ -84,6 +84,7 @@ public class BinaryExporter
             {
                 int index = Getindex(PrefabUtility.GetCorrespondingObjectFromOriginalSource<GameObject>(child), filter);
                 Debug.Log(index);
+                bw.Write(go.GetInstanceID());
                 bw.Write(-go.transform.rotation.eulerAngles.x - 360.0f);
                 bw.Write(go.transform.rotation.eulerAngles.y + 180.0f);
                 bw.Write(-go.transform.rotation.eulerAngles.z - 360.0f);
@@ -97,9 +98,7 @@ public class BinaryExporter
                 bw.Write(index);
             }
         }
-
         bw.Close();
-
     }
 
     private static int Getindex(GameObject go, Dictionary<string, string> aDic)
