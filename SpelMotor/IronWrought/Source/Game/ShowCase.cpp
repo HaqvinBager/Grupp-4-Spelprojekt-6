@@ -52,6 +52,7 @@
 #include "AbilityComponent.h"
 #include "ObjectPool.h"
 #include "TokenPool.h"
+#include "FModWrapper.h"
 
 using namespace CommonUtilities;
 
@@ -73,6 +74,10 @@ CShowCase::~CShowCase() {
 
 void CShowCase::Init()
 {
+	CFModWrapper* wrapper;
+	wrapper = nullptr;
+	wrapper = new CFModWrapper();
+
 	CNavmeshLoader* nav = new CNavmeshLoader();
 	myNavMesh = nav->LoadNavmesh("Navmesh/Dungeon_ExportedNavMesh.obj");
 	

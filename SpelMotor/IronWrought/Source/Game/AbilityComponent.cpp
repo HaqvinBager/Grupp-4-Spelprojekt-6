@@ -56,6 +56,8 @@ void CAbilityComponent::UseAbility(EAbilityType anAbilityType, DirectX::SimpleMa
 	myActiveAbilities.back()->Active(true);
 	myActiveAbilities.back()->myTransform->Position(aSpawnPosition);
 
+	// getparent().playanimation(myactiveabilities.back().getcomponent<pod>().myanimation);
+
 	if (anAbilityType == EAbilityType::WHIRLWIND) {
 		myActiveAbilities.back()->GetComponent<CAbilityBehaviorComponent>()->Init(aSpawnPosition);
 	}
