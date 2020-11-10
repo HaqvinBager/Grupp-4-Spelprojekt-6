@@ -10,7 +10,7 @@
 #include "TransformComponent.h"
 #include "Scene.h"
 
-CAbilityComponent::CAbilityComponent(CGameObject& aParent, std::vector<std::pair<EAbilityType, unsigned int>> someAbilities) : CComponent(aParent)
+CAbilityComponent::CAbilityComponent(CGameObject& aParent, std::vector<std::pair<EAbilityType, unsigned int>> someAbilities) : CBehaviour(aParent)
 {
 	// Setting up pools
 	for (unsigned int i = 0; i < someAbilities.size(); ++i) {
@@ -43,6 +43,14 @@ void CAbilityComponent::Update()
 			myActiveAbilities.pop_back();
 		}
 	}
+}
+
+void CAbilityComponent::OnEnable()
+{
+}
+
+void CAbilityComponent::OnDisable()
+{
 }
 
 void CAbilityComponent::UseAbility(EAbilityType anAbilityType, DirectX::SimpleMath::Vector3 aSpawnPosition)
