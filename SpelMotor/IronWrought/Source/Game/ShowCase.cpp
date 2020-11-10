@@ -49,6 +49,7 @@
 
 #include "ProjectileBehavior.h"
 #include "AbilityBehaviorComponent.h"
+#include "AbilityComponent.h"
 #include "ObjectPool.h"
 #include "TokenPool.h"
 
@@ -128,7 +129,7 @@ void CShowCase::Update()
 	}
 
 	if (Input::GetInstance()->IsKeyPressed('G')) {
-		CreateAbility(myPlayer->GetComponent<CTransformComponent>()->Position());
+		myPlayer->GetComponent<CAbilityComponent>()->UseAbility(EAbilityType::WHIRLWIND, myPlayer->GetComponent<CTransformComponent>()->Position());
 	}
 
 	myCamera->Update();
@@ -194,6 +195,11 @@ CGameObject* CShowCase::CreatePlayer(Vector3 aPosition)
 	player->AddComponent<CModelComponent>(*player, "Assets/3D/Character/CH_NPC_enemy_01_19G4_1_19/CH_NPC_enemy_01_19G4_1_19.fbx");
 	player->AddComponent<CPlayerControllerComponent>(*player);
 
+	std::vector<std::pair<EAbilityType, unsigned int>> playerAbilities;
+	std::pair<EAbilityType, unsigned int> abilityPair = { EAbilityType::WHIRLWIND, 5 };
+	playerAbilities.emplace_back(abilityPair);
+	player->AddComponent<CAbilityComponent>(*player, playerAbilities);
+
 	player->AddComponent<CStatsComponent>(*player, 100.f, 10.f, 5.f);
 	CScene::GetInstance()->AddInstance(player);
 	CScene::GetInstance()->SetModelToOutline(player);
@@ -251,23 +257,23 @@ CCamera* CShowCase::CreateCamera(CGameObject* aCameraTarget)
 	return camera;
 }
 
-void CShowCase::CreateAbility(Vector3 aPosition)
-{
-	CGameObject* abilityTest = new CGameObject();
-	abilityTest->myTransform->Position(aPosition);
-	abilityTest->AddComponent<CVFXComponent>(*abilityTest);
-	abilityTest->GetComponent<CVFXComponent>()->Init(CVFXFactory::GetInstance()->GetVFXBase("Assets/3D/VFX/VFX_mesh_disc_01_19G4.fbx", "VFXData_FogWall.json"));
-
-	abilityTest->AddComponent<CParticleEmitterComponent>(*abilityTest);
-	abilityTest->GetComponent<CParticleEmitterComponent>()->Init(CParticleFactory::GetInstance()->GetParticle("ParticleData_SmokeEmitter.json"));
-
-	DirectX::SimpleMath::Vector3 abilityDirection{ 1.0f, 0.0f, 0.0f };
-	abilityDirection = MouseTracker::ScreenPositionToWorldPosition(myWindowWidth, myWindowHeight) - myPlayer->myTransform->Position();
-
-	CProjectileBehavior* projectileBehavior = new CProjectileBehavior(abilityDirection, 3.0f);
-	abilityTest->AddComponent<CAbilityBehaviorComponent>(*abilityTest, projectileBehavior);
-	CScene::GetInstance()->AddInstance(abilityTest);
-}
+//void CShowCase::CreateAbility(Vector3 aPosition)
+//{
+//	CGameObject* abilityTest = new CGameObject();
+//	abilityTest->myTransform->Position(aPosition);
+//	abilityTest->AddComponent<CVFXComponent>(*abilityTest);
+//	abilityTest->GetComponent<CVFXComponent>()->Init(CVFXFactory::GetInstance()->GetVFXBase("Assets/3D/VFX/VFX_mesh_disc_01_19G4.fbx", "VFXData_FogWall.json"));
+//
+//	abilityTest->AddComponent<CParticleEmitterComponent>(*abilityTest);
+//	abilityTest->GetComponent<CParticleEmitterComponent>()->Init(CParticleFactory::GetInstance()->GetParticle("ParticleData_SmokeEmitter.json"));
+//
+//	DirectX::SimpleMath::Vector3 abilityDirection{ 1.0f, 0.0f, 0.0f };
+//	abilityDirection = MouseTracker::ScreenPositionToWorldPosition(myWindowWidth, myWindowHeight) - myPlayer->myTransform->Position();
+//
+//	CProjectileBehavior* projectileBehavior = new CProjectileBehavior(abilityDirection, 3.0f);
+//	abilityTest->AddComponent<CAbilityBehaviorComponent>(*abilityTest, projectileBehavior, EAbilityType::WHIRLWIND);
+//	CScene::GetInstance()->AddInstance(abilityTest);
+//}
 
 void CShowCase::UpdatePlayerController()
 {
