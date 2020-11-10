@@ -27,7 +27,9 @@ void CProjectileBehavior::Update(CGameObject* aParent)
 	myTimer += CTimer::Dt();
 	if (myTimer > myDuration) {
 		myTimer = 0.0f;
-		aParent->Enabled(false);
+		//Backup
+		//aParent->Enabled(false);
+		aParent->SetActive(false);
 	}
 	aParent->GetComponent<CTransformComponent>()->Move(myDirection * mySpeed * CTimer::Dt());
 }
