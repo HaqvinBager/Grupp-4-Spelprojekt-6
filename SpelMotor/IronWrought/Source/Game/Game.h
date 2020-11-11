@@ -1,12 +1,5 @@
 #pragma once
-
-namespace DirectX {
-	namespace SimpleMath {
-		struct Vector3;
-	}
-}
-class CLevelLoader;
-class CShowCase;
+#include "StateStack.h"
 
 class CGame
 {
@@ -21,11 +14,6 @@ public:
 	unsigned int myWindowHeight;
 
 private:
-
-	//void UpdateCamera();
-	//void CapsuleColliderTest();
-
-	CLevelLoader* myLevelLoader;
-	CShowCase* myShowCase;
+	CStateStack myStateStack;
 };
 
