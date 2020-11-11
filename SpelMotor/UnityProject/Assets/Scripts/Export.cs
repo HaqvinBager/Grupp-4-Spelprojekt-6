@@ -107,7 +107,7 @@ public class MenuItems : MonoBehaviour
         return savingObject;
     }
 
-    [MenuItem("Tools/Export all #s")]
+    //[MenuItem("Tools/Export all #s")]
     private static void NewMenuOption()
     {
         string target_path = "..\\IronWrought\\Bin\\Levels\\";
