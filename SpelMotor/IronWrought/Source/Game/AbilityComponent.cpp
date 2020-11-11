@@ -10,7 +10,7 @@
 #include "TransformComponent.h"
 #include "Scene.h"
 
-CAbilityComponent::CAbilityComponent(CGameObject& aParent, std::vector<std::pair<EAbilityType, unsigned int>> someAbilities) : CComponent(aParent)
+CAbilityComponent::CAbilityComponent(CGameObject& aParent, std::vector<std::pair<EAbilityType, unsigned int>> someAbilities) : CBehaviour(aParent)
 {
 	// Setting up pools
 	for (unsigned int i = 0; i < someAbilities.size(); ++i) {
@@ -37,14 +37,20 @@ void CAbilityComponent::Start()
 void CAbilityComponent::Update()
 {
 	for (unsigned int i = 0; i < myActiveAbilities.size(); ++i) {
-		//Backup
-		//if (!myActiveAbilities[i]->Enabled()) {
-		if (!myActiveAbilities[i]->SetActive()) {
+		if (!myActiveAbilities[i]->Active()) {
 			std::swap(myActiveAbilities[i], myActiveAbilities.back());
 			myAbilityPools.at(myActiveAbilities.back()->GetComponent<CAbilityBehaviorComponent>()->GetAbilityType()).emplace_back(std::move(myActiveAbilities.back()));
 			myActiveAbilities.pop_back();
 		}
 	}
+}
+
+void CAbilityComponent::OnEnable()
+{
+}
+
+void CAbilityComponent::OnDisable()
+{
 }
 
 void CAbilityComponent::UseAbility(EAbilityType anAbilityType, DirectX::SimpleMath::Vector3 aSpawnPosition)
@@ -55,10 +61,10 @@ void CAbilityComponent::UseAbility(EAbilityType anAbilityType, DirectX::SimpleMa
 
 	myActiveAbilities.emplace_back(myAbilityPools.at(anAbilityType).back());
 	myAbilityPools.at(anAbilityType).pop_back();
-	//Backup
-	//myActiveAbilities.back()->Enabled(true);
-	myActiveAbilities.back()->SetActive(true);
+	myActiveAbilities.back()->Active(true);
 	myActiveAbilities.back()->myTransform->Position(aSpawnPosition);
+
+	// getparent().playanimation(myactiveabilities.back().getcomponent<pod>().myanimation);
 
 	if (anAbilityType == EAbilityType::WHIRLWIND) {
 		myActiveAbilities.back()->GetComponent<CAbilityBehaviorComponent>()->Init(aSpawnPosition);
@@ -84,9 +90,8 @@ CGameObject* CAbilityComponent::LoadAbilityFromFile(EAbilityType anAbilityType)
 
 		behavior = new CProjectileBehavior(abilityDirection, 3.0f);
 		abilityTest->AddComponent<CAbilityBehaviorComponent>(*abilityTest, behavior, EAbilityType::WHIRLWIND);
-		//Backup
-		//abilityTest->Enabled(false);
-		abilityTest->SetActive(false);
+
+		abilityTest->Active(false);
 		CScene::GetInstance()->AddInstance(abilityTest);
 		break;
 	default:

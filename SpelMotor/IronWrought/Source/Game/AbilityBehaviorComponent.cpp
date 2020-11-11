@@ -4,7 +4,7 @@
 #include "AbilityBehavior.h"
 
 CAbilityBehaviorComponent::CAbilityBehaviorComponent(CGameObject& aParent, IAbilityBehavior* aBehavior, EAbilityType anAbilityType) 
-	: CComponent(aParent), myBehavior(aBehavior), myAbilityType(anAbilityType)
+	: CBehaviour(aParent), myBehavior(aBehavior), myAbilityType(anAbilityType)
 {
 }
 
@@ -25,6 +25,14 @@ void CAbilityBehaviorComponent::Start()
 void CAbilityBehaviorComponent::Update()
 {
 	myBehavior->Update(&GetParent());
+}
+
+void CAbilityBehaviorComponent::OnEnable()
+{
+}
+
+void CAbilityBehaviorComponent::OnDisable()
+{
 }
 
 EAbilityType CAbilityBehaviorComponent::GetAbilityType() const
