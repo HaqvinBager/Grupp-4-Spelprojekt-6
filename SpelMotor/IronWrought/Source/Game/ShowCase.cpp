@@ -52,7 +52,7 @@
 #include "AbilityComponent.h"
 #include "ObjectPool.h"
 #include "TokenPool.h"
-#include "FModWrapper.h"
+#include "AudioManager.h"
 
 using namespace CommonUtilities;
 
@@ -74,9 +74,9 @@ CShowCase::~CShowCase() {
 
 void CShowCase::Init()
 {
-	CFModWrapper* wrapper;
-	wrapper = nullptr;
-	wrapper = new CFModWrapper();
+	CAudioManager* audio;
+	audio = nullptr;
+	audio = new CAudioManager();
 
 	CNavmeshLoader* nav = new CNavmeshLoader();
 	myNavMesh = nav->LoadNavmesh("Navmesh/Dungeon_ExportedNavMesh.obj");
