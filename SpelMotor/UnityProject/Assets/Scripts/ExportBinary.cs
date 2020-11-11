@@ -83,19 +83,23 @@ public class BinaryExporter
             if(mesh != null)
             {
                 int index = Getindex(PrefabUtility.GetCorrespondingObjectFromOriginalSource<GameObject>(child), filter);
-                Debug.Log(index);
-                bw.Write(go.GetInstanceID());
-                bw.Write(-go.transform.rotation.eulerAngles.x - 360.0f);
-                bw.Write(go.transform.rotation.eulerAngles.y + 180.0f);
-                bw.Write(-go.transform.rotation.eulerAngles.z - 360.0f);
-                bw.Write(go.transform.position.x);
-                bw.Write(go.transform.position.y);
-                bw.Write(go.transform.position.z);
+                //Debug.Log(index);
+                GameObjectData gameObjectData = new GameObjectData(child);
+                //gameObjectData.myModelIndex = index;
+                gameObjectData.WriteTo(bw);
 
-                bw.Write(go.transform.localScale.x);
-                bw.Write(go.transform.localScale.y);
-                bw.Write(go.transform.localScale.z);
-                bw.Write(index);
+                //bw.Write(go.GetInstanceID());
+                //bw.Write(-go.transform.rotation.eulerAngles.x - 360.0f);
+                //bw.Write(go.transform.rotation.eulerAngles.y + 180.0f);
+                //bw.Write(-go.transform.rotation.eulerAngles.z - 360.0f);
+                //bw.Write(go.transform.position.x);
+                //bw.Write(go.transform.position.y);
+                //bw.Write(go.transform.position.z);
+
+                //bw.Write(go.transform.localScale.x);
+                //bw.Write(go.transform.localScale.y);
+                //bw.Write(go.transform.localScale.z);
+                //bw.Write(index);
             }
         }
         bw.Close();
