@@ -71,6 +71,39 @@ public class BinaryExporter
         }
 
 
+        CameraSettings cameraSetting = new CameraSettings(UnityEngine.Object.FindObjectOfType<Camera>());
+        bw.Write(cameraSetting.myRotX);
+        bw.Write(cameraSetting.myRotY);
+        bw.Write(cameraSetting.myRotZ);
+        bw.Write(cameraSetting.myPosX);
+        bw.Write(cameraSetting.myPosY);
+        bw.Write(cameraSetting.myPosZ);
+        bw.Write(cameraSetting.myFieldOfView);
+
+        Light[] lights = UnityEngine.Object.FindObjectsOfType<Light>();
+        Light directionalLight = null;
+        foreach (Light light in lights)
+        {
+            if(light.type == LightType.Directional)
+            {
+                directionalLight = light;
+            }
+        }
+        if(directionalLight == null)
+        {
+            Debug.LogError("No directionlight found! Please add one before you export!");
+            return;
+        }
+
+        DirectionalLightSettings directionalLightSettings = new DirectionalLightSettings(directionalLight);
+        bw.Write(directionalLightSettings.myDirectionX);
+        bw.Write(directionalLightSettings.myDirectionY);
+        bw.Write(directionalLightSettings.myDirectionZ);
+        bw.Write(directionalLightSettings.myColorR);
+        bw.Write(directionalLightSettings.myColorG);
+        bw.Write(directionalLightSettings.myColorB);
+        bw.Write(directionalLightSettings.myIntensity);
+
         bw.Write(totalAssetsSizeToExport);
         foreach (GameObject go in allObjects)
         {
@@ -83,19 +116,23 @@ public class BinaryExporter
             if(mesh != null)
             {
                 int index = Getindex(PrefabUtility.GetCorrespondingObjectFromOriginalSource<GameObject>(child), filter);
-                Debug.Log(index);
-                bw.Write(go.GetInstanceID());
-                bw.Write(-go.transform.rotation.eulerAngles.x - 360.0f);
-                bw.Write(go.transform.rotation.eulerAngles.y + 180.0f);
-                bw.Write(-go.transform.rotation.eulerAngles.z - 360.0f);
-                bw.Write(go.transform.position.x);
-                bw.Write(go.transform.position.y);
-                bw.Write(go.transform.position.z);
+                //Debug.Log(index);
+                GameObjectData gameObjectData = new GameObjectData(child);
+                //gameObjectData.myModelIndex = index;
+                gameObjectData.WriteTo(bw);
 
-                bw.Write(go.transform.localScale.x);
-                bw.Write(go.transform.localScale.y);
-                bw.Write(go.transform.localScale.z);
-                bw.Write(index);
+                //bw.Write(go.GetInstanceID());
+                //bw.Write(-go.transform.rotation.eulerAngles.x - 360.0f);
+                //bw.Write(go.transform.rotation.eulerAngles.y + 180.0f);
+                //bw.Write(-go.transform.rotation.eulerAngles.z - 360.0f);
+                //bw.Write(go.transform.position.x);
+                //bw.Write(go.transform.position.y);
+                //bw.Write(go.transform.position.z);
+
+                //bw.Write(go.transform.localScale.x);
+                //bw.Write(go.transform.localScale.y);
+                //bw.Write(go.transform.localScale.z);
+                //bw.Write(index);
             }
         }
         bw.Close();

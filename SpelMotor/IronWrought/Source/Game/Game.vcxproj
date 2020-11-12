@@ -107,25 +107,25 @@
   <ItemGroup>
     <ClInclude Include="AbilityBehaviorComponent.h" />
     <ClInclude Include="AbilityComponent.h" />
+    <ClInclude Include="AudioManager.h" />
     <ClInclude Include="DialogueSystem.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="AbilityBehavior.h" />
     <ClInclude Include="InGameState.h" />
     <ClInclude Include="LoadLevelState.h" />
     <ClInclude Include="ProjectileBehavior.h" />
-    <ClInclude Include="ShowCase.h" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AbilityBehavior.cpp" />
     <ClCompile Include="AbilityBehaviorComponent.cpp" />
     <ClCompile Include="AbilityComponent.cpp" />
+    <ClCompile Include="AudioManager.cpp" />
     <ClCompile Include="DialogueSystem.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="InGameState.cpp" />
     <ClCompile Include="LoadLevelState.cpp" />
     <ClCompile Include="ProjectileBehavior.cpp" />
-    <ClCompile Include="ShowCase.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
