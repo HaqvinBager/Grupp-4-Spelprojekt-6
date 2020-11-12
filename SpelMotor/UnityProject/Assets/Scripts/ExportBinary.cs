@@ -70,7 +70,6 @@ public class BinaryExporter
             }
         }
 
-
         CameraSettings cameraSetting = new CameraSettings(UnityEngine.Object.FindObjectOfType<Camera>());
         bw.Write(cameraSetting.myRotX);
         bw.Write(cameraSetting.myRotY);
@@ -104,6 +103,28 @@ public class BinaryExporter
         bw.Write(directionalLightSettings.myColorB);
         bw.Write(directionalLightSettings.myIntensity);
 
+
+        GameObject playerGameObject = UnityEngine.Object.FindObjectOfType<Player>().gameObject;
+        if(playerGameObject == null)
+        {
+            Debug.LogWarning("No Player Found! Please add one before you export!");
+            return;
+        }
+        PlayerData playerData = new PlayerData(playerGameObject.GetComponent<Player>());
+        bw.Write(playerData.myInstanceID);
+        bw.Write(playerData.myRotation.z);
+        bw.Write(playerData.myRotation.z);
+        bw.Write(playerData.myRotation.z);
+        bw.Write(playerData.myPosition.x);
+        bw.Write(playerData.myPosition.y);
+        bw.Write(playerData.myPosition.z);
+        bw.Write(playerData.myScale.z);
+        bw.Write(playerData.myScale.z);
+        bw.Write(playerData.myScale.z);
+        //Add more PlayerData her :) //Axel & Alexander //2020-11-12
+        int playerModelIndex = Getindex(PrefabUtility.GetCorrespondingObjectFromOriginalSource<GameObject>(playerGameObject.transform.GetChild(0).gameObject), filter);
+        bw.Write(playerModelIndex);
+
         bw.Write(totalAssetsSizeToExport);
         foreach (GameObject go in allObjects)
         {
@@ -117,22 +138,22 @@ public class BinaryExporter
             {
                 int index = Getindex(PrefabUtility.GetCorrespondingObjectFromOriginalSource<GameObject>(child), filter);
                 //Debug.Log(index);
-                GameObjectData gameObjectData = new GameObjectData(child);
-                //gameObjectData.myModelIndex = index;
-                gameObjectData.WriteTo(bw);
+                //GameObjectData gameObjectData = new GameObjectData(child);
+                ////gameObjectData.myModelIndex = index;
+                //gameObjectData.WriteTo(bw);
 
-                //bw.Write(go.GetInstanceID());
-                //bw.Write(-go.transform.rotation.eulerAngles.x - 360.0f);
-                //bw.Write(go.transform.rotation.eulerAngles.y + 180.0f);
-                //bw.Write(-go.transform.rotation.eulerAngles.z - 360.0f);
-                //bw.Write(go.transform.position.x);
-                //bw.Write(go.transform.position.y);
-                //bw.Write(go.transform.position.z);
+                bw.Write(go.GetInstanceID());
+                bw.Write(-go.transform.rotation.eulerAngles.x - 360.0f);
+                bw.Write(go.transform.rotation.eulerAngles.y + 180.0f);
+                bw.Write(-go.transform.rotation.eulerAngles.z - 360.0f);
+                bw.Write(go.transform.position.x);
+                bw.Write(go.transform.position.y);
+                bw.Write(go.transform.position.z);
 
-                //bw.Write(go.transform.localScale.x);
-                //bw.Write(go.transform.localScale.y);
-                //bw.Write(go.transform.localScale.z);
-                //bw.Write(index);
+                bw.Write(go.transform.localScale.x);
+                bw.Write(go.transform.localScale.y);
+                bw.Write(go.transform.localScale.z);
+                bw.Write(index);
             }
         }
         bw.Close();
