@@ -6,6 +6,9 @@
 #include "ParticleFactory.h"
 #include "ParticleEmitterComponent.h"
 #include "AbilityBehaviorComponent.h"
+#include "TriangleColliderComponent.h"
+#include "RectangleColliderComponent.h"
+#include "CircleColliderComponent.h"
 #include "ProjectileBehavior.h"
 #include "TransformComponent.h"
 #include "Scene.h"
@@ -68,6 +71,10 @@ void CAbilityComponent::UseAbility(EAbilityType anAbilityType, DirectX::SimpleMa
 
 	if (anAbilityType == EAbilityType::WHIRLWIND) {
 		myActiveAbilities.back()->GetComponent<CAbilityBehaviorComponent>()->Init(aSpawnPosition);
+	}else if (anAbilityType == EAbilityType::TRIANGLE) {
+		myActiveAbilities.back()->GetComponent<CAbilityBehaviorComponent>()->Init(aSpawnPosition);
+	}else if (anAbilityType == EAbilityType::BOX) {
+		myActiveAbilities.back()->GetComponent<CAbilityBehaviorComponent>()->Init(aSpawnPosition);
 	}
 }
 
@@ -90,6 +97,44 @@ CGameObject* CAbilityComponent::LoadAbilityFromFile(EAbilityType anAbilityType)
 
 		behavior = new CProjectileBehavior(abilityDirection, 3.0f);
 		abilityTest->AddComponent<CAbilityBehaviorComponent>(*abilityTest, behavior, EAbilityType::WHIRLWIND);
+
+		abilityTest->AddComponent<CCircleColliderComponent>(*abilityTest, 1.0f, false);
+
+		abilityTest->Active(false);
+		CScene::GetInstance()->AddInstance(abilityTest);
+		break;
+	case EAbilityType::TRIANGLE:
+		abilityTest->myTransform->Position({ 0.0f, 0.0f, 0.0f });
+		abilityTest->AddComponent<CVFXComponent>(*abilityTest);
+		abilityTest->GetComponent<CVFXComponent>()->Init(CVFXFactory::GetInstance()->GetVFXBase("Assets/3D/VFX/VFX_mesh_disc_01_19G4.fbx", "VFXData_FogWall.json"));
+
+		abilityTest->AddComponent<CParticleEmitterComponent>(*abilityTest);
+		abilityTest->GetComponent<CParticleEmitterComponent>()->Init(CParticleFactory::GetInstance()->GetParticle("ParticleData_SmokeEmitter.json"));
+
+		abilityDirection = { 0.0f, 0.0f, 0.0f };
+
+		behavior = new CProjectileBehavior(abilityDirection, 3.0f);
+		abilityTest->AddComponent<CAbilityBehaviorComponent>(*abilityTest, behavior, EAbilityType::TRIANGLE);
+
+		abilityTest->AddComponent<CTriangleColliderComponent>(*abilityTest, 2.0f, 2.0f);
+
+		abilityTest->Active(false);
+		CScene::GetInstance()->AddInstance(abilityTest);
+		break;
+	case EAbilityType::BOX:
+		abilityTest->myTransform->Position({ 0.0f, 0.0f, 0.0f });
+		abilityTest->AddComponent<CVFXComponent>(*abilityTest);
+		abilityTest->GetComponent<CVFXComponent>()->Init(CVFXFactory::GetInstance()->GetVFXBase("Assets/3D/VFX/VFX_mesh_disc_01_19G4.fbx", "VFXData_FogWall.json"));
+
+		abilityTest->AddComponent<CParticleEmitterComponent>(*abilityTest);
+		abilityTest->GetComponent<CParticleEmitterComponent>()->Init(CParticleFactory::GetInstance()->GetParticle("ParticleData_SmokeEmitter.json"));
+
+		abilityDirection = { 0.0f, 0.0f, 0.0f };
+
+		behavior = new CProjectileBehavior(abilityDirection, 3.0f);
+		abilityTest->AddComponent<CAbilityBehaviorComponent>(*abilityTest, behavior, EAbilityType::BOX);
+
+		abilityTest->AddComponent<CRectangleColliderComponent>(*abilityTest, 1.0f, 1.0f, false);
 
 		abilityTest->Active(false);
 		CScene::GetInstance()->AddInstance(abilityTest);
