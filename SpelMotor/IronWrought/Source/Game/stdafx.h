@@ -9,3 +9,5 @@
 #include <array>
 
 #include "Timer.h"
+
+#include "Input.h"

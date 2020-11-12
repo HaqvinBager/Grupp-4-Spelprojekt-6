@@ -52,4 +52,6 @@ void CLoadLevelState::Start() {
 	myStateStack.Start();
 }
 
-void CLoadLevelState::Update() { }
+void CLoadLevelState::Update() { 
+
+}
