@@ -4,7 +4,10 @@
 class CGameObject;
 
 enum class EAbilityType {
-	WHIRLWIND
+	//TEMP TYPES TODO: CHANGE TO PROPER NAMES
+	WHIRLWIND,
+	TRIANGLE,
+	BOX
 };
 
 class CAbilityComponent : public CBehaviour
