@@ -71,6 +71,39 @@ public class BinaryExporter
         }
 
 
+        CameraSettings cameraSetting = new CameraSettings(UnityEngine.Object.FindObjectOfType<Camera>());
+        bw.Write(cameraSetting.myRotX);
+        bw.Write(cameraSetting.myRotY);
+        bw.Write(cameraSetting.myRotZ);
+        bw.Write(cameraSetting.myPosX);
+        bw.Write(cameraSetting.myPosY);
+        bw.Write(cameraSetting.myPosZ);
+        bw.Write(cameraSetting.myFieldOfView);
+
+        Light[] lights = UnityEngine.Object.FindObjectsOfType<Light>();
+        Light directionalLight = null;
+        foreach (Light light in lights)
+        {
+            if(light.type == LightType.Directional)
+            {
+                directionalLight = light;
+            }
+        }
+        if(directionalLight == null)
+        {
+            Debug.LogError("No directionlight found! Please add one before you export!");
+            return;
+        }
+
+        DirectionalLightSettings directionalLightSettings = new DirectionalLightSettings(directionalLight);
+        bw.Write(directionalLightSettings.myDirectionX);
+        bw.Write(directionalLightSettings.myDirectionY);
+        bw.Write(directionalLightSettings.myDirectionZ);
+        bw.Write(directionalLightSettings.myColorR);
+        bw.Write(directionalLightSettings.myColorG);
+        bw.Write(directionalLightSettings.myColorB);
+        bw.Write(directionalLightSettings.myIntensity);
+
         bw.Write(totalAssetsSizeToExport);
         foreach (GameObject go in allObjects)
         {
