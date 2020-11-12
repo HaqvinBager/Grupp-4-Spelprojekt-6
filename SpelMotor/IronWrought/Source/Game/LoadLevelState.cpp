@@ -28,18 +28,18 @@ void CLoadLevelState::Awake() {
 	levelLoader.Init();
 	//levelLoader.LoadNewLevel("Levels/NavTest");
 
-	CGameObject* player = new CGameObject();
-	//player->AddComponent<CTransformComponent>(*player);
-	player->AddComponent<CModelComponent>(*player, "Assets/3D/Character/MainCharacter/CH_PL_Daughter_01_19G4_1_19.fbx" );
-
-	CCamera* camera = CCameraFactory::GetInstance()->CreateCamera(65.0f);
-
-	CEnvironmentLight* environmentLight = CLightFactory::GetInstance()->CreateEnvironmentLight("Yokohama2.dds");
-
-	CScene::GetInstance()->AddInstance(environmentLight);
-	CScene::GetInstance()->AddInstance(player);
-	CScene::GetInstance()->AddInstance(camera);
-	CScene::GetInstance()->SetMainCamera(camera);
+	//CGameObject* player = new CGameObject();
+	////player->AddComponent<CTransformComponent>(*player);
+	//player->AddComponent<CModelComponent>(*player, "Assets/3D/Character/MainCharacter/CH_PL_Daughter_01_19G4_1_19.fbx" );
+	//
+	//CCamera* camera = CCameraFactory::GetInstance()->CreateCamera(65.0f);
+	//
+	//CEnvironmentLight* environmentLight = CLightFactory::GetInstance()->CreateEnvironmentLight("Yokohama2.dds");
+	//
+	//CScene::GetInstance()->AddInstance(environmentLight);
+	//CScene::GetInstance()->AddInstance(player);
+	//CScene::GetInstance()->AddInstance(camera);
+	//CScene::GetInstance()->SetMainCamera(camera);
 	//When Load Level is Complete -> LoadLevelState will Pop itself and then this Awake will continue.
 
 
@@ -52,4 +52,6 @@ void CLoadLevelState::Start() {
 	myStateStack.Start();
 }
 
-void CLoadLevelState::Update() { }
+void CLoadLevelState::Update() { 
+
+}

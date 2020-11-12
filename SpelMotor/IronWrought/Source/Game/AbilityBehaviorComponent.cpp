@@ -24,7 +24,7 @@ void CAbilityBehaviorComponent::Start()
 
 void CAbilityBehaviorComponent::Update()
 {
-	myBehavior->Update(&GetParent());
+	myBehavior->Update(&GameObject());
 }
 
 void CAbilityBehaviorComponent::OnEnable()
