@@ -30,7 +30,6 @@ CInGameState::CInGameState(CStateStack& aStateStack) : CState(aStateStack) {
 	CScene::GetInstance()->AddInstance(spriteInstance);
 
 	CAnimatedUIElement* uiElement = new CAnimatedUIElement();
-	uiElement->Init("VFXData_UI_HealthOrb.json");
 	CScene::GetInstance()->AddInstance(uiElement);
 
 	//CGameObject* enemy = new CGameObject();
@@ -76,8 +75,8 @@ void CInGameState::Update()
 		gameObject->Update();
 	}
 
-	//auto animUI = CScene::GetInstance()->CullAnimatedUI()[0];
-	//animUI->Level(abs(sin(CTimer::Time())));
+	auto animUI = CScene::GetInstance()->CullAnimatedUI()[0];
+	animUI->Level(abs(sin(CTimer::Time())));
 
 	myDialogueSystem->Update(CTimer::Dt());
 
