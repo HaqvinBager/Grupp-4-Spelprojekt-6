@@ -98,7 +98,7 @@ CGameObject* CAbilityComponent::LoadAbilityFromFile(EAbilityType anAbilityType)
 		behavior = new CProjectileBehavior(abilityDirection, 3.0f);
 		abilityTest->AddComponent<CAbilityBehaviorComponent>(*abilityTest, behavior, EAbilityType::WHIRLWIND);
 
-		abilityTest->AddComponent<CCircleColliderComponent>(*abilityTest, 1.0f, false);
+		abilityTest->AddComponent<CCircleColliderComponent>(*abilityTest, 1.0f, ECollisionLayer::PLAYERABILITY);
 
 		abilityTest->Active(false);
 		CScene::GetInstance()->AddInstance(abilityTest);
@@ -116,7 +116,7 @@ CGameObject* CAbilityComponent::LoadAbilityFromFile(EAbilityType anAbilityType)
 		behavior = new CProjectileBehavior(abilityDirection, 3.0f);
 		abilityTest->AddComponent<CAbilityBehaviorComponent>(*abilityTest, behavior, EAbilityType::TRIANGLE);
 
-		abilityTest->AddComponent<CTriangleColliderComponent>(*abilityTest, 2.0f, 2.0f);
+		abilityTest->AddComponent<CTriangleColliderComponent>(*abilityTest, 2.0f, 2.0f, ECollisionLayer::PLAYERABILITY);
 
 		abilityTest->Active(false);
 		CScene::GetInstance()->AddInstance(abilityTest);
@@ -134,7 +134,7 @@ CGameObject* CAbilityComponent::LoadAbilityFromFile(EAbilityType anAbilityType)
 		behavior = new CProjectileBehavior(abilityDirection, 3.0f);
 		abilityTest->AddComponent<CAbilityBehaviorComponent>(*abilityTest, behavior, EAbilityType::BOX);
 
-		abilityTest->AddComponent<CRectangleColliderComponent>(*abilityTest, 1.0f, 1.0f, false);
+		abilityTest->AddComponent<CRectangleColliderComponent>(*abilityTest, 1.0f, 1.0f, ECollisionLayer::PLAYERABILITY);
 
 		abilityTest->Active(false);
 		CScene::GetInstance()->AddInstance(abilityTest);
