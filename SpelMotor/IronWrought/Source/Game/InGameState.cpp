@@ -25,6 +25,7 @@ CInGameState::CInGameState(CStateStack& aStateStack) : CState(aStateStack) {
 	spriteInstance->SetSize({ 1024.0f / 1000.0f, 256.0f / 1000.0f });
 	//spriteInstance->SetSize({ 1024.0f / CEngine::GetInstance()->GetWindowHandler()->GetWidth(), 256.0f / CEngine::GetInstance()->GetWindowHandler()->GetWidth() });
 	//spriteInstance->SetSize({ 2.0f, 2.0f });
+	//spriteInstance->SetPosition({ 0.0f,-0.85f });
 	spriteInstance->SetPosition({ 0.0f,-0.82f });
 	CScene::GetInstance()->AddInstance(spriteInstance);
 
