@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public struct CameraSettings
+public struct CameraData
 {
-    public CameraSettings(Camera aCamera) {
+    public CameraData(Camera aCamera) {
         myRotX = aCamera.transform.rotation.eulerAngles.x;
         myRotY = aCamera.transform.rotation.eulerAngles.y;
         myRotZ = aCamera.transform.rotation.eulerAngles.z;
