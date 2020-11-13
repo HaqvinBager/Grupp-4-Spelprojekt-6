@@ -104,12 +104,14 @@ public class BinaryExporter
         bw.Write(directionalLightSettings.myIntensity);
 
 
-        GameObject playerGameObject = UnityEngine.Object.FindObjectOfType<Player>().gameObject;
-        if(playerGameObject == null)
+        if(UnityEngine.Object.FindObjectOfType<Player>() == null)
         {
             Debug.LogWarning("No Player Found! Please add one before you export!");
             return;
         }
+        
+        GameObject playerGameObject = UnityEngine.Object.FindObjectOfType<Player>().gameObject;
+    
         PlayerData playerData = new PlayerData(playerGameObject.GetComponent<Player>());
         bw.Write(playerData.myInstanceID);
         bw.Write(playerData.myRotation.z);
