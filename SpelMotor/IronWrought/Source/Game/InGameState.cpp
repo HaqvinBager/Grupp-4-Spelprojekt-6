@@ -13,15 +13,24 @@
 #include "DialogueSystem.h"
 #include "Timer.h"
 #include "CameraComponent.h"
+#include "Engine.h"
+#include "WindowHandler.h"
+#include "AnimatedUIElement.h"
 
 using namespace CommonUtilities;
 
 CInGameState::CInGameState(CStateStack& aStateStack) : CState(aStateStack) {
 	CSpriteInstance* spriteInstance = new CSpriteInstance();
-	spriteInstance->Init(CSpriteFactory::GetInstance()->GetSprite("tempUI.dds"));
-	spriteInstance->SetSize({ 2.0f,2.0f });
-	spriteInstance->SetPosition({ 0.0f,-0.85f });
+	spriteInstance->Init(CSpriteFactory::GetInstance()->GetSprite("Assets/3D/UI/Ingame/UI_test.dds"/*"tempUI.dds"*/));
+	spriteInstance->SetSize({ 1024.0f / 1000.0f, 256.0f / 1000.0f });
+	//spriteInstance->SetSize({ 1024.0f / CEngine::GetInstance()->GetWindowHandler()->GetWidth(), 256.0f / CEngine::GetInstance()->GetWindowHandler()->GetWidth() });
+	//spriteInstance->SetSize({ 2.0f, 2.0f });
+	spriteInstance->SetPosition({ 0.0f,-0.82f });
 	CScene::GetInstance()->AddInstance(spriteInstance);
+
+	CAnimatedUIElement* uiElement = new CAnimatedUIElement();
+	uiElement->Init("VFXData_UI_HealthOrb.json");
+	CScene::GetInstance()->AddInstance(uiElement);
 
 	//CGameObject* enemy = new CGameObject();
 	//enemy->AddComponent<CTransformComponent>(*enemy);
@@ -65,6 +74,9 @@ void CInGameState::Update()
 	{
 		gameObject->Update();
 	}
+
+	//auto animUI = CScene::GetInstance()->CullAnimatedUI()[0];
+	//animUI->Level(abs(sin(CTimer::Time())));
 
 	myDialogueSystem->Update(CTimer::Dt());
 
