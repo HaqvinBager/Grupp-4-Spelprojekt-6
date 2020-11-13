@@ -159,14 +159,14 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 	InitConsole();
 #endif
 
-	__try {
+	//__try {
 		RunGame(lpCmdLine);
-	}
-	__except (ExceptionFilterFunction(GetExceptionInformation(), subPath)) 
-	{
-		CEngine::GetInstance()->CrashWithScreenShot(subPath);
-		ENGINE_ERROR_BOOL_MESSAGE(false, "Program crashed! A minidump was created at Bin/Crashes, please tell a programmer.");
-	}
+	//}
+	//__except (ExceptionFilterFunction(GetExceptionInformation(), subPath)) 
+	//{
+	//	CEngine::GetInstance()->CrashWithScreenShot(subPath);
+	//	ENGINE_ERROR_BOOL_MESSAGE(false, "Program crashed! A minidump was created at Bin/Crashes, please tell a programmer.");
+	//}
 
 #ifdef USE_CONSOLE_COMMAND
 	CloseConsole();
