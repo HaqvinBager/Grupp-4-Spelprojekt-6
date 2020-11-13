@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Experimental.GlobalIllumination;
 
-public struct DirectionalLightSettings
+public struct DirectionalLightData
 {
-    public DirectionalLightSettings(Light aDirectionalLight)
+    public DirectionalLightData(Light aDirectionalLight)
     {
         myDirectionX = aDirectionalLight.transform.forward.x;
         myDirectionY = aDirectionalLight.transform.forward.y;

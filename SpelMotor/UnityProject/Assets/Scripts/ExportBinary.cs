@@ -70,41 +70,62 @@ public class BinaryExporter
             }
         }
 
-        CameraSettings cameraSetting = new CameraSettings(UnityEngine.Object.FindObjectOfType<Camera>());
-        bw.Write(cameraSetting.myRotX);
-        bw.Write(cameraSetting.myRotY);
-        bw.Write(cameraSetting.myRotZ);
-        bw.Write(cameraSetting.myPosX);
-        bw.Write(cameraSetting.myPosY);
-        bw.Write(cameraSetting.myPosZ);
-        bw.Write(cameraSetting.myFieldOfView);
+        CameraData cameraData = new CameraData(UnityEngine.Object.FindObjectOfType<Camera>());
+        bw.Write(cameraData.myRotX);
+        bw.Write(cameraData.myRotY);
+        bw.Write(cameraData.myRotZ);
+        bw.Write(cameraData.myPosX);
+        bw.Write(cameraData.myPosY);
+        bw.Write(cameraData.myPosZ);
+        bw.Write(cameraData.myFieldOfView);
 
         Light[] lights = UnityEngine.Object.FindObjectsOfType<Light>();
+        List<Light> pointLights = new List<Light>();
         Light directionalLight = null;
         foreach (Light light in lights)
         {
             if(light.type == LightType.Directional)
             {
                 directionalLight = light;
+            }else if(light.type == LightType.Point)
+            {
+                pointLights.Add(light);
             }
+
         }
         if(directionalLight == null)
         {
             Debug.LogError("No directionlight found! Please add one before you export!");
             return;
         }
+        DirectionalLightData directionalLightData = new DirectionalLightData(directionalLight);
+        bw.Write(directionalLightData.myDirectionX);
+        bw.Write(directionalLightData.myDirectionY);
+        bw.Write(directionalLightData.myDirectionZ);
+        bw.Write(directionalLightData.myColorR);
+        bw.Write(directionalLightData.myColorG);
+        bw.Write(directionalLightData.myColorB);
+        bw.Write(directionalLightData.myIntensity);
 
-        DirectionalLightSettings directionalLightSettings = new DirectionalLightSettings(directionalLight);
-        bw.Write(directionalLightSettings.myDirectionX);
-        bw.Write(directionalLightSettings.myDirectionY);
-        bw.Write(directionalLightSettings.myDirectionZ);
-        bw.Write(directionalLightSettings.myColorR);
-        bw.Write(directionalLightSettings.myColorG);
-        bw.Write(directionalLightSettings.myColorB);
-        bw.Write(directionalLightSettings.myIntensity);
+
+        bw.Write(pointLights.Count);
+        foreach(Light pointLight in pointLights)
+        {
+            PointLightData pointLightData = new PointLightData(pointLight);
+            bw.Write(pointLightData.myInstanceID);
+            bw.Write(pointLightData.myPosition.x);
+            bw.Write(pointLightData.myPosition.y);
+            bw.Write(pointLightData.myPosition.z);
+            bw.Write(pointLightData.myRange);
+            bw.Write(pointLightData.myColor.x);
+            bw.Write(pointLightData.myColor.y);
+            bw.Write(pointLightData.myColor.z);
+            bw.Write(pointLightData.myIntensity);
+        }
 
 
-        if(UnityEngine.Object.FindObjectOfType<Player>() == null)
+
+        if (UnityEngine.Object.FindObjectOfType<Player>() == null)
         {
             Debug.LogWarning("No Player Found! Please add one before you export!");
             return;
