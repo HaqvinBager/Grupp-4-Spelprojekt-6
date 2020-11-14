@@ -107,7 +107,8 @@ void CInGameState::Update()
 		gameObject->Update();
 	}
 
-	auto animUI = CScene::GetInstance()->CullAnimatedUI()[0];
+	std::vector<CSpriteInstance*> animatedUIFrames;
+	auto animUI = CScene::GetInstance()->CullAnimatedUI(animatedUIFrames)[0];
 	animUI->Level(abs(sin(CTimer::Time())));
 
 	CCollisionManager::GetInstance()->Update();

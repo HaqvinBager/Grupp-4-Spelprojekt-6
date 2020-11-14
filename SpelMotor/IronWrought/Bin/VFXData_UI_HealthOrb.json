@@ -15,5 +15,7 @@
   "Texture 1": "Assets/3D/VFX/Fog_texture.dds",
   "Texture 2": "Assets/3D/VFX/test_smoke.dds",
   "Texture 3": "VFXCloud.dds",
-  "Texture Mask": "Assets/3D/UI/Ingame/UI_IN_OrbBase.dds"
+  "Texture Mask": "Assets/3D/UI/Ingame/UI_IN_OrbBase.dds",
+  "Texture Overlay": "Assets/3D/UI/Ingame/UI_IN_OrbFrame.dds"
+  
 }
