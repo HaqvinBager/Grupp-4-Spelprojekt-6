@@ -1,0 +1,27 @@
+{
+  "Sprite Size X": 200.0,
+  "Sprite Size Y": 200.0,
+  "Scroll Speed 1 X": 0.32,
+  "Scroll Speed 1 Y": 0.2,
+  "Scroll Speed 2 X": 0.0,
+  "Scroll Speed 2 Y": -0.5,
+  "Scroll Speed 3 X": -0.31,
+  "Scroll Speed 3 Y": 0.0,
+  "Scroll Speed 4 X": 0.0,
+  "Scroll Speed 4 Y": 0.0,
+  "UV Scale 1": 0.5,
+  "UV Scale 2": 0.3,
+  "UV Scale 3": 0.7,
+  "UV Scale 4": 1.0,
+  "Glow Color R": 0.45,
+  "Glow Color G": 0.45,
+  "Glow Color B": 1.0,
+  "Glow Width": 0.1,
+  "Vertical Direction Of Change": true,
+  "Texture 1": "Assets/3D/VFX/Fog_texture2.dds",
+  "Texture 2": "Assets/3D/VFX/test_smoke.dds",
+  "Texture 3": "VFXCloud.dds",
+  "Texture Mask": "Assets/3D/UI/Ingame/UI_IN_OrbBase.dds",
+  "Texture Overlay": "Assets/3D/UI/Ingame/UI_IN_OrbFrame.dds"
+  
+}
