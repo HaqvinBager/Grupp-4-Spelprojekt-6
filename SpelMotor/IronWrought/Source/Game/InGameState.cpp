@@ -13,6 +13,9 @@
 #include "DialogueSystem.h"
 #include "Timer.h"
 #include "CameraComponent.h"
+#include "Engine.h"
+#include "WindowHandler.h"
+#include "AnimatedUIElement.h"
 
 //collider test
 #include "CircleColliderComponent.h"
@@ -32,6 +35,16 @@ CInGameState::CInGameState(CStateStack& aStateStack) : CState(aStateStack) {
 	//spriteInstance->SetPosition({ 0.0f,-0.85f });
 	spriteInstance->SetPosition({ 0.0f,-0.82f });
 	CScene::GetInstance()->AddInstance(spriteInstance);
+
+	CAnimatedUIElement* uiElement = new CAnimatedUIElement("VFXData_UI_HealthOrb.json");
+	uiElement->SetPosition({ -0.47f, -0.82f });
+	CScene::GetInstance()->AddInstance(uiElement);
+	CAnimatedUIElement* uiElement2 = new CAnimatedUIElement("VFXData_UI_ResourceOrb.json");
+	uiElement2->SetPosition({ 0.47f, -0.82f });
+	CScene::GetInstance()->AddInstance(uiElement2);
+	CAnimatedUIElement* uiElement3 = new CAnimatedUIElement("VFXData_UI_ExperienceBar.json");
+	uiElement3->SetPosition({ 0.0f, -0.735f });
+	CScene::GetInstance()->AddInstance(uiElement3);
 
 	//CGameObject* enemy = new CGameObject();
 	//enemy->AddComponent<CTransformComponent>(*enemy);
@@ -101,7 +114,16 @@ void CInGameState::Update()
 		gameObject->Update();
 	}
 
+	std::vector<CSpriteInstance*> animatedUIFrames;
+	auto animUI1 = CScene::GetInstance()->CullAnimatedUI(animatedUIFrames)[0];
+	animUI1->Level(abs(sin(CTimer::Time())));
+	auto animUI2 = CScene::GetInstance()->CullAnimatedUI(animatedUIFrames)[1];
+	animUI2->Level(abs(sin(CTimer::Time() - (3.1415f/2.0f))));
+	auto animUI3 = CScene::GetInstance()->CullAnimatedUI(animatedUIFrames)[2];
+	animUI3->Level(abs(sin(CTimer::Time() * 0.33f)));
+
 	CCollisionManager::GetInstance()->Update();
+
 	myDialogueSystem->Update(CTimer::Dt());
 
 	CCameraComponent* camera = CScene::GetInstance()->GetMainCamera();
