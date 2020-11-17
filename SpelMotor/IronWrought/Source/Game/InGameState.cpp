@@ -59,7 +59,7 @@ CInGameState::CInGameState(CStateStack& aStateStack) : CState(aStateStack) {
 	DirectX::SimpleMath::Vector3 pos = { 0.0f, 0.0f, 0.0f };
 	colliderBoi0->AddComponent<CTransformComponent>(*colliderBoi0, pos);
 	colliderBoi0->GetComponent< CTransformComponent>()->Position(pos);
-	colliderBoi0->AddComponent<CRectangleColliderComponent>(*colliderBoi0, 2.0f, 2.0f, ECollisionLayer::ENEMY, static_cast<int>(ECollisionLayer::PLAYER) | static_cast<int>(ECollisionLayer::PLAYERABILITY));
+	colliderBoi0->AddComponent<CRectangleColliderComponent>(*colliderBoi0);
 	colliderBoi0->AddComponent<CModelComponent>(*colliderBoi0, "Assets/3D/Character/CH_NPC_enemy_01_19G4_1_19/CH_NPC_enemy_01_19G4_1_19.fbx");
 
 	CGameObject* colliderBoi50 = new CGameObject();
@@ -67,14 +67,14 @@ CInGameState::CInGameState(CStateStack& aStateStack) : CState(aStateStack) {
 	colliderBoi50->AddComponent<CTransformComponent>(*colliderBoi50, pos50);
 	colliderBoi50->GetComponent< CTransformComponent>()->Position(pos50);
 	colliderBoi50->AddComponent<CModelComponent>(*colliderBoi50, "Assets/3D/Character/CH_NPC_enemy_01_19G4_1_19/CH_NPC_enemy_01_19G4_1_19.fbx");
-	colliderBoi50->AddComponent<CCircleColliderComponent>(*colliderBoi50, 1.0f, ECollisionLayer::PLAYER, static_cast<int>(ECollisionLayer::ENEMY) | static_cast<int>(ECollisionLayer::BOSS));
+	colliderBoi50->AddComponent<CCircleColliderComponent>(*colliderBoi50);
 
 	CGameObject* colliderBoi500 = new CGameObject();
 	DirectX::SimpleMath::Vector3 pos500 = { 0.0f, 0.0f, 0.0f };
 	colliderBoi500->AddComponent<CTransformComponent>(*colliderBoi500, pos500);
 	colliderBoi500->GetComponent< CTransformComponent>()->Position(pos500);
 	colliderBoi500->AddComponent<CModelComponent>(*colliderBoi500, "Assets/3D/Character/CH_NPC_enemy_01_19G4_1_19/CH_NPC_enemy_01_19G4_1_19.fbx");
-	colliderBoi500->AddComponent<CTriangleColliderComponent>(*colliderBoi500, 2.0f, 2.0f, ECollisionLayer::ENEMYABILITY, static_cast<int>(ECollisionLayer::PLAYERABILITY));
+	colliderBoi500->AddComponent<CTriangleColliderComponent>(*colliderBoi500);
 
 	CScene::GetInstance()->AddInstance(colliderBoi0);
 	CScene::GetInstance()->AddInstance(colliderBoi50);
