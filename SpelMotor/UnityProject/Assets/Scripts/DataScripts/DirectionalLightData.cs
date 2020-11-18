@@ -7,9 +7,9 @@ public struct DirectionalLightData
 {
     public DirectionalLightData(Light aDirectionalLight)
     {
-        myDirectionX = aDirectionalLight.transform.forward.x;
-        myDirectionY = aDirectionalLight.transform.forward.y;
-        myDirectionZ = aDirectionalLight.transform.forward.z;
+        myDirectionX = -aDirectionalLight.transform.forward.x;
+        myDirectionY = -aDirectionalLight.transform.forward.y;
+        myDirectionZ = -aDirectionalLight.transform.forward.z;
         myColorR = aDirectionalLight.color.r;
         myColorG = aDirectionalLight.color.g;
         myColorB = aDirectionalLight.color.b;

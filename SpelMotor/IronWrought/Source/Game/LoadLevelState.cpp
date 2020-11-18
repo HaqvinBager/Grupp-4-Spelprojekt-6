@@ -2,56 +2,47 @@
 #include "LoadLevelState.h"
 #include "InGameState.h"
 #include "StateStack.h"
-#include "Scene.h"
 #include "LevelLoader.h"
-#include "GameObject.h"
-#include "TransformComponent.h"
-#include "ModelComponent.h"
-#include "ModelFactory.h"
-#include "Model.h"
-#include "CameraFactory.h"
-#include "Camera.h"
-#include "LightFactory.h"
-#include "EnvironmentLight.h"
 #include <CUnityLoader.h> //In order to know the size of ObjectData
+#include "Input.h"
+#include "Scene.h"
+#include "Engine.h"
 
-CLoadLevelState::CLoadLevelState(CStateStack& aStateStack) : CState(aStateStack) {
+using namespace CommonUtilities;
 
-}
-
-CLoadLevelState::~CLoadLevelState() {
-}
-
-void CLoadLevelState::Awake() {
-	//Push Load Level State for Level (Saved somewhere)
-	CLevelLoader levelLoader;// = //std::make_unique<CLevelLoader>();
-	levelLoader.Init();
-	//levelLoader.LoadNewLevel("Levels/NavTest");
-
-	//CGameObject* player = new CGameObject();
-	////player->AddComponent<CTransformComponent>(*player);
-	//player->AddComponent<CModelComponent>(*player, "Assets/3D/Character/MainCharacter/CH_PL_Daughter_01_19G4_1_19.fbx" );
-	//
-	//CCamera* camera = CCameraFactory::GetInstance()->CreateCamera(65.0f);
-	//
-	//CEnvironmentLight* environmentLight = CLightFactory::GetInstance()->CreateEnvironmentLight("Yokohama2.dds");
-	//
-	//CScene::GetInstance()->AddInstance(environmentLight);
-	//CScene::GetInstance()->AddInstance(player);
-	//CScene::GetInstance()->AddInstance(camera);
-	//CScene::GetInstance()->SetMainCamera(camera);
-	//When Load Level is Complete -> LoadLevelState will Pop itself and then this Awake will continue.
-
+CLoadLevelState::CLoadLevelState(CStateStack& aStateStack) : CState(aStateStack)
+{
 
 }
 
-void CLoadLevelState::Start() {
+CLoadLevelState::~CLoadLevelState()
+{
 
-	myStateStack.PushState(new CInGameState(myStateStack));
-	myStateStack.Awake();
-	myStateStack.Start();
 }
 
-void CLoadLevelState::Update() { 
+void CLoadLevelState::Awake()
+{
+	//CScene::GetInstance()->Ready(false);
+	myLevelLoader.Init(0);
+	CEngine::GetInstance()->SetActiveScene(0);
+}
 
+void CLoadLevelState::Start()
+{
+	myLoadLevelFuture = std::async(std::launch::async, &CLevelLoader::Init, myLevelLoader, 1);
+}
+
+void CLoadLevelState::Update()
+{
+	if (myLoadLevelFuture._Is_ready())
+	{
+		if (Input::GetInstance()->IsKeyPressed('K'))
+		{
+			CEngine::GetInstance()->SetActiveScene(1);
+			CScene::GetInstance()->Ready(myLoadLevelFuture.get());
+			myStateStack.PushState(new CInGameState(myStateStack));
+			myStateStack.Awake();
+			myStateStack.Start();
+		}
+	}
 }
