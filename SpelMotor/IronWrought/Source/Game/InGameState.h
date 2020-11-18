@@ -1,9 +1,6 @@
 #pragma once
 #include "State.h"
 
-class CDialogueSystem;
-
-
 class CInGameState : public CState
 {
 
@@ -15,5 +12,4 @@ public:
 	void Start() override;
 	void Update() override;
 private:
-	CDialogueSystem* myDialogueSystem;
 };

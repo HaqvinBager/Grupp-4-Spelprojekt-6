@@ -15,7 +15,7 @@ public class ExportNavMeshToObj : MonoBehaviour {
         mesh.name = "ExportedNavMesh";
         mesh.vertices = triangulatedNavMesh.vertices;
         mesh.triangles = triangulatedNavMesh.indices;
-        string filename = Application.dataPath +"/" + Path.GetFileNameWithoutExtension(EditorApplication.currentScene) + "_ExportedNavMesh.obj";
+        string filename = "..\\IronWrought\\Bin\\NavMesh\\" + Path.GetFileNameWithoutExtension(EditorApplication.currentScene) + "_ExportedNavMesh.obj";
         MeshToFile(mesh, filename);
         print("NavMesh exported as '" + filename + "'");
         AssetDatabase.Refresh();
