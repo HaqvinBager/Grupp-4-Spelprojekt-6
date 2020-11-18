@@ -269,6 +269,7 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 
+SpelMotor/IronWrought/Bin/DebugLogs/
 /IronWrought/Unity_Project/Library/
 /IronWrought/Unity_Project/Logs/
 /IronWrought/Unity_Project/Packages/

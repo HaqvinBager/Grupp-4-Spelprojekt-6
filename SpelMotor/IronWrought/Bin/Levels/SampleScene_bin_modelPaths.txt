@@ -1,4 +1,0 @@
-Assets/3D/Character/CH_PL_Daughter_01_19G4_1_19/CH_PL_Daughter_01_19G4_1_19.fbx
-Assets/3D/Environment/EN_G_L1Floor_01_19G4_01_19/EN_G_L1Floor_01_19G4_01_19.fbx
-Assets/3D/Environment/EN_W_L1CellDoor_01_19G4_01_19/EN_W_L1CellDoor_01_19G4_01_19.fbx
-Assets/3D/Environment/EN_P_L1Bridge_01_19G4_01_19/EN_P_L1Bridge_01_19G4_01_19.fbx
