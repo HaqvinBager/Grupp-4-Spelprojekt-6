@@ -27,7 +27,7 @@
 using namespace CommonUtilities;
 
 CInGameState::CInGameState(CStateStack& aStateStack) : CState(aStateStack) {
-	
+
 }
 
 CInGameState::~CInGameState()

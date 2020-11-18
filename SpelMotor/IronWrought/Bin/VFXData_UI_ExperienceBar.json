@@ -1,6 +1,4 @@
 {
-  "Sprite Size X": 256.0,
-  "Sprite Size Y": 16.0,
   "Scroll Speed 1 X": 0.32,
   "Scroll Speed 1 Y": 0.2,
   "Scroll Speed 2 X": 0.0,
@@ -18,6 +16,7 @@
   "Glow Color B": 1.0,
   "Glow Width": 0.1,
   "Vertical Direction Of Change": false,
+  "Pixel Shader Path": "SpriteVFXTextureBlendingPixelShader.cso",
   "Texture 1": "Assets/3D/VFX/Fog_texture3.dds",
   "Texture 2": "Assets/3D/VFX/test_smoke.dds",
   "Texture 3": "VFXCloud.dds",

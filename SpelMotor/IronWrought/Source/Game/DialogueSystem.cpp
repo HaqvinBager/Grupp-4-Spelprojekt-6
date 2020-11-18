@@ -30,18 +30,21 @@ CDialogueSystem::CDialogueSystem() {
 	CSpriteFactory* factory = CSpriteFactory::GetInstance();
 	myDialogueBox = new CSpriteInstance();
 	myDialogueBox->Init(factory->GetSprite("tempDialogueBox.dds"));
+	myDialogueBox->SetSize({ 0.75f, 0.75f });
+	myDialogueBox->SetPosition({ -0.0f, 0.0f });
 	CScene::GetInstance()->AddInstance(myDialogueBox);
 
 	mySpeakerPortraits.emplace_back(new CSpriteInstance());
 	mySpeakerPortraits.back()->Init(factory->GetSprite("tempSpeakerPortrait.dds"));
-	mySpeakerPortraits.back()->SetSize({ 128.0f / 1000.0f, 128.0f / 1000.0f });
+	//mySpeakerPortraits.back()->SetSize({ 128.0f / 1000.0f, 128.0f / 1000.0f });
+	mySpeakerPortraits.back()->SetSize({ 0.75f, 0.75f });
 	mySpeakerPortraits.back()->SetPosition({-0.30f, -0.57f});
 	mySpeakerPortraits.back()->SetShouldRender(false);
 	CScene::GetInstance()->AddInstance(mySpeakerPortraits.back());
 	
 	mySpeakerPortraits.emplace_back(new CSpriteInstance());
 	mySpeakerPortraits.back()->Init(factory->GetSprite("tempSpeakerPortrait2.dds"));
-	mySpeakerPortraits.back()->SetSize({ 128.0f / 1000.0f, 128.0f / 1000.0f });
+	mySpeakerPortraits.back()->SetSize({ 0.75f, 0.75f });
 	mySpeakerPortraits.back()->SetPosition({ -0.30f, -0.57f });
 	mySpeakerPortraits.back()->SetShouldRender(false);
 	CScene::GetInstance()->AddInstance(mySpeakerPortraits.back());
