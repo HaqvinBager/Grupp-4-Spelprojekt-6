@@ -38,14 +38,14 @@ CDialogueSystem::CDialogueSystem() {
 	mySpeakerPortraits.back()->Init(factory->GetSprite("Assets/3D/UI/Ingame/tempSpeakerPortrait.dds"));
 	//mySpeakerPortraits.back()->SetSize({ 128.0f / 1000.0f, 128.0f / 1000.0f });
 	mySpeakerPortraits.back()->SetSize({ 0.75f, 0.75f });
-	mySpeakerPortraits.back()->SetPosition({-0.30f, -0.57f});
+	mySpeakerPortraits.back()->SetPosition({-0.30f, 0.57f});
 	mySpeakerPortraits.back()->SetShouldRender(false);
 	CScene::GetInstance()->AddInstance(mySpeakerPortraits.back());
 	
 	mySpeakerPortraits.emplace_back(new CSpriteInstance());
 	mySpeakerPortraits.back()->Init(factory->GetSprite("Assets/3D/UI/Ingame/tempSpeakerPortrait2.dds"));
 	mySpeakerPortraits.back()->SetSize({ 0.75f, 0.75f });
-	mySpeakerPortraits.back()->SetPosition({ -0.30f, -0.57f });
+	mySpeakerPortraits.back()->SetPosition({ -0.30f, 0.57f });
 	mySpeakerPortraits.back()->SetShouldRender(false);
 	CScene::GetInstance()->AddInstance(mySpeakerPortraits.back());
 
