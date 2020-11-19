@@ -88,10 +88,10 @@ CGameObject* CAbilityComponent::LoadAbilityFromFile(EAbilityType anAbilityType)
 	case EAbilityType::WHIRLWIND:
 		abilityTest->myTransform->Position({ 0.0f, 0.0f, 0.0f });
 		abilityTest->AddComponent<CVFXComponent>(*abilityTest);
-		abilityTest->GetComponent<CVFXComponent>()->Init(CVFXFactory::GetInstance()->GetVFXBase("Assets/3D/VFX/VFX_mesh_disc_01_19G4.fbx", "VFXData_FogWall.json"));
+		abilityTest->GetComponent<CVFXComponent>()->Init(CVFXFactory::GetInstance()->GetVFXBase("Assets/3D/VFX/VFX_mesh_disc_01_19G4.fbx", "Json/VFXData_FogWall.json"));
 
 		abilityTest->AddComponent<CParticleEmitterComponent>(*abilityTest);
-		abilityTest->GetComponent<CParticleEmitterComponent>()->Init(CParticleFactory::GetInstance()->GetParticle("ParticleData_SmokeEmitter.json"));
+		abilityTest->GetComponent<CParticleEmitterComponent>()->Init(CParticleFactory::GetInstance()->GetParticle("Json/ParticleData_SmokeEmitter.json"));
 
 		abilityDirection = { 0.0f, 0.0f, 0.0f };
 
@@ -106,10 +106,10 @@ CGameObject* CAbilityComponent::LoadAbilityFromFile(EAbilityType anAbilityType)
 	case EAbilityType::TRIANGLE:
 		abilityTest->myTransform->Position({ 0.0f, 0.0f, 0.0f });
 		abilityTest->AddComponent<CVFXComponent>(*abilityTest);
-		abilityTest->GetComponent<CVFXComponent>()->Init(CVFXFactory::GetInstance()->GetVFXBase("Assets/3D/VFX/VFX_mesh_disc_01_19G4.fbx", "VFXData_FogWall.json"));
+		abilityTest->GetComponent<CVFXComponent>()->Init(CVFXFactory::GetInstance()->GetVFXBase("Assets/3D/VFX/VFX_mesh_disc_01_19G4.fbx", "Json/VFXData_FogWall.json"));
 
 		abilityTest->AddComponent<CParticleEmitterComponent>(*abilityTest);
-		abilityTest->GetComponent<CParticleEmitterComponent>()->Init(CParticleFactory::GetInstance()->GetParticle("ParticleData_SmokeEmitter.json"));
+		abilityTest->GetComponent<CParticleEmitterComponent>()->Init(CParticleFactory::GetInstance()->GetParticle("Json/ParticleData_SmokeEmitter.json"));
 
 		abilityDirection = { 0.0f, 0.0f, 0.0f };
 
@@ -124,10 +124,10 @@ CGameObject* CAbilityComponent::LoadAbilityFromFile(EAbilityType anAbilityType)
 	case EAbilityType::BOX:
 		abilityTest->myTransform->Position({ 0.0f, 0.0f, 0.0f });
 		abilityTest->AddComponent<CVFXComponent>(*abilityTest);
-		abilityTest->GetComponent<CVFXComponent>()->Init(CVFXFactory::GetInstance()->GetVFXBase("Assets/3D/VFX/VFX_mesh_disc_01_19G4.fbx", "VFXData_FogWall.json"));
+		abilityTest->GetComponent<CVFXComponent>()->Init(CVFXFactory::GetInstance()->GetVFXBase("Assets/3D/VFX/VFX_mesh_disc_01_19G4.fbx", "Json/VFXData_FogWall.json"));
 
 		abilityTest->AddComponent<CParticleEmitterComponent>(*abilityTest);
-		abilityTest->GetComponent<CParticleEmitterComponent>()->Init(CParticleFactory::GetInstance()->GetParticle("ParticleData_SmokeEmitter.json"));
+		abilityTest->GetComponent<CParticleEmitterComponent>()->Init(CParticleFactory::GetInstance()->GetParticle("Json/ParticleData_SmokeEmitter.json"));
 
 		abilityDirection = { 0.0f, 0.0f, 0.0f };
 
