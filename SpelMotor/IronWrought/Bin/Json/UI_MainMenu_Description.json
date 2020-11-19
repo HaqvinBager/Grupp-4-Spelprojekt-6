@@ -1,9 +1,14 @@
 {
 	"Buttons": [
-		"Play" :
 		[
-
-		]
-
+			{ "Text": "Play" },
+			{ "Position X": 0.0 },
+			{ "Position Y": 0.0 },
+			{ "Pixel Width": 415.0 },
+			{ "Pixel Height": 85.0 },
+			{ "Idle Sprite Path": "Assets/3D/UI/Menu/IdleButton.dds" },
+			{ "Hover Sprite Path": "Assets/3D/UI/Menu/HoverButton.dds" },
+			{ "Click Sprite Path": "Assets/3D/UI/Menu/ClickButton.dds" }
+		] 
 	]
 }
