@@ -2,13 +2,19 @@
 	"Buttons": [
 		[
 			{ "Text": "Play" },
-			{ "Position X": 0.0 },
-			{ "Position Y": 0.0 },
-			{ "Pixel Width": 415.0 },
-			{ "Pixel Height": 85.0 },
-			{ "Idle Sprite Path": "Assets/3D/UI/Menu/IdleButton.dds" },
-			{ "Hover Sprite Path": "Assets/3D/UI/Menu/HoverButton.dds" },
-			{ "Click Sprite Path": "Assets/3D/UI/Menu/ClickButton.dds" }
-		] 
+			{ "Position X": -1.0 },
+			{ "Position Y": -1.0 },
+			{ "Pixel Width": 300.0 },
+			{ "Pixel Height": 100.0 },
+			{ "Idle Sprite Path": "Assets/3D/UI/idle_button.dds" },
+			{ "Hover Sprite Path": "Assets/3D/UI/hover_button.dds" },
+			{ "Click Sprite Path": "Assets/3D/UI/depressed_button.dds" }
+		]
+	],
+
+	"Animated UI Elements": [
+		{ "Path": "Json/VFXData_UI_HealthOrb.json" },
+		{ "Path": "Json/VFXData_UI_ResourceOrb.json" },
+		{ "Path": "Json/VFXData_UI_ExperienceBar.json" }
 	]
 }
