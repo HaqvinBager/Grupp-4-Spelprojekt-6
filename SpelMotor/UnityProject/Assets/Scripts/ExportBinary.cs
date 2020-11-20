@@ -146,7 +146,6 @@ public class BinaryExporter
 
                 string path = AssetDatabase.GetAssetPath(PrefabUtility.GetCorrespondingObjectFromOriginalSource(mesh));
                 filter[path] = path;
-                Debug.Log("Model Found: " + path);
             }
         }
 
