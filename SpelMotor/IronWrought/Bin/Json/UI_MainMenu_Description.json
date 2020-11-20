@@ -1,20 +1,41 @@
 {
-	"Buttons": [
-		[
-			{ "Text": "Play" },
-			{ "Position X": -1.0 },
-			{ "Position Y": -1.0 },
-			{ "Pixel Width": 300.0 },
-			{ "Pixel Height": 100.0 },
-			{ "Idle Sprite Path": "Assets/3D/UI/idle_button.dds" },
-			{ "Hover Sprite Path": "Assets/3D/UI/hover_button.dds" },
-			{ "Click Sprite Path": "Assets/3D/UI/depressed_button.dds" }
-		]
-	],
+  "Buttons": [
+    {
+      "Text": "Play",
+      "Position X": -1.0,
+      "Position Y": -1.0,
+      "Pixel Width": 300.0,
+      "Pixel Height": 100.0,
+      "Idle Sprite Path": "Assets/3D/UI/idle_button.dds",
+      "Hover Sprite Path": "Assets/3D/UI/hover_button.dds",
+      "Click Sprite Path": "Assets/3D/UI/depressed_button.dds",
+      "Messages": [ 6 ]
+    }
+  ],
 
-	"Animated UI Elements": [
-		{ "Path": "Json/VFXData_UI_HealthOrb.json" },
-		{ "Path": "Json/VFXData_UI_ResourceOrb.json" },
-		{ "Path": "Json/VFXData_UI_ExperienceBar.json" }
-	]
+  "Animated UI Elements": [
+    {
+      "Path": "Json/VFXData_UI_AbilityCooldown.json",
+      "Position X": -0.465,
+      "Position Y": 0.815
+    },
+    {
+      "Path": "Json/VFXData_UI_AbilityCooldown.json",
+      "Position X": -0.305,
+      "Position Y": 0.815
+    },
+    {
+      "Path": "Json/VFXData_UI_AbilityCooldown.json",
+      "Position X": -0.145,
+      "Position Y": 0.815
+    }
+  ],
+
+  "Sprites": [
+    {
+      "Path": "Assets/3D/UI/Ingame/test.dds",
+      "Position X": 0.0,
+      "Position Y": 0.75
+    }
+  ]
 }
