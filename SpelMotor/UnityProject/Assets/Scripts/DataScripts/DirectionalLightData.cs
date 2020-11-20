@@ -5,6 +5,14 @@ using UnityEngine.Experimental.GlobalIllumination;
 
 public struct DirectionalLightData
 {
+    public float myDirectionX;
+    public float myDirectionY;
+    public float myDirectionZ;
+    public float myColorR;
+    public float myColorG;
+    public float myColorB;
+    public float myIntensity;
+
     public DirectionalLightData(Light aDirectionalLight)
     {
         myDirectionX = -aDirectionalLight.transform.forward.x;
@@ -15,11 +23,4 @@ public struct DirectionalLightData
         myColorB = aDirectionalLight.color.b;
         myIntensity = aDirectionalLight.intensity;
     }
-    public float myDirectionX;
-    public float myDirectionY;
-    public float myDirectionZ;
-    public float myColorR;
-    public float myColorG;
-    public float myColorB;
-    public float myIntensity;
 }

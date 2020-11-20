@@ -2,6 +2,8 @@
 #include "Game.h"
 #include "LoadLevelState.h"
 
+#include <SceneReader.h>
+
 #ifdef _DEBUG
 #pragma comment(lib, "Engine_Debug.lib")
 #pragma comment(lib, "UnityImporterApp_Debug.lib")
