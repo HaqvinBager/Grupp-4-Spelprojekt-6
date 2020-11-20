@@ -2,17 +2,10 @@
 #include "LoadLevelState.h"
 #include "InGameState.h"
 #include "StateStack.h"
-#include "LevelLoader.h"
-#include "Input.h"
 #include "Scene.h"
 #include "Engine.h"
-#include <iostream>
 #include "JsonReader.h"
 #include "GameObject.h"
-#include "EnviromentLightComponent.h"
-#include "EnvironmentLight.h"
-#include "CameraComponent.h"
-#include "Camera.h"
 
 using namespace CommonUtilities;
 using namespace rapidjson;
@@ -30,6 +23,7 @@ void CLoadLevelState::Awake()
 {
 	unsigned int loadSceneIndex = Load(ELevel::LoadScreen);
 	CEngine::GetInstance()->SetActiveScene(loadSceneIndex);
+	//Start Loading the ELevel::<Level> on a seperate thread.
 	myLoadLevelFuture = std::async(std::launch::async, &CLoadLevelState::Load, this, ELevel::Dungeon);
 
 	for (auto& gameObject : CEngine::GetInstance()->GetActiveScene().GetActiveGameObjects())
@@ -48,8 +42,11 @@ void CLoadLevelState::Start()
 
 void CLoadLevelState::Update()
 {
+	//When the Thread loading the ELevell::<Level> level is complete this will be true.
 	if (myLoadLevelFuture._Is_ready())
 	{
+		//myLoadedLevelFuture returnType is the same as the CLoadLevelState::Load return type.
+		//The value it will get is the Scene index in which the SceneLoaded will use in CEngine::myScenes
 		CEngine::GetInstance()->SetActiveScene(myLoadLevelFuture.get());
 		myStateStack.PushState(new CInGameState(myStateStack));
 		myStateStack.Awake();
@@ -68,14 +65,14 @@ unsigned int CLoadLevelState::Load(const ELevel aLevel)
 	{
 		SaveModelPaths(aLevel);
 
-		if (aLevel == ELevel::LoadScreen)
+		if (aLevel == ELevel::LoadScreen) //LoadScreen uses a different Type (Which kind of Data it will Load from Unity) 
 		{
 			SLoadScreenData& data = mySceneReader.ReadLoadScreenData();
 			CScene* loadScreenScene = new CScene();
 			myUnityFactory.FillScene(data, BinModelPaths(aLevel), *loadScreenScene);
 			return CEngine::GetInstance()->AddScene(loadScreenScene);
 		}
-		else
+		else //All other Scenes are regarded as "InGame" scenes. And will have to contain at least a Camera, Directional Light & Player (player is currently "utkommenterad", Fix Monday)
 		{
 			SInGameData& data = mySceneReader.ReadInGameData();
 			CScene* inGameScene = new CScene();

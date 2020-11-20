@@ -4,6 +4,9 @@
 #include "SceneReader.h"
 #include "UnityFactory.h"
 
+/// <summary>
+/// This Enum is mapped to the Levels that are inside the LevelSelect.Json file (Important that they are in the same order as in the json file)
+/// </summary>
 enum class ELevel
 {
 	LoadScreen,
@@ -24,9 +27,9 @@ public:
 	void Update() override;
 private:
 
-	/*void InitLoadScreen();
-	void LoadInGameData();*/
-
+	/// <summary>
+	/// Returns the Index this Scene will use in CEngine::myScenes
+	/// </summary>
 	unsigned int Load(const ELevel aLevel);
 
 	void SaveLevelNames();
