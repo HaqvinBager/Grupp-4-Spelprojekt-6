@@ -30,7 +30,7 @@ void CLoadLevelState::Awake()
 {
 	unsigned int loadSceneIndex = Load(ELevel::LoadScreen);
 	CEngine::GetInstance()->SetActiveScene(loadSceneIndex);
-	myLoadLevelFuture = std::async(std::launch::async, &CLoadLevelState::Load, this, ELevel::Gardens);
+	myLoadLevelFuture = std::async(std::launch::async, &CLoadLevelState::Load, this, ELevel::Dungeon);
 
 	for (auto& gameObject : CEngine::GetInstance()->GetActiveScene().GetActiveGameObjects())
 	{
@@ -50,7 +50,7 @@ void CLoadLevelState::Update()
 {
 	if (myLoadLevelFuture._Is_ready())
 	{
-		CEngine::GetInstance()->SetActiveScene(1);
+		CEngine::GetInstance()->SetActiveScene(myLoadLevelFuture.get());
 		myStateStack.PushState(new CInGameState(myStateStack));
 		myStateStack.Awake();
 		myStateStack.Start();
@@ -74,14 +74,13 @@ unsigned int CLoadLevelState::Load(const ELevel aLevel)
 			CScene* loadScreenScene = new CScene();
 			myUnityFactory.FillScene(data, BinModelPaths(aLevel), *loadScreenScene);
 			return CEngine::GetInstance()->AddScene(loadScreenScene);
-			//CEngine::GetInstance()->SetActiveScene(loadScreenScene);
 		}
 		else
 		{
 			SInGameData& data = mySceneReader.ReadInGameData();
 			CScene* inGameScene = new CScene();
 			myUnityFactory.FillScene(data, BinModelPaths(aLevel), *inGameScene);
-			return CEngine::GetInstance()->AddScene(inGameScene);			
+			return CEngine::GetInstance()->AddScene(inGameScene);
 		}
 	}
 	return 0;
