@@ -1,5 +1,6 @@
 #pragma once
 #include "Behaviour.h"
+#include "InputObserver.h"
 
 class CGameObject;
 
@@ -10,7 +11,7 @@ enum class EAbilityType {
 	BOX
 };
 
-class CAbilityComponent : public CBehaviour
+class CAbilityComponent : public CBehaviour, public IInputObserver
 {
 public:
 	CAbilityComponent(CGameObject& aParent, std::vector<std::pair<EAbilityType, unsigned int>> someAbilities);
@@ -24,6 +25,8 @@ public:
 	void OnDisable() override;
 
 	void UseAbility(EAbilityType anAbilityType, DirectX::SimpleMath::Vector3 aSpawnPosition);
+
+	void RecieveEvent(const EInputEvent aEvent) override;
 
 private:
 	CGameObject* LoadAbilityFromFile(EAbilityType anAbilityType);
