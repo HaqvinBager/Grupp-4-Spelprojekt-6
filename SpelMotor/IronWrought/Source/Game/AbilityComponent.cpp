@@ -12,9 +12,16 @@
 #include "ProjectileBehavior.h"
 #include "TransformComponent.h"
 #include "Scene.h"
+#include "InputMapper.h"
+#include "MainSingleton.h"
 
 CAbilityComponent::CAbilityComponent(CGameObject& aParent, std::vector<std::pair<EAbilityType, unsigned int>> someAbilities) : CBehaviour(aParent)
 {
+	CInputMapper::GetInstance()->AddObserver(IInputObserver::EInputEvent::Ability1, this);
+	CInputMapper::GetInstance()->AddObserver(IInputObserver::EInputEvent::Ability2, this);
+	CInputMapper::GetInstance()->AddObserver(IInputObserver::EInputEvent::Ability3, this);
+
+
 	// Setting up pools
 	for (unsigned int i = 0; i < someAbilities.size(); ++i) {
 		std::vector<CGameObject*> gameObjectsToPool;
@@ -71,10 +78,41 @@ void CAbilityComponent::UseAbility(EAbilityType anAbilityType, DirectX::SimpleMa
 
 	if (anAbilityType == EAbilityType::WHIRLWIND) {
 		myActiveAbilities.back()->GetComponent<CAbilityBehaviorComponent>()->Init(aSpawnPosition);
-	}else if (anAbilityType == EAbilityType::TRIANGLE) {
+	}
+	else if (anAbilityType == EAbilityType::TRIANGLE) {
 		myActiveAbilities.back()->GetComponent<CAbilityBehaviorComponent>()->Init(aSpawnPosition);
-	}else if (anAbilityType == EAbilityType::BOX) {
+	}
+	else if (anAbilityType == EAbilityType::BOX) {
 		myActiveAbilities.back()->GetComponent<CAbilityBehaviorComponent>()->Init(aSpawnPosition);
+	}
+}
+
+void CAbilityComponent::RecieveEvent(const EInputEvent aEvent)
+{
+	SMessage myMessage;
+	float cooldown;
+	switch (aEvent)
+	{
+	case EInputEvent::Ability1:
+		myMessage.myMessageType = EMessageType::AbilityOneCooldown;
+		cooldown = 30.0f;
+		myMessage.data = &cooldown;
+		CMainSingleton::PostMaster().Send(myMessage);
+		break;
+	case EInputEvent::Ability2:
+		myMessage.myMessageType = EMessageType::AbilityTwoCooldown;
+		cooldown = 30.0f;
+		myMessage.data = &cooldown;
+		CMainSingleton::PostMaster().Send(myMessage);
+		break;
+	case EInputEvent::Ability3:
+		myMessage.myMessageType = EMessageType::AbilityThreeCooldown;
+		cooldown = 30.0f;
+		myMessage.data = &cooldown;
+		CMainSingleton::PostMaster().Send(myMessage);
+		break;
+	default:
+		break;
 	}
 }
 
