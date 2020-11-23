@@ -34,6 +34,6 @@ void CProjectileBehavior::Update(CGameObject* aParent)
 
 void CProjectileBehavior::Init(DirectX::SimpleMath::Vector3 aCasterPosition)
 {
-	myDirection = MouseTracker::ScreenPositionToWorldPosition(CEngine::GetInstance()->GetWindowHandler()->GetWidth(), CEngine::GetInstance()->GetWindowHandler()->GetHeight()) - aCasterPosition;
+	myDirection = MouseTracker::ScreenPositionToWorldPosition() - aCasterPosition;
 	myDirection.Normalize();
 }
