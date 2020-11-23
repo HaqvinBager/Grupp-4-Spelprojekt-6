@@ -26,6 +26,7 @@ public:
 
 	void UseAbility(EAbilityType anAbilityType, DirectX::SimpleMath::Vector3 aSpawnPosition);
 
+	void SendEvent();
 	void RecieveEvent(const EInputEvent aEvent) override;
 
 private:
@@ -34,5 +35,6 @@ private:
 private:
 	std::map<EAbilityType, std::vector<CGameObject*>> myAbilityPools;
 	std::vector<CGameObject*> myActiveAbilities;
+	float* myCurrentCooldowns;
+	float* myMaxCooldowns;
 };
-
