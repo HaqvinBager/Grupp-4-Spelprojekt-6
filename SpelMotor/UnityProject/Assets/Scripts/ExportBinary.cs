@@ -63,15 +63,16 @@ public static class Writer
     public static void WriteTo(this BinaryWriter bin, PlayerData data)
     {
         bin.Write(data.myInstanceID);
-        bin.Write(data.myRotation.z);
-        bin.Write(data.myRotation.z);
-        bin.Write(data.myRotation.z);
         bin.Write(data.myPosition.x);
         bin.Write(data.myPosition.y);
         bin.Write(data.myPosition.z);
+        bin.Write(data.myRotation.x);
+        bin.Write(data.myRotation.y);
+        bin.Write(data.myRotation.z);
         bin.Write(data.myScale.z);
         bin.Write(data.myScale.z);
         bin.Write(data.myScale.z);
+        bin.Write(data.myModelIndex);
         //Player health osv
     }
 }
@@ -215,9 +216,9 @@ public class BinaryExporter
         bw.WriteTo(directionalLightData);
 
 
+        bw.Write(pointLights.Count);
         if(pointLights.Count > 0)
         {
-            bw.Write(pointLights.Count);
             foreach (Light pointLight in pointLights)
             {
                 bw.WriteTo(new PointLightData(pointLight));
@@ -248,6 +249,11 @@ public class BinaryExporter
             MeshFilter mesh = child.GetComponent<MeshFilter>();
             if (mesh != null)
             {
+                if (go.GetComponent<Player>())
+                {
+                    continue;
+                }
+
                 int index = GetModelIndexFromPrefab(go, filter);
                 prefabInstanceDataList.Add(new PrefabInstanceData(go, index));
             }
