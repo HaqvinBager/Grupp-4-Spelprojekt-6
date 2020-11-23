@@ -8,7 +8,7 @@ public struct PlayerData
 {
     public PlayerData(Player player, int aModelIndex)
     {
-        myInstanceID = player.GetInstanceID();
+        myInstanceID = player.gameObject.GetInstanceID();
         myPosition = player.transform.position;
         myRotation = player.transform.rotation.eulerAngles;
         myScale = player.transform.localScale;

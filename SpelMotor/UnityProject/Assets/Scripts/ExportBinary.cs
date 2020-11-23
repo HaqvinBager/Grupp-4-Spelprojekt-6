@@ -77,12 +77,6 @@ public static class Writer
     }
 }
 
-[Serializable]
-public struct ModelPath
-{
-    public string myPath { get; set; }
-}
-
 public class BinaryExporter
 {
     [MenuItem("Tools/Export all BIN #_y")]
