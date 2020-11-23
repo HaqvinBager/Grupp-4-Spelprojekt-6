@@ -72,6 +72,7 @@ public static class Writer
         bin.Write(data.myScale.z);
         bin.Write(data.myScale.z);
         bin.Write(data.myScale.z);
+        bin.Write(data.myModelIndex);
         //Player health osv
     }
 }
@@ -84,39 +85,6 @@ public struct ModelPath
 
 public class BinaryExporter
 {
-
-    //[MenuItem("Tools/AxelTest")]
-    //private static void Test()
-    //{
-    //    string target_path = "..\\IronWrought\\Bin\\Test\\";
-    //    if (!System.IO.Directory.Exists(target_path))
-    //    {
-    //        System.IO.Directory.CreateDirectory(target_path);
-    //    }
-
-    //    FileStream stream = new FileStream(target_path + "Test.bin", FileMode.Create);
-    //    BinaryWriter bin = new BinaryWriter(stream);
-
-    //    //GameObject anyPrefabInstanceInScene = UnityEngine.Object.FindObjectsOfType<GameObject>()[0];
-
-    //    //PrefabInstanceData data = new PrefabInstanceData(anyPrefabInstanceInScene);
-    //    //bin.WriteTo(data);
-
-
-    //    //GameObject[] allGameObjectsInScene = UnityEngine.Object.FindObjectsOfType<GameObject>();
-    //    //bin.Write(allGameObjectsInScene.Length);
-    //    //foreach (GameObject gameObject in allGameObjectsInScene)
-    //    //{
-    //    //    bin.WriteTo(new PrefabInstanceData(gameObject));
-    //    //}
-
-    //    Camera camera = UnityEngine.Object.FindObjectOfType<Camera>();
-    //    bin.WriteTo(new CameraData(camera));
-
-    //    bin.Close();
-    //    stream.Close();
-    //}
-
     [MenuItem("Tools/Export all BIN #_y")]
     private static void DoExportBinary()
     {
@@ -215,9 +183,9 @@ public class BinaryExporter
         bw.WriteTo(directionalLightData);
 
 
+        bw.Write(pointLights.Count);
         if(pointLights.Count > 0)
         {
-            bw.Write(pointLights.Count);
             foreach (Light pointLight in pointLights)
             {
                 bw.WriteTo(new PointLightData(pointLight));
@@ -248,21 +216,24 @@ public class BinaryExporter
             MeshFilter mesh = child.GetComponent<MeshFilter>();
             if (mesh != null)
             {
+                if(go.GetComponent<Player>() != null)
+                {
+                    continue;
+                }
+
                 int index = GetModelIndexFromPrefab(go, filter);
                 prefabInstanceDataList.Add(new PrefabInstanceData(go, index));
             }
         }
 
         int prefabInstanceCount = prefabInstanceDataList.Count;
-
         bw.Write(prefabInstanceCount);
         Debug.Log("Gameobjects with Models Exported: " + prefabInstanceCount);
         foreach (PrefabInstanceData data in prefabInstanceDataList)
         {
             bw.WriteTo(data);
         }
-
-   
+ 
         bw.Close();
     }
 
