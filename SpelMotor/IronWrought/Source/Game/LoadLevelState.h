@@ -12,7 +12,8 @@ enum class ELevel
 	LoadScreen,
 	Dungeon,
 	Gardens,
-	Castle
+	Castle,
+	NavTest
 };
 
 

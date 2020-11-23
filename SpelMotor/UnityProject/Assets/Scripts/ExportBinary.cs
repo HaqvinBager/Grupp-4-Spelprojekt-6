@@ -63,12 +63,12 @@ public static class Writer
     public static void WriteTo(this BinaryWriter bin, PlayerData data)
     {
         bin.Write(data.myInstanceID);
-        bin.Write(data.myRotation.z);
-        bin.Write(data.myRotation.z);
-        bin.Write(data.myRotation.z);
         bin.Write(data.myPosition.x);
         bin.Write(data.myPosition.y);
         bin.Write(data.myPosition.z);
+        bin.Write(data.myRotation.x);
+        bin.Write(data.myRotation.y);
+        bin.Write(data.myRotation.z);
         bin.Write(data.myScale.z);
         bin.Write(data.myScale.z);
         bin.Write(data.myScale.z);
