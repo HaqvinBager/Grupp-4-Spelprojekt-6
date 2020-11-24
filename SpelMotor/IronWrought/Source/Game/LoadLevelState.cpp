@@ -23,7 +23,7 @@ void CLoadLevelState::Awake()
 	unsigned int loadSceneIndex = Load(ELevel::LoadScreen);
 	CEngine::GetInstance()->SetActiveScene(loadSceneIndex);
 	//Start Loading the ELevel::<Level> on a seperate thread.
-	myLoadLevelFuture = std::async(std::launch::async, &CLoadLevelState::Load, this, ELevel::Dungeon);
+	myLoadLevelFuture = std::async(std::launch::async, &CLoadLevelState::Load, this, ELevel::NavTest);
 
 	for (auto& gameObject : CEngine::GetInstance()->GetActiveScene().GetActiveGameObjects())
 	{
