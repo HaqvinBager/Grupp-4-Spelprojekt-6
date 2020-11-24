@@ -15,4 +15,18 @@ public class CameraSetup : MonoBehaviour
 
     [Range(5.0f, 50.0f)]
     public float freeCamMoveSpeed = 25.0f;
+    public Vector3 offset;
+
+    public void OnValidate()
+    {
+        if (startInCameraMode == CameraMode.Player)
+        {
+            if (Vector3.Distance(FindObjectOfType<Player>().transform.position + offset, transform.position) > 0.01f)
+            {
+                transform.position = FindObjectOfType<Player>().transform.position + offset;
+            }
+        }
+    }
 }
+
+

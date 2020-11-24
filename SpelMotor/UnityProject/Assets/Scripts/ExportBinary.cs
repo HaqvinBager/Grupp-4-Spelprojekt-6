@@ -37,6 +37,9 @@ public static class Writer
         bin.Write(data.myStartInCameraMode);
         bin.Write(data.myToggleFreeCamKey);
         bin.Write(data.myFreeCamMoveSpeed);
+        bin.Write(data.offset.x);
+        bin.Write(data.offset.y);
+        bin.Write(data.offset.z);
     }
     public static void WriteTo(this BinaryWriter bin, DirectionalLightData data)
     {

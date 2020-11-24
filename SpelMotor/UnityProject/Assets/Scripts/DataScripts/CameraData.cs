@@ -15,6 +15,7 @@ public struct CameraData
     public float myStartInCameraMode;
     public float myToggleFreeCamKey;
     public float myFreeCamMoveSpeed;
+    public Vector3 offset;
 
     public CameraData(Camera aCamera) {
         myRotX = aCamera.transform.rotation.eulerAngles.x;
@@ -32,13 +33,15 @@ public struct CameraData
             myToggleFreeCamKey = value;
 
             myFreeCamMoveSpeed = setup.freeCamMoveSpeed;
+            offset = setup.offset;
         }
         else
         {
             Debug.LogWarning("Camera Prefab is Missing. Please add the Camera Prefab instead!");
-            myStartInCameraMode = (float)CameraMode.Player;
+            myStartInCameraMode = (float)CameraMode.FreeCam;
             myToggleFreeCamKey = (float)'f';
             myFreeCamMoveSpeed = 25.0f;
+            offset = Vector3.zero;
         }
     }
 }
