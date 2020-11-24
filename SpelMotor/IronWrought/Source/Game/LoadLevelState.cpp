@@ -7,7 +7,6 @@
 #include "JsonReader.h"
 #include "GameObject.h"
 
-using namespace CommonUtilities;
 using namespace rapidjson;
 CLoadLevelState::CLoadLevelState(CStateStack& aStateStack) : CState(aStateStack)
 {
@@ -24,7 +23,7 @@ void CLoadLevelState::Awake()
 	unsigned int loadSceneIndex = Load(ELevel::LoadScreen);
 	CEngine::GetInstance()->SetActiveScene(loadSceneIndex);
 	//Start Loading the ELevel::<Level> on a seperate thread.
-	myLoadLevelFuture = std::async(std::launch::async, &CLoadLevelState::Load, this, ELevel::NavTest);
+	myLoadLevelFuture = std::async(std::launch::async, &CLoadLevelState::Load, this, ELevel::Dungeon);
 
 	for (auto& gameObject : CEngine::GetInstance()->GetActiveScene().GetActiveGameObjects())
 	{

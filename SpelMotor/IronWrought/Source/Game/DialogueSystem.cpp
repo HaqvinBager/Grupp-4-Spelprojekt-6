@@ -245,7 +245,7 @@ void CDialogueSystem::HandleInput(float delta_time) {
 	}
 
 	int length = static_cast<int>(myDialogueBuffer[myCurrentDialogueIndex].myText.length());
-	if (CommonUtilities::Input::GetInstance()->IsKeyPressed(VK_SPACE) && myDialogueTimer >= (myDialogueSpeed * length)) {
+	if (Input::GetInstance()->IsKeyPressed(VK_SPACE) && myDialogueTimer >= (myDialogueSpeed * length)) {
 		if (!myIsInventory) {
 			myCurrentDialogueIndex = static_cast<size_t>(myCurrentDialogueIndex + 1) % myDialogueBuffer.size();
 			myDialogueTimer = 0.0f;
@@ -259,7 +259,7 @@ void CDialogueSystem::HandleInput(float delta_time) {
 		}
 	}
 
-	if (CommonUtilities::Input::GetInstance()->IsKeyDown(VK_SPACE)) {
+	if (Input::GetInstance()->IsKeyDown(VK_SPACE)) {
 		myHeldButtonTimer += delta_time;
 
 		if (myHeldButtonTimer >= 0.3f) {
@@ -267,12 +267,12 @@ void CDialogueSystem::HandleInput(float delta_time) {
 		}
 	}
 
-	if (CommonUtilities::Input::GetInstance()->IsKeyReleased(VK_SPACE)) {
+	if (Input::GetInstance()->IsKeyReleased(VK_SPACE)) {
 		myHeldButtonTimer = 0.0f;
 		SetDialogueSpeed(0.05f, length);
 	}
 
-	if (CommonUtilities::Input::GetInstance()->IsKeyPressed(VK_RETURN)) {
+	if (Input::GetInstance()->IsKeyPressed(VK_RETURN)) {
 		if (!myIsInventory) {
 			ExitDialogue();
 		}

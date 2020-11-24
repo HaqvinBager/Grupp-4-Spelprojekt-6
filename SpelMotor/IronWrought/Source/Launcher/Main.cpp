@@ -19,7 +19,6 @@
 #pragma comment(lib, "dbghelp.lib")
 #endif // NDEBUG
 
-using namespace CommonUtilities;
 
 #ifdef _DEBUG
 #define USE_CONSOLE_COMMAND

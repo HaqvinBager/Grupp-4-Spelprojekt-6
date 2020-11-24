@@ -23,9 +23,6 @@
 #include "TriangleColliderComponent.h"
 //collider test
 
-
-using namespace CommonUtilities;
-
 CInGameState::CInGameState(CStateStack& aStateStack) : CState(aStateStack) {
 
 }
