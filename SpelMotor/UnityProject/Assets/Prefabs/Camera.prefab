@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3764633515193466348}
   m_LocalRotation: {x: 0.37845814, y: 0.31305492, z: -0.13774747, w: 0.8601115}
-  m_LocalPosition: {x: 277.8, y: 19, z: -186}
+  m_LocalPosition: {x: -15.21, y: 2.55, z: -4.24}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -98,3 +98,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startInCameraMode: 0
   toggleFreeCamKey: 102
+  freeCamMoveSpeed: 40.6
+  offset: {x: -0.96, y: 2.55, z: -0.99}
