@@ -8,7 +8,8 @@ enum class EAbilityType {
 	//TEMP TYPES TODO: CHANGE TO PROPER NAMES
 	WHIRLWIND,
 	TRIANGLE,
-	BOX
+	BOX,
+	AbilityTest
 };
 
 class CAbilityComponent : public CBehaviour, public IInputObserver

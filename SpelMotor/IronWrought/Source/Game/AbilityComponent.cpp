@@ -15,6 +15,8 @@
 #include "InputMapper.h"
 #include "MainSingleton.h"
 
+#include "Engine.h"
+
 CAbilityComponent::CAbilityComponent(CGameObject& aParent, std::vector<std::pair<EAbilityType, unsigned int>> someAbilities) : CBehaviour(aParent), myCurrentCooldowns(new float[3]), myMaxCooldowns(new float[3])
 {
 	CInputMapper::GetInstance()->AddObserver(IInputObserver::EInputEvent::Ability1, this);
@@ -196,7 +198,8 @@ CGameObject* CAbilityComponent::LoadAbilityFromFile(EAbilityType anAbilityType)
 		abilityTest->AddComponent<CCircleColliderComponent>(*abilityTest, 1.0f, ECollisionLayer::PLAYERABILITY, static_cast<int>(ECollisionLayer::ENEMY));
 
 		abilityTest->Active(false);
-		CScene::GetInstance()->AddInstance(abilityTest);
+		//CScene::GetInstance()->AddInstance(abilityTest);
+		CEngine::GetInstance()->GetActiveScene().AddInstance(abilityTest);
 		break;
 	case EAbilityType::TRIANGLE:
 		abilityTest->myTransform->Position({ 0.0f, 0.0f, 0.0f });
@@ -214,7 +217,8 @@ CGameObject* CAbilityComponent::LoadAbilityFromFile(EAbilityType anAbilityType)
 		abilityTest->AddComponent<CTriangleColliderComponent>(*abilityTest, 2.0f, 2.0f, ECollisionLayer::PLAYERABILITY, static_cast<int>(ECollisionLayer::ENEMY));
 
 		abilityTest->Active(false);
-		CScene::GetInstance()->AddInstance(abilityTest);
+		//CScene::GetInstance()->AddInstance(abilityTest);
+		CEngine::GetInstance()->GetActiveScene().AddInstance(abilityTest);
 		break;
 	case EAbilityType::BOX:
 		abilityTest->myTransform->Position({ 0.0f, 0.0f, 0.0f });
@@ -232,7 +236,8 @@ CGameObject* CAbilityComponent::LoadAbilityFromFile(EAbilityType anAbilityType)
 		abilityTest->AddComponent<CRectangleColliderComponent>(*abilityTest, 1.0f, 1.0f, ECollisionLayer::PLAYERABILITY, static_cast<int>(ECollisionLayer::ENEMY));
 
 		abilityTest->Active(false);
-		CScene::GetInstance()->AddInstance(abilityTest);
+		//CScene::GetInstance()->AddInstance(abilityTest);
+		CEngine::GetInstance()->GetActiveScene().AddInstance(abilityTest);
 		break;
 	default:
 		break;
