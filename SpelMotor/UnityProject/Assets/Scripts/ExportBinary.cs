@@ -1,11 +1,7 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEditor;
-using System.Collections;
 using System.Collections.Generic;
-using System;
 using System.IO;
-using UnityEditor.SceneManagement;
 using UnityEngine.SceneManagement;
 using System.Text;
 
@@ -85,6 +81,8 @@ public class BinaryExporter
     [MenuItem("Tools/Export all BIN #_y")]
     private static void DoExportBinary()
     {
+        //Verify reading this!
+        ExportNavMeshToObj.Export();
 
         MeshFilter[] allMeshes = GameObject.FindObjectsOfType<MeshFilter>();
         Debug.Log("______Exporting Binary______");
@@ -95,31 +93,7 @@ public class BinaryExporter
         }
 
         string scene_name = SceneManager.GetActiveScene().name;
-
-        // Save paths
-        List<string> modelPaths = new List<string>();
-        GameObject[] allModels = UnityEngine.Object.FindObjectsOfType<GameObject>();
-        foreach (GameObject go in allModels)
-        {
-            MeshFilter mesh = go.GetComponentInChildren<MeshFilter>();
-            if (mesh != null)
-            {
-                MeshFilter originalSource = PrefabUtility.GetCorrespondingObjectFromOriginalSource(mesh);
-                string path = AssetDatabase.GetAssetPath(originalSource);
-                if (modelPaths.Contains(path))
-                    continue;
-
-                modelPaths.Add(path);
-            }
-        }
-
-        StringBuilder modelPathStringBuilder = new StringBuilder();
-        modelPathStringBuilder.AppendLine("Unique Models Found: " + modelPaths.Count);
-        foreach(string modelPath in modelPaths)
-        {
-            modelPathStringBuilder.AppendLine(modelPath);
-        }
-        Debug.Log(modelPathStringBuilder.ToString());
+        List<string> modelPaths = GetAllModelPaths();
 
         using (System.IO.StreamWriter file = new System.IO.StreamWriter(target_path + scene_name + "_bin_modelPaths.json"))
         {
@@ -242,6 +216,37 @@ public class BinaryExporter
         }
 
         bw.Close();
+
+
+    }
+
+    private static List<string> GetAllModelPaths()
+    {
+        // Save paths
+        List<string> modelPaths = new List<string>();
+        GameObject[] allModels = UnityEngine.Object.FindObjectsOfType<GameObject>();
+        foreach (GameObject go in allModels)
+        {
+            MeshFilter mesh = go.GetComponentInChildren<MeshFilter>();
+            if (mesh != null)
+            {
+                MeshFilter originalSource = PrefabUtility.GetCorrespondingObjectFromOriginalSource(mesh);
+                string path = AssetDatabase.GetAssetPath(originalSource);
+                if (modelPaths.Contains(path))
+                    continue;
+
+                modelPaths.Add(path);
+            }
+        }
+
+        StringBuilder modelPathStringBuilder = new StringBuilder();
+        modelPathStringBuilder.AppendLine("Unique Models Found: " + modelPaths.Count);
+        foreach (string modelPath in modelPaths)
+        {
+            modelPathStringBuilder.AppendLine(modelPath);
+        }
+        Debug.Log(modelPathStringBuilder.ToString());
+        return modelPaths;
     }
 
     private static int GetModelIndexFromPrefab(GameObject gameObject, List<string> filter)
