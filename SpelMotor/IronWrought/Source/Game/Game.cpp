@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "Game.h"
 #include "LoadLevelState.h"
-
+#include "MenuState.h"
 #include <SceneReader.h>
 
 #ifdef _DEBUG
@@ -13,9 +13,7 @@
 #pragma comment(lib, "UnityImporterApp_Release.lib")
 #endif // NDEBUG
 
-CGame::CGame() 
-	: myWindowWidth(0)
-	, myWindowHeight(0)
+CGame::CGame()
 {
 }
 
@@ -25,7 +23,7 @@ CGame::~CGame()
 
 void CGame::Init()
 {
-	myStateStack.PushState(new CLoadLevelState(myStateStack));
+	myStateStack.PushState(new CMenuState(myStateStack));
 	myStateStack.Awake();
 	myStateStack.Start();
 }

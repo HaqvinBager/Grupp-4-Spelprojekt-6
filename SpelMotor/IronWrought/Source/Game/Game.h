@@ -10,9 +10,6 @@ public:
 	void Init();
 	void Update();
 
-	unsigned int myWindowWidth;
-	unsigned int myWindowHeight;
-
 private:
 	CStateStack myStateStack;
 };

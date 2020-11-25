@@ -117,8 +117,6 @@ void RunGame(LPWSTR lpCmdLine)
 		return;
 
 	CGame game;
-	game.myWindowWidth = engine.GetWindowHandler()->GetWidth();
-	game.myWindowHeight = engine.GetWindowHandler()->GetHeight();
 	game.Init();
 
 	MSG windowMessage = { 0 };
