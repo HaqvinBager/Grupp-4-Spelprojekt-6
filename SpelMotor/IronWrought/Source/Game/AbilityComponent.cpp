@@ -10,12 +10,16 @@
 #include "RectangleColliderComponent.h"
 #include "CircleColliderComponent.h"
 #include "ProjectileBehavior.h"
+#include "AuraBehavior.h"
 #include "TransformComponent.h"
 #include "Scene.h"
 #include "InputMapper.h"
 #include "MainSingleton.h"
-
 #include "Engine.h"
+
+#include <fstream>
+#include "rapidjson\document.h"
+#include "rapidjson\istreamwrapper.h"
 
 CAbilityComponent::CAbilityComponent(CGameObject& aParent, std::vector<std::pair<EAbilityType, unsigned int>> someAbilities) : CBehaviour(aParent), myCurrentCooldowns(new float[3]), myMaxCooldowns(new float[3])
 {
@@ -31,6 +35,9 @@ CAbilityComponent::CAbilityComponent(CGameObject& aParent, std::vector<std::pair
 	myMaxCooldowns[1] = 50.0f * 0.9f; //TODO: make read unity
 	myMaxCooldowns[2] = 60.f*60.f; //TODO: make read unity
 
+	myFilePaths.emplace(EAbilityType::WHIRLWIND, "Json/AbilityTest.json");
+	myFilePaths.emplace(EAbilityType::AbilityTest, "Json/AbilityTest.json");
+
 	// Setting up pools
 	for (unsigned int i = 0; i < someAbilities.size(); ++i) {
 		std::vector<CGameObject*> gameObjectsToPool;
@@ -39,6 +46,7 @@ CAbilityComponent::CAbilityComponent(CGameObject& aParent, std::vector<std::pair
 		}
 		myAbilityPools.emplace(someAbilities[i].first, gameObjectsToPool);
 	}
+
 }
 
 CAbilityComponent::~CAbilityComponent()
@@ -92,14 +100,22 @@ void CAbilityComponent::UseAbility(EAbilityType anAbilityType, DirectX::SimpleMa
 
 	// getparent().playanimation(myactiveabilities.back().getcomponent<pod>().myanimation);
 
-	if (anAbilityType == EAbilityType::WHIRLWIND) {
+	switch (anAbilityType)
+	{
+	case EAbilityType::WHIRLWIND:
 		myActiveAbilities.back()->GetComponent<CAbilityBehaviorComponent>()->Init(aSpawnPosition);
-	}
-	else if (anAbilityType == EAbilityType::TRIANGLE) {
+		break;
+	case EAbilityType::TRIANGLE:
 		myActiveAbilities.back()->GetComponent<CAbilityBehaviorComponent>()->Init(aSpawnPosition);
-	}
-	else if (anAbilityType == EAbilityType::BOX) {
+		break;
+	case EAbilityType::BOX:
 		myActiveAbilities.back()->GetComponent<CAbilityBehaviorComponent>()->Init(aSpawnPosition);
+		break;
+	case EAbilityType::AbilityTest:
+		myActiveAbilities.back()->GetComponent<CAbilityBehaviorComponent>()->Init(aSpawnPosition);
+		break;
+	default:
+		break;
 	}
 }
 
@@ -112,7 +128,6 @@ void CAbilityComponent::SendEvent() {
 		myMessage.myMessageType = EMessageType::AbilityOneCooldown;
 		myMessage.data = &messageValue;
 		CMainSingleton::PostMaster().Send(myMessage);
-
 	}
 
 	if (myCurrentCooldowns[1] > 0) {
@@ -177,70 +192,105 @@ void CAbilityComponent::RecieveEvent(const EInputEvent aEvent)
 
 CGameObject* CAbilityComponent::LoadAbilityFromFile(EAbilityType anAbilityType)
 {
-	CGameObject* abilityTest = new CGameObject();
-	CProjectileBehavior* behavior;
+	using namespace rapidjson;
+
+	std::ifstream inputStream(myFilePaths[anAbilityType]);
+	if (!inputStream.good()) { return nullptr; }
+	IStreamWrapper inputWrapper(inputStream);
+	Document document;
+	document.ParseStream(inputWrapper);
+
+	CGameObject* abilityObject = new CGameObject();
+	CProjectileBehavior* projectileBehavior = nullptr;
+	CAuraBehavior* auraBehavior = nullptr;
 	DirectX::SimpleMath::Vector3 abilityDirection;
+	std::string colliderType;
+	
+	//VFX
+	abilityObject->myTransform->Position({ 0.0f, 0.0f, 0.0f });
+	for (unsigned int i = 0; i < document["VFX"].Size(); ++i) {
+		abilityObject->AddComponent<CVFXComponent>(*abilityObject);
+		abilityObject->GetComponent<CVFXComponent>()->Init(CVFXFactory::GetInstance()->GetVFXBase(document["VFX"][i]["Path"].GetString()));
+	}
+	//!VFX
+
+	//PARTICLESYSTEM
+	for (unsigned int i = 0; i < document["ParticleSystems"].Size(); ++i) {
+		abilityObject->AddComponent<CParticleEmitterComponent>(*abilityObject);
+		abilityObject->GetComponent<CParticleEmitterComponent>()->Init(CParticleFactory::GetInstance()->GetParticle(document["ParticleSystems"][i]["Path"].GetString()));
+	}
+	//!PARTICLESYSTEM
+	
+	//BEHAVIOR
 	switch (anAbilityType)
 	{
 	case EAbilityType::WHIRLWIND:
-		abilityTest->myTransform->Position({ 0.0f, 0.0f, 0.0f });
-		abilityTest->AddComponent<CVFXComponent>(*abilityTest);
-		abilityTest->GetComponent<CVFXComponent>()->Init(CVFXFactory::GetInstance()->GetVFXBase("Assets/3D/VFX/VFX_mesh_disc_01_19G4.fbx", "Json/VFXData_FogWall.json"));
-
-		abilityTest->AddComponent<CParticleEmitterComponent>(*abilityTest);
-		abilityTest->GetComponent<CParticleEmitterComponent>()->Init(CParticleFactory::GetInstance()->GetParticle("Json/ParticleData_SmokeEmitter.json"));
 
 		abilityDirection = { 0.0f, 0.0f, 0.0f };
+		projectileBehavior = new CProjectileBehavior(abilityDirection, 3.0f);
+		abilityObject->AddComponent<CAbilityBehaviorComponent>(*abilityObject, projectileBehavior, EAbilityType::WHIRLWIND);
 
-		behavior = new CProjectileBehavior(abilityDirection, 3.0f);
-		abilityTest->AddComponent<CAbilityBehaviorComponent>(*abilityTest, behavior, EAbilityType::WHIRLWIND);
-
-		abilityTest->AddComponent<CCircleColliderComponent>(*abilityTest, 1.0f, ECollisionLayer::PLAYERABILITY, static_cast<int>(ECollisionLayer::ENEMY));
-
-		abilityTest->Active(false);
-		//CScene::GetInstance()->AddInstance(abilityTest);
-		CEngine::GetInstance()->GetActiveScene().AddInstance(abilityTest);
 		break;
 	case EAbilityType::TRIANGLE:
-		abilityTest->myTransform->Position({ 0.0f, 0.0f, 0.0f });
-		abilityTest->AddComponent<CVFXComponent>(*abilityTest);
-		abilityTest->GetComponent<CVFXComponent>()->Init(CVFXFactory::GetInstance()->GetVFXBase("Assets/3D/VFX/VFX_mesh_disc_01_19G4.fbx", "Json/VFXData_FogWall.json"));
-
-		abilityTest->AddComponent<CParticleEmitterComponent>(*abilityTest);
-		abilityTest->GetComponent<CParticleEmitterComponent>()->Init(CParticleFactory::GetInstance()->GetParticle("Json/ParticleData_SmokeEmitter.json"));
 
 		abilityDirection = { 0.0f, 0.0f, 0.0f };
+		projectileBehavior = new CProjectileBehavior(abilityDirection, 3.0f);
+		abilityObject->AddComponent<CAbilityBehaviorComponent>(*abilityObject, projectileBehavior, EAbilityType::TRIANGLE);
 
-		behavior = new CProjectileBehavior(abilityDirection, 3.0f);
-		abilityTest->AddComponent<CAbilityBehaviorComponent>(*abilityTest, behavior, EAbilityType::TRIANGLE);
-
-		abilityTest->AddComponent<CTriangleColliderComponent>(*abilityTest, 2.0f, 2.0f, ECollisionLayer::PLAYERABILITY, static_cast<int>(ECollisionLayer::ENEMY));
-
-		abilityTest->Active(false);
-		//CScene::GetInstance()->AddInstance(abilityTest);
-		CEngine::GetInstance()->GetActiveScene().AddInstance(abilityTest);
 		break;
 	case EAbilityType::BOX:
-		abilityTest->myTransform->Position({ 0.0f, 0.0f, 0.0f });
-		abilityTest->AddComponent<CVFXComponent>(*abilityTest);
-		abilityTest->GetComponent<CVFXComponent>()->Init(CVFXFactory::GetInstance()->GetVFXBase("Assets/3D/VFX/VFX_mesh_disc_01_19G4.fbx", "Json/VFXData_FogWall.json"));
-
-		abilityTest->AddComponent<CParticleEmitterComponent>(*abilityTest);
-		abilityTest->GetComponent<CParticleEmitterComponent>()->Init(CParticleFactory::GetInstance()->GetParticle("Json/ParticleData_SmokeEmitter.json"));
 
 		abilityDirection = { 0.0f, 0.0f, 0.0f };
+		projectileBehavior = new CProjectileBehavior(abilityDirection, 3.0f);
+		abilityObject->AddComponent<CAbilityBehaviorComponent>(*abilityObject, projectileBehavior, EAbilityType::BOX);
 
-		behavior = new CProjectileBehavior(abilityDirection, 3.0f);
-		abilityTest->AddComponent<CAbilityBehaviorComponent>(*abilityTest, behavior, EAbilityType::BOX);
+		break;
+	case EAbilityType::AbilityTest:
 
-		abilityTest->AddComponent<CRectangleColliderComponent>(*abilityTest, 1.0f, 1.0f, ECollisionLayer::PLAYERABILITY, static_cast<int>(ECollisionLayer::ENEMY));
+		auraBehavior = new CAuraBehavior(&GameObject(), 2.0f);
+		abilityObject->AddComponent<CAbilityBehaviorComponent>(*abilityObject, auraBehavior, EAbilityType::AbilityTest);
 
-		abilityTest->Active(false);
-		//CScene::GetInstance()->AddInstance(abilityTest);
-		CEngine::GetInstance()->GetActiveScene().AddInstance(abilityTest);
 		break;
 	default:
 		break;
 	}
-	return abilityTest;
+	//BEHAVIOR
+
+	//COLLIDER
+	colliderType = std::string(document["Collider"]["Type"].GetString());
+	if (colliderType == "Circle") {
+		abilityObject->AddComponent<CCircleColliderComponent>
+			(
+				*abilityObject,
+				document["Collider"]["Width"].GetFloat(),
+				static_cast<ECollisionLayer>(document["Collider"]["Collision Layer"].GetInt()),
+				document["Collider"]["Collides With"].GetInt()
+				);
+	}
+	else if (colliderType == "Rectangle") {
+		abilityObject->AddComponent<CRectangleColliderComponent>
+			(
+				*abilityObject,
+				document["Collider"]["Width"].GetFloat(),
+				document["Collider"]["Height"].GetFloat(),
+				static_cast<ECollisionLayer>(document["Collider"]["Collision Layer"].GetInt()),
+				document["Collider"]["Collides With"].GetInt()
+				);
+	}
+	else if (colliderType == "Triangle") {
+		abilityObject->AddComponent<CTriangleColliderComponent>
+			(
+				*abilityObject,
+				document["Collider"]["Width"].GetFloat(),
+				document["Collider"]["Height"].GetFloat(),
+				static_cast<ECollisionLayer>(document["Collider"]["Collision Layer"].GetInt()),
+				document["Collider"]["Collides With"].GetInt()
+				);
+	}
+	//COLLIDER
+
+	abilityObject->Active(false);
+	CEngine::GetInstance()->GetActiveScene().AddInstance(abilityObject);
+
+	return abilityObject;
 }

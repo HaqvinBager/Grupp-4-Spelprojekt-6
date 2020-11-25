@@ -1,17 +1,18 @@
 {
 	"Collider": {
-		"Type": "Rect",
+		"Type": "Circle",
 		"Width": 0.2,
-		"Height": 0.2
+		"Height": 0.2,
+		"Collision Layer": 16,
+		"Collides With": 4
 	},
 
-	"VFX": {
-		"Path": "VFXData_FogWall.json"
-	},
+	"VFX": [
+		{ "Path": "Json/VFXData_FogWall.json" }
+	],
 
 	"ParticleSystems": [
-		{},
-		{}
+		{ "Path": "Json/ParticleData_SmokeEmitter.json" }
 	],
 
 	"Audio": {
@@ -19,7 +20,7 @@
 	},
 
 	"Behavior": {
-
+		"Type" :  "Projectile"
 	},
 
 	"AnimationState": {
