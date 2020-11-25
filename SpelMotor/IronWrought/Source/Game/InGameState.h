@@ -15,5 +15,4 @@ public:
 	void Update() override;
 private:
 	CCanvas* myCanvas;
-	CGameObject* myPlayer;
 };

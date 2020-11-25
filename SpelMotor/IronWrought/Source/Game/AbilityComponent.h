@@ -34,6 +34,7 @@ private:
 	CGameObject* LoadAbilityFromFile(EAbilityType anAbilityType);
 
 private:
+	std::vector<std::pair<EAbilityType, unsigned int>> myAbilityPoolDescriptions;
 	std::map<EAbilityType, std::vector<CGameObject*>> myAbilityPools;
 	std::map<EAbilityType, std::string> myFilePaths;
 	std::vector<CGameObject*> myActiveAbilities;
