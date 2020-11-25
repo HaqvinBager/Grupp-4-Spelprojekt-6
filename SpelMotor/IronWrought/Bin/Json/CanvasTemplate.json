@@ -1,0 +1,45 @@
+{
+  "Buttons": [
+    {
+      "Text": "Play",
+      "Position X": 0.0,
+      "Position Y": 0.0,
+      "Pixel Width": 320.0,
+      "Pixel Height": 100.0,
+      "Idle Sprite Path": "Assets/Graphics/Ui/idle_button.dds",
+      "Hover Sprite Path": "Assets/Graphics/Ui/hover_button.dds",
+      "Click Sprite Path": "Assets/Graphics/Ui/depressed_button.dds",
+      "Messages": [ 6 ]
+    }
+  ],
+
+  "Animated UI Elements": [
+    {
+      "Path": "Json/VFXData_UI_AbilityCooldown.json",
+      "Position X": -0.465,
+      "Position Y": 0.815
+    },
+    {
+      "Path": "Json/VFXData_UI_AbilityCooldown.json",
+      "Position X": -0.305,
+      "Position Y": 0.815
+    },
+    {
+      "Path": "Json/VFXData_UI_AbilityCooldown.json",
+      "Position X": -0.145,
+      "Position Y": 0.815
+    }
+  ],
+
+  "Sprites": [
+    {
+      "Path": "Assets/Graphics/Ui/test.dds",
+      "Position X": 0.0,
+      "Position Y": 0.75
+    }
+  ],
+
+  "PostmasterEvents": {
+    "Events": [ 9, 10, 11 ]
+  }
+}
