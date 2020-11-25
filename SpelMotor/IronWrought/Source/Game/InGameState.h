@@ -1,6 +1,8 @@
 #pragma once
 #include "State.h"
 
+class CCanvas;
+class CGameObject;
 class CInGameState : public CState
 {
 
@@ -12,4 +14,6 @@ public:
 	void Start() override;
 	void Update() override;
 private:
+	CCanvas* myCanvas;
+	CGameObject* myPlayer;
 };
