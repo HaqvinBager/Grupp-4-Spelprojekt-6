@@ -21,12 +21,9 @@
 #include "rapidjson\document.h"
 #include "rapidjson\istreamwrapper.h"
 
-CAbilityComponent::CAbilityComponent(CGameObject& aParent, std::vector<std::pair<EAbilityType, unsigned int>> someAbilities) : CBehaviour(aParent), myCurrentCooldowns(new float[3]), myMaxCooldowns(new float[3])
+CAbilityComponent::CAbilityComponent(CGameObject& aParent, std::vector<std::pair<EAbilityType, unsigned int>> someAbilities) 
+	: CBehaviour(aParent), myAbilityPoolDescriptions(someAbilities), myCurrentCooldowns(new float[3]), myMaxCooldowns(new float[3])
 {
-	CInputMapper::GetInstance()->AddObserver(IInputObserver::EInputEvent::Ability1, this);
-	CInputMapper::GetInstance()->AddObserver(IInputObserver::EInputEvent::Ability2, this);
-	CInputMapper::GetInstance()->AddObserver(IInputObserver::EInputEvent::Ability3, this);
-
 	myCurrentCooldowns[0] = 0.0f;
 	myCurrentCooldowns[1] = 0.0f;
 	myCurrentCooldowns[2] = 0.0f;
@@ -37,16 +34,6 @@ CAbilityComponent::CAbilityComponent(CGameObject& aParent, std::vector<std::pair
 
 	myFilePaths.emplace(EAbilityType::WHIRLWIND, "Json/AbilityTest.json");
 	myFilePaths.emplace(EAbilityType::AbilityTest, "Json/AbilityTest.json");
-
-	// Setting up pools
-	for (unsigned int i = 0; i < someAbilities.size(); ++i) {
-		std::vector<CGameObject*> gameObjectsToPool;
-		for (unsigned int j = 0; j < someAbilities[i].second; ++j) {
-			gameObjectsToPool.emplace_back(LoadAbilityFromFile(someAbilities[i].first));
-		}
-		myAbilityPools.emplace(someAbilities[i].first, gameObjectsToPool);
-	}
-
 }
 
 CAbilityComponent::~CAbilityComponent()
@@ -60,6 +47,19 @@ CAbilityComponent::~CAbilityComponent()
 
 void CAbilityComponent::Awake()
 {
+	CInputMapper::GetInstance()->AddObserver(IInputObserver::EInputEvent::Ability1, this);
+	CInputMapper::GetInstance()->AddObserver(IInputObserver::EInputEvent::Ability2, this);
+	CInputMapper::GetInstance()->AddObserver(IInputObserver::EInputEvent::Ability3, this);
+
+	// Setting up pools
+	for (unsigned int i = 0; i < myAbilityPoolDescriptions.size(); ++i) {
+		std::vector<CGameObject*> gameObjectsToPool;
+		for (unsigned int j = 0; j < myAbilityPoolDescriptions[i].second; ++j) {
+			gameObjectsToPool.emplace_back(LoadAbilityFromFile(myAbilityPoolDescriptions[i].first));
+			CEngine::GetInstance()->GetActiveScene().AddInstance(gameObjectsToPool.back());
+		}
+		myAbilityPools.emplace(myAbilityPoolDescriptions[i].first, gameObjectsToPool);
+	}
 }
 
 void CAbilityComponent::Start()
@@ -162,6 +162,7 @@ void CAbilityComponent::RecieveEvent(const EInputEvent aEvent)
 	{
 		SMessage myMessage;
 	case EInputEvent::Ability1:
+		UseAbility(EAbilityType::AbilityTest, GameObject().myTransform->Position());
 		if (myCurrentCooldowns[0] > 0)
 			break;
 		myMessage.myMessageType = EMessageType::AbilityOneCooldown;
@@ -208,17 +209,21 @@ CGameObject* CAbilityComponent::LoadAbilityFromFile(EAbilityType anAbilityType)
 	
 	//VFX
 	abilityObject->myTransform->Position({ 0.0f, 0.0f, 0.0f });
+	std::vector<std::string> paths;
 	for (unsigned int i = 0; i < document["VFX"].Size(); ++i) {
-		abilityObject->AddComponent<CVFXComponent>(*abilityObject);
-		abilityObject->GetComponent<CVFXComponent>()->Init(CVFXFactory::GetInstance()->GetVFXBase(document["VFX"][i]["Path"].GetString()));
+		paths.emplace_back(document["VFX"][i]["Path"].GetString());
 	}
+	abilityObject->AddComponent<CVFXComponent>(*abilityObject);
+	abilityObject->GetComponent<CVFXComponent>()->Init(CVFXFactory::GetInstance()->GetVFXBaseSet(paths));
 	//!VFX
 
 	//PARTICLESYSTEM
+	paths.clear();
 	for (unsigned int i = 0; i < document["ParticleSystems"].Size(); ++i) {
-		abilityObject->AddComponent<CParticleEmitterComponent>(*abilityObject);
-		abilityObject->GetComponent<CParticleEmitterComponent>()->Init(CParticleFactory::GetInstance()->GetParticle(document["ParticleSystems"][i]["Path"].GetString()));
+		paths.emplace_back(document["ParticleSystems"][i]["Path"].GetString());
 	}
+	abilityObject->AddComponent<CParticleEmitterComponent>(*abilityObject);
+	abilityObject->GetComponent<CParticleEmitterComponent>()->Init(CParticleFactory::GetInstance()->GetParticleSet(paths));
 	//!PARTICLESYSTEM
 	
 	//BEHAVIOR

@@ -73,8 +73,13 @@ unsigned int CLoadLevelState::Load(const ELevel aLevel)
 		}
 		else //All other Scenes are regarded as "InGame" scenes. And will have to contain at least a Camera, Directional Light & Player (player is currently "utkommenterad", Fix Monday)
 		{
+
 			SInGameData& data = mySceneReader.ReadInGameData();
 			CScene* inGameScene = new CScene();
+
+			std::string navMeshPath = myLevelNames[static_cast<int>(aLevel)] + "_ExportedNavMesh.obj";
+			inGameScene->InitNavMesh(navMeshPath);
+
 			myUnityFactory.FillScene(data, BinModelPaths(aLevel), *inGameScene);
 			return CEngine::GetInstance()->AddScene(inGameScene);
 		}

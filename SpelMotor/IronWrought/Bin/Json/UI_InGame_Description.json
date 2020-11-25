@@ -1,0 +1,31 @@
+{
+  "Animated UI Elements": [
+    {
+      "Path": "Json/VFXData_UI_AbilityCooldown.json",
+      "Position X": -0.465,
+      "Position Y": 0.815
+    },
+    {
+      "Path": "Json/VFXData_UI_AbilityCooldown.json",
+      "Position X": -0.305,
+      "Position Y": 0.815
+    },
+    {
+      "Path": "Json/VFXData_UI_AbilityCooldown.json",
+      "Position X": -0.145,
+      "Position Y": 0.815
+    }
+  ],
+
+  "Sprites": [
+    {
+      "Path": "Assets/3D/UI/Ingame/test.dds",
+      "Position X": 0.0,
+      "Position Y": 0.75
+    }
+  ],
+
+  "PostmasterEvents": {
+    "Events": [ 9, 10, 11 ]
+  }
+}
