@@ -85,6 +85,11 @@ public class BinaryExporter
     [MenuItem("Tools/Export all BIN #_y")]
     private static void DoExportBinary()
     {
+
+        MeshFilter[] allMeshes = GameObject.FindObjectsOfType<MeshFilter>();
+        Debug.Log(allMeshes.Length);
+
+
         Debug.Log("Exporting Binary");
 
         string target_path = "..\\IronWrought\\Bin\\Levels\\";
@@ -96,24 +101,21 @@ public class BinaryExporter
         string scene_name = SceneManager.GetActiveScene().name;
 
         // Save paths
-        Dictionary<string, string> filter = new Dictionary<string, string>();
-
+        List<string> modelPaths = new List<string>();
         GameObject[] allModels = UnityEngine.Object.FindObjectsOfType<GameObject>();
         foreach (GameObject go in allModels)
         {
-            if (go.transform.childCount == 0)
-                continue;
-            GameObject child = go.transform.GetChild(0).gameObject;
-
-            MeshFilter mesh = child.GetComponent<MeshFilter>();
+            MeshFilter mesh = go.GetComponentInChildren<MeshFilter>();
             if (mesh != null)
             {
+                MeshFilter originalSource = PrefabUtility.GetCorrespondingObjectFromOriginalSource(mesh);
+                string path = AssetDatabase.GetAssetPath(originalSource);
+                if (modelPaths.Contains(path))
+                    continue;
 
-                string path = AssetDatabase.GetAssetPath(PrefabUtility.GetCorrespondingObjectFromOriginalSource(mesh));
-                filter[path] = path;
+                modelPaths.Add(path);
             }
         }
-
 
         using (System.IO.StreamWriter file = new System.IO.StreamWriter(target_path + scene_name + "_bin_modelPaths.json"))
         {
@@ -121,18 +123,18 @@ public class BinaryExporter
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.AppendLine("{");
             stringBuilder.AppendLine("\"ModelPaths\" : [");
-            foreach (KeyValuePair<string, string> entry in filter)
+            foreach (string entry in modelPaths)
             {
                 stringBuilder.AppendLine("{");
 
                 stringBuilder.Append("\"Path\" : ");
                 stringBuilder.Append("\"");
-                stringBuilder.Append(entry.Value);
+                stringBuilder.Append(entry);
                 stringBuilder.AppendLine("\"");
 
                 stringBuilder.AppendLine("}");
                 count++;
-                if (count != filter.Count)
+                if (count != modelPaths.Count)
                 {
                     stringBuilder.Append(",");
                 }
@@ -181,7 +183,7 @@ public class BinaryExporter
 
 
         bw.Write(pointLights.Count);
-        if(pointLights.Count > 0)
+        if (pointLights.Count > 0)
         {
             foreach (Light pointLight in pointLights)
             {
@@ -193,7 +195,7 @@ public class BinaryExporter
         if (player != null)
         {
             bw.Write(1);
-            PlayerData playerData = new PlayerData(player, GetModelIndexFromPrefab(player.gameObject, filter));
+            PlayerData playerData = new PlayerData(player, GetModelIndexFromPrefab(player.gameObject, modelPaths));
             bw.WriteTo(playerData);
 
         }
@@ -203,24 +205,18 @@ public class BinaryExporter
             Debug.LogWarning("No Player found! Please add one before you export! If this the loadscene you can ignore this warning.");
         }
 
+
+        MeshFilter[] allPrefabMeshes = GameObject.FindObjectsOfType<MeshFilter>();
+
         List<PrefabInstanceData> prefabInstanceDataList = new List<PrefabInstanceData>();
-        foreach (GameObject go in allObjects)
+        foreach (MeshFilter mesh in allPrefabMeshes)
         {
-            if (go.transform.childCount == 0)
+            if (mesh.GetComponentInParent<Player>() != null)
                 continue;
 
-            GameObject child = go.transform.GetChild(0).gameObject;
-            MeshFilter mesh = child.GetComponent<MeshFilter>();
-            if (mesh != null)
-            {
-                if(go.GetComponent<Player>() != null)
-                {
-                    continue;
-                }
-
-                int index = GetModelIndexFromPrefab(go, filter);
-                prefabInstanceDataList.Add(new PrefabInstanceData(go, index));
-            }
+            GameObject prefabParent = PrefabUtility.GetNearestPrefabInstanceRoot(mesh);
+            int index = Getindex(mesh.gameObject, modelPaths);
+            prefabInstanceDataList.Add(new PrefabInstanceData(prefabParent, index));
         }
 
         int prefabInstanceCount = prefabInstanceDataList.Count;
@@ -230,26 +226,25 @@ public class BinaryExporter
         {
             bw.WriteTo(data);
         }
- 
+
         bw.Close();
     }
 
-
-    private static int GetModelIndexFromPrefab(GameObject gameObject, Dictionary<string, string> filter)
+    private static int GetModelIndexFromPrefab(GameObject gameObject, List<string> filter)
     {
         return Getindex(PrefabUtility.GetCorrespondingObjectFromOriginalSource<GameObject>(gameObject.transform.GetChild(0).gameObject), filter);
     }
 
-    private static int Getindex(GameObject go, Dictionary<string, string> aDic)
+    private static int Getindex(GameObject go, List<string> modelPaths)
     {
         int index = -1;
-        foreach (KeyValuePair<string, string> entry in aDic)
+        foreach (string entry in modelPaths)
         {
             index++;
 
             string path = AssetDatabase.GetAssetPath(PrefabUtility.GetCorrespondingObjectFromOriginalSource(go));
 
-            if (entry.Value == path)
+            if (entry == path)
             {
                 break;
             }
