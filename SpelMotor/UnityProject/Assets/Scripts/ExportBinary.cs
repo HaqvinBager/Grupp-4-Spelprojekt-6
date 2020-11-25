@@ -87,11 +87,7 @@ public class BinaryExporter
     {
 
         MeshFilter[] allMeshes = GameObject.FindObjectsOfType<MeshFilter>();
-        Debug.Log(allMeshes.Length);
-
-
-        Debug.Log("Exporting Binary");
-
+        Debug.Log("______Exporting Binary______");
         string target_path = "..\\IronWrought\\Bin\\Levels\\";
         if (!System.IO.Directory.Exists(target_path))
         {
@@ -116,6 +112,14 @@ public class BinaryExporter
                 modelPaths.Add(path);
             }
         }
+
+        StringBuilder modelPathStringBuilder = new StringBuilder();
+        modelPathStringBuilder.AppendLine("Unique Models Found: " + modelPaths.Count);
+        foreach(string modelPath in modelPaths)
+        {
+            modelPathStringBuilder.AppendLine(modelPath);
+        }
+        Debug.Log(modelPathStringBuilder.ToString());
 
         using (System.IO.StreamWriter file = new System.IO.StreamWriter(target_path + scene_name + "_bin_modelPaths.json"))
         {
@@ -155,6 +159,10 @@ public class BinaryExporter
         {
             Debug.LogWarning("No Camera found! Please add one before you export!");
         }
+        else
+        {
+            Debug.Log("Camera Exported", camera);
+        }
         CameraData cameraData = new CameraData(camera);
         bw.WriteTo(cameraData);
 
@@ -177,6 +185,10 @@ public class BinaryExporter
         {
             Debug.LogWarning("No directionlight found! Please add one before you export!");
         }
+        else
+        {
+            Debug.Log("Directional Light Exported", directionalLight);
+        }
 
         DirectionalLightData directionalLightData = new DirectionalLightData(directionalLight);
         bw.WriteTo(directionalLightData);
@@ -189,6 +201,8 @@ public class BinaryExporter
             {
                 bw.WriteTo(new PointLightData(pointLight));
             }
+
+            Debug.Log(pointLights.Count + " PointLights Exported", pointLights[0]);
         }
 
         Player player = UnityEngine.Object.FindObjectOfType<Player>();
@@ -197,7 +211,7 @@ public class BinaryExporter
             bw.Write(1);
             PlayerData playerData = new PlayerData(player, GetModelIndexFromPrefab(player.gameObject, modelPaths));
             bw.WriteTo(playerData);
-
+            Debug.Log("Player Exported", player);
         }
         else
         {
