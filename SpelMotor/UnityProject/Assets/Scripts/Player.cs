@@ -5,6 +5,7 @@ using UnityEngine;
 [ExecuteAlways]
 public class Player : MonoBehaviour
 {
+    [HideInInspector]
     public PlayerData playerData;
 
     private void Update()
