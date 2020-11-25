@@ -74,6 +74,15 @@ public static class Writer
         bin.Write(data.myModelIndex);
         //Player health osv
     }
+    public static void WriteTo(this BinaryWriter bin, EventData data)
+    {
+        bin.Write(data.myPosition.x);
+        bin.Write(data.myPosition.y);
+        bin.Write(data.myPosition.z);
+        bin.Write(data.myColliderData.x);
+        bin.Write(data.myColliderData.y);
+        bin.Write(data.myEvent);
+    }
 }
 
 public class BinaryExporter
@@ -193,6 +202,18 @@ public class BinaryExporter
             Debug.LogWarning("No Player found! Please add one before you export! If this the loadscene you can ignore this warning.");
         }
 
+        EventSetup[] events = UnityEngine.Object.FindObjectsOfType<EventSetup>();
+
+        bw.Write(events.Length);
+        if (events.Length > 0)
+        {
+            foreach (EventSetup eventSetup in events)
+            {
+                EventData eventData = new EventData(eventSetup);
+                bw.WriteTo(eventData);
+            }
+            Debug.Log(events.Length + " Events Exported", events[0]);
+        }
 
         MeshFilter[] allPrefabMeshes = GameObject.FindObjectsOfType<MeshFilter>();
 
