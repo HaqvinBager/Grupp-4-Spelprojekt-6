@@ -14,12 +14,22 @@
       "Path": "Json/VFXData_UI_AbilityCooldown.json",
       "Position X": -0.145,
       "Position Y": 0.815
+    },
+	{
+      "Path": "Json/VFXData_UI_HealthOrb.json",
+      "Position X": -0.6775,
+      "Position Y": 0.72
+    },
+	{
+      "Path": "Json/VFXData_UI_ResourceOrb.json",
+      "Position X": 0.6775,
+      "Position Y": 0.72
     }
   ],
 
   "Sprites": [
     {
-      "Path": "Assets/3D/UI/Ingame/test.dds",
+      "Path": "Assets/3D/UI/Ingame/UI_In_HUD_03_19G4.dds",
       "Position X": 0.0,
       "Position Y": 0.75
     }

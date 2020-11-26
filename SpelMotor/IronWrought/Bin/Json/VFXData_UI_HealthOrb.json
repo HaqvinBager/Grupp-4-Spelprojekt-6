@@ -16,11 +16,11 @@
   "Glow Color B": 0.45,
   "Glow Width": 0.1,
   "Vertical Direction Of Change": true,
-  "Pixel Shader Path": "Shaders/SpriteVFXSphericalTextureBlendingPixelShader.cso",
+  "Pixel Shader Path": "Shaders/SpriteVFXTextureBlendingPixelShader.cso",
   "Texture 1": "Assets/3D/VFX/Fog_texture.dds",
   "Texture 2": "Assets/3D/VFX/test_smoke.dds",
   "Texture 3": "Assets/3D/VFX/VFXCloud.dds",
   "Texture Mask": "Assets/3D/UI/Ingame/UI_IN_OrbBase.dds",
-  "Texture Overlay": "Assets/3D/UI/Ingame/UI_IN_OrbFrame.dds"
+  "Texture Overlay": "Assets/3D/UI/Ingame/UI_In_OrbFrame_01_19G4.dds"
 
 }
