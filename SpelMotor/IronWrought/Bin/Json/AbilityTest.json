@@ -20,7 +20,8 @@
 	},
 
 	"Behavior": {
-		"Type" :  "Projectile"
+		"Type": "Aura",
+		"Rotational Speed": 2.0
 	},
 
 	"AnimationState": {

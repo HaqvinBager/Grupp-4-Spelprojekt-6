@@ -21,7 +21,7 @@
 #include "rapidjson\document.h"
 #include "rapidjson\istreamwrapper.h"
 
-CAbilityComponent::CAbilityComponent(CGameObject& aParent, std::vector<std::pair<EAbilityType, unsigned int>> someAbilities) 
+CAbilityComponent::CAbilityComponent(CGameObject& aParent, std::vector<std::pair<EAbilityType, unsigned int>> someAbilities)
 	: CBehaviour(aParent), myAbilityPoolDescriptions(someAbilities), myCurrentCooldowns(new float[3]), myMaxCooldowns(new float[3])
 {
 	myCurrentCooldowns[0] = 0.0f;
@@ -30,7 +30,7 @@ CAbilityComponent::CAbilityComponent(CGameObject& aParent, std::vector<std::pair
 
 	myMaxCooldowns[0] = 0.2f; //TODO: make read unity
 	myMaxCooldowns[1] = 50.0f * 0.9f; //TODO: make read unity
-	myMaxCooldowns[2] = 60.f*60.f; //TODO: make read unity
+	myMaxCooldowns[2] = 60.f * 60.f; //TODO: make read unity
 
 	myFilePaths.emplace(EAbilityType::WHIRLWIND, "Json/AbilityTest.json");
 	myFilePaths.emplace(EAbilityType::AbilityTest, "Json/AbilityTest.json");
@@ -157,7 +157,7 @@ void CAbilityComponent::RecieveEvent(const EInputEvent aEvent)
 {
 	float messageValue = 1.0f;
 
-	
+
 	switch (aEvent)
 	{
 		SMessage myMessage;
@@ -204,9 +204,8 @@ CGameObject* CAbilityComponent::LoadAbilityFromFile(EAbilityType anAbilityType)
 	CGameObject* abilityObject = new CGameObject();
 	CProjectileBehavior* projectileBehavior = nullptr;
 	CAuraBehavior* auraBehavior = nullptr;
-	DirectX::SimpleMath::Vector3 abilityDirection;
 	std::string colliderType;
-	
+
 	//VFX
 	abilityObject->myTransform->Position({ 0.0f, 0.0f, 0.0f });
 	std::vector<std::string> paths;
@@ -225,39 +224,18 @@ CGameObject* CAbilityComponent::LoadAbilityFromFile(EAbilityType anAbilityType)
 	abilityObject->AddComponent<CParticleEmitterComponent>(*abilityObject);
 	abilityObject->GetComponent<CParticleEmitterComponent>()->Init(CParticleFactory::GetInstance()->GetParticleSet(paths));
 	//!PARTICLESYSTEM
-	
+
 	//BEHAVIOR
-	switch (anAbilityType)
+	auto behavior = document["Behavior"].GetObjectW();
+	if (behavior["Type"].GetString() == std::string("Aura"))
 	{
-	case EAbilityType::WHIRLWIND:
-
-		abilityDirection = { 0.0f, 0.0f, 0.0f };
-		projectileBehavior = new CProjectileBehavior(abilityDirection, 3.0f);
-		abilityObject->AddComponent<CAbilityBehaviorComponent>(*abilityObject, projectileBehavior, EAbilityType::WHIRLWIND);
-
-		break;
-	case EAbilityType::TRIANGLE:
-
-		abilityDirection = { 0.0f, 0.0f, 0.0f };
-		projectileBehavior = new CProjectileBehavior(abilityDirection, 3.0f);
-		abilityObject->AddComponent<CAbilityBehaviorComponent>(*abilityObject, projectileBehavior, EAbilityType::TRIANGLE);
-
-		break;
-	case EAbilityType::BOX:
-
-		abilityDirection = { 0.0f, 0.0f, 0.0f };
-		projectileBehavior = new CProjectileBehavior(abilityDirection, 3.0f);
-		abilityObject->AddComponent<CAbilityBehaviorComponent>(*abilityObject, projectileBehavior, EAbilityType::BOX);
-
-		break;
-	case EAbilityType::AbilityTest:
-
-		auraBehavior = new CAuraBehavior(&GameObject(), 2.0f);
-		abilityObject->AddComponent<CAbilityBehaviorComponent>(*abilityObject, auraBehavior, EAbilityType::AbilityTest);
-
-		break;
-	default:
-		break;
+		auraBehavior = new CAuraBehavior(&GameObject(), behavior["Rotational Speed"].GetFloat());
+		abilityObject->AddComponent<CAbilityBehaviorComponent>(*abilityObject, auraBehavior, anAbilityType);
+	}
+	else if (behavior["Type"].GetString() == std::string("Projectile"))
+	{
+		projectileBehavior = new CProjectileBehavior(behavior["Speed"].GetFloat(), behavior["Duration"].GetFloat());
+		abilityObject->AddComponent<CAbilityBehaviorComponent>(*abilityObject, projectileBehavior, anAbilityType);
 	}
 	//BEHAVIOR
 

@@ -8,13 +8,12 @@
 
 namespace SM = DirectX::SimpleMath;
 
-CProjectileBehavior::CProjectileBehavior(SM::Vector3 aDirection, float aSpeed)
+CProjectileBehavior::CProjectileBehavior(float aSpeed, float aDuration)
 {
-	myDirection = aDirection;
-	myDirection.Normalize();
+	myDirection = {0.0f, 0.0f, 0.0f};
 	mySpeed = aSpeed;
 
-	myDuration = 3.0f;
+	myDuration = aDuration;
 	myTimer = 0.0f;
 }
 
