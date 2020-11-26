@@ -2,7 +2,7 @@
   "Buttons": [
     {
       "Text": "Play",
-      "FontAndFontSize": "Text/baskerville16",
+      "FontAndFontSize": "Text/ComicSans64",
       "Text Color R": 0.0,
       "Text Color G": 1.0,
       "Text Color B": 1.0,
@@ -17,7 +17,7 @@
     },
     {
       "Text": "Quit",
-      "FontAndFontSize": "Text/baskerville16",
+      "FontAndFontSize": "Text/ComicSans64",
       "Text Color R": 0.0,
       "Text Color G": 1.0,
       "Text Color B": 1.0,
@@ -35,7 +35,7 @@
   "Texts": [
     {
       "Text": "This is my text, hello me smort!",
-      "FontAndFontSize": "Text/baskerville16",
+      "FontAndFontSize": "Text/ComicSans64",
       "Position X": 600.0,
       "Position Y": 300.0,
       "Color R": 0.0,

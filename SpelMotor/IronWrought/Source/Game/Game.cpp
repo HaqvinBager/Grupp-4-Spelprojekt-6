@@ -28,8 +28,8 @@ void CGame::Init()
 	myStateStack.Start();
 }
 
-void CGame::Update()
+bool CGame::Update()
 {
-	myStateStack.Update();
+	return myStateStack.Update();
 }
 	

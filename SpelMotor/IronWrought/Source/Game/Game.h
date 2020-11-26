@@ -8,7 +8,7 @@ public:
 	~CGame();
 
 	void Init();
-	void Update();
+	bool Update();
 
 private:
 	CStateStack myStateStack;
