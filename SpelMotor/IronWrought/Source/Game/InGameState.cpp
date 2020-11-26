@@ -32,20 +32,22 @@
 #include "PlayerControllerComponent.h"
 #include "AIBehaviorComponent.h"
 #include "TransformComponent.h"
+#include "PauseState.h"
 
 CInGameState::CInGameState(CStateStack& aStateStack) : CState(aStateStack) {
 	myCanvas = new CCanvas();
 	myCanvas->Init("Json/UI_InGame_Description.json");
 	myActiveScene = CEngine::GetInstance()->ScenesSize();
 
+	CInputMapper::GetInstance()->AddObserver(IInputObserver::EInputEvent::PauseGame, this);
 	myTokenPool = new CTokenPool(4, 4.0f);
-
-
 }
 
 CInGameState::~CInGameState()
 {
 	CEngine::GetInstance()->PopBackScene();
+
+	CInputMapper::GetInstance()->AddObserver(IInputObserver::EInputEvent::PauseGame, this);
 }
 
 void CInGameState::Awake()
@@ -88,6 +90,22 @@ void CInGameState::Update()
 
 }
 
+void CInGameState::ReceiveEvent(const EInputEvent aEvent)
+{
+	if (this == myStateStack.GetTop()) {
+		switch (aEvent) {
+		case IInputObserver::EInputEvent::PauseGame:
+			myStateStack.PushState(new CPauseState(myStateStack));
+			myStateStack.Awake();
+			myStateStack.Start();
+			break;
+		default:
+			break;
+		}
+	}
+}
+
 void CInGameState::MakeSceneActive()
 {
+	CEngine::GetInstance()->SetActiveScene(myActiveScene);
 }
