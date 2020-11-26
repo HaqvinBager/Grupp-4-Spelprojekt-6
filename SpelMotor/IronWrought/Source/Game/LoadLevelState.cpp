@@ -11,11 +11,13 @@ using namespace rapidjson;
 CLoadLevelState::CLoadLevelState(CStateStack& aStateStack) : CState(aStateStack)
 {
 	SaveLevelNames();
+	myState = CStateStack::EStates::LoadLevel;
+	myActiveScene = CEngine::GetInstance()->ScenesSize();
 }
 
 CLoadLevelState::~CLoadLevelState()
 {
-
+	CEngine::GetInstance()->PopBackScene();
 }
 
 void CLoadLevelState::Awake()
@@ -123,4 +125,9 @@ std::string& CLoadLevelState::BinPath(const ELevel aLevel)
 std::vector<std::string>& CLoadLevelState::BinModelPaths(const ELevel aLevel)
 {
 	return myBinModelPaths[aLevel];
+}
+
+void CLoadLevelState::MakeSceneActive() {
+	CEngine::GetInstance()->SetActiveScene(myActiveScene);
+
 }

@@ -26,6 +26,7 @@ public:
 	void Awake() override;
 	void Start() override;
 	void Update() override;
+	void MakeSceneActive() override;
 private:
 
 	/// <summary>

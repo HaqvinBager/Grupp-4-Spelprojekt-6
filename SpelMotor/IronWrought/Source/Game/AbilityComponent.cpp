@@ -153,7 +153,7 @@ void CAbilityComponent::SendEvent() {
 	}
 }
 
-void CAbilityComponent::RecieveEvent(const EInputEvent aEvent)
+void CAbilityComponent::ReceiveEvent(const EInputEvent aEvent)
 {
 	float messageValue = 1.0f;
 
