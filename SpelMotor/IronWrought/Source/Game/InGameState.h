@@ -1,6 +1,7 @@
 #pragma once
 #include "State.h"
 
+class CTokenPool;
 class CCanvas;
 class CGameObject;
 class CInGameState : public CState
@@ -15,4 +16,6 @@ public:
 	void Update() override;
 private:
 	CCanvas* myCanvas;
+	CTokenPool* myTokenPool;
+	CGameObject* myEnemy;
 };

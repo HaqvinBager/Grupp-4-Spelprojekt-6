@@ -1,7 +1,6 @@
 #pragma once
 
 class CGameObject;
-struct SAbilityData;
 
 class IAbilityBehavior {
 public:

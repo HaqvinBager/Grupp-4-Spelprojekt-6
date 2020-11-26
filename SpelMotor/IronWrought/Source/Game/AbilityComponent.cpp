@@ -237,7 +237,7 @@ CGameObject* CAbilityComponent::LoadAbilityFromFile(EAbilityType anAbilityType)
 		projectileBehavior = new CProjectileBehavior(behavior["Speed"].GetFloat(), behavior["Duration"].GetFloat());
 		abilityObject->AddComponent<CAbilityBehaviorComponent>(*abilityObject, projectileBehavior, anAbilityType);
 	}
-	//BEHAVIOR
+	//!BEHAVIOR
 
 	//COLLIDER
 	colliderType = std::string(document["Collider"]["Type"].GetString());
@@ -270,7 +270,7 @@ CGameObject* CAbilityComponent::LoadAbilityFromFile(EAbilityType anAbilityType)
 				document["Collider"]["Collides With"].GetInt()
 				);
 	}
-	//COLLIDER
+	//!COLLIDER
 
 	abilityObject->Active(false);
 	CEngine::GetInstance()->GetActiveScene().AddInstance(abilityObject);
