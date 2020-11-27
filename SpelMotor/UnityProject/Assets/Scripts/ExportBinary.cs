@@ -112,7 +112,7 @@ public class BinaryExporter
         //Verify reading this!
         ExportNavMeshToObj.Export();
 
-        MeshFilter[] allMeshes = GameObject.FindObjectsOfType<MeshFilter>();
+        //Renderer[] allMeshes = GameObject.FindObjectsOfType<Renderer>();// AXEL TOLD ME TO DELETE THIS
         Debug.Log("______Exporting Binary______");
         string target_path = "..\\IronWrought\\Bin\\Levels\\";
         if (!System.IO.Directory.Exists(target_path))
@@ -246,10 +246,10 @@ public class BinaryExporter
             Debug.Log(enemys.Length + " Enemys Exported", enemys[0]);
         }
 
-        MeshFilter[] allPrefabMeshes = GameObject.FindObjectsOfType<MeshFilter>();
+        Renderer[] allPrefabMeshes = GameObject.FindObjectsOfType<Renderer>();
 
         List<PrefabInstanceData> prefabInstanceDataList = new List<PrefabInstanceData>();
-        foreach (MeshFilter mesh in allPrefabMeshes)
+        foreach (Renderer mesh in allPrefabMeshes)
         {
             if (mesh.GetComponentInParent<Player>() != null)
                 continue;
@@ -281,10 +281,10 @@ public class BinaryExporter
         GameObject[] allModels = UnityEngine.Object.FindObjectsOfType<GameObject>();
         foreach (GameObject go in allModels)
         {
-            MeshFilter mesh = go.GetComponentInChildren<MeshFilter>();
+            Renderer mesh = go.GetComponentInChildren<Renderer>();
             if (mesh != null)
             {
-                MeshFilter originalSource = PrefabUtility.GetCorrespondingObjectFromOriginalSource(mesh);
+                Renderer originalSource = PrefabUtility.GetCorrespondingObjectFromOriginalSource(mesh);
                 string path = AssetDatabase.GetAssetPath(originalSource);
                 if (modelPaths.Contains(path))
                     continue;
