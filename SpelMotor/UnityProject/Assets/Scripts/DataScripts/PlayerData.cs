@@ -10,7 +10,12 @@ public struct PlayerData
     {
         myInstanceID = player.gameObject.GetInstanceID();
         myPosition = player.transform.position;
-        myRotation = player.transform.rotation.eulerAngles;
+
+        Vector3 eulerAngles = player.transform.eulerAngles;
+        myRotation.x = (-eulerAngles.x) - 360.0f;
+        myRotation.y = eulerAngles.y + 180.0f;
+        myRotation.z = (-eulerAngles.z) - 360.0f;
+
         myScale = player.transform.localScale;
         myModelIndex = aModelIndex;
     }

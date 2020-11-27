@@ -83,6 +83,25 @@ public static class Writer
         bin.Write(data.myColliderData.y);
         bin.Write(data.myEvent);
     }
+
+    public static void WriteTo(this BinaryWriter bin, EnemyData data)
+    {
+        bin.Write(data.myPosition.x);
+        bin.Write(data.myPosition.y);
+        bin.Write(data.myPosition.z);
+        bin.Write(data.myRotation.x);
+        bin.Write(data.myRotation.y);
+        bin.Write(data.myRotation.z);
+        bin.Write(data.myScale.x);
+        bin.Write(data.myScale.y);
+        bin.Write(data.myScale.z);
+        bin.Write(data.myHealth);
+        bin.Write(data.myDamage);
+        bin.Write(data.myMoveSpeed);
+        bin.Write(data.myVisionRange);
+        bin.Write(data.myAttackRange);
+        bin.Write(data.myModelIndex);
+    }
 }
 
 public class BinaryExporter
@@ -215,12 +234,26 @@ public class BinaryExporter
             Debug.Log(events.Length + " Events Exported", events[0]);
         }
 
+        Enemy[] enemys = UnityEngine.Object.FindObjectsOfType<Enemy>();
+        bw.Write(enemys.Length);
+        if(enemys.Length > 0)
+        {
+            foreach(Enemy enemy in enemys)
+            {
+                EnemyData enemyData = new EnemyData(enemy, GetModelIndexFromPrefab(enemy.gameObject, modelPaths));
+                bw.WriteTo(enemyData);
+            }
+            Debug.Log(enemys.Length + " Enemys Exported", enemys[0]);
+        }
+
         MeshFilter[] allPrefabMeshes = GameObject.FindObjectsOfType<MeshFilter>();
 
         List<PrefabInstanceData> prefabInstanceDataList = new List<PrefabInstanceData>();
         foreach (MeshFilter mesh in allPrefabMeshes)
         {
             if (mesh.GetComponentInParent<Player>() != null)
+                continue;
+            if (mesh.GetComponentInParent<Enemy>() != null)
                 continue;
 
             GameObject prefabParent = PrefabUtility.GetNearestPrefabInstanceRoot(mesh);

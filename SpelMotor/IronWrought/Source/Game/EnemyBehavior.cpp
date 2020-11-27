@@ -54,11 +54,11 @@ void CEnemyBehavior::FindATarget(CGameObject& aParent)
 	SStats stats = aParent.GetComponent<CStatsComponent>()->GetStats();
 
 	float dist = DirectX::SimpleMath::Vector3::DistanceSquared(parentPos, targetPos);
-	if (dist <= 20.f) {
+	if (dist <= baseStats.myBaseVisionRange) {
 		DirectX::SimpleMath::Vector3 dir = targetPos - parentPos;
 		dir.Normalize();
 		aParent.GetComponent<CTransformComponent>()->Move(dir * baseStats.myMoveSpeed * CTimer::Dt());
-		if (dist <= 5.f) {
+		if (dist <= baseStats.myBaseAttackRange) {
 			if (stats.myTokenSlot == nullptr) {
 				stats.myTokenSlot = CTokenPool::GetInstance()->Request();
 			}

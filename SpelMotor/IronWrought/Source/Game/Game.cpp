@@ -2,7 +2,6 @@
 #include "Game.h"
 #include "LoadLevelState.h"
 #include "MenuState.h"
-#include <SceneReader.h>
 
 #ifdef _DEBUG
 #pragma comment(lib, "Engine_Debug.lib")
