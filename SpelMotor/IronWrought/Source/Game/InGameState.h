@@ -1,10 +1,11 @@
 #pragma once
 #include "State.h"
+#include "InputObserver.h"
 
 class CTokenPool;
 class CCanvas;
 class CGameObject;
-class CInGameState : public CState
+class CInGameState : public CState, public IInputObserver
 {
 
 public:
@@ -15,6 +16,7 @@ public:
 	void Start() override;
 	void Update() override;
 
+	void ReceiveEvent(const EInputEvent aEvent) override;
 	void MakeSceneActive() override;
 
 private:
