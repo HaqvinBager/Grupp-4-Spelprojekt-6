@@ -49,12 +49,22 @@ CInGameState::~CInGameState()
 
 	CInputMapper::GetInstance()->AddObserver(IInputObserver::EInputEvent::PauseGame, this);
 }
-
+#include "AIBehaviorComponent.h"
 void CInGameState::Awake()
 {
 	for (auto& gameObject : CEngine::GetInstance()->GetActiveScene().myGameObjects)
 	{
-		gameObject->Awake();
+		if (gameObject)
+		{
+			if (gameObject->GetComponent<CAIBehaviorComponent>())
+			{
+				int i = 0;
+				i;
+			}
+
+			gameObject->Awake();
+		}
+
 	}
 
 	//myEnemy = new CGameObject();

@@ -41,7 +41,7 @@ void CEnemyBehavior::Update(CGameObject* aParent)
 			CTokenPool::GetInstance()->GiveBack(*stats.myTokenSlot, false);
 			stats.myTokenSlot = nullptr;
 		}
-		aParent->Active(false);
+		//aParent->Active(false);
 	}
 
 	FindATarget(*aParent);

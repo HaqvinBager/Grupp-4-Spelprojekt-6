@@ -28,4 +28,5 @@ private:
 	CGameObject* CreateGameObject(const SPlayerData& aData, const std::string& aModelPath);
 
 	CGameObject* CreateGameObject(const SEnemyData& aData, const std::string& aModelPath, IAIBehavior* aBehavior);
+	CGameObject* CreateGameObject(const SEventData& aData);
 };

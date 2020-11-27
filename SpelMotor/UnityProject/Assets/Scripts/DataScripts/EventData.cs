@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum Event
 {
-    LoadLevel
+    LoadLevel = 6
 }
 
 public struct EventData

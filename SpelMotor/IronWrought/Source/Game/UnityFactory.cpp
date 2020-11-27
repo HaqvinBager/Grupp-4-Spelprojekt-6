@@ -5,23 +5,26 @@
 #include "GameObject.h"
 #include "Engine.h"
 
-#include "TransformComponent.h"
-#include "CameraComponent.h"
 #include "ModelComponent.h"
-#include "EnviromentLightComponent.h"
 #include "AnimationComponent.h"
+#include "TransformComponent.h"
 #include "PlayerControllerComponent.h"
+#include "AbilityComponent.h"
 #include "NavMeshComponent.h"
-#include "PointLightComponent.h"
+#include "AIBehaviorComponent.h"
+#include "CameraComponent.h"
 #include "CameraControllerComponent.h"//Could not compile 20201124 21:05 without this
+#include "EnviromentLightComponent.h"
+#include "PointLightComponent.h"
+#include "CollisionEventComponent.h"
+#include "RectangleColliderComponent.h"
 
+#include "CollisionManager.h"
 #include "LightFactory.h"
 #include "PointLight.h"
 #include "StatsComponent.h"
 #include "EnemyBehavior.h"
-#include "AIBehaviorComponent.h"
 //#include "NavmeshLoader.h"// included in NavMeshComp
-
 #include "animationLoader.h"
 
 #include "Debug.h"
@@ -74,15 +77,22 @@ bool CUnityFactory::FillScene(const SInGameData& aData, const std::vector<std::s
     CGameObject* player = CreateGameObject(aData.myPlayerData, aBinModelPaths[aData.myPlayerData.myModelIndex]);
     aScene.AddInstance(player);
 
-    CEnemyBehavior* enemyBehavior = new CEnemyBehavior(player);
-   for (const auto& enemyData : aData.myEnemyData) {
-       aScene.AddInstance(CreateGameObject(enemyData, aBinModelPaths[enemyData.myModelIndex], enemyBehavior));
-   }
+    //for (const auto& eventData : aData.myEventData)
+    //{
+    //    aScene.AddInstance(CreateGameObject(eventData));
+    //}
+    //
+    //CEnemyBehavior* enemyBehavior = new CEnemyBehavior(player);
+    //for (const auto& enemyData : aData.myEnemyData) {
+    //    aScene.AddInstance(CreateGameObject(enemyData, aBinModelPaths[enemyData.myModelIndex], enemyBehavior););
+    //}
 
     for (const auto& gameObjectData : aData.myGameObjects)
     {
-        aScene.AddInstance(CreateGameObject(gameObjectData, aBinModelPaths[gameObjectData.myModelIndex]));
+        CGameObject* go = CreateGameObject(gameObjectData, aBinModelPaths[gameObjectData.myModelIndex]);
+        aScene.AddInstance(go);
     }
+
     return true;
 }
 
@@ -133,7 +143,7 @@ CGameObject* CUnityFactory::CreateGameObject(const SGameObjectData& aData, const
     return std::move(gameObject);
 }
 
-#include "AbilityComponent.h"
+
 CGameObject* CUnityFactory::CreateGameObject(const SPlayerData& aData, const std::string& aModelPath)
 {
     CGameObject* gameObject = new CGameObject();
@@ -143,6 +153,7 @@ CGameObject* CUnityFactory::CreateGameObject(const SPlayerData& aData, const std
     gameObject->AddComponent<CModelComponent>(*gameObject, aModelPath);
     gameObject->AddComponent<CPlayerControllerComponent>(*gameObject);
     gameObject->AddComponent<CNavMeshComponent>(*gameObject);
+   // gameObject->AddComponent<CRectangleColliderComponent>(*gameObject, 1.f, 1.f,ECollisionLayer::PLAYER, static_cast<uint64_t>(ECollisionLayer::ALL));
 
     std::pair<EAbilityType, unsigned int> ab = { EAbilityType::AbilityTest, 1 };
     std::vector<std::pair<EAbilityType, unsigned int>> abs;
@@ -161,5 +172,16 @@ CGameObject* CUnityFactory::CreateGameObject(const SEnemyData& aData, const std:
     gameObject->AddComponent<CAIBehaviorComponent>(*gameObject, aBehavior);
     gameObject->myTransform->Position(aData.myPosition);
     gameObject->myTransform->Rotation(aData.myRotation);
+
+    AddAnimationsToGameObject(*gameObject, aModelPath);
+
+    return gameObject;
+}
+
+CGameObject* CUnityFactory::CreateGameObject(const SEventData& aData)
+{
+    CGameObject* gameObject = new CGameObject();
+    gameObject->myTransform->Position(aData.myPosition);
+    gameObject->AddComponent<CCollisionEventComponent>(*gameObject, static_cast<EMessageType>(aData.myEvent), aData.myColliderData.x, aData.myColliderData.y, ECollisionLayer::Event, static_cast<uint64_t>(ECollisionLayer::PLAYER));
     return gameObject;
 }

@@ -1,5 +1,5 @@
 {
-    "Next Available ID": 5009,
+    "Next Available ID": 5013,
     "Assets\\3D\\Character\\CH_PL_Daughter_01_19G4_1_19\\CH_PL_Daughter_01@IAbility_Explo_19G4_AN.fbx": 5001,
     "Assets\\3D\\Character\\CH_PL_Daughter_01_19G4_1_19\\CH_PL_Daughter_01@IAbility_throw_19G4_AN.fbx": 5002,
     "Assets\\3D\\Character\\CH_PL_Daughter_01_19G4_1_19\\CH_PL_Daughter_01@IAttack_01_19G4_AN.fbx": 5003,
@@ -7,5 +7,9 @@
     "Assets\\3D\\Character\\CH_PL_Daughter_01_19G4_1_19\\CH_PL_Daughter_01@IDie_19G4_AN.fbx": 5005,
     "Assets\\3D\\Character\\CH_PL_Daughter_01_19G4_1_19\\CH_PL_Daughter_01@Idle_01_19G4_AN.fbx": 5006,
     "Assets\\3D\\Character\\CH_PL_Daughter_01_19G4_1_19\\CH_PL_Daughter_01@Idle_02_19G4_AN.fbx": 5007,
-    "Assets\\3D\\Character\\CH_PL_Daughter_01_19G4_1_19\\CH_PL_Daughter_01@IRun_01_19G4_AN.fbx": 5008
+    "Assets\\3D\\Character\\CH_PL_Daughter_01_19G4_1_19\\CH_PL_Daughter_01@IRun_01_19G4_AN.fbx": 5008,
+    "Assets/3D/Character/CH_NPC_enemy_01_19G4_1_19/CH_NPC_enemy@attack_01_19G4_1_19_AN.fbx": 5009,
+    "Assets/3D/Character/CH_NPC_enemy_01_19G4_1_19/CH_NPC_enemy@dead_01_19G4_1_19_AN.fbx": 5010,
+    "Assets/3D/Character/CH_NPC_enemy_01_19G4_1_19/CH_NPC_enemy@idle_01_19G4_1_19_AN.fbx": 5011,
+    "Assets/3D/Character/CH_NPC_enemy_01_19G4_1_19/CH_NPC_enemy@walk_01_19G4_1_19_AN.fbx": 5012
 }
