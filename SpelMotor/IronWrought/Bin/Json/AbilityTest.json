@@ -8,7 +8,7 @@
 	},
 
 	"VFX": [
-		{ "Path": "Json/VFXData_FogWall.json" }
+		{ "Path": "Json/VFXData_AuraDaughter.json" }
 	],
 
 	"ParticleSystems": [

@@ -2,26 +2,36 @@
   "Animated UI Elements": [
     {
       "Path": "Json/VFXData_UI_AbilityCooldown.json",
-      "Position X": -0.465,
-      "Position Y": 0.815
+      "Position X": -0.295,
+      "Position Y": 0.87
     },
     {
       "Path": "Json/VFXData_UI_AbilityCooldown.json",
-      "Position X": -0.305,
-      "Position Y": 0.815
+      "Position X": -0.195,
+      "Position Y": 0.87
     },
     {
       "Path": "Json/VFXData_UI_AbilityCooldown.json",
-      "Position X": -0.145,
-      "Position Y": 0.815
+      "Position X": -0.095,
+      "Position Y": 0.87
+    },
+    {
+      "Path": "Json/VFXData_UI_HealthOrb.json",
+      "Position X": -0.43,
+      "Position Y": 0.805
+    },
+    {
+      "Path": "Json/VFXData_UI_ResourceOrb.json",
+      "Position X": 0.43,
+      "Position Y": 0.805
     }
   ],
 
   "Sprites": [
     {
-      "Path": "Assets/3D/UI/Ingame/test.dds",
+      "Path": "Assets/3D/UI/Ingame/UI_In_HUD_03_19G4.dds",
       "Position X": 0.0,
-      "Position Y": 0.75
+      "Position Y": 0.825
     }
   ],
 
