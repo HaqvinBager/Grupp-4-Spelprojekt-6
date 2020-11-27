@@ -3,6 +3,8 @@
     {
       "Text": "Resume",
       "FontAndFontSize": "Text/ComicSans64",
+      "Text Position X": 0.5,
+      "Text Position Y": -0.3,
       "Text Color R": 0.0,
       "Text Color G": 1.0,
       "Text Color B": 1.0,
@@ -19,6 +21,8 @@
     {
       "Text": "Quit to Main",
       "FontAndFontSize": "Text/ComicSans64",
+      "Text Position X": 0.5,
+      "Text Position Y": 0.3,
       "Text Color R": 0.0,
       "Text Color G": 1.0,
       "Text Color B": 1.0,
