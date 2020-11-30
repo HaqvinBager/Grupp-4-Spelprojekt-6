@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0e3d88cd93ab0245bb2af488844dfeb, type: 3}
+  m_Name: LaunchModeSetting
+  m_EditorClassIdentifier: 
+  launchMode: 1
+  bakeNavMeshBeforeExport: 1
+  exportBin: 1
+  mylauncherData:
+  - myExePath: Launcher_Debug.exe
+    myWorkingDirectoryPath: ..\IronWrought\Bin\
+    myLaunchMode: 0
+  - myExePath: Launcher_Release.exe
+    myWorkingDirectoryPath: ..\IronWrought\Bin\
+    myLaunchMode: 1
+  - myExePath: ModelViewer_Debug.exe
+    myWorkingDirectoryPath: ..\IronWrought\Bin\
+    myLaunchMode: 2
+  - myExePath: ModelViewer_Release.exe
+    myWorkingDirectoryPath: ..\IronWrought\Bin\
+    myLaunchMode: 3
+  - myExePath: 
+    myWorkingDirectoryPath: 
+    myLaunchMode: 4
