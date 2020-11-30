@@ -6,10 +6,17 @@ class CGameObject;
 
 enum class EAbilityType {
 	//TEMP TYPES TODO: CHANGE TO PROPER NAMES
-	WHIRLWIND,
-	TRIANGLE,
-	BOX,
-	AbilityTest
+	PlayerAbility1,
+	PlayerAbility2,
+	PlayerAbility3,
+	PlayerAbility4,
+	PlayerAbility5,
+	EnemyAbility,
+	BossAbility1,
+	BossAbility2,
+	BossAbility3,
+	AbilityTest,
+	WHIRLWIND
 };
 
 class CAbilityComponent : public CBehaviour, public IInputObserver

@@ -24,15 +24,18 @@ void CAbilityBehaviorComponent::Start()
 
 void CAbilityBehaviorComponent::Update()
 {
+	if(myEnabled)
 	myBehavior->Update(&GameObject());
 }
 
 void CAbilityBehaviorComponent::OnEnable()
 {
+	Enabled(true);
 }
 
 void CAbilityBehaviorComponent::OnDisable()
 {
+	Enabled(false);
 }
 
 EAbilityType CAbilityBehaviorComponent::GetAbilityType() const

@@ -155,9 +155,11 @@ CGameObject* CUnityFactory::CreateGameObject(const SPlayerData& aData, const std
     gameObject->AddComponent<CNavMeshComponent>(*gameObject);
    // gameObject->AddComponent<CRectangleColliderComponent>(*gameObject, 1.f, 1.f,ECollisionLayer::PLAYER, static_cast<uint64_t>(ECollisionLayer::ALL));
 
-    std::pair<EAbilityType, unsigned int> ab = { EAbilityType::AbilityTest, 1 };
+    std::pair<EAbilityType, unsigned int> ab1 = { EAbilityType::PlayerAbility1, 1 };
+    std::pair<EAbilityType, unsigned int> ab2 = { EAbilityType::PlayerAbility2, 1 };
     std::vector<std::pair<EAbilityType, unsigned int>> abs;
-    abs.emplace_back(ab);
+    abs.emplace_back(ab1);
+    abs.emplace_back(ab2);
     gameObject->AddComponent<CAbilityComponent>(*gameObject, abs);
 
     AddAnimationsToGameObject(*gameObject, aModelPath);

@@ -33,6 +33,9 @@
 #include "AIBehaviorComponent.h"
 #include "TransformComponent.h"
 #include "PauseState.h"
+#include "PostMaster.h"
+#include "MainSingleton.h"
+#include <iostream>
 
 CInGameState::CInGameState(CStateStack& aStateStack) : CState(aStateStack) {
 	myCanvas = new CCanvas();
@@ -52,19 +55,27 @@ CInGameState::~CInGameState()
 #include "AIBehaviorComponent.h"
 void CInGameState::Awake()
 {
-	for (auto& gameObject : CEngine::GetInstance()->GetActiveScene().myGameObjects)
-	{
-		if (gameObject)
-		{
-			if (gameObject->GetComponent<CAIBehaviorComponent>())
-			{
-				int i = 0;
-				i;
-			}
+	std::vector<CGameObject*>& gameObjects = CEngine::GetInstance()->GetActiveScene().myGameObjects;
+	size_t currentSize = gameObjects.size();
 
-			gameObject->Awake();
+	for (size_t i = 0; i < currentSize; ++i)
+	{
+		if (gameObjects[i])
+		{
+			gameObjects[i]->Awake();
 		}
 
+	}
+
+	size_t newSize = gameObjects.size();
+
+	//Late awake
+	for (size_t j = currentSize; j < newSize; ++j) 
+	{
+		if (gameObjects[j])
+		{
+			gameObjects[j]->Awake();
+		}
 	}
 
 	//myEnemy = new CGameObject();
@@ -97,7 +108,12 @@ void CInGameState::Update()
 
 	}
 
-
+	static float health = 1.0f;
+	if (Input::GetInstance()->IsKeyPressed('K')) {
+		health -= 0.25f;
+		CMainSingleton::PostMaster().Send({ EMessageType::PlayerHealthChanged, &health });
+		std::cout << health << std::endl;
+	}
 }
 
 void CInGameState::ReceiveEvent(const EInputEvent aEvent)

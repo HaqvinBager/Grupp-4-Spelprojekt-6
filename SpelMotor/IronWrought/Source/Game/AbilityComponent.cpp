@@ -16,10 +16,13 @@
 #include "InputMapper.h"
 #include "MainSingleton.h"
 #include "Engine.h"
+#include "EngineException.h"
 
 #include <fstream>
 #include "rapidjson\document.h"
 #include "rapidjson\istreamwrapper.h"
+
+using namespace rapidjson;
 
 CAbilityComponent::CAbilityComponent(CGameObject& aParent, std::vector<std::pair<EAbilityType, unsigned int>> someAbilities)
 	: CBehaviour(aParent), myAbilityPoolDescriptions(someAbilities), myCurrentCooldowns(new float[3]), myMaxCooldowns(new float[3])
@@ -29,11 +32,26 @@ CAbilityComponent::CAbilityComponent(CGameObject& aParent, std::vector<std::pair
 	myCurrentCooldowns[2] = 0.0f;
 
 	myMaxCooldowns[0] = 0.2f; //TODO: make read unity
-	myMaxCooldowns[1] = 50.0f * 0.9f; //TODO: make read unity
-	myMaxCooldowns[2] = 60.f * 60.f; //TODO: make read unity
+	myMaxCooldowns[1] = 1.0f; //TODO: make read unity
+	myMaxCooldowns[2] = 5.0f; //TODO: make read unity
 
-	myFilePaths.emplace(EAbilityType::WHIRLWIND, "Json/AbilityTest.json");
-	myFilePaths.emplace(EAbilityType::AbilityTest, "Json/AbilityTest.json");
+	std::ifstream inputStream("Json/AbilityPaths.json");
+	ENGINE_BOOL_POPUP(inputStream.good(), "Ability json paths could not be found! Looking for Json/AbilityPaths.json");
+	IStreamWrapper inputWrapper(inputStream);
+	Document document;
+	document.ParseStream(inputWrapper);
+
+	myFilePaths.emplace(EAbilityType::PlayerAbility1, document["Ability Test"].GetString());
+	myFilePaths.emplace(EAbilityType::PlayerAbility2, document["Player Ability 2"].GetString());
+	myFilePaths.emplace(EAbilityType::PlayerAbility3, document["Ability Test"].GetString());
+	myFilePaths.emplace(EAbilityType::PlayerAbility4, document["Ability Test"].GetString());
+	myFilePaths.emplace(EAbilityType::PlayerAbility5, document["Ability Test"].GetString());
+	myFilePaths.emplace(EAbilityType::EnemyAbility, document["Ability Test"].GetString());
+	myFilePaths.emplace(EAbilityType::BossAbility1, document["Ability Test"].GetString());
+	myFilePaths.emplace(EAbilityType::BossAbility2, document["Ability Test"].GetString());
+	myFilePaths.emplace(EAbilityType::BossAbility3, document["Ability Test"].GetString());
+	myFilePaths.emplace(EAbilityType::AbilityTest, document["Ability Test"].GetString());
+	myFilePaths.emplace(EAbilityType::WHIRLWIND, document["Ability Test"].GetString());
 }
 
 CAbilityComponent::~CAbilityComponent()
@@ -89,6 +107,11 @@ void CAbilityComponent::OnDisable()
 
 void CAbilityComponent::UseAbility(EAbilityType anAbilityType, DirectX::SimpleMath::Vector3 aSpawnPosition)
 {
+
+	if (myAbilityPools.find(anAbilityType) == myAbilityPools.end()) {
+		return;
+	}
+
 	if (myAbilityPools.at(anAbilityType).empty()) {
 		return;
 	}
@@ -100,23 +123,18 @@ void CAbilityComponent::UseAbility(EAbilityType anAbilityType, DirectX::SimpleMa
 
 	// getparent().playanimation(myactiveabilities.back().getcomponent<pod>().myanimation);
 
-	switch (anAbilityType)
-	{
-	case EAbilityType::WHIRLWIND:
-		myActiveAbilities.back()->GetComponent<CAbilityBehaviorComponent>()->Init(aSpawnPosition);
-		break;
-	case EAbilityType::TRIANGLE:
-		myActiveAbilities.back()->GetComponent<CAbilityBehaviorComponent>()->Init(aSpawnPosition);
-		break;
-	case EAbilityType::BOX:
-		myActiveAbilities.back()->GetComponent<CAbilityBehaviorComponent>()->Init(aSpawnPosition);
-		break;
-	case EAbilityType::AbilityTest:
-		myActiveAbilities.back()->GetComponent<CAbilityBehaviorComponent>()->Init(aSpawnPosition);
-		break;
-	default:
-		break;
-	}
+	myActiveAbilities.back()->GetComponent<CAbilityBehaviorComponent>()->Init(aSpawnPosition);
+
+	//switch (anAbilityType)
+	//{
+	//case EAbilityType::WHIRLWIND:
+	//	break;
+	//case EAbilityType::AbilityTest:
+	//	myActiveAbilities.back()->GetComponent<CAbilityBehaviorComponent>()->Init(aSpawnPosition);
+	//	break;
+	//default:
+	//	break;
+	//}
 }
 
 void CAbilityComponent::SendEvent() {
@@ -162,9 +180,9 @@ void CAbilityComponent::ReceiveEvent(const EInputEvent aEvent)
 	{
 		SMessage myMessage;
 	case EInputEvent::Ability1:
-		UseAbility(EAbilityType::AbilityTest, GameObject().myTransform->Position());
 		if (myCurrentCooldowns[0] > 0)
 			break;
+		UseAbility(EAbilityType::PlayerAbility1, GameObject().myTransform->Position());
 		myMessage.myMessageType = EMessageType::AbilityOneCooldown;
 		myCurrentCooldowns[0] = myMaxCooldowns[0];
 		myMessage.data = &messageValue;
@@ -173,6 +191,7 @@ void CAbilityComponent::ReceiveEvent(const EInputEvent aEvent)
 	case EInputEvent::Ability2:
 		if (myCurrentCooldowns[1] > 0)
 			break;
+		UseAbility(EAbilityType::PlayerAbility2, GameObject().myTransform->Position());
 		myMessage.myMessageType = EMessageType::AbilityTwoCooldown;
 		myCurrentCooldowns[1] = myMaxCooldowns[1];
 		myMessage.data = &messageValue;
@@ -181,6 +200,7 @@ void CAbilityComponent::ReceiveEvent(const EInputEvent aEvent)
 	case EInputEvent::Ability3:
 		if (myCurrentCooldowns[2] > 0)
 			break;
+		UseAbility(EAbilityType::PlayerAbility3, GameObject().myTransform->Position());
 		myMessage.myMessageType = EMessageType::AbilityThreeCooldown;
 		myCurrentCooldowns[2] = myMaxCooldowns[2];
 		myMessage.data = &messageValue;
@@ -193,8 +213,6 @@ void CAbilityComponent::ReceiveEvent(const EInputEvent aEvent)
 
 CGameObject* CAbilityComponent::LoadAbilityFromFile(EAbilityType anAbilityType)
 {
-	using namespace rapidjson;
-
 	std::ifstream inputStream(myFilePaths[anAbilityType]);
 	if (!inputStream.good()) { return nullptr; }
 	IStreamWrapper inputWrapper(inputStream);
