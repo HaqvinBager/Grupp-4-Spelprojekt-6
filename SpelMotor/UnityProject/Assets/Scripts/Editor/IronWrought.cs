@@ -27,12 +27,18 @@ public static class IronWrought
 
 
             SLauncherData data = setting.GetLauncherData(setting.launchMode);
+
+            if (setting.bakeNavMeshBeforeExport)
+            {
+                UnityEditor.AI.NavMeshBuilder.BuildNavMesh();
+            }
+
             if (setting.exportBin)
             {
                 BinaryExporter.DoExportBinary();
-
                 CreateDebugLevelJson(data);
             }
+
 
             ProcessStartInfo info = new ProcessStartInfo(data.myExePath);
             info.WorkingDirectory = data.myWorkingDirectoryPath;

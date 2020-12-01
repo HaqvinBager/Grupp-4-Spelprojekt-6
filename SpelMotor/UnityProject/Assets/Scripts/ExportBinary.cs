@@ -99,6 +99,7 @@ public static class Writer
         bin.Write(data.myHealth);
         bin.Write(data.myDamage);
         bin.Write(data.myMoveSpeed);
+        bin.Write(data.myDamageCooldown);
         bin.Write(data.myVisionRange);
         bin.Write(data.myAttackRange);
         bin.Write(data.myModelIndex);
