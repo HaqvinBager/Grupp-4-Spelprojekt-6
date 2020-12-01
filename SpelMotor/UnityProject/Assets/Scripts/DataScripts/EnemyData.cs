@@ -10,6 +10,7 @@ public struct EnemyData
     public float myHealth;
     public float myDamage;
     public float myMoveSpeed;
+    public float myDamageCooldown;
     public float myVisionRange;
     public float myAttackRange;
     public int myModelIndex;
@@ -26,6 +27,7 @@ public struct EnemyData
         myHealth = enemy.health;
         myDamage = enemy.damage;
         myMoveSpeed = enemy.moveSpeed;
+        myDamageCooldown = enemy.damageCooldown;
         myVisionRange = enemy.visionRange;
         myAttackRange = enemy.attackRange;
         myModelIndex = aModelIndex;
