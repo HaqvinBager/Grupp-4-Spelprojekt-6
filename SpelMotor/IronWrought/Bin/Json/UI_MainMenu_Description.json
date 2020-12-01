@@ -15,7 +15,7 @@
       "Idle Sprite Path": "Assets/3D/UI/idle_button.dds",
       "Hover Sprite Path": "Assets/3D/UI/hover_button.dds",
       "Click Sprite Path": "Assets/3D/UI/depressed_button.dds",
-      "Messages": [ 6 ]
+      "Messages": [ 7 ]
     },
     {
       "Text": "Quit",
@@ -32,7 +32,7 @@
       "Idle Sprite Path": "Assets/3D/UI/idle_button.dds",
       "Hover Sprite Path": "Assets/3D/UI/hover_button.dds",
       "Click Sprite Path": "Assets/3D/UI/depressed_button.dds",
-      "Messages": [ 8 ]
+      "Messages": [ 9 ]
     }
   ],
 

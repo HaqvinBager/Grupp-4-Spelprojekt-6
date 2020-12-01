@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine.SceneManagement;
 using System.Text;
+using System;
 
 public static class Writer
 {
@@ -98,6 +99,7 @@ public static class Writer
         bin.Write(data.myHealth);
         bin.Write(data.myDamage);
         bin.Write(data.myMoveSpeed);
+        bin.Write(data.myDamageCooldown);
         bin.Write(data.myVisionRange);
         bin.Write(data.myAttackRange);
         bin.Write(data.myModelIndex);
@@ -107,7 +109,7 @@ public static class Writer
 public class BinaryExporter
 {
     [MenuItem("Tools/Export all BIN #_y")]
-    private static void DoExportBinary()
+    public static void DoExportBinary()
     {
         //Verify reading this!
         ExportNavMeshToObj.Export();
@@ -120,39 +122,13 @@ public class BinaryExporter
             System.IO.Directory.CreateDirectory(target_path);
         }
 
-        string scene_name = SceneManager.GetActiveScene().name;
+        string sceneName = SceneManager.GetActiveScene().name;
         List<string> modelPaths = GetAllModelPaths();
 
-        using (System.IO.StreamWriter file = new System.IO.StreamWriter(target_path + scene_name + "_bin_modelPaths.json"))
-        {
-            int count = 0;
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.AppendLine("{");
-            stringBuilder.AppendLine("\"ModelPaths\" : [");
-            foreach (string entry in modelPaths)
-            {
-                stringBuilder.AppendLine("{");
-
-                stringBuilder.Append("\"Path\" : ");
-                stringBuilder.Append("\"");
-                stringBuilder.Append(entry);
-                stringBuilder.AppendLine("\"");
-
-                stringBuilder.AppendLine("}");
-                count++;
-                if (count != modelPaths.Count)
-                {
-                    stringBuilder.Append(",");
-                }
-            }
-            stringBuilder.AppendLine("]");
-            stringBuilder.AppendLine("}");
-            file.Write(stringBuilder.ToString());
-        }
-
+        ExtractModelPaths(target_path, sceneName, modelPaths);
 
         BinaryWriter bw;
-        bw = new BinaryWriter(new FileStream(target_path + scene_name + "_bin.bin", FileMode.Create));
+        bw = new BinaryWriter(new FileStream(target_path + sceneName + "_bin.bin", FileMode.Create));
 
         GameObject[] allObjects = UnityEngine.Object.FindObjectsOfType<GameObject>();
 
@@ -236,9 +212,9 @@ public class BinaryExporter
 
         Enemy[] enemys = UnityEngine.Object.FindObjectsOfType<Enemy>();
         bw.Write(enemys.Length);
-        if(enemys.Length > 0)
+        if (enemys.Length > 0)
         {
-            foreach(Enemy enemy in enemys)
+            foreach (Enemy enemy in enemys)
             {
                 EnemyData enemyData = new EnemyData(enemy, GetModelIndexFromPrefab(enemy.gameObject, modelPaths));
                 bw.WriteTo(enemyData);
@@ -269,9 +245,41 @@ public class BinaryExporter
             bw.WriteTo(data);
         }
 
+
+        //bw.Write(ConvertSceneToIndex(sceneName));
+
         bw.Close();
+    }
 
 
+    private static void ExtractModelPaths(string target_path, string scene_name, List<string> modelPaths)
+    {
+        using (System.IO.StreamWriter file = new System.IO.StreamWriter(target_path + scene_name + "_bin_modelPaths.json"))
+        {
+            int count = 0;
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.AppendLine("{");
+            stringBuilder.AppendLine("\"ModelPaths\" : [");
+            foreach (string entry in modelPaths)
+            {
+                stringBuilder.AppendLine("{");
+
+                stringBuilder.Append("\"Path\" : ");
+                stringBuilder.Append("\"");
+                stringBuilder.Append(entry);
+                stringBuilder.AppendLine("\"");
+
+                stringBuilder.AppendLine("}");
+                count++;
+                if (count != modelPaths.Count)
+                {
+                    stringBuilder.Append(",");
+                }
+            }
+            stringBuilder.AppendLine("]");
+            stringBuilder.AppendLine("}");
+            file.Write(stringBuilder.ToString());
+        }
     }
 
     private static List<string> GetAllModelPaths()

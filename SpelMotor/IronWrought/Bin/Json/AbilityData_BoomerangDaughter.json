@@ -1,0 +1,35 @@
+{
+	"Collider": {
+		"Type": "Circle",
+		"Width": 0.1,
+		"Height": 0.1,
+		"Collision Layer": 16,
+		"Collides With": 4
+	},
+
+	"VFX": [
+		{ "Path": "Json/VFXData_AuraDaughter.json" }
+	],
+
+	"ParticleSystems": [
+	],
+
+	"Audio": {
+
+	},
+
+	"Behavior": {
+		"Type": "Boomerang",
+		"Speed": 2.0
+	},
+
+	"AnimationState": {
+
+	},
+
+	"Damage": 0.2,
+
+	"Duration": 2.0,
+
+	"Range": 0.2
+}

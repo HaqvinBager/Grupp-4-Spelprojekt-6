@@ -14,6 +14,7 @@ public class ExportNavMeshToObj {
 
     [MenuItem("Custom/[Deprecated] Export NavMesh to mesh")]
     public static void Export() {
+     
         UnityEngine.AI.NavMeshTriangulation triangulatedNavMesh = UnityEngine.AI.NavMesh.CalculateTriangulation();
  
         Mesh mesh = new Mesh();

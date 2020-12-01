@@ -21,9 +21,13 @@ public class CameraSetup : MonoBehaviour
     {
         if (startInCameraMode == CameraMode.Player)
         {
-            if (Vector3.Distance(FindObjectOfType<Player>().transform.position + offset, transform.position) > 0.01f)
+            Player player = FindObjectOfType<Player>();
+            if (player != null)
             {
-                transform.position = FindObjectOfType<Player>().transform.position + offset;
+                if (Vector3.Distance(player.transform.position + offset, transform.position) > 0.01f)
+                {
+                    transform.position = FindObjectOfType<Player>().transform.position + offset;
+                }
             }
         }
     }

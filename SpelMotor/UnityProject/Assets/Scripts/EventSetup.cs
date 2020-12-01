@@ -11,8 +11,11 @@ public class EventSetup : MonoBehaviour
     public Event myEvent;
     private void Update()
     {
-       myColliderData.x = gameObject.GetComponent<BoxCollider>().size.x;
-       myColliderData.y = gameObject.GetComponent<BoxCollider>().size.z;
+        if (TryGetComponent<BoxCollider>(out BoxCollider collider))
+        {
+            myColliderData.x = collider.size.x;
+            myColliderData.y = collider.size.z;
+        }
     }
-    
+
 }
