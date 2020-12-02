@@ -20,7 +20,8 @@
 
 	"Behavior": {
 		"Type": "Boomerang",
-		"Speed": 2.0
+		"Speed": 2.0,
+		"ResourceCost": 15.0
 	},
 
 	"AnimationState": {

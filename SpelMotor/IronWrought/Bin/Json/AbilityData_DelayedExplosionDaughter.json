@@ -20,7 +20,8 @@
 
 	"Behavior": {
 		"Type": "DelayedExplosion",
-		"Delay": 2.0
+		"Delay": 2.0,
+		"ResourceCost":  40.0
 	},
 
 	"AnimationState": {
