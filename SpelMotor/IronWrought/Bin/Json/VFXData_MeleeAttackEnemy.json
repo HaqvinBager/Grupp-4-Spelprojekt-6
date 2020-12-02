@@ -14,9 +14,9 @@
   "UV Scale 3": 1.0,
   "UV Scale 4": 1.0,
   "Opacity Strength": 0.7,
-  "Texture 1": "Assets/3D/VFX/Daughter_VFX/VFX_AuraDaughter/vfx_AuraDaughter_D.dds",
-  "Texture 2": "Assets/3D/VFX/Daughter_VFX/VFX_AuraDaughter/vfx_AuraDaughter_M.dds",
-  "Texture 3": "Assets/3D/VFX/Daughter_VFX/VFX_AuraDaughter/vfx_AuraDaughter_D.dds",
-  "Texture Mask": "Assets/3D/VFX/Daughter_VFX/VFX_AuraDaughter/vfx_AuraDaughter_Alpha.dds",
-  "Mesh Path": "Assets/3D/VFX/Daughter_VFX/VFX_AuraDaughter/vfx_Daughter_aura_mesh.fbx"
+  "Texture 1": "Assets/3D/VFX/Enemy_VFX/VFX_MeleeAttackEnemy/vfx_AuraDaughter_D.dds",
+  "Texture 2": "Assets/3D/VFX/Enemy_VFX/VFX_MeleeAttackEnemy/vfx_AuraDaughter_M.dds",
+  "Texture 3": "Assets/3D/VFX/Enemy_VFX/VFX_MeleeAttackEnemy/vfx_AuraDaughter_D.dds",
+  "Texture Mask": "Assets/3D/VFX/Enemy_VFX/VFX_MeleeAttackEnemy/vfx_AuraDaughter_Alpha.dds",
+  "Mesh Path": "Assets/3D/VFX/Enemy_VFX/VFX_MeleeAttackEnemy/vfx_Daughter_aura_mesh.fbx"
 }
