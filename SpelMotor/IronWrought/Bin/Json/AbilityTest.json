@@ -32,6 +32,8 @@
 	"Damage": 0.2,
 
 	"Duration": 0.2,
-	
-	"Range": 0.2
+
+	"Range": 0.2,
+
+	"Cooldown":  0.5
 }
