@@ -8,6 +8,13 @@ using System;
 
 public static class Writer
 {
+    public static void WriteTo(this BinaryWriter bin, string text)
+    {
+        int size = Mathf.Min(16, text.ToCharArray().Length);
+        bin.Write(size);
+        bin.Write(text.ToCharArray(0, size));
+    }
+
     public static void WriteTo(this BinaryWriter bin, PrefabInstanceData data)
     {
         bin.Write(data.myInstanceID);
@@ -83,6 +90,9 @@ public static class Writer
         bin.Write(data.myColliderData.x);
         bin.Write(data.myColliderData.y);
         bin.Write(data.myEvent);
+        bin.WriteTo(data.myEventString);
+        //bin.Write(Mathf.Max(16, data.myEventString.ToCharArray().Length));
+        //bin.Write(data.myEventString.ToCharArray());
     }
 
     public static void WriteTo(this BinaryWriter bin, EnemyData data)

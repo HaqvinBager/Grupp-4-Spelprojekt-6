@@ -35,6 +35,8 @@ public class LaunchModeSetting : ScriptableObject
     [Header("Export Bin On Play")]
     public bool exportBin = true;
 
+   // public bool useEditorCameraView = false;
+
 
     [Space(20)]
     public List<SLauncherData> mylauncherData = new List<SLauncherData>() {
