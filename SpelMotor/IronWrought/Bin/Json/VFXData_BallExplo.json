@@ -1,0 +1,22 @@
+{
+  "Delay": 2.4,
+  "Duration": 2.0,
+  "Scroll Speed 1 X": 0.0,
+  "Scroll Speed 1 Y": -4,
+  "Scroll Speed 2 X": 0.0,
+  "Scroll Speed 2 Y": -0.5,
+  "Scroll Speed 3 X": -0.31,
+  "Scroll Speed 3 Y": 0.0,
+  "Scroll Speed 4 X": 0.0,
+  "Scroll Speed 4 Y": 0.0,
+  "UV Scale 1": 1,
+  "UV Scale 2": 0.3,
+  "UV Scale 3": 0.7,
+  "UV Scale 4": 1.0,
+  "Opacity Strength": 0.2,
+  "Texture 1": "Assets/3D/VFX/VFXCloud.dds",
+  "Texture 2": "Assets/3D/VFX/VFXCloud.dds",
+  "Texture 3": "Assets/3D/VFX/VFXCloud.dds",
+  "Texture Mask": "Assets/3D/VFX/Test_flames.dds",
+  "Mesh Path": "Assets/3D/VFX/VFX_mesh_Ball_01_19G4.fbx"
+}
