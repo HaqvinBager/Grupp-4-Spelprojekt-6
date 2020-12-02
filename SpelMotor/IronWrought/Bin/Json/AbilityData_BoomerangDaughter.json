@@ -8,7 +8,7 @@
 	},
 
 	"VFX": [
-		{ "Path": "Json/VFXData_AuraDaughter.json" }
+		{ "Path": "Json/VFXData_BoomerangDaughter.json" }
 	],
 
 	"ParticleSystems": [
@@ -21,6 +21,7 @@
 	"Behavior": {
 		"Type": "Boomerang",
 		"Speed": 2.0,
+		"Duration": 2.0,
 		"ResourceCost": 15.0
 	},
 
@@ -30,7 +31,6 @@
 
 	"Damage": 0.2,
 
-	"Duration": 2.0,
 
 	"Range": 0.2,
 
