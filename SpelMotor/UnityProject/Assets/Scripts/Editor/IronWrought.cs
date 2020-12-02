@@ -34,11 +34,10 @@ public static class IronWrought
             }
 
             if (setting.exportBin)
-            {
+            {           
                 BinaryExporter.DoExportBinary();
                 CreateDebugLevelJson(data);
             }
-
 
             ProcessStartInfo info = new ProcessStartInfo(data.myExePath);
             info.WorkingDirectory = data.myWorkingDirectoryPath;
@@ -99,3 +98,23 @@ public static class IronWrought
         }
     }
 }
+
+
+//if (setting.useEditorCameraView)
+//{
+//    CameraSetup cam = GameObject.FindObjectOfType<CameraSetup>();
+//    cam.startInCameraMode = CameraMode.FreeCam;
+//    CameraSetup cameraClone = (CameraSetup) PrefabUtility.InstantiatePrefab(PrefabUtility.GetCorrespondingObjectFromSource(cam));
+//    cameraClone.transform.position = cam.transform.position;
+//    cameraClone.transform.rotation = cam.transform.rotation;
+//    cameraClone.GetComponent<Camera>().fieldOfView = cam.GetComponent<Camera>().fieldOfView;
+//    cameraClone.GetComponent<Camera>().nearClipPlane = cam.GetComponent<Camera>().nearClipPlane;
+//    cameraClone.GetComponent<Camera>().farClipPlane = cam.GetComponent<Camera>().farClipPlane;
+
+//    Camera[] editorCameras = SceneView.GetAllSceneCameras();                 
+//    cam.transform.position = editorCameras[0].transform.position;
+//    cam.transform.rotation = editorCameras[0].transform.rotation;
+//    cam.GetComponent<Camera>().fieldOfView = editorCameras[0].fieldOfView;
+//    cam.GetComponent<Camera>().nearClipPlane = editorCameras[0].nearClipPlane;
+//    cam.GetComponent<Camera>().farClipPlane = editorCameras[0].farClipPlane;
+// }

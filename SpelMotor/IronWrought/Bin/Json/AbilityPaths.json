@@ -1,9 +1,9 @@
 {
 	"Player Ability 1": "Json/AbilityData_BoomerangDaughter.json",
 	"Player Ability 2": "Json/AbilityData_AuraDaughter.json",
-	"Player Ability 3": "Json/AbilityTest.json",
-	"Player Ability 4": "Json/AbilityTest.json",
-	"Player Ability 5": "Json/AbilityTest.json",
+	"Player Ability 3": "Json/AbilityData_DelayedExplosionDaughter.json",
+	"Player Ability 4": "Json/AbilityData_MeleeAttackDaughter.json",
+	"Player Ability 5": "Json/AbilityData_HeavyMeleeAttackDaughter.json",
 	"Enemy Ability": "Json/AbilityTest.json",
 	"Boss Ability 1": "Json/AbilityTest.json",
 	"Boss Ability 2": "Json/AbilityTest.json",

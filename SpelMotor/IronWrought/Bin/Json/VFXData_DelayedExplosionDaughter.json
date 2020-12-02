@@ -1,0 +1,22 @@
+{
+  "Delay": 0.0,
+  "Duration": 5.0,
+  "Scroll Speed 1 X": 0.0,
+  "Scroll Speed 1 Y": 0.0,
+  "Scroll Speed 2 X": 0.0,
+  "Scroll Speed 2 Y": 0.0,
+  "Scroll Speed 3 X": 0.0,
+  "Scroll Speed 3 Y": 0.0,
+  "Scroll Speed 4 X": 0.0,
+  "Scroll Speed 4 Y": 0.0,
+  "UV Scale 1": 1.0,
+  "UV Scale 2": 1.0,
+  "UV Scale 3": 1.0,
+  "UV Scale 4": 1.0,
+  "Opacity Strength": 0.7,
+  "Texture 1": "Assets/3D/VFX/Daughter_VFX/VFX_DelayedExplosionDaughter/vfx_AuraDaughter_D.dds",
+  "Texture 2": "Assets/3D/VFX/Daughter_VFX/VFX_DelayedExplosionDaughter/vfx_AuraDaughter_M.dds",
+  "Texture 3": "Assets/3D/VFX/Daughter_VFX/VFX_DelayedExplosionDaughter/vfx_AuraDaughter_D.dds",
+  "Texture Mask": "Assets/3D/VFX/Daughter_VFX/VFX_DelayedExplosionDaughter/vfx_AuraDaughter_Alpha.dds",
+  "Mesh Path": "Assets/3D/VFX/Daughter_VFX/VFX_DelayedExplosionDaughter/vfx_Daughter_aura_mesh.fbx"
+}
