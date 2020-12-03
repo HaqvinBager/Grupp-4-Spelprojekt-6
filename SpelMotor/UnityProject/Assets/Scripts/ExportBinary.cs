@@ -84,6 +84,7 @@ public static class Writer
     }
     public static void WriteTo(this BinaryWriter bin, EventData data)
     {
+        bin.Write(data.myInstanceID);
         bin.Write(data.myPosition.x);
         bin.Write(data.myPosition.y);
         bin.Write(data.myPosition.z);
