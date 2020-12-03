@@ -1,5 +1,7 @@
 {
   "Max Number Of Particles": 100,
+  "Delay": 0.0,
+  "Duration": 200,
   "Spawn Rate": 5,
   "Lifetime": 1,
   "Speed": 10.0,
