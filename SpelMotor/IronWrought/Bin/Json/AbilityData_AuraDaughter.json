@@ -3,7 +3,7 @@
 		"Type": "Circle",
 		"Width": 0.2,
 		"Height": 0.2,
-		"Collision Layer": 16,
+		"Collision Layer": 32,
 		"Collides With": 4
 	},
 
@@ -28,7 +28,7 @@
 
 	},
 
-	"Damage": 0.2,
+	"Damage": 0.0,
 
 	"Duration": 0.2,
 
