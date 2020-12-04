@@ -1,8 +1,8 @@
 {
 	"Collider": {
 		"Type": "Circle",
-		"Width": 0.4,
-		"Height": 0.4,
+		"Width": 4.0,
+		"Height": 2.5,
 		"Collision Layer": 16,
 		"Collides With": 4
 	},
