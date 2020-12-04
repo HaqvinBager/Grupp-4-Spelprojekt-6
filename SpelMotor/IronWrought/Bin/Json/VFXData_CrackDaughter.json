@@ -1,0 +1,22 @@
+{
+  "Delay": 1.8,
+  "Duration": 500.0,
+  "Scroll Speed 1 X": 0,
+  "Scroll Speed 1 Y": 0,
+  "Scroll Speed 2 X": 0.0,
+  "Scroll Speed 2 Y": 0,
+  "Scroll Speed 3 X": 0,
+  "Scroll Speed 3 Y": 0.0,
+  "Scroll Speed 4 X": 0.0,
+  "Scroll Speed 4 Y": 0.0,
+  "UV Scale 1": 1.2,
+  "UV Scale 2": 0,
+  "UV Scale 3": 0,
+  "UV Scale 4": 1.0,
+  "Opacity Strength": 0.5,
+  "Texture 1": "Assets/3D/VFX/Daughter_VFX/VFX_HeavyMeleeAttackDaughter/Vfx_crackDisc.dds",
+  "Texture 2": "Assets/3D/VFX/Daughter_VFX/VFX_HeavyMeleeAttackDaughter/Vfx_crackDisc.dds",
+  "Texture 3": "Assets/3D/VFX/Daughter_VFX/VFX_HeavyMeleeAttackDaughter/Vfx_crackDisc.dds",
+  "Texture Mask": "Assets/3D/VFX/Daughter_VFX/VFX_HeavyMeleeAttackDaughter/Vfx_crackDisc_alpha.dds",
+  "Mesh Path": "Assets/3D/VFX/Daughter_VFX/VFX_HeavyMeleeAttackDaughter/vfx_Daughter_aura_mesh.fbx"
+}
