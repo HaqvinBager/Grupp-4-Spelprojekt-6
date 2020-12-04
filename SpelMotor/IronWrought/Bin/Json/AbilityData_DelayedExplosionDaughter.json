@@ -8,10 +8,13 @@
 	},
 
 	"VFX": [
-		{ "Path": "Json/VFXData_DelayedExplosionDaughter.json" }
+		{ "Path": "Json/VFXData_Spiralwind.json" },
+		{ "Path": "Json/VFXData_BallExplo.json" }
 	],
 
 	"ParticleSystems": [
+		{ "Path": "Json/ParticleData_ExploEmitter.json" },
+		{ "Path": "Json/ParticleData_ExploEmitter2.json" }
 	],
 
 	"Audio": {
@@ -20,8 +23,7 @@
 
 	"Behavior": {
 		"Type": "DelayedExplosion",
-		"Delay": 2.0,
-		"ResourceCost": 40.0
+		"Delay": 2.0
 	},
 
 	"AnimationState": {
@@ -31,9 +33,6 @@
 	"Damage": 0.2,
 
 	"Duration": 3.0,
-
-	"Range": 0.2,
-
-	"Cooldown": 2.0
-
+	
+	"Range": 0.2
 }
