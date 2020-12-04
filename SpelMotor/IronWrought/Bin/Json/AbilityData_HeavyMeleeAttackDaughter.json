@@ -21,7 +21,8 @@
 	},
 
 	"Behavior": {
-		"Type": "MeleeAttack"
+		"Type": "MeleeAttack",
+		"Duration": 0.2
 	},
 
 	"AnimationState": {
