@@ -1,37 +1,37 @@
 {
-	"Collider": {
-		"Type": "Triangle",
-		"Width": 0.2,
-		"Height": 0.2,
-		"Collision Layer": 16,
-		"Collides With": 4
-	},
+  "Collider": {
+    "Type": "Triangle",
+    "Width": 1.5,
+    "Height": 1.5,
+    "Collision Layer": 16,
+    "Collides With": 4
+  },
 
-	"VFX": [
-		{ "Path": "Json/VFXData_MeleeAttackDaughter.json" }
-	],
+  "VFX": [
+    { "Path": "Json/VFXData_MeleeAttackDaughter.json" }
+  ],
 
-	"ParticleSystems": [
-	],
+  "ParticleSystems": [
+  ],
 
-	"Audio": {
+  "Audio": {
 
-	},
+  },
 
-	"Behavior": {
-		"Type": "MeleeAttack"
-	},
+  "Behavior": {
+    "Type": "MeleeAttack",
+    "Duration": 0.2
+  },
 
-	"AnimationState": {
+  "AnimationState": {
 
-	},
+  },
 
-	"Damage": 0.2,
+  "Damage": 0.2,
 
-	"Duration": 0.2,
 
-	"Range": 0.2,
+  "Range": 0.2,
 
-	"Cooldown": 2.0
+  "Cooldown": 2.0
 
 }
