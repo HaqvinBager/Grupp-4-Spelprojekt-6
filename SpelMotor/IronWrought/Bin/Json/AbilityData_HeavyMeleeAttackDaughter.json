@@ -7,31 +7,30 @@
     "Collides With": 4
   },
 
-  "VFX": [
-    { "Path": "Json/VFXData_HeavyMeleeAttackDaughter.json" }
-  ],
+	"VFX": [
+		{ "Path": "Json/VFXData_HeavyMeleeAttackDaughter.json" },
+		{ "Path": "Json/VFXData_CrackDaughter.json" }
+	],
 
-  "ParticleSystems": [
-  ],
+	"ParticleSystems": [
+		{ "Path": "Json/ParticleData_CrackEmitter.json" }
+	],
 
-  "Audio": {
+	"Audio": {
 
-  },
+	},
 
-  "Behavior": {
-    "Type": "MeleeAttack",
-    "Duration": 0.2
-  },
+	"Behavior": {
+		"Type": "MeleeAttack"
+	},
 
-  "AnimationState": {
+	"AnimationState": {
 
-  },
+	},
 
   "Damage": 2.0,
-
 
   "Range": 0.2,
 
   "Cooldown": 2.0
-
 }
