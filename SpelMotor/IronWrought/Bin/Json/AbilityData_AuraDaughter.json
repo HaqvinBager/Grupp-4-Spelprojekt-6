@@ -11,7 +11,8 @@
 		{ "Path": "Json/VFXData_AuraDaughter.json" }
 	],
 
-	"ParticleSystems": [Json/ParticleData_AuraEmitter }
+	"ParticleSystems": [
+		{ "Path": "Json/ParticleData_AuraEmitter.json" }
 	],
 
 	"Audio": {
