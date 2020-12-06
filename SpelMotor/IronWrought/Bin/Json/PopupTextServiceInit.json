@@ -15,7 +15,7 @@
 	"Skill Info Texts" : [
 		{"Text" : "You have unlocked Blessed Shield!\nThrows a returning projectile at enemies." },
 		{"Text" : "You have unlocked Revitalizing Aura!\nPassively heals you when you deal damage." },		
-		{"Text" : "You have unlocked Condemn!\nBlast surrounding foes after a small charge." }
+		{"Text" : "You have unlocked Condemn!\nBlasts surrounding foes after a small charge." }
 	],
 
 	"Damage Numbers Pool Size" : 5,
