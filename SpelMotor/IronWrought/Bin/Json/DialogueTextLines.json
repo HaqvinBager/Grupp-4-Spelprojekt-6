@@ -1,14 +1,27 @@
 {
-	"Test":[
-		{
-		"text":"Hello chosen one. I hope this day finds you well?",
-		"speaker":0,
-		"voiceline": 0
-		},
+	"Scenes": [
+		{"Lines" : [
+			{
+			"Text" : "Hello chosen one. I hope this day finds you well?",
+			"Speaker Index" : 0,
+			"Speaker Name" : "Ghost Man",
+			"Voiceline Index" : 0
+			},
+			
+			{
+			  "Text" : "Is oke. Me do code :cpt_tusktooth:.",
+			"Speaker Index": 1,
+			"Speaker Name" : "Orc Boy",
+			"Voiceline Index": 1
+			},
 		
-		{
-	  	"text":"Is oke. Me do code :cpt_tusktooth:.",
-		"speaker":1,
-		"voiceline": 1
-		}]
+			{
+			  "Text": "What is that supposed to mean? I know we don't know each other that well but sometimes I swear",
+			  "Speaker Index": 0,
+			  "Speaker Name" : "Ghost Man",
+			  "Voiceline Index": 2
+			  }
+		]}
+	]
+
 }
