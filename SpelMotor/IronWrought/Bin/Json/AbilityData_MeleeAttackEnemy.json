@@ -1,10 +1,10 @@
 {
 	"Collider": {
 		"Type": "Triangle",
-		"Width": 0.2,
-		"Height": 0.2,
+		"Width": 1.5,
+		"Height": 1.5,
 		"Collision Layer": 32,
-		"Collides With": 1
+		"Collides With": 2
 	},
 
 	"VFX": [
@@ -20,16 +20,16 @@
 
 	"Behavior": {
 		"Type": "MeleeAttack",
-		"Duration": 0.2
+		"Duration": 1.0
 	},
 
 	"AnimationState": {
 
 	},
 
-	"Damage": 0.2,
+	"Damage": 1.0,
 
 	"Range": 0.2,
 
-	"Cooldown":  2.0
+	"Cooldown":  5.0
 }
