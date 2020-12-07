@@ -4,8 +4,6 @@ using UnityEngine;
 
 public enum EnvironmentFXType
 {
-    FogWall,
-    Water
 }
 
 public class EnvironmentFXSetup : MonoBehaviour
