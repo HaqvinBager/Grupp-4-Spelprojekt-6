@@ -1,0 +1,22 @@
+{
+  "Delay": 0.0,
+  "Duration": 20.0,
+  "Scroll Speed 1 X": 0.32,
+  "Scroll Speed 1 Y": 0.2,
+  "Scroll Speed 2 X": 0.0,
+  "Scroll Speed 2 Y": -0.5,
+  "Scroll Speed 3 X": -0.31,
+  "Scroll Speed 3 Y": 0.0,
+  "Scroll Speed 4 X": 0.0,
+  "Scroll Speed 4 Y": 0.0,
+  "UV Scale 1": 5.0,
+  "UV Scale 2": 5.0,
+  "UV Scale 3": 5.0,
+  "UV Scale 4": 5.0,
+  "Opacity Strength": 2.5,
+  "Texture 1": "Assets/3D/VFX/VFX_WaterScroll_D.dds",
+  "Texture 2": "Assets/3D/VFX/VFX_WaterScroll_D.dds",
+  "Texture 3": "Assets/3D/VFX/VFX_WaterScroll_D.dds",
+  "Texture Mask": "Assets/3D/VFX/VFX_WaterScroll_A.dds",
+  "Mesh Path": "Assets/3D/VFX/VFX_WaterScroll.fbx"
+}

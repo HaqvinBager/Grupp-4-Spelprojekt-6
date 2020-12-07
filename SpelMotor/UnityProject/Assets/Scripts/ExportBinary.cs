@@ -15,6 +15,13 @@ public static class Writer
         bin.Write(text.ToCharArray(0, size));
     }
 
+    public static void WriteTo(this BinaryWriter bin, Vector3 data)
+    {
+        bin.Write(data.x);
+        bin.Write(data.y);
+        bin.Write(data.z);
+    }
+
     public static void WriteTo(this BinaryWriter bin, PrefabInstanceData data)
     {
         bin.Write(data.myInstanceID);
@@ -114,6 +121,15 @@ public static class Writer
         bin.Write(data.myVisionRange);
         bin.Write(data.myAttackRange);
         bin.Write(data.myModelIndex);
+    }
+
+    public static void WriteTo(this BinaryWriter bin, SEnvironmentFXData aData)
+    {
+        bin.Write(aData.myInstanceID);
+        bin.WriteTo(aData.myPosition);
+        bin.WriteTo(aData.myRotation);
+        bin.WriteTo(aData.myScale);
+        bin.WriteTo(aData.myJsonName);
     }
 }
 
@@ -256,7 +272,12 @@ public class BinaryExporter
             bw.WriteTo(data);
         }
 
-
+        EnvironmentFXSetup[] environmentFX = GameObject.FindObjectsOfType<EnvironmentFXSetup>();
+        bw.Write(environmentFX.Length);
+        foreach(var env in environmentFX)
+        {
+            bw.WriteTo(new SEnvironmentFXData(env));
+        }
         //bw.Write(ConvertSceneToIndex(sceneName));
 
         bw.Close();
@@ -297,19 +318,13 @@ public class BinaryExporter
     {
         // Save paths
         List<string> modelPaths = new List<string>();
-        GameObject[] allModels = UnityEngine.Object.FindObjectsOfType<GameObject>();
-        foreach (GameObject go in allModels)
+        Renderer[] allModels = UnityEngine.Object.FindObjectsOfType<Renderer>();
+        foreach (Renderer go in allModels)
         {
-            Renderer mesh = go.GetComponentInChildren<Renderer>();
-            if (mesh != null)
-            {
-                Renderer originalSource = PrefabUtility.GetCorrespondingObjectFromOriginalSource(mesh);
-                string path = AssetDatabase.GetAssetPath(originalSource);
-                if (modelPaths.Contains(path))
-                    continue;
-
+            Renderer originalSource = PrefabUtility.GetCorrespondingObjectFromOriginalSource(go);
+            string path = AssetDatabase.GetAssetPath(originalSource);
+            if (!modelPaths.Contains(path))
                 modelPaths.Add(path);
-            }
         }
 
         StringBuilder modelPathStringBuilder = new StringBuilder();
