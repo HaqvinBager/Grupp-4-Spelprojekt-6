@@ -3,7 +3,7 @@
     "Type": "Triangle",
     "Width": 1.5,
     "Height": 1.5,
-    "Collision Layer": 128,
+    "Collision Layer": 16,
     "Collides With": 4
   },
 
