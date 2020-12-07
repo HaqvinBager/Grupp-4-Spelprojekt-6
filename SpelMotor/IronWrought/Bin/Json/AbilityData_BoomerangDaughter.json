@@ -8,10 +8,11 @@
 	},
 
 	"VFX": [
-		{ "Path": "Json/VFXData_BoomerangDaughter.json" }
+		{ "Path": "Json/VFXData_RighteousShield.json" }
 	],
 
 	"ParticleSystems": [
+                { "Path": "Json/ParticleData_RighteousShieldEmitter.json" }
 	],
 
 	"Audio": {
@@ -20,8 +21,8 @@
 
 	"Behavior": {
 		"Type": "Boomerang",
-		"Speed": 6.0,
-		"Duration": 2.5,
+		"Speed": 4.0,
+		"Duration": 3.5,
 		"ResourceCost": 15.0,
 		"RotationalSpeed": 4.0
 	},
