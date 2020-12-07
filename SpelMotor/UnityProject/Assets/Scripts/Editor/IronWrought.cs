@@ -93,6 +93,8 @@ public static class IronWrought
                 return 3;
             case "NavTest":
                 return 4;
+            case "BossRoom":
+                return 5;
             default:
                 return 1;
         }
