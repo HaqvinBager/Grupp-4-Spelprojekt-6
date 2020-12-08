@@ -13,8 +13,8 @@
 	],
 
 	"ParticleSystems": [
-		{ "Path": "Json/ParticleData_ExploEmitter.json" },
-		{ "Path": "Json/ParticleData_ExploEmitter2.json" }
+		{ "Path": "Json/PD_ExploEmit.json" },
+		{ "Path": "Json/PD_ExploEmit2.json" }
 	],
 
 	"Audio": {
