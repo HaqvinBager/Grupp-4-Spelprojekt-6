@@ -15,6 +15,12 @@ public static class Writer
         bin.Write(text.ToCharArray(0, size));
     }
 
+    public static void WriteTo(this BinaryWriter bin, List<string> textList)
+    {
+        foreach (var text in textList)
+            bin.WriteTo(text);
+    }
+
     public static void WriteTo(this BinaryWriter bin, Vector3 data)
     {
         bin.Write(data.x);
@@ -130,6 +136,15 @@ public static class Writer
         bin.WriteTo(aData.myRotation);
         bin.WriteTo(aData.myScale);
         bin.WriteTo(aData.myJsonName);
+    }
+
+    public static void WriteTo(this BinaryWriter bin, SParticleFXData aData)
+    {
+        bin.Write(aData.myInstanceID);
+        bin.WriteTo(aData.myPosition);
+        bin.WriteTo(aData.myRotation);
+        bin.Write(aData.myJsonListCount);
+        bin.WriteTo(aData.myJsonList);
     }
 }
 
@@ -274,11 +289,19 @@ public class BinaryExporter
 
         EnvironmentFXSetup[] environmentFX = GameObject.FindObjectsOfType<EnvironmentFXSetup>();
         bw.Write(environmentFX.Length);
+        Debug.Log("Environment FX Exported: " + environmentFX.Length);
         foreach(var env in environmentFX)
         {
             bw.WriteTo(new SEnvironmentFXData(env));
         }
-        //bw.Write(ConvertSceneToIndex(sceneName));
+
+        ParticleFXSetup[] particleFX = GameObject.FindObjectsOfType<ParticleFXSetup>();
+        bw.Write(particleFX.Length);
+        Debug.Log("Particle FX Exported: " + particleFX.Length);
+        foreach(var pfx in particleFX)
+        {
+            bw.WriteTo(new SParticleFXData(pfx));
+        }
 
         bw.Close();
     }

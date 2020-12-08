@@ -12,7 +12,7 @@
 	],
 
 	"ParticleSystems": [
-                { "Path": "Json/ParticleData_RighteousShieldEmitter.json" }
+                { "Path": "Json/PD_RSEmit.json" }
 	],
 
 	"Audio": {
