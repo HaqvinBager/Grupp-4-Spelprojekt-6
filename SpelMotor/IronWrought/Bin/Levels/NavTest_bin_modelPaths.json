@@ -1,10 +1,10 @@
 {
 "ModelPaths" : [
 {
-"Path" : "Assets/3D/Environment/EN_G_L1Floor_01_19G4_01_19/EN_G_L1Floor_01_19G4_01_19.fbx"
+"Path" : "Assets/3D/Character/CH_PL_Daughter_01_19G4_1_19/CH_PL_Daughter_01_19G4_1_19_SK.fbx"
 }
 ,{
-"Path" : "Assets/3D/Environment/EN_P_L3Bookshelf_01_19G4_v1_19/EN_P_L3Bookshelf_01_19G4_v1_19.fbx"
+"Path" : "Assets/3D/Environment/EN_G_L1Floor_01_19G4_01_19/EN_G_L1Floor_01_19G4_01_19.fbx"
 }
 ]
 }
