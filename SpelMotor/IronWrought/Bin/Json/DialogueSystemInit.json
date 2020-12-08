@@ -1,7 +1,7 @@
 {
 	"Speaker Names Font and Size" : "Text/baskerville24",
 	"Dialogue Text Font and Size" : "Text/baskerville24",
-	"Narration Font and Size" : "Text/baskerville32",
+	"Narration Font and Size" : "Text/baskerville60",
 
 	"Dialogue Box Path" : "Assets/3D/UI/Ingame/UI_In_DialogBox_01_19G4.dds",	
 
@@ -24,8 +24,8 @@
 	"Dialogue Text Position X" : -0.2,
 	"Dialogue Text Position Y" : 0.425,
 
-	"Narration Text Position X" : -0.5,
-	"Narration Text Position Y" : 0.5,
+	"Narration Text Position X" : -0.8,
+	"Narration Text Position Y" : 0.0,
 
 	"Speaker Name Color R" : 1.0,
 	"Speaker Name Color G" : 0.7,
@@ -40,5 +40,5 @@
 	"Narration Text Color B" : 1.0,
 
 	"Dialogue Line Break After Characters" : 38,
-	"Narration Line Break After Characters" : 20
+	"Narration Line Break After Characters" : 49
 }
