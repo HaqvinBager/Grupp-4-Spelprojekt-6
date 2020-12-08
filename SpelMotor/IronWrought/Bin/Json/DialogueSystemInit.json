@@ -6,10 +6,10 @@
 	"Dialogue Box Path" : "Assets/3D/UI/Ingame/UI_In_DialogBox_01_19G4.dds",	
 
 	"Speaker Icon Paths": [
+		{"Path" : "Assets/3D/UI/Ingame/UI_In_portraitMother_01_19G4.dds" },
+		{"Path" : "Assets/3D/UI/Ingame/UI_In_portraitDaughter_01_19G4.dds" },
 		{"Path" : "Assets/3D/UI/Ingame/tempSpeakerPortrait.dds" },
-		{"Path" : "Assets/3D/UI/Ingame/tempSpeakerPortrait2.dds" },
-		{"Path" : "Assets/3D/UI/Ingame/tempSpeakerPortrait.dds" },
-		{"Path" : "Assets/3D/UI/Ingame/tempSpeakerPortrait.dds" }		
+		{"Path" : "Assets/3D/UI/Ingame/UI_In_portraitFather_01_19G4.dds" }		
 	],
 
 	"Dialogue Box Position X" : 0.0,

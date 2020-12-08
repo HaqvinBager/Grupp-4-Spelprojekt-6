@@ -16,7 +16,7 @@
 			},
 		
 			{
-			 	"Text": "Don't be frightened. I'm here, but for a moment.",
+			 	"Text": "Don't be frightened. I'm here, but only for a moment.",
 			 	"Speaker Index": 0,
 			 	"Speaker Name" : "Queen Flidais",
 				"Voiceline Index": 11
@@ -41,7 +41,7 @@
 			  "Speaker Index": 1,
 			  "Speaker Name" : "Morrigan",
 			  "Voiceline Index": 14
-			},
+			}, 
 		
 			{
 			  "Text": "Yes. I saw.",
@@ -92,10 +92,10 @@
 				"Speaker Index": 2,
 				"Speaker Name" : "Guard Captain Loghaine",
 				"Voiceline Index": 21
-			},
+			}, 
 		
 			{
-			 	"Text": "That won't be necessary, Captain.",
+			 	"Text": "That won't be necessary, Captain.", 
 			 	"Speaker Index": 1,
 			 	"Speaker Name" : "Morrigan",
 				"Voiceline Index": 22
@@ -158,12 +158,12 @@
 			 	"Speaker Name" : "God-King Ulberic",
 				"Voiceline Index": 30
 			},
-			
+			 
 			{
 				"Text": "If this is how it has to end, the least I can do is fight. Perhaps you would learn something.",
 				"Speaker Index": 3,
 				"Speaker Name" : "God-King Ulberic",
-				"Voiceline Index": 31
+				"Voiceline Index": 31 
 			},
 		
 			{
@@ -174,7 +174,7 @@
 			},
 		
 			{
-				"Text": "You're pathetic. This is not Godhood, Father.",
+				"Text": "You're pathetic. This isn't Godhood, Father.",
 			  "Speaker Index": 1,
 			  "Speaker Name" : "Morrigan",
 			  "Voiceline Index": 33

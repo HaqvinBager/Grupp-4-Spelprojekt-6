@@ -1,5 +1,9 @@
 {
 	"Music": [
+		{ "Path": "BossMusic.mp3" },
+		{ "Path": "Castle.mp3" },
+		{ "Path": "Dungeon.mp3" },
+		{ "Path": "Garden.mp3" },
 		{ "Path": "MainMenu.mp3" }
 	],
 
@@ -16,7 +20,41 @@
 	],
 
 	"VoiceLine": [
-
+		{ "Path": "0.mp3" },
+		{ "Path": "1.mp3" },
+		{ "Path": "2.mp3" },
+		{ "Path": "3.mp3" },
+		{ "Path": "4.mp3" },
+		{ "Path": "5.mp3" },
+		{ "Path": "6.mp3" },
+		{ "Path": "7.mp3" },
+		{ "Path": "8.mp3" },
+		{ "Path": "9.mp3" },
+		{ "Path": "10.mp3" },
+		{ "Path": "11.mp3" },
+		{ "Path": "12.mp3" },
+		{ "Path": "13.mp3" },
+		{ "Path": "14.mp3" },
+		{ "Path": "15.mp3" },
+		{ "Path": "16.mp3" },
+		{ "Path": "17.mp3" },
+		{ "Path": "18.mp3" },
+		{ "Path": "19.mp3" },
+		{ "Path": "20.mp3" },
+		{ "Path": "21.mp3" },
+		{ "Path": "22.mp3" },
+		{ "Path": "23.mp3" },
+		{ "Path": "24.mp3" },
+		{ "Path": "25.mp3" },
+		{ "Path": "26.mp3" },
+		{ "Path": "27.mp3" },
+		{ "Path": "28.mp3" },
+		{ "Path": "29.mp3" },
+		{ "Path": "30.mp3" },
+		{ "Path": "31.mp3" },
+		{ "Path": "32.mp3" },
+		{ "Path": "33.mp3" },
+		{ "Path": "34.mp3" }
 	]
 
 
