@@ -2,7 +2,7 @@
   "Buttons": [
     {
       "Text": "Play",
-      "FontAndFontSize": "Text/MorrisRoman30",
+      "FontAndFontSize": "Text/MorrisRoman42",
       "Text Position X": -0.0,
       "Text Position Y": -0.51,
       "Text Pivot X": 0.5,
@@ -21,7 +21,7 @@
     },
     {
       "Text": "Level select",
-      "FontAndFontSize": "Text/MorrisRoman30",
+      "FontAndFontSize": "Text/MorrisRoman42",
       "Text Position X": 0.0,
       "Text Position Y": -0.26,
       "Text Pivot X": 0.5,
@@ -40,7 +40,7 @@
     },
    {
       "Text": "Options",
-      "FontAndFontSize": "Text/MorrisRoman30",
+      "FontAndFontSize": "Text/MorrisRoman42",
       "Text Position X": 0.0,
       "Text Position Y": -0.01,
       "Text Pivot X": 0.5,
@@ -59,7 +59,7 @@
     },
   {
       "Text": "Credits",
-      "FontAndFontSize": "Text/MorrisRoman30",
+      "FontAndFontSize": "Text/MorrisRoman42",
       "Text Position X": 0.0,
       "Text Position Y": 0.24,
       "Text Pivot X": 0.5,
@@ -78,7 +78,7 @@
     },
  {
       "Text": "Quit",
-      "FontAndFontSize": "Text/MorrisRoman30",
+      "FontAndFontSize": "Text/MorrisRoman42",
       "Text Position X": 0.0,
       "Text Position Y": 0.49,
       "Text Pivot X": 0.5,
