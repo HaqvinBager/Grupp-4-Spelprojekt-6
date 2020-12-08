@@ -2,26 +2,238 @@
 	"Scenes": [
 		{"Lines" : [
 			{
-			"Text" : "Hello chosen one. I hope this day finds you well?",
-			"Speaker Index" : 0,
-			"Speaker Name" : "Ghost Man",
-			"Voiceline Index" : 0
+				"Text" : "Morrigan. Wake up.",
+				"Speaker Index" : 0,
+				"Speaker Name" : "Queen Flidais",
+				"Voiceline Index" : 9
 			},
 			
 			{
-			  "Text" : "Is oke. Me do code :cpt_tusktooth:.",
-			"Speaker Index": 1,
-			"Speaker Name" : "Orc Boy",
-			"Voiceline Index": 1
+				"Text" : "Mother?",
+				"Speaker Index": 1,
+				"Speaker Name" : "Morrigan",
+				"Voiceline Index": 10
 			},
 		
 			{
-			  "Text": "What is that supposed to mean? I know we don't know each other that well but sometimes I swear",
+			 	"Text": "Don't be frightened. I'm here, but for a moment.",
+			 	"Speaker Index": 0,
+			 	"Speaker Name" : "Queen Flidais",
+				"Voiceline Index": 11
+			},
+			
+			{
+				"Text": "Why do you remain in this cold, damp cell, my love?",
+				"Speaker Index": 0,
+				"Speaker Name" : "Queen Flidais",
+				"Voiceline Index": 12
+			},
+		
+			{
+			  "Text": "He's.. he's slaughtering everyone.",
+			  "Speaker Index": 1,
+			  "Speaker Name" : "Morrigan",
+			  "Voiceline Index": 13
+			},
+		
+			{
+			  "Text": "The servants begged me for their lives and he beheaded them in front of me!",
+			  "Speaker Index": 1,
+			  "Speaker Name" : "Morrigan",
+			  "Voiceline Index": 14
+			},
+		
+			{
+			  "Text": "Yes. I saw.",
 			  "Speaker Index": 0,
-			  "Speaker Name" : "Ghost Man",
-			  "Voiceline Index": 2
-			  }
+			  "Speaker Name" : "Queen Flidais",
+			  "Voiceline Index": 15
+			},
+		
+			{
+			  "Text": "You couldn't save them, but there are many more out there, who desperately need your help!",
+			  "Speaker Index": 0,
+			  "Speaker Name" : "Queen Flidais",
+			  "Voiceline Index": 16
+			},
+		
+			{
+			  "Text": "But, what can I do? I'm stuck in here!",
+			  "Speaker Index": 1,
+			  "Speaker Name" : "Morrigan",
+			  "Voiceline Index": 17
+			},
+		
+			{
+			  "Text": "Not for long you're not. Look inwards, love.",
+			  "Speaker Index": 0,
+			  "Speaker Name" : "Queen Flidais",
+			  "Voiceline Index": 18
+			},
+		
+			{
+			  "Text": "I will help you find your true strength. You will need it in order to defeat your father.",
+			  "Speaker Index": 0,
+			  "Speaker Name" : "Queen Flidais",
+			  "Voiceline Index": 19
+			}
+		]},
+		
+		{"Lines" : [
+			{
+				"Text" : "The Princess Morrigan? How did she escape from her cell!?",
+				"Speaker Index" : 2,
+				"Speaker Name" : "Guard Captain Loghaine",
+				"Voiceline Index" : 20
+			},
+			
+			{
+				"Text" : "Go! We must notify the King immediately!",
+				"Speaker Index": 2,
+				"Speaker Name" : "Guard Captain Loghaine",
+				"Voiceline Index": 21
+			},
+		
+			{
+			 	"Text": "That won't be necessary, Captain.",
+			 	"Speaker Index": 1,
+			 	"Speaker Name" : "Morrigan",
+				"Voiceline Index": 22
+			},
+			
+			{
+				"Text": "I'm on my way to meet him now, to stop this mindless slaughter!",
+				"Speaker Index": 1,
+				"Speaker Name" : "Morrigan",
+				"Voiceline Index": 23
+			},
+		
+			{
+			  "Text": "Heresy! You would defy the orders of the King, your own father?",
+			  "Speaker Index": 2,
+			  "Speaker Name" : "Guard Captain Loghaine",
+			  "Voiceline Index": 24
+			},
+		
+			{
+			  "Text": "You will go no further, Princess.",
+			  "Speaker Index": 2,
+			  "Speaker Name" : "Guard Captain Loghaine",
+			  "Voiceline Index": 25
+			},
+		
+			{
+			  "Text": "He's not my father anymore. He lost that privilege when he decided to murder his own people.",
+			  "Speaker Index": 1,
+			  "Speaker Name" : "Morrigan",
+			  "Voiceline Index": 26
+			},
+		
+			{
+			  "Text": "The people who loved and cared for him. His reign ends tonight!",
+			  "Speaker Index": 1,
+			  "Speaker Name" : "Morrigan",
+			  "Voiceline Index": 27
+			}
+		]},
+		
+		{"Lines" : [
+			{
+				"Text" : "I tried to find a way to have her stay. But it never would've worked.",
+				"Speaker Index" : 3,
+				"Speaker Name" : "God-King Ulberic",
+				"Voiceline Index" : 28
+			},
+			
+			{
+				"Text" : "The lot of the Gods seems invariably bound to mortal life.",
+				"Speaker Index": 3,
+				"Speaker Name" : "God-King Ulberic",
+				"Voiceline Index": 29
+			},
+		
+			{
+			 	"Text": "Now you're here. My final bond to this realm.",
+			 	"Speaker Index": 3,
+			 	"Speaker Name" : "God-King Ulberic",
+				"Voiceline Index": 30
+			},
+			
+			{
+				"Text": "If this is how it has to end, the least I can do is fight. Perhaps you would learn somtheing.",
+				"Speaker Index": 3,
+				"Speaker Name" : "God-King Ulberic",
+				"Voiceline Index": 31
+			},
+		
+			{
+			  "Text": "I feel eternity's not long for me now.",
+			  "Speaker Index": 3,
+			  "Speaker Name" : "God-King Ulberic",
+			  "Voiceline Index": 32
+			},
+		
+			{
+				"Text": "You're pathetic. This is not Godhood, Father.",
+			  "Speaker Index": 1,
+			  "Speaker Name" : "Morrigan",
+			  "Voiceline Index": 33
+			},
+		
+			{
+			  "Text": "You're right. No more words. We better end this now.",
+			  "Speaker Index": 3,
+			  "Speaker Name" : "God-King Ulberic",
+			  "Voiceline Index": 34
+			}
 		]}
+	],
+
+	"Narration": [
+		{
+			"Text" : "Two hundred years ago, Ulberic descended upon the Mortal Plane.",
+			"Voiceline Index" : 0
+		},
+		
+		{
+			"Text" : "He sought to build himself a Kingdom, one which he would rule with dignity and with love.",
+			"Voiceline Index": 1
+		},
+	
+		{
+			 "Text": "The people of Allona loved their God and King, endlessly pious and grateful they were.",
+			"Voiceline Index": 2
+		},
+		
+		{
+			"Text": "One day, the good King took a mortal woman for his Queen, against his better judgement.",
+			"Voiceline Index": 3
+		},
+	
+		{
+			"Text": "He loved his Queen Flidais, and the Princess Morrigan who soon followed from their union.",
+			"Voiceline Index": 4
+		},
+	
+		{
+			"Text": "Of course, the King was devastated when the Queen then tragically died.",
+			"Voiceline Index": 5
+		},
+	
+		{
+			"Text": "He lashed out at his loyal citizens, enraged by the frailty of mortality. The Kingdom would never be the same.",
+			"Voiceline Index": 6
+		},
+	
+		{
+			"Text": "Demons, risen from the bodies of the dead, roamed the streets.",
+			"Voiceline Index": 7
+		},
+	
+		{
+			"Text": "Twisted and spiteful, they forcibly imprisoned Morrigan and began cleansing the Kingdom of all life.",
+			"Voiceline Index": 8
+		}
 	]
 
 }
