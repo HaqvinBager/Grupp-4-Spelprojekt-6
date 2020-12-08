@@ -129,6 +129,20 @@ public static class Writer
         bin.Write(data.myModelIndex);
     }
 
+    public static void WriteTo(this BinaryWriter bin, DestructibleData data)
+    {
+        bin.Write(data.myPosition.x);
+        bin.Write(data.myPosition.y);
+        bin.Write(data.myPosition.z);
+        bin.Write(data.myRotation.x);
+        bin.Write(data.myRotation.y);
+        bin.Write(data.myRotation.z);
+        bin.Write(data.myScale.x);
+        bin.Write(data.myScale.y);
+        bin.Write(data.myScale.z);
+        bin.Write(data.myModelIndex);
+    }
+
     public static void WriteTo(this BinaryWriter bin, SEnvironmentFXData aData)
     {
         bin.Write(aData.myInstanceID);
@@ -264,6 +278,18 @@ public class BinaryExporter
             Debug.Log(enemys.Length + " Enemys Exported", enemys[0]);
         }
 
+        Destructible[] destructibles = UnityEngine.Object.FindObjectsOfType<Destructible>();
+        bw.Write(destructibles.Length);
+        if (destructibles.Length > 0)
+        {
+            foreach (Destructible destructible in destructibles)
+            {
+                DestructibleData destructibleData = new DestructibleData(destructible, GetModelIndexFromPrefab(destructible.gameObject, modelPaths));
+                bw.WriteTo(destructibleData);
+            }
+            Debug.Log(destructibles.Length + " Destructibles Exported", destructibles[0]);
+        }
+
         Renderer[] allPrefabMeshes = GameObject.FindObjectsOfType<Renderer>();
 
         List<PrefabInstanceData> prefabInstanceDataList = new List<PrefabInstanceData>();
@@ -272,6 +298,8 @@ public class BinaryExporter
             if (mesh.GetComponentInParent<Player>() != null)
                 continue;
             if (mesh.GetComponentInParent<Enemy>() != null)
+                continue;
+            if (mesh.GetComponentInParent<Destructible>() != null)
                 continue;
 
             GameObject prefabParent = PrefabUtility.GetNearestPrefabInstanceRoot(mesh);
