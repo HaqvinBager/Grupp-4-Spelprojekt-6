@@ -1,0 +1,44 @@
+{
+	"Speaker Names Font and Size" : "Text/baskerville16",
+	"Dialogue Text Font and Size" : "Text/baskerville16",
+	"Narration Font and Size" : "Text/baskerville16",
+
+	"Dialogue Box Path" : "Assets/3D/UI/Ingame/UI_In_DialogBox_01_19G4.dds",	
+
+	"Speaker Icon Paths": [
+		{"Path" : "Assets/3D/UI/Ingame/tempSpeakerPortrait.dds" },
+		{"Path" : "Assets/3D/UI/Ingame/tempSpeakerPortrait2.dds" },
+		{"Path" : "Assets/3D/UI/Ingame/tempSpeakerPortrait.dds" },
+		{"Path" : "Assets/3D/UI/Ingame/tempSpeakerPortrait.dds" }		
+	],
+
+	"Dialogue Box Position X" : 0.0,
+	"Dialogue Box Position Y" : 0.4,
+
+	"Speaker Icon Position X" : -0.275,
+	"Speaker Icon Position Y" : 0.4,
+
+	"Speaker Name Position X" : -0.2,
+	"Speaker Name Position Y" : 0.28,
+
+	"Dialogue Text Position X" : -0.2,
+	"Dialogue Text Position Y" : 0.425,
+
+	"Narration Text Position X" : -0.5,
+	"Narration Text Position Y" : 0.5,
+
+	"Speaker Name Color R" : 1.0,
+	"Speaker Name Color G" : 0.7,
+	"Speaker Name Color B" : 0.0,
+
+	"Dialogue Text Color R" : 1.0,
+	"Dialogue Text Color G" : 1.0,
+	"Dialogue Text Color B" : 1.0,
+
+	"Narration Text Color R" : 1.0,
+	"Narration Text Color G" : 1.0,
+	"Narration Text Color B" : 1.0,
+
+	"Dialogue Line Break After Characters" : 40,
+	"Narration Line Break After Characters" : 20
+}
