@@ -12,7 +12,7 @@
 	],
 
 	"ParticleSystems": [
-		{ "Path": "Json/ParticleData_SmokeEmitter.json" }
+		{ "Path": "Json/PD_SmokeEmit.json" }
 	],
 
 	"Audio": {

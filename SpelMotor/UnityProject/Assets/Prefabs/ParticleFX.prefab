@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5174232614240027700
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5174232614240027707}
+  - component: {fileID: 5174232614240027701}
+  m_Layer: 0
+  m_Name: ParticleFX
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5174232614240027707
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5174232614240027700}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5174232614240027701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5174232614240027700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e0768e12fd7f2f4788fcc5ce4f0290b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vfXDataList:
+  - myJson: PData_SmokeEmitter.json
+    useMe: 1
+  - myJson: PData_ExploEmitter.json
+    useMe: 0
+  - myJson: PData_Smoke.json
+    useMe: 1
+  - myJson: PData_AuraEmitter.json
+    useMe: 0
+  - myJson: PData_CrackEmitter.json
+    useMe: 0
+  - myJson: PData_MouseRing.json
+    useMe: 1
+  - myJson: PData_RighteousShieldEmitter.json
+    useMe: 0
+  - myJson: PData_AttEmitter2.json
+    useMe: 1
+  - myJson: PData_AttEmitter3.json
+    useMe: 0
+  - myJson: PData_AttEmitter.json
+    useMe: 0
+  - myJson: PData_SmallSmokeEmitter.json
+    useMe: 0
+  - myJson: PData_Fire.json
+    useMe: 0
+  - myJson: PData_ExploEmitter2.json
+    useMe: 0

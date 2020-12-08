@@ -12,7 +12,7 @@
 	],
 
 	"ParticleSystems": [
-		{ "Path": "Json/ParticleData_AuraEmitter.json" }
+		{ "Path": "Json/PD_AuraEmit.json" }
 	],
 
 	"Audio": {
