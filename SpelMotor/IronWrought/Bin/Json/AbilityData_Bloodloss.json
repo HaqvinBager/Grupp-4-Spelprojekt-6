@@ -1,0 +1,40 @@
+{
+	"Collider": {
+		"Type": "Circle",
+		"Width": 0.2,
+		"Height": 0.2,
+		"Collision Layer": 16,
+		"Collides With": 4
+	},
+
+	"VFX": [
+		
+	],
+
+	"ParticleSystems": [
+
+		{ "Path": "Json/PD_Blood1.json" },
+		{ "Path": "Json/PD_Blood2.json" },
+		{ "Path": "Json/PD_Blood3.json" }
+	],
+
+	"Audio": {
+
+	},
+
+	"Behavior": {
+		"Type": "Projectile",
+		"Speed": 0.0,
+		"Duration": 30
+	},
+
+	"AnimationState": {
+
+	},
+
+	"Damage": 0.2,
+
+	"Duration": 0.2,
+
+	"Range": 0.2
+}
