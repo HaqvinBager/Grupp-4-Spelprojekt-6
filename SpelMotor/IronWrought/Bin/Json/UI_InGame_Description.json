@@ -24,6 +24,12 @@
       "Path": "Json/VFXData_UI_ResourceOrb.json",
       "Position X": 0.43,
       "Position Y": 0.805
+    },
+    {
+      "Path": "Json/VFXData_UI_ExperienceBar.json",
+      "Position X": 0.0,
+      "Position Y": 0.74,
+      "Level":  0.0
     }
   ],
 
@@ -36,6 +42,6 @@
   ],
 
   "PostmasterEvents": {
-    "Events": [ 9, 10, 11, 13, 14, 15 ]
+    "Events": [ 9, 10, 11, 12, 13, 14, 15, 33 ]
   }
 }
