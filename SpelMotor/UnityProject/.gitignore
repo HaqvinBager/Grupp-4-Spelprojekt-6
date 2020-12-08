@@ -72,3 +72,9 @@ InitTestScene*.unity
 
 
 # End of https://www.toptal.com/developers/gitignore/api/unity
+
+SpelMotor/UnityProject/Assets/SampleScene_ExportedNavMesh.obj.meta
+SpelMotor/UnityProject/Assets/Dungeon_ExportedNavMesh.obj.meta
+SpelMotor/UnityProject/Assets/Gardens_ExportedNavMesh.obj.meta
+SpelMotor/UnityProject/Assets/Castle_ExportedNavMesh.obj.meta
+SpelMotor/UnityProject/Assets/BossRoom_ExportedNavMesh.obj.meta
