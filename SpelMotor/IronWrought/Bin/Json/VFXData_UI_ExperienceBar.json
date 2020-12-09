@@ -18,14 +18,14 @@
   "Glow Color G": 1.0,
   "Glow Color B": 1.0,
   "Glow Width": 0.1,
-  "Mask Width": 256.0,
+  "Mask Width": 662.0,
   "Vertical Direction Of Change": false,
-  "Pixel Shader Path": "Shaders/SpriteVFXTextureBlendingPixelShader.cso",
+  "Pixel Shader Path": "Shaders/SpriteVFXTexturePixelShader.cso",
   "Texture 1": "Assets/3D/VFX/Fog_texture3.dds",
   "Texture 2": "Assets/3D/VFX/test_smoke.dds",
   "Texture 3": "Assets/3D/VFX/VFXCloud.dds",
-  "Texture Mask": "Assets/3D/UI/Ingame/UI_IN_ExpBarBase.dds",
-  "Texture Mask 2": "Assets/3D/UI/Ingame/UI_IN_ExpBarBase.dds",
-  "Texture Overlay": "Assets/3D/UI/Ingame/UI_IN_ExpBarFrame.dds"
+  "Texture Mask": "Assets/3D/UI/Ingame/UI_In_ExpBar_01_19G4.dds",
+  "Texture Mask 2": "Assets/3D/UI/Ingame/UI_In_ExpBar_01_19G4.dds",
+  "Texture Overlay": "Assets/3D/UI/Ingame/UI_In_ExpBar_Test.dds"
 
 }
