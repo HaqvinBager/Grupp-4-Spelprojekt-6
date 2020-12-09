@@ -13,6 +13,7 @@
 	],
 
 	"ParticleSystems": [
+		{ "Path": "Json/PD_RingEmit.json" },
 		{ "Path": "Json/PD_ExploEmit.json" },
 		{ "Path": "Json/PD_ExploEmit2.json" }
 	],

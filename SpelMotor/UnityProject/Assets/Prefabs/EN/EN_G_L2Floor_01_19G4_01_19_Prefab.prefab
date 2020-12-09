@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7041517435065913424}
+  - component: {fileID: 1425291724501379954}
   m_Layer: 0
   m_Name: EN_G_L2Floor_01_19G4_01_19_Prefab
   m_TagString: Untagged
@@ -31,6 +32,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1425291724501379954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6604444968552021062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad0a8ebf804a88245810469459129dc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myScale: 1
 --- !u!1001 &5054405050748808630
 PrefabInstance:
   m_ObjectHideFlags: 0
