@@ -1,40 +1,37 @@
 {
 "ModelPaths" : [
 {
-"Path" : "Assets/3D/Environment/EN_W_L2Wallcorner_01_19G4_01_19/EN_W_L2Wallcorner_01_19G4_01_19.fbx"
-}
-,{
-"Path" : "Assets/3D/Environment/EN_W_L2Wall_01_19G4_01_19/EN_W_L2Wall_01_19G4_01_19.fbx"
-}
-,{
 "Path" : "Assets/3D/Environment/EN_W_L2Wall_02_19G4_01_19/EN_W_L2Wall_01_19G4_01_19_ts_1.fbx"
-}
-,{
-"Path" : "Assets/3D/Character/CH_NPC_enemy_01_19G4_1_19/CH_NPC_enemy_01_19G4_1_19_SK.fbx"
-}
-,{
-"Path" : "Assets/3D/Environment/EN_P_Grass_01_17G1_v2_19/EN_P_Grass_01_17G1_v2_19.fbx"
-}
-,{
-"Path" : "Assets/3D/Environment/EN_P_FLG_Grass_01_17G2_v2_19/EN_P_FLG_Grass_01_17G2_v2_19.fbx"
-}
-,{
-"Path" : "Assets/3D/Environment/EN_P_L2Tree_02Leaves_19G4_01_19/EN_P_L2Tree_02Leaves_19G4_01_19_AL.fbx"
 }
 ,{
 "Path" : "Assets/3D/Environment/EN_G_L2Floor_01_19G4_01_19/EN_G_L2Floor_01_19G4_01_19.fbx"
 }
 ,{
-"Path" : "Assets/3D/Environment/EN_W_L1Wall_01_19G4_01_19/EN_W_L1Wall_01_19G4_01_19_ts_1.fbx"
+"Path" : "Assets/3D/Character/CH_NPC_enemy_01_19G4_1_19/CH_NPC_enemy_01_19G4_1_19_SK.fbx"
 }
 ,{
-"Path" : "Assets/3D/Environment/EN_W_MediumWallGate_Open_01_18G1_v2_19/EN_W_MediumWallGate_Open_01_18G1_v2_19.fbx"
+"Path" : "Assets/3D/Environment/EN_W_L2Wall_01_19G4_01_19/EN_W_L2Wall_01_19G4_01_19.fbx"
+}
+,{
+"Path" : "Assets/3D/Environment/EN_W_L2Wallcorner_01_19G4_01_19/EN_W_L2Wallcorner_01_19G4_01_19.fbx"
 }
 ,{
 "Path" : "Assets/3D/Environment/EN_P_Lamppost_01_18G6_v2_19/EN_P_Lamppost_01_18G6_v2_19.fbx"
 }
 ,{
+"Path" : "Assets/3D/Environment/EN_W_L1Wall_01_19G4_01_19/EN_W_L1Wall_01_19G4_01_19_ts_1.fbx"
+}
+,{
+"Path" : "Assets/3D/Environment/EN_P_L2Tree_02Leaves_19G4_01_19/EN_P_L2Tree_02Leaves_19G4_01_19_AL.fbx"
+}
+,{
+"Path" : "Assets/3D/Environment/EN_P_FLG_Grass_01_17G2_v2_19/EN_P_FLG_Grass_01_17G2_v2_19.fbx"
+}
+,{
 "Path" : "Assets/3D/Environment/EN_P_L2Tree_02Trunk_19G4_01_19/EN_P_L2Tree_02Trunk_19G4_01_19.fbx"
+}
+,{
+"Path" : "Assets/3D/Environment/EN_P_Grass_01_17G1_v2_19/EN_P_Grass_01_17G1_v2_19.fbx"
 }
 ,{
 "Path" : "Assets/3D/Character/CH_PL_Daughter_01_19G4_1_19/CH_PL_Daughter_01_19G4_1_19_SK.fbx"
@@ -47,6 +44,9 @@
 }
 ,{
 "Path" : "Assets/3D/Environment/EN_P_L2DamCorner_01_19G4_01_19/EN_P_L2DamCorner_01_19G4_01_19.fbx"
+}
+,{
+"Path" : "Assets/3D/Environment/EN_W_MediumWallGate_Open_01_18G1_v2_19/EN_W_MediumWallGate_Open_01_18G1_v2_19.fbx"
 }
 ,{
 "Path" : "Assets/3D/Environment/EN_P_L1Stone_Big_01_19G4_01_19/EN_P_L1Stone_Big_01_19G4_01_19.fbx"
