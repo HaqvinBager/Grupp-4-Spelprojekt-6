@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6731079838148754345}
-  - component: {fileID: -7578743055236189175}
+  - component: {fileID: -5150440160070387549}
   m_Layer: 0
   m_Name: EN_W_L2Wall_01_19G4_01_19_ts_1_Prefab
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-7578743055236189175
+--- !u!114 &-5150440160070387549
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

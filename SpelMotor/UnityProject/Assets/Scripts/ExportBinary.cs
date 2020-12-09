@@ -21,6 +21,12 @@ public static class Writer
             bin.WriteTo(text);
     }
 
+    public static void WriteTo(this BinaryWriter bin, Vector2 data)
+    {
+        bin.Write(data.x);
+        bin.Write(data.y);
+    }
+
     public static void WriteTo(this BinaryWriter bin, Vector3 data)
     {
         bin.Write(data.x);
@@ -31,15 +37,9 @@ public static class Writer
     public static void WriteTo(this BinaryWriter bin, PrefabInstanceData data)
     {
         bin.Write(data.myInstanceID);
-        bin.Write(data.myPosition.x);
-        bin.Write(data.myPosition.y);
-        bin.Write(data.myPosition.z);
-        bin.Write(data.myRotation.x);
-        bin.Write(data.myRotation.y);
-        bin.Write(data.myRotation.z);
-        bin.Write(data.myScale.x);
-        bin.Write(data.myScale.y);
-        bin.Write(data.myScale.z);
+        bin.WriteTo(data.myPosition);
+        bin.WriteTo(data.myRotation);
+        bin.WriteTo(data.myScale);
         bin.Write(data.myModelIndex);
     }
     public static void WriteTo(this BinaryWriter bin, CameraData data)
@@ -105,8 +105,6 @@ public static class Writer
         bin.Write(data.myColliderData.y);
         bin.Write(data.myEvent);
         bin.WriteTo(data.myEventString);
-        //bin.Write(Mathf.Max(16, data.myEventString.ToCharArray().Length));
-        //bin.Write(data.myEventString.ToCharArray());
     }
 
     public static void WriteTo(this BinaryWriter bin, EnemyData data)
@@ -160,13 +158,25 @@ public static class Writer
         bin.Write(aData.myJsonListCount);
         bin.WriteTo(aData.myJsonList);
     }
+
+    public static void WriteTo(this BinaryWriter bin, BossData aData)
+    {
+        bin.Write(aData.myInstanceID);
+        bin.Write(aData.myModelIndex);
+        bin.WriteTo(aData.myPosition);
+        bin.WriteTo(aData.myRotation);
+        bin.WriteTo(aData.myScale);
+        bin.WriteTo(aData.myStageOne);
+        bin.WriteTo(aData.myStageTwo);
+        bin.WriteTo(aData.myStageThree);
+    }
 }
 
 public class BinaryExporter
 {
     [MenuItem("Tools/Export all BIN #_y")]
     public static void DoExportBinary()
-    {
+    {     
         //Verify reading this!
         ExportNavMeshToObj.Export();
 
@@ -187,7 +197,6 @@ public class BinaryExporter
         bw = new BinaryWriter(new FileStream(target_path + sceneName + "_bin.bin", FileMode.Create));
 
         GameObject[] allObjects = UnityEngine.Object.FindObjectsOfType<GameObject>();
-
         Camera camera = UnityEngine.Object.FindObjectOfType<Camera>();
         if (camera == null)
         {
@@ -301,6 +310,8 @@ public class BinaryExporter
                 continue;
             if (mesh.GetComponentInParent<Destructible>() != null)
                 continue;
+            if (mesh.GetComponentInParent<BossSetup>() != null)
+                continue;
 
             GameObject prefabParent = PrefabUtility.GetNearestPrefabInstanceRoot(mesh);
             int index = Getindex(mesh.gameObject, modelPaths);
@@ -329,6 +340,15 @@ public class BinaryExporter
         foreach(var pfx in particleFX)
         {
             bw.WriteTo(new SParticleFXData(pfx));
+        }
+
+        BossSetup[] bosses = GameObject.FindObjectsOfType<BossSetup>();
+        bw.Write(bosses.Length);
+        foreach(var boss in bosses)
+        {
+            Renderer renderer = boss.GetComponentInChildren<Renderer>();
+            int modelIndex = Getindex(renderer.gameObject, modelPaths);
+            bw.WriteTo(new BossData(boss, modelIndex));
         }
 
         bw.Close();
