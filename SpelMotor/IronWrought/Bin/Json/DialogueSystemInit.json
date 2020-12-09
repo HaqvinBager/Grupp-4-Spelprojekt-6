@@ -8,7 +8,7 @@
 	"Speaker Icon Paths": [
 		{"Path" : "Assets/3D/UI/Ingame/UI_In_portraitMother_01_19G4.dds" },
 		{"Path" : "Assets/3D/UI/Ingame/UI_In_portraitDaughter_01_19G4.dds" },
-		{"Path" : "Assets/3D/UI/Ingame/tempSpeakerPortrait.dds" },
+		{"Path" : "Assets/3D/UI/Ingame/UI_In_portraitEnemy_01_19G4.dds" },
 		{"Path" : "Assets/3D/UI/Ingame/UI_In_portraitFather_01_19G4.dds" }		
 	],
 
