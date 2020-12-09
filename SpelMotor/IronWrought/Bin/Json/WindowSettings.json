@@ -1,8 +1,8 @@
 {
-	"Window Width": 1280,
-	"Window Height": 720,
-	"Window Starting Pos X": 100,
-	"Window Starting Pos Y": 100,
+	"Window Width": 1920,
+	"Window Height": 1080,
+	"Window Starting Pos X": 0,
+	"Window Starting Pos Y": 0,
 	"Cursor Path": "Assets/3D/UI/Ingame/UI_In_Cursor_01_19G4.cur",
 	"Icon Path": "ironwrought.ico"
 }
