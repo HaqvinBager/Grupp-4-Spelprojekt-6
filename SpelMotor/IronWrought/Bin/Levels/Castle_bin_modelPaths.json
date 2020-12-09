@@ -1,16 +1,10 @@
 {
 "ModelPaths" : [
 {
-"Path" : "Assets/3D/Environment/EN_W_CatacombPillar_01_18G2_v2_19/EN_W_CatacombPillar_01_18G2_v2_19.fbx"
+"Path" : "Assets/3D/Environment/EN_W_L3Wall_01_19G4_01_19/EN_W_L3Wall_01_19G4_01_19.fbx"
 }
 ,{
 "Path" : "Assets/3D/Environment/EN_P_L3Bookshelf_01_19G4_v1_19/EN_P_L3Bookshelf_01_19G4_v1_19.fbx"
-}
-,{
-"Path" : "Assets/3D/Environment/EN_P_Pot_02_17G3_v2_19/EN_P_Pot_02_17G3_v2_19.fbx"
-}
-,{
-"Path" : "Assets/3D/Environment/EN_W_L3Wall_01_19G4_01_19/EN_W_L3Wall_01_19G4_01_19.fbx"
 }
 ,{
 "Path" : "Assets/3D/Environment/EN_W_L3Wall_Brick_01_19G4_01_19/EN_W_L3Wall_Brick_01_19G4_01_19.fbx"
@@ -43,10 +37,13 @@
 "Path" : "Assets/3D/Environment/EN_P_L1Torch_01_19G4_01_19/EN_P_L1Torch_01_19G4_01_19.fbx"
 }
 ,{
-"Path" : "Assets/3D/Character/CH_NPC_enemy_01_19G4_1_19/CH_NPC_enemy_01_19G4_1_19_SK.fbx"
+"Path" : "Assets/3D/Environment/EN_P_Pot_02_17G3_v2_19/EN_P_Pot_02_17G3_v2_19.fbx"
 }
 ,{
 "Path" : "Assets/3D/Environment/EN_P_Barrel_01_17G3_v2_19/EN_P_Barrel_01_17G3_v2_19.fbx"
+}
+,{
+"Path" : "Assets/3D/Environment/EN_W_CatacombPillar_01_18G2_v2_19/EN_W_CatacombPillar_01_18G2_v2_19.fbx"
 }
 ,{
 "Path" : "Assets/3D/Environment/EN_P_L1Crate_01_19G4_01_19/EN_P_L1Crate_01_19G4_01_19_DX_SK.fbx"
@@ -62,6 +59,9 @@
 }
 ,{
 "Path" : "Assets/3D/Environment/EN_W_Fence_01_18G6_v2_19/EN_W_Fence_01_18G6_v2_19.fbx"
+}
+,{
+"Path" : "Assets/3D/Environment/EN_W_Painting_02_19G4/EN_W_Painting_02_19G4.fbx"
 }
 ,{
 "Path" : "Assets/3D/Character/CH_PL_Daughter_01_19G4_1_19/CH_PL_Daughter_01_19G4_1_19_SK.fbx"
