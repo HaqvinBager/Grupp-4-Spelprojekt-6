@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4805023325129063223}
   - component: {fileID: -3392284400165483650}
+  - component: {fileID: 5491114026819649654}
   m_Layer: 0
   m_Name: CH_NPC_Boss_01_19G4_1_19_SK_Prefab
   m_TagString: Untagged
@@ -45,6 +46,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myScale: 1
+--- !u!114 &5491114026819649654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2884055816821013653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 643e9741a8a7fef42a6fc083f8607424, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myStageOne: {x: 65.50308, y: 100}
+  myStageTwo: {x: 40.657085, y: 67.14579}
+  myStageThree: {x: 0, y: 41.47844}
 --- !u!1001 &393842510066191992
 PrefabInstance:
   m_ObjectHideFlags: 0
