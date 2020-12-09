@@ -18,14 +18,14 @@
   "Glow Color G": 0.5,
   "Glow Color B": 0.5,
   "Glow Width": 0.1,
-  "Mask Width": 512.0,
+  "Mask Width": 128.0,
   "Vertical Direction Of Change": false,
   "Pixel Shader Path": "Shaders/SpriteVFXTexturePixelShader.cso",
   "Texture 1": "Assets/3D/VFX/Fog_texture.dds",
   "Texture 2": "Assets/3D/VFX/Fog_texture.dds",
   "Texture 3": "Assets/3D/VFX/Fog_texture.dds",
-  "Texture Mask": "Assets/3D/UI/Ingame/UI_In_HpBarBase_01_19G4.dds",
-  "Texture Mask 2": "Assets/3D/UI/Ingame/UI_In_HpBarBase_01_19G4.dds",
-  "Texture Overlay": "Assets/3D/UI/Ingame/UI_In_HpBarEnemy_01_19G4.dds"
+  "Texture Mask": "Assets/3D/UI/Ingame/UI_In_HpBarBaseSmall_01_19G4.dds",
+  "Texture Mask 2": "Assets/3D/UI/Ingame/UI_In_HpBarBaseSmall_01_19G4.dds",
+  "Texture Overlay": "Assets/3D/UI/Ingame/UI_In_HpBarEnemySmall_01_19G4.dds"
 
 }
