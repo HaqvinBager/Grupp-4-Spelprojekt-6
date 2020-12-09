@@ -1,0 +1,12 @@
+{
+  "Animated UI Elements": [
+    {
+      "Path": "Json/VFXData_UI_HealthBarEnemySmall.json",
+      "Position X": -1,
+      "Position Y": -1
+    }
+  ],
+  "PostmasterEvents": {
+    "Events": [22]
+  }
+}
