@@ -1,6 +1,9 @@
 {
 "ModelPaths" : [
 {
+"Path" : "Assets/3D/Environment/EN_W_MediumWallGate_Open_01_18G1_v2_19/EN_W_MediumWallGate_Open_01_18G1_v2_19.fbx"
+}
+,{
 "Path" : "Assets/3D/Environment/EN_G_L1L2L3VoidFloor_01_19G4_01_19/EN_G_L1L2L3VoidFloor_01_19G4_01_19.fbx"
 }
 ,{
@@ -77,9 +80,6 @@
 }
 ,{
 "Path" : "Assets/3D/Character/CH_PL_Daughter_01_19G4_1_19/CH_PL_Daughter_01_19G4_1_19_SK.fbx"
-}
-,{
-"Path" : "Assets/3D/Environment/EN_W_MediumWallGate_Open_01_18G1_v2_19/EN_W_MediumWallGate_Open_01_18G1_v2_19.fbx"
 }
 ]
 }
