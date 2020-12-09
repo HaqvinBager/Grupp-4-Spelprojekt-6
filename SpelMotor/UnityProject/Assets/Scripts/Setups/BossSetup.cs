@@ -8,5 +8,6 @@ public class BossSetup : MonoBehaviour
     [HideInInspector] public Vector2 myStageOne;
     [HideInInspector] public Vector2 myStageTwo;
     [HideInInspector] public Vector2 myStageThree;
-
+    
+    //DataDrivna Ability/effekter w.e
 }
