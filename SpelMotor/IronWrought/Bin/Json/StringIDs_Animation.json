@@ -1,5 +1,5 @@
 {
-    "Next Available ID": 5021,
+    "Next Available ID": 5026,
     "Assets/3D/Character/CH_PL_Daughter_01_19G4_1_19/CH_PL_Daughter_01@Dead_01_19G4_AN.fbx": 5001,
     "Assets/3D/Character/CH_PL_Daughter_01_19G4_1_19/CH_PL_Daughter_01@Death_01_19G4_AN.fbx": 5002,
     "Assets/3D/Character/CH_PL_Daughter_01_19G4_1_19/CH_PL_Daughter_01@IAbility_Explo_19G4_AN.fbx": 5003,
@@ -19,5 +19,10 @@
     "Assets/3D\\Character\\CH_NPC_Boss_01_19G4_1_19\\CH_NPC_Boss@idle_01_19G4_1_19_AN.fbx": 5017,
     "Assets/3D\\Character\\CH_NPC_Boss_01_19G4_1_19\\CH_NPC_Boss@initiate_01_19G4_1_19_AN.fbx": 5018,
     "Assets\\3D\\Environment\\EN_P_L1Crate_01_19G4_01_19\\EN_P_L1Crate@Destruction_01_19G4_01_19_AN.fbx": 5019,
-    "Assets/3D/Environment/EN_P_L1Crate_01_19G4_01_19/EN_P_L1Crate@Destruction_01_19G4_01_19_AN.fbx": 5020
+    "Assets/3D/Environment/EN_P_L1Crate_01_19G4_01_19/EN_P_L1Crate@Destruction_01_19G4_01_19_AN.fbx": 5020,
+    "Assets/3D/Character/CH_NPC_Boss_01_19G4_1_19/CH_NPC_Boss@attack1_01_19G4_1_19_AN.fbx": 5021,
+    "Assets/3D/Character/CH_NPC_Boss_01_19G4_1_19/CH_NPC_Boss@idle_01_19G4_1_19_AN.fbx": 5022,
+    "Assets/3D/Character/CH_NPC_Boss_01_19G4_1_19/CH_NPC_Boss@initiate_01_19G4_1_19_AN.fbx": 5023,
+    "Assets/3D/Character/CH_NPC_Boss_01_19G4_1_19/CH_NPC_Boss@attack2_01_19G4_1_19_AN.fbx": 5024,
+    "Assets/3D/Character/CH_NPC_Boss_01_19G4_1_19/CH_NPC_Boss@death_01_19G4_1_19_AN.fbx": 5025
 }

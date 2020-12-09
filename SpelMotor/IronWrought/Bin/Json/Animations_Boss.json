@@ -1,15 +1,15 @@
 {
   "_Read Me": "The values are found in StringIDs_Animation.Json located in the Bin/Json",
-  "Move": 5017,
-  "Idle 1": 5017,
-  "Idle 2": 5017,
-  "Attack 1": 5014,
-  "Attack 2": 5015,
-  "Ability 1": 0,
+  "Move": 5022,
+  "Idle 1": 5022,
+  "Idle 2": 5022,
+  "Attack 1": 5021,
+  "Attack 2": 5024,
+  "Ability 1": 5023,
   "Ability 2": 0,
   "Ability 3": 0,
   "Ability 4": 0,
   "Ability 5": 0,
   "Ability 6": 0,
-  "Dying": 5016
+  "Dying": 5025
 }
