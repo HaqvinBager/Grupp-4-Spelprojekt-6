@@ -1,8 +1,8 @@
 {
-	"Damage Numbers Font and Size" : "Text/baskerville16",
-	"Skill Info Font and Size" : "Text/baskerville16",
-	"Tutorial Message Font and Size" : "Text/baskerville16",
-	"Warning Message Font and Size" : "Text/baskerville16",
+	"Damage Numbers Font and Size" : "Text/baskerville24",
+	"Skill Info Font and Size" : "Text/baskerville24",
+	"Tutorial Message Font and Size" : "Text/baskerville24",
+	"Warning Message Font and Size" : "Text/baskerville24",
 	
 	"Skill Info Box Background Path" : "Assets/3D/UI/Ingame/UI_In_DialogBox_01_19G4.dds",
 
@@ -15,7 +15,7 @@
 	"Skill Info Texts" : [
 		{"Text" : "You have unlocked Blessed Shield!\nThrows a returning projectile at enemies." },
 		{"Text" : "You have unlocked Revitalizing Aura!\nPassively heals you when you deal damage." },		
-		{"Text" : "You have unlocked Condemn!\nBlasts surrounding foes after a small charge." }
+		{"Text" : "You have unlocked Condemn!\nBlasts nearby foes after a small charge." }
 	],
 
 	"Damage Numbers Pool Size" : 5,
