@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 506fccb96e6c96a4bb65d4171ddf3ca7, type: 3}
+  m_Name: New Particle System Data
+  m_EditorClassIdentifier: 
+  myMaxNumberOfParticles: 0
+  myDelay: 0
+  myDuration: 0
+  mySpawnDuration: 0
+  myLifeTime: 0
+  mySpeed: 0
+  myStartColor: {r: 0, g: 0, b: 0, a: 0}
+  myEndColor: {r: 0, g: 0, b: 0, a: 0}
+  myStartEndSize: {x: 0, y: 0}
+  myOffsetPosition: {x: 0, y: 0, z: 0}
+  myStartDirection: {x: 0, y: 0, z: 0}
+  myEndDirection: {x: 0, y: 0, z: 0}
+  myLiftimeLowerUpperBounds: {x: 0, y: 0}
+  mySpeedLowerUpperBounds: {x: 0, y: 0}
+  myDirectionLowerBound: {x: 0, y: 0, z: 0}
+  myDirectionUpperBound: {x: 0, y: 0, z: 0}
+  myTexturePathIndex: 15
