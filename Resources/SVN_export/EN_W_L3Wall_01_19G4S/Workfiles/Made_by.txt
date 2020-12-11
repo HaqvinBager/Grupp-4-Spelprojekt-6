@@ -1,0 +1,2 @@
+Made by Alexander Livholts SG19. 
+The wall has a height you can modify in order to remove the wood from the bricks.
