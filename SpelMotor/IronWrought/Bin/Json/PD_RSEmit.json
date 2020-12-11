@@ -2,7 +2,7 @@
   "Max Number Of Particles": 1,
   "Delay": 0.0,
   "Duration": 10.0,
-  "Spawn Rate": 1.0,
+  "Spawn Rate": 10.0,
   "Lifetime": 10.0,
   "Speed": 15.0,
   "Start Color R": 2.0,
