@@ -1,7 +1,7 @@
 {
 	"Collider": {
 		"Type": "Circle",
-		"Width": 0.4,
+		"Width": 0.8,
 		"Height": 0.3,
 		"Collision Layer": 16,
 		"Collides With": 4
@@ -21,10 +21,10 @@
 
 	"Behavior": {
 		"Type": "Boomerang",
-		"Speed": 4.0,
-		"Duration": 3.5,
+		"Speed": 16.0,
+		"Duration": 1.0,
 		"ResourceCost": 15.0,
-		"RotationalSpeed": 4.0
+		"RotationalSpeed": 12.0
 	},
 
 	"AnimationState": {
