@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0e3d88cd93ab0245bb2af488844dfeb, type: 3}
   m_Name: LaunchModeSetting
   m_EditorClassIdentifier: 
-  launchMode: 1
-  bakeNavMeshBeforeExport: 1
+  launchMode: 0
+  bakeNavMeshBeforeExport: 0
   exportBin: 1
   mylauncherData:
   - myExePath: Launcher_Debug.exe
