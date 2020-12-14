@@ -8,7 +8,7 @@
 	},
 
 	"VFX": [
-		{ "Path": "Json/VFXData_Attack_boss.json" }
+		{ "Path": "Json/VFXData_Attack.json" }
 	],
 
 	"ParticleSystems": [
