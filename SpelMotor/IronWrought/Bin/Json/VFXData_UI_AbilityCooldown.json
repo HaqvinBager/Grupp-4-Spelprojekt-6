@@ -22,7 +22,7 @@
   "Vertical Direction Of Change": true,
   "Pixel Shader Path": "Shaders/SpriteVFXTextureBlendingPixelShader.cso",
   "Texture 1": "Assets/3D/VFX/Fog_texture4.dds",
-  "Texture 2": "Assets/3D/VFX/test_smoke.dds",
+  "Texture 2": "Assets/3D/VFX/VFX_texture_smoke_01_19G4.dds",
   "Texture 3": "Assets/3D/VFX/VFXCloud.dds",
   "Texture Mask": "Assets/3D/UI/Ingame/UI_In_SkillIconFill_01_19G4.dds",
   "Texture Mask 2": "Assets/3D/UI/Ingame/UI_In_SkillIconFill_01_19G4.dds",
