@@ -169,6 +169,12 @@ public static class Writer
         bin.WriteTo(aData.myStageOne);
         bin.WriteTo(aData.myStageTwo);
         bin.WriteTo(aData.myStageThree);
+        bin.Write(aData.myHealth);
+        bin.Write(aData.myDamage);
+        bin.Write(aData.myMoveSpeed);
+        bin.Write(aData.myDamageCooldown);
+        bin.Write(aData.myVisionRange);
+        bin.Write(aData.myAttackRange);
     }
 }
 

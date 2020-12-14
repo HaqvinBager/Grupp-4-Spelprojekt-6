@@ -23,10 +23,14 @@ public class BossSetupEditor : Editor
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
+       
+        EditorGUILayout.Space();
+        EditorGUILayout.Space();
 
         serializedObject.Update();
 
-        for(int i = 0; i < 3; ++i)
+
+        for (int i = 0; i < 3; ++i)
         {
             EditorGUILayout.LabelField("Stage " + i);
             EditorGUILayout.Vector2Field("Health in %", myStageMinMaxProp[i].vector2Value);

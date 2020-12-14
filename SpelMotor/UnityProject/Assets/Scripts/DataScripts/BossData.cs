@@ -14,6 +14,13 @@ public struct BossData
     public Vector2 myStageTwo;
     public Vector2 myStageThree;
 
+    public float myHealth;
+    public float myDamage;
+    public float myMoveSpeed;
+    public float myDamageCooldown;
+    public float myVisionRange;
+    public float myAttackRange;
+
     public BossData(BossSetup aData, int aModelIndex)
     {
         myInstanceID = aData.gameObject.GetInstanceID();
@@ -24,5 +31,13 @@ public struct BossData
         myStageOne = aData.myStageOne;
         myStageTwo = aData.myStageTwo;
         myStageThree = aData.myStageThree;
+
+        myHealth = aData.health;
+        myDamage = aData.damage;
+        myMoveSpeed = aData.moveSpeed;
+        myDamageCooldown = aData.damageCooldown;
+        myVisionRange = aData.visionRange;
+        myAttackRange = aData.attackRange;
+
     }
 }

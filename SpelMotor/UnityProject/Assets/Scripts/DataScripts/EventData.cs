@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum Event
-{
-    LoadLevel = 6
-}
+//public enum Event
+//{
+//    LoadLevel = 6,
+//}
 
 public struct EventData
 {
@@ -14,13 +14,15 @@ public struct EventData
     public Vector2 myColliderData;
     public int myEvent;
     public string myEventString;
+
+
     public EventData(EventSetup eventSetup)
     {
         myInstanceID = eventSetup.gameObject.GetInstanceID();
         myPosition = eventSetup.transform.position;
         myColliderData.x = eventSetup.myColliderData.x;
         myColliderData.y = eventSetup.myColliderData.y;
-        myEvent = (int)eventSetup.myEvent;
+        myEvent = 1;
         myEventString = eventSetup.myEventString;
     }
 }
