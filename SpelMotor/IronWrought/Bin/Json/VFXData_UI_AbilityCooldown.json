@@ -24,8 +24,8 @@
   "Texture 1": "Assets/3D/VFX/Fog_texture4.dds",
   "Texture 2": "Assets/3D/VFX/test_smoke.dds",
   "Texture 3": "Assets/3D/VFX/VFXCloud.dds",
-  "Texture Mask": "Assets/3D/UI/Ingame/test_fill.dds",
-  "Texture Mask 2": "Assets/3D/UI/Ingame/test_fill.dds",
-  "Texture Overlay": "Assets/3D/UI/Ingame/test_frame.dds"
+  "Texture Mask": "Assets/3D/UI/Ingame/UI_In_SkillIconFill_01_19G4.dds",
+  "Texture Mask 2": "Assets/3D/UI/Ingame/UI_In_SkillIconFill_01_19G4.dds",
+  "Texture Overlay": "Assets/3D/UI/Ingame/UI_In_SkillIconFrame_01_19G4.dds"
 
 }
