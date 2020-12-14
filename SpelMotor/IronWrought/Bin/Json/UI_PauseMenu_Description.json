@@ -18,7 +18,7 @@
       "Hover Sprite Path": "Assets/3D/UI/Menu/UI_M_Button_02_19G4.dds",
       "Click Sprite Path": "Assets/3D/UI/Menu/UI_M_Button_03_19G4.dds",
       "SpriteLayer": 3,
-      "Messages": [ 12 ]
+      "Messages": [ 13 ]
     },
     {
       "Text": "Quit to Main",
