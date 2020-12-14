@@ -3,8 +3,8 @@
 		"Type": "Circle",
 		"Width": 0.4,
 		"Height": 0.4,
-		"Collision Layer": 16,
-		"Collides With": 4
+		"Collision Layer": 64,
+		"Collides With": 2
 	},
 
 	"VFX": [

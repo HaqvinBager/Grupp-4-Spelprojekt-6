@@ -5,8 +5,8 @@
 	"Player Ability 4": "Json/AbilityData_MeleeAttackDaughter.json",
 	"Player Ability 5": "Json/AbilityData_HeavyMeleeAttackDaughter.json",
 	"Enemy Ability": "Json/AbilityData_MeleeAttackEnemy.json",
-	"Boss Ability 1": "Json/AbilityTest.json",
-	"Boss Ability 2": "Json/AbilityTest.json",
+	"Boss Ability 1": "Json/AbilityData_BossProjectile.json",
+	"Boss Ability 2": "Json/AbilityData_MeleeAttackEnemy.json",
 	"Boss Ability 3": "Json/AbilityTest.json",
 	"Ability Test": "Json/AbilityTest.json"
 }
