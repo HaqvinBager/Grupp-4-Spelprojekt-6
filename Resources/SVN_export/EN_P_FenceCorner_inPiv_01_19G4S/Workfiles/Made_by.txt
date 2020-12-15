@@ -1,0 +1,5 @@
+Made by David Rubarth SG19S
+
+SPP in 7z
+Same Workfiles as EN_P_FenceCorner_outPiv_01_19G4S.
+Only difference is pivot location on lowpoly.
