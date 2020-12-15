@@ -8,7 +8,6 @@
 	},
 
 	"VFX": [
-		{ "Path": "Json/VFXData_MeleeAttackEnemy.json" }
 	],
 
 	"ParticleSystems": [
