@@ -17,6 +17,6 @@
   "Texture 1": "Assets/3D/VFX/VFX_texture_clouds_01_19G4.dds",
   "Texture 2": "Assets/3D/VFX/VFX_texture_clouds_01_19G4.dds",
   "Texture 3": "Assets/3D/VFX/VFX_texture_clouds_01_19G4.dds",
-  "Texture Mask": "Assets/3D/VFX/VFX_WaterScroll_A.dds",
+  "Texture Mask": "Assets/3D/VFX/VFX_texture_WaterScroll_19G3_A.dds",
   "Mesh Path": "Assets/3D/VFX/VFX_mesh_plane_160x160_01_19G4.fbx"
 }

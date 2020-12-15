@@ -14,9 +14,9 @@
   "UV Scale 3": 5.0,
   "UV Scale 4": 5.0,
   "Opacity Strength": 2.5,
-  "Texture 1": "Assets/3D/VFX/VFX_WaterScroll_D.dds",
-  "Texture 2": "Assets/3D/VFX/VFX_WaterScroll_D.dds",
-  "Texture 3": "Assets/3D/VFX/VFX_WaterScroll_D.dds",
-  "Texture Mask": "Assets/3D/VFX/VFX_WaterScroll_A.dds",
-  "Mesh Path": "Assets/3D/VFX/VFX_WaterScroll.fbx"
+  "Texture 1": "Assets/3D/VFX/VFX_texture_WaterScroll_19G3_D.dds",
+  "Texture 2": "Assets/3D/VFX/VFX_texture_WaterScroll_19G3_D.dds",
+  "Texture 3": "Assets/3D/VFX/VFX_texture_WaterScroll_19G3_D.dds",
+  "Texture Mask": "Assets/3D/VFX/VFX_texture_WaterScroll_19G3_A.dds",
+  "Mesh Path": "Assets/3D/VFX/VFX_mesh_WaterScroll_19G3.fbx"
 }
