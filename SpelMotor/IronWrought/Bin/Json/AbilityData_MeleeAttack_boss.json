@@ -8,7 +8,7 @@
 	},
 
 	"VFX": [
-		{ "Path": "Json/VFXData_Attack.json" }
+		{ "Path": "Json/VFXData_Attack_boss.json" }
 	],
 
 	"ParticleSystems": [
@@ -22,7 +22,8 @@
 	},
 
 	"Behavior": {
-		"Type": "MeleeAttack"
+		"Type": "MeleeAttack",
+		"Duration": 0.2
 	},
 
 	"AnimationState": {

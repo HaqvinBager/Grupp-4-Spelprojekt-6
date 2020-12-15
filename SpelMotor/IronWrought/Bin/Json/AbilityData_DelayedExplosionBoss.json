@@ -1,8 +1,8 @@
 {
 	"Collider": {
 		"Type": "Circle",
-		"Width": 0.4,
-		"Height": 0.4,
+		"Width": 4.0,
+		"Height": 2.5,
 		"Collision Layer": 64,
 		"Collides With": 2
 	},
@@ -24,7 +24,9 @@
 
 	"Behavior": {
 		"Type": "DelayedExplosion",
-		"Delay": 2.0
+		"Delay": 2.0,
+		"ResourceCost": 0.0,
+		"Duration": 3.0
 	},
 
 	"AnimationState": {
@@ -32,8 +34,6 @@
 	},
 
 	"Damage": 0.2,
-
-	"Duration": 3.0,
 	
 	"Range": 0.2
 }
