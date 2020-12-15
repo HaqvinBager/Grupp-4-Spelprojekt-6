@@ -14,9 +14,9 @@
   "UV Scale 3": 0.7,
   "UV Scale 4": 1.0,
   "Opacity Strength": 0.18,
-  "Texture 1": "Assets/3D/VFX/VFXCloud.dds",
+  "Texture 1": "Assets/3D/VFX/VFX_texture_clouds_01_19G4.dds",
   "Texture 2": "Assets/3D/VFX/VFX_texture_flames_01_19G4.dds",
-  "Texture 3": "Assets/3D/VFX/VFXCloud.dds",
+  "Texture 3": "Assets/3D/VFX/VFX_texture_clouds_01_19G4.dds",
   "Texture Mask": "Assets/3D/VFX/VFX_texture_smallDust_01_19G4.dds",
   "Mesh Path": "Assets/3D/VFX/VFX_mesh_Sword_03_19G4.fbx"
 }
