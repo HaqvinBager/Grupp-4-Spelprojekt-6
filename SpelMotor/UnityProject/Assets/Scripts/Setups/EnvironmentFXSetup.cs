@@ -7,7 +7,8 @@ public enum EnvironmentFXType
 {
     Water,
     CrackDaughter,
-    FogPlane
+    FogPlane,
+    Waterfall
 }
 
 [System.Serializable]
@@ -21,13 +22,12 @@ public class EnvironmentFXSetup : MonoBehaviour
 {
     public EnvironmentFXType environmentFXType;
 
-    public List<VFXData> myJsonPaths = new List<VFXData>();
+    //public List<VFXData> myJsonPaths = new List<VFXData>();
 
-    private string target_path = "..\\IronWrought\\Bin\\json\\";
+    //private string target_path = "..\\IronWrought\\Bin\\json\\";
     
-    private void OnValidate()
-    {
-        JsonFinder.RefreshData(myJsonPaths, "VFXData_");    
-    }
-
+    //private void OnValidate()
+    //{
+    //    JsonFinder.RefreshData(myJsonPaths, "VFXData_");    
+    //}
 }
