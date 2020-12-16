@@ -1,0 +1,121 @@
+{
+  "Buttons": [
+    {
+      "Text": "Return to Main",
+      "FontAndFontSize": "Text/MorrisRoman42",
+      "Text Position X": 0.0,
+      "Text Position Y": 0.6,
+      "Text Pivot X": 0.5,
+      "Text Pivot Y": 0.5,
+      "Text Color R": 1.5,
+      "Text Color G": 0.7,
+      "Text Color B": 0.0,
+      "Position X": 0.0,
+      "Position Y": 0.6,
+      "Pixel Width": 320.0,
+      "Pixel Height": 100.0,
+      "Idle Sprite Path": "Assets/3D/UI/Menu/UI_M_Button_01_19G4.dds",
+      "Hover Sprite Path": "Assets/3D/UI/Menu/UI_M_Button_02_19G4.dds",
+      "Click Sprite Path": "Assets/3D/UI/Menu/UI_M_Button_03_19G4.dds",
+      "SpriteLayer": 3,
+      "Messages": [ 3 ]
+    },
+    {
+      "Text": "Dungeon",
+      "FontAndFontSize": "Text/MorrisRoman42",
+      "Text Position X": 0.0,
+      "Text Position Y": -0.51,
+      "Text Pivot X": 0.5,
+      "Text Pivot Y": 0.5,
+      "Text Color R": 1.5,
+      "Text Color G": 0.7,
+      "Text Color B": 0.0,
+      "Position X": 0.0,
+      "Position Y": -0.51,
+      "Pixel Width": 320.0,
+      "Pixel Height": 100.0,
+      "Idle Sprite Path": "Assets/3D/UI/Menu/UI_M_Button_01_19G4.dds",
+      "Hover Sprite Path": "Assets/3D/UI/Menu/UI_M_Button_02_19G4.dds",
+      "Click Sprite Path": "Assets/3D/UI/Menu/UI_M_Button_03_19G4.dds",
+      "SpriteLayer": 3,
+      "Messages": [ 58 ]
+    },
+    {
+      "Text": "Gardens",
+      "FontAndFontSize": "Text/MorrisRoman42",
+      "Text Position X": 0.0,
+      "Text Position Y": -0.26,
+      "Text Pivot X": 0.5,
+      "Text Pivot Y": 0.5,
+      "Text Color R": 1.5,
+      "Text Color G": 0.7,
+      "Text Color B": 0.0,
+      "Position X": 0.0,
+      "Position Y": -0.26,
+      "Pixel Width": 320.0,
+      "Pixel Height": 100.0,
+      "Idle Sprite Path": "Assets/3D/UI/Menu/UI_M_Button_01_19G4.dds",
+      "Hover Sprite Path": "Assets/3D/UI/Menu/UI_M_Button_02_19G4.dds",
+      "Click Sprite Path": "Assets/3D/UI/Menu/UI_M_Button_03_19G4.dds",
+      "SpriteLayer": 3,
+      "Messages": [ 59 ]
+    },
+    {
+      "Text": "Castle",
+      "FontAndFontSize": "Text/MorrisRoman42",
+      "Text Position X": 0.0,
+      "Text Position Y": -0.01,
+      "Text Pivot X": 0.5,
+      "Text Pivot Y": 0.5,
+      "Text Color R": 1.5,
+      "Text Color G": 0.7,
+      "Text Color B": 0.0,
+      "Position X": 0.0,
+      "Position Y": -0.01,
+      "Pixel Width": 320.0,
+      "Pixel Height": 100.0,
+      "Idle Sprite Path": "Assets/3D/UI/Menu/UI_M_Button_01_19G4.dds",
+      "Hover Sprite Path": "Assets/3D/UI/Menu/UI_M_Button_02_19G4.dds",
+      "Click Sprite Path": "Assets/3D/UI/Menu/UI_M_Button_03_19G4.dds",
+      "SpriteLayer": 3,
+      "Messages": [ 60 ]
+    },
+    {
+      "Text": "Boss",
+      "FontAndFontSize": "Text/MorrisRoman42",
+      "Text Position X": 0.0,
+      "Text Position Y": 0.24,
+      "Text Pivot X": 0.5,
+      "Text Pivot Y": 0.5,
+      "Text Color R": 1.5,
+      "Text Color G": 0.7,
+      "Text Color B": 0.0,
+      "Position X": 0.0,
+      "Position Y": 0.24,
+      "Pixel Width": 320.0,
+      "Pixel Height": 100.0,
+      "Idle Sprite Path": "Assets/3D/UI/Menu/UI_M_Button_01_19G4.dds",
+      "Hover Sprite Path": "Assets/3D/UI/Menu/UI_M_Button_02_19G4.dds",
+      "Click Sprite Path": "Assets/3D/UI/Menu/UI_M_Button_03_19G4.dds",
+      "SpriteLayer": 3,
+      "Messages": [ 61 ]
+    }
+  ],
+
+  "Texts": [
+  ],
+
+  "Animated UI Elements": [
+  ],
+
+  "Background": {
+    "Path": "Assets/3D/UI/Menu/UI_M_Menu_Screen_01_19G4.dds"
+  },
+
+  "Sprites": [
+  ],
+
+  "PostmasterEvents": {
+    "Events": [ ]
+  }
+}

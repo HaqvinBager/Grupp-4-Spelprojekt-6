@@ -36,7 +36,7 @@
       "Idle Sprite Path": "Assets/3D/UI/Menu/UI_M_Button_01_19G4.dds",
       "Hover Sprite Path": "Assets/3D/UI/Menu/UI_M_Button_02_19G4.dds",
       "Click Sprite Path": "Assets/3D/UI/Menu/UI_M_Button_03_19G4.dds",
-      "Messages": [ 9 ]
+      "Messages": [ 8 ]
     },
    {
       "Text": "Options",

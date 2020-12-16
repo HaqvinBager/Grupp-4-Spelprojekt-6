@@ -21,7 +21,8 @@
 
 	"Behavior": {
 		"Type": "Aura",
-		"Rotational Speed": 2.0
+		"Rotational Speed": 2.0,
+		"Regeneration Percentage":  0.1
 	},
 
 	"AnimationState": {

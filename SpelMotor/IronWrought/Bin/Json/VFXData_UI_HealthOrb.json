@@ -24,8 +24,8 @@
   "Texture 1": "Assets/3D/VFX/VFX_texture_fog_01_19G4.dds",
   "Texture 2": "Assets/3D/VFX/VFX_texture_fog_01_19G4.dds",
   "Texture 3": "Assets/3D/VFX/VFX_texture_fog_01_19G4.dds",
-  "Texture Mask": "Assets/3D/UI/Ingame/UI_IN_OrbBase.dds",
-  "Texture Mask 2": "Assets/3D/UI/Ingame/UI_IN_OrbMask.dds",
+  "Texture Mask": "Assets/3D/UI/Ingame/UI_IN_OrbBase_19G4.dds",
+  "Texture Mask 2": "Assets/3D/UI/Ingame/UI_IN_OrbMask_19G4.dds",
   "Texture Overlay": "Assets/3D/UI/Ingame/UI_In_OrbFrame_01_19G4.dds"
 
 }
