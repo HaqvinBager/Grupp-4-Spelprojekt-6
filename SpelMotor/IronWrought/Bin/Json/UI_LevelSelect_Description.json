@@ -38,7 +38,7 @@
       "Hover Sprite Path": "Assets/3D/UI/Menu/UI_M_Button_02_19G4.dds",
       "Click Sprite Path": "Assets/3D/UI/Menu/UI_M_Button_03_19G4.dds",
       "SpriteLayer": 3,
-      "Messages": [ 57 ]
+      "Messages": [ 58 ]
     },
     {
       "Text": "Gardens",
@@ -58,7 +58,7 @@
       "Hover Sprite Path": "Assets/3D/UI/Menu/UI_M_Button_02_19G4.dds",
       "Click Sprite Path": "Assets/3D/UI/Menu/UI_M_Button_03_19G4.dds",
       "SpriteLayer": 3,
-      "Messages": [ 58 ]
+      "Messages": [ 59 ]
     },
     {
       "Text": "Castle",
@@ -78,7 +78,7 @@
       "Hover Sprite Path": "Assets/3D/UI/Menu/UI_M_Button_02_19G4.dds",
       "Click Sprite Path": "Assets/3D/UI/Menu/UI_M_Button_03_19G4.dds",
       "SpriteLayer": 3,
-      "Messages": [ 59 ]
+      "Messages": [ 60 ]
     },
     {
       "Text": "Boss",
@@ -98,7 +98,7 @@
       "Hover Sprite Path": "Assets/3D/UI/Menu/UI_M_Button_02_19G4.dds",
       "Click Sprite Path": "Assets/3D/UI/Menu/UI_M_Button_03_19G4.dds",
       "SpriteLayer": 3,
-      "Messages": [ 60 ]
+      "Messages": [ 61 ]
     }
   ],
 
