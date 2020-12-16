@@ -1,0 +1,101 @@
+{
+  "Buttons": [
+    {
+      "Text": "Return to Main",
+      "FontAndFontSize": "Text/MorrisRoman42",
+      "Text Position X": 0.0,
+      "Text Position Y": 0.69,
+      "Text Pivot X": 0.5,
+      "Text Pivot Y": 0.5,
+      "Text Color R": 1.5,
+      "Text Color G": 0.7,
+      "Text Color B": 0.0,
+      "Position X": 0.0,
+      "Position Y": 0.7,
+      "Pixel Width": 320.0,
+      "Pixel Height": 100.0,
+      "Idle Sprite Path": "Assets/3D/UI/Menu/UI_M_Button_01_19G4.dds",
+      "Hover Sprite Path": "Assets/3D/UI/Menu/UI_M_Button_02_19G4.dds",
+      "Click Sprite Path": "Assets/3D/UI/Menu/UI_M_Button_03_19G4.dds",
+      "SpriteLayer": 3,
+      "Messages": [ 3 ]
+    },
+    {
+      "Text": "1920x1080",
+      "FontAndFontSize": "Text/MorrisRoman42",
+      "Text Position X": 0.0,
+      "Text Position Y": -0.71,
+      "Text Pivot X": 0.5,
+      "Text Pivot Y": 0.5,
+      "Text Color R": 1.5,
+      "Text Color G": 0.7,
+      "Text Color B": 0.0,
+      "Position X": 0.0,
+      "Position Y": -0.7,
+      "Pixel Width": 320.0,
+      "Pixel Height": 100.0,
+      "Idle Sprite Path": "Assets/3D/UI/Menu/UI_M_Button_01_19G4.dds",
+      "Hover Sprite Path": "Assets/3D/UI/Menu/UI_M_Button_02_19G4.dds",
+      "Click Sprite Path": "Assets/3D/UI/Menu/UI_M_Button_03_19G4.dds",
+      "SpriteLayer": 3,
+      "Messages": [ 59 ]
+    },
+    {
+      "Text": "1600x900",
+      "FontAndFontSize": "Text/MorrisRoman42",
+      "Text Position X": 0.0,
+      "Text Position Y": -0.31,
+      "Text Pivot X": 0.5,
+      "Text Pivot Y": 0.5,
+      "Text Color R": 1.5,
+      "Text Color G": 0.7,
+      "Text Color B": 0.0,
+      "Position X": 0.0,
+      "Position Y": -0.3,
+      "Pixel Width": 320.0,
+      "Pixel Height": 100.0,
+      "Idle Sprite Path": "Assets/3D/UI/Menu/UI_M_Button_01_19G4.dds",
+      "Hover Sprite Path": "Assets/3D/UI/Menu/UI_M_Button_02_19G4.dds",
+      "Click Sprite Path": "Assets/3D/UI/Menu/UI_M_Button_03_19G4.dds",
+      "SpriteLayer": 3,
+      "Messages": [ 58 ]
+    },
+    {
+      "Text": "1280x720",
+      "FontAndFontSize": "Text/MorrisRoman42",
+      "Text Position X": 0.0,
+      "Text Position Y": 0.09,
+      "Text Pivot X": 0.5,
+      "Text Pivot Y": 0.5,
+      "Text Color R": 1.5,
+      "Text Color G": 0.7,
+      "Text Color B": 0.0,
+      "Position X": 0.0,
+      "Position Y": 0.1,
+      "Pixel Width": 320.0,
+      "Pixel Height": 100.0,
+      "Idle Sprite Path": "Assets/3D/UI/Menu/UI_M_Button_01_19G4.dds",
+      "Hover Sprite Path": "Assets/3D/UI/Menu/UI_M_Button_02_19G4.dds",
+      "Click Sprite Path": "Assets/3D/UI/Menu/UI_M_Button_03_19G4.dds",
+      "SpriteLayer": 3,
+      "Messages": [ 57 ]
+    }
+  ],
+
+  "Texts": [
+  ],
+
+  "Animated UI Elements": [
+  ],
+
+  "Background": {
+    "Path": "Assets/3D/UI/Menu/UI_M_Options_Screen_01_19G4.dds"
+  },
+
+  "Sprites": [
+  ],
+
+  "PostmasterEvents": {
+    "Events": []
+  }
+}
