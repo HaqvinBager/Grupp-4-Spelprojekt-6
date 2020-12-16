@@ -1,8 +1,8 @@
 {
 	"Collider": {
 		"Type": "Triangle",
-		"Width": 0.2,
-		"Height": 0.2,
+		"Width": 1.5,
+		"Height": 1.5,
 		"Collision Layer": 64,
 		"Collides With": 2
 	},

@@ -3,7 +3,8 @@
     {
       "Path": "Json/VFXData_UI_HealthBarBoss.json",
       "Position X": 0,
-      "Position Y": -0.85
+      "Position Y": -0.85,
+      "Level": 0
     }
   ],
   "PostmasterEvents": {
