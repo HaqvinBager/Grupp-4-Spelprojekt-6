@@ -1,9 +1,6 @@
 {
 "ModelPaths" : [
 {
-"Path" : "Assets/3D/Environment/EN_P_L3Piller_02_19G4_01_19/EN_P_L3Piller_02_19G4_01_19.fbx"
-}
-,{
 "Path" : "Assets/3D/Environment/EN_W_L3Wall_01_19G4_01_19/EN_W_L3Wall_01_19G4_01_19.fbx"
 }
 ,{
@@ -56,6 +53,9 @@
 }
 ,{
 "Path" : "Assets/3D/Environment/EN_W_L3Wallcorner_01_19G4_01_19/EN_W_L3Wallcorner_01_19G4_01_19.fbx"
+}
+,{
+"Path" : "Assets/3D/Environment/EN_P_L3Piller_02_19G4_01_19/EN_P_L3Piller_02_19G4_01_19.fbx"
 }
 ,{
 "Path" : "Assets/3D/Environment/EN_P_L3Piller_03_19G4_01_19/EN_P_L3Piller_03_19G4_01_19.fbx"
