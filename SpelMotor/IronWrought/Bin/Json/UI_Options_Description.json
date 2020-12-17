@@ -38,7 +38,7 @@
       "Hover Sprite Path": "Assets/3D/UI/Menu/UI_M_Button_02_19G4.dds",
       "Click Sprite Path": "Assets/3D/UI/Menu/UI_M_Button_03_19G4.dds",
       "SpriteLayer": 3,
-      "Messages": [ 59 ]
+      "Messages": [ 70 ]
     },
     {
       "Text": "1600x900",
@@ -58,7 +58,7 @@
       "Hover Sprite Path": "Assets/3D/UI/Menu/UI_M_Button_02_19G4.dds",
       "Click Sprite Path": "Assets/3D/UI/Menu/UI_M_Button_03_19G4.dds",
       "SpriteLayer": 3,
-      "Messages": [ 58 ]
+      "Messages": [ 69 ]
     },
     {
       "Text": "1280x720",
@@ -78,7 +78,7 @@
       "Hover Sprite Path": "Assets/3D/UI/Menu/UI_M_Button_02_19G4.dds",
       "Click Sprite Path": "Assets/3D/UI/Menu/UI_M_Button_03_19G4.dds",
       "SpriteLayer": 3,
-      "Messages": [ 57 ]
+      "Messages": [ 68 ]
     }
   ],
 
