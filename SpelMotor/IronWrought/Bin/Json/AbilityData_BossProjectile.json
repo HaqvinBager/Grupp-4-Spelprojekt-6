@@ -21,7 +21,7 @@
 
 	"Behavior": {
 		"Type": "Boomerang",
-		"Speed": 4.0,
+		"Speed": 6.0,
 		"Duration": 3.5,
 		"ResourceCost": 0.0,
 		"RotationalSpeed": 10

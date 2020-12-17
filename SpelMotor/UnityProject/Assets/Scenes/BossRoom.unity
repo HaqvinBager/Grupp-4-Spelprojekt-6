@@ -38607,7 +38607,7 @@ PrefabInstance:
     - target: {fileID: 4695719820638664878, guid: 075a06924bf78f148b893c58fc5c623d,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4695719820638664878, guid: 075a06924bf78f148b893c58fc5c623d,
         type: 3}
@@ -60917,6 +60917,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5491114026819649654, guid: a10f20bcc207a9843a017f47cc5a665a,
+        type: 3}
+      propertyPath: health
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 5491114026819649654, guid: a10f20bcc207a9843a017f47cc5a665a,
+        type: 3}
+      propertyPath: damage
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5491114026819649654, guid: a10f20bcc207a9843a017f47cc5a665a,
+        type: 3}
+      propertyPath: moveSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5491114026819649654, guid: a10f20bcc207a9843a017f47cc5a665a,
+        type: 3}
+      propertyPath: damageCooldown
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5491114026819649654, guid: a10f20bcc207a9843a017f47cc5a665a,
+        type: 3}
+      propertyPath: visionRange
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 5491114026819649654, guid: a10f20bcc207a9843a017f47cc5a665a,
+        type: 3}
+      propertyPath: attackRange
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a10f20bcc207a9843a017f47cc5a665a, type: 3}
