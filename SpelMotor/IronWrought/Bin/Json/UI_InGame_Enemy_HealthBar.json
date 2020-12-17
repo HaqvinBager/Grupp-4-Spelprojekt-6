@@ -3,10 +3,36 @@
     {
       "Path": "Json/VFXData_UI_HealthBarEnemy.json",
       "Position X": 0,
-      "Position Y": -0.9
+      "Position Y": -0.89
     }
   ],
+
+  "Texts": [
+    {
+      "Text": "Soul Forged",
+      "FontAndFontSize": "Text/MorrisRoman30",
+      "Position X": 0,
+      "Position Y": -0.96,
+      "Pivot X": 0.5,
+      "Pivot Y": 0.5,
+      "Color R": 1.0,
+      "Color G": 1.0,
+      "Color B": 1.0
+    },
+    {
+      "Text": "Demon",
+      "FontAndFontSize": "Text/MorrisRoman24",
+      "Position X": 0,
+      "Position Y": -0.83,
+      "Pivot X": 0.5,
+      "Pivot Y": 0.5,
+      "Color R": 1.0,
+      "Color G": 1.0,
+      "Color B": 1.0
+    }
+  ],
+
   "PostmasterEvents": {
-    "Events": [22]
+    "Events": [ 22 ]
   }
 }

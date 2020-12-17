@@ -3,11 +3,24 @@
     {
       "Path": "Json/VFXData_UI_HealthBarBoss.json",
       "Position X": 0,
-      "Position Y": -0.85,
+      "Position Y": -0.8,
       "Level": 0
     }
   ],
+  "Texts": [
+    {
+      "Text": "God-King Ulberic",
+      "FontAndFontSize": "Text/MorrisRoman30",
+      "Position X": 0,
+      "Position Y": -0.95,
+      "Pivot X": 0.5,
+      "Pivot Y": 0.5,
+      "Color R": 1.5,
+      "Color G": 0.7,
+      "Color B": 0.0
+    }
+  ],
   "PostmasterEvents": {
-    "Events": [22]
+    "Events": [ 22 ]
   }
 }
