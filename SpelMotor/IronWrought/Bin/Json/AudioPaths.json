@@ -12,11 +12,20 @@
 	],
 
 	"SFX": [
-
+		{ "Path": "attackhitsound.wav" },
+		{ "Path": "bossdeathsound.wav" },
+		{ "Path": "bossmeleeattack.wav" },
+		{ "Path": "demonidle1.wav" },
+		{ "Path": "demonidle2.wav" },
+		{ "Path": "hitdestructible.wav" },
+		{ "Path": "playerhealingaura.wav" },
+		{ "Path": "playerswing1.wav" },
+		{ "Path": "playerswing2.wav" },
+		{ "Path": "shieldspell.wav" }
 	],
 
 	"UI": [
-
+		{"Path": "buttonclick.wav"}
 	],
 
 	"VoiceLine": [
