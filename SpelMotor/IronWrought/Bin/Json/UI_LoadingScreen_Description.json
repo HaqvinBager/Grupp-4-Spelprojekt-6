@@ -1,0 +1,22 @@
+{
+  "Animated UI Elements": [
+    {
+      "Path": "Json/VFXData_UI_ResourceOrb.json",
+      "Position X": 0.88,
+      "Position Y": 0.805
+    }
+  ],
+  "Texts": [
+    {
+      "Text": "Random",
+      "FontAndFontSize": "Text/Baskerville28",
+      "Position X": 0.45,
+      "Position Y": 0.6,
+      "Pivot X": 0.5,
+      "Pivot Y": 0.5,
+      "Color R": 1.0,
+      "Color G": 1.0,
+      "Color B": 1.0
+    }
+  ]
+}
