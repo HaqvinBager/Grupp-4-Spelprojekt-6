@@ -17,6 +17,7 @@
 		{ "Path": "bossmeleeattack.wav" },
 		{ "Path": "demonidle1.wav" },
 		{ "Path": "demonidle2.wav" },
+		{ "Path": "explosion.wav" },
 		{ "Path": "hitdestructible.wav" },
 		{ "Path": "playerhealingaura.wav" },
 		{ "Path": "playerswing1.wav" },
