@@ -13,10 +13,13 @@ public class CameraSetupEditor : Editor
 
         if(FindObjectOfType<Player>() != null)
         {
-            if(GUILayout.Button("Center Camera On Player"))
+            if(FindObjectOfType<CameraTarget>() != null)
             {
-                CameraSetup cameraSetup = target as CameraSetup;
-                cameraSetup.LookAtPlayer();
+                if(GUILayout.Button("Center Camera On Player"))
+                {
+                    CameraSetup cameraSetup = target as CameraSetup;
+                    cameraSetup.LookAtPlayer();
+                }
             }
         }
     }
