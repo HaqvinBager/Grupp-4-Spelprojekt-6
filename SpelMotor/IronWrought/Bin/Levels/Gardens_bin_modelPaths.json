@@ -1,9 +1,6 @@
 {
 "ModelPaths" : [
 {
-"Path" : "Assets/3D/Character/CH_NPC_enemy_01_19G4_1_19/CH_NPC_enemy_01_19G4_1_19_SK.fbx"
-}
-,{
 "Path" : "Assets/3D/Environment/EN_W_L2Wall_02_19G4_01_19/EN_W_L2Wall_01_19G4_01_19_ts_1.fbx"
 }
 ,{
@@ -11,6 +8,9 @@
 }
 ,{
 "Path" : "Assets/3D/Environment/EN_P_L2Tree_02Leaves_19G4_01_19/EN_P_L2Tree_02Leaves_19G4_01_19_AL.fbx"
+}
+,{
+"Path" : "Assets/3D/Character/CH_NPC_enemy_01_19G4_1_19/CH_NPC_enemy_01_19G4_1_19_SK.fbx"
 }
 ,{
 "Path" : "Assets/3D/Environment/EN_W_L2Wall_01_19G4_01_19/EN_W_L2Wall_01_19G4_01_19.fbx"
