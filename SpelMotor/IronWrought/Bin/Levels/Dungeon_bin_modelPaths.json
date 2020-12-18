@@ -1,6 +1,9 @@
 {
 "ModelPaths" : [
 {
+"Path" : "Assets/3D/Environment/EN_P_L1Torch_01_19G4_01_19/EN_P_L1Torch_01_19G4_01_19.fbx"
+}
+,{
 "Path" : "Assets/3D/Environment/EN_G_L1L2L3VoidFloor_01_19G4_01_19/EN_G_L1L2L3VoidFloor_01_19G4_01_19.fbx"
 }
 ,{
@@ -56,9 +59,6 @@
 }
 ,{
 "Path" : "Assets/3D/Environment/EN_P_L1FenceEnd_rPiv_01_19G4_01_19/EN_P_L1FenceEnd_rPiv_01_19G4_01_19.fbx"
-}
-,{
-"Path" : "Assets/3D/Environment/EN_P_L1Torch_01_19G4_01_19/EN_P_L1Torch_01_19G4_01_19.fbx"
 }
 ,{
 "Path" : "Assets/3D/Environment/EN_W_CatacombPillar_01_18G2_v2_19/EN_W_CatacombPillar_01_18G2_v2_19.fbx"
