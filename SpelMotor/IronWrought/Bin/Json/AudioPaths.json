@@ -22,6 +22,7 @@
 		{ "Path": "demonidle2.wav" },
 		{ "Path": "explosion.wav" },
 		{ "Path": "hitdestructible.wav" },
+		{ "Path": "levelup.wav" },
 		{ "Path": "playerhealingaura.wav" },
 		{ "Path": "playerswing1.wav" },
 		{ "Path": "playerswing2.wav" },
