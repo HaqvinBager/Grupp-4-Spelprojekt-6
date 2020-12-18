@@ -222,6 +222,21 @@ PrefabInstance:
       propertyPath: dataList.Array.data[13].useMe
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5174232614240027701, guid: 6b0bec5751312ed459fad958410eb51d,
+        type: 3}
+      propertyPath: dataList.Array.data[1].useMe
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5174232614240027701, guid: 6b0bec5751312ed459fad958410eb51d,
+        type: 3}
+      propertyPath: dataList.Array.data[4].useMe
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5174232614240027701, guid: 6b0bec5751312ed459fad958410eb51d,
+        type: 3}
+      propertyPath: dataList.Array.data[21].useMe
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5174232614240027707, guid: 6b0bec5751312ed459fad958410eb51d,
         type: 3}
       propertyPath: m_LocalPosition.x

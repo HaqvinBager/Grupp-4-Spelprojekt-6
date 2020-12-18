@@ -31,6 +31,11 @@ public class CameraSetup : MonoBehaviour
             }
         }
     }
+
+    public void LookAtPlayer()
+    {
+        transform.LookAt(FindObjectOfType<Player>().GetComponentInChildren<CameraTarget>().transform);
+    }
 }
 
 
