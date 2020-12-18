@@ -9,6 +9,7 @@ public enum EnvironmentFXType
     CrackDaughter,
     FogPlane,
     Waterfall,
+    LoadingFog,
 
 }
 

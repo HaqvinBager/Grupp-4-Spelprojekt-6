@@ -20,7 +20,7 @@
   "Glow Width": 0.1,
   "Mask Width": 662.0,
   "Vertical Direction Of Change": false,
-  "Pixel Shader Path": "Shaders/SpriteVFXTexturePixelShader.cso",
+  "Pixel Shader Path": "Shaders/SpriteVFXTextureBlendingPixelShader.cso",
   "Texture 1": "Assets/3D/VFX/VFX_texture_fog_03_19G4.dds",
   "Texture 2": "Assets/3D/VFX/VFX_texture_smoke_01_19G4.dds",
   "Texture 3": "Assets/3D/VFX/VFX_texture_clouds_01_19G4.dds",

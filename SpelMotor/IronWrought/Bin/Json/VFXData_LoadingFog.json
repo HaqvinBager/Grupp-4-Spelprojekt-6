@@ -1,0 +1,22 @@
+{
+  "Delay": 0.0,
+  "Duration": 5000,
+  "Scroll Speed 1 X": 0.032,
+  "Scroll Speed 1 Y": 0.02,
+  "Scroll Speed 2 X": 0.0,
+  "Scroll Speed 2 Y": -0.1,
+  "Scroll Speed 3 X": -0.1,
+  "Scroll Speed 3 Y": 0.0,
+  "Scroll Speed 4 X": 0.0,
+  "Scroll Speed 4 Y": 0.0,
+  "UV Scale 1": 1.2,
+  "UV Scale 2": 0.3,
+  "UV Scale 3": 0.7,
+  "UV Scale 4": 1.0,
+  "Opacity Strength": 0.15,
+  "Texture 1": "Assets/3D/VFX/VFX_texture_clouds_01_19G4.dds",
+  "Texture 2": "Assets/3D/VFX/VFX_texture_clouds_01_19G4.dds",
+  "Texture 3": "Assets/3D/VFX/VFX_texture_clouds_01_19G4.dds",
+  "Texture Mask": "Assets/3D/VFX/VFX_texture_WaterScroll_19G3_A.dds",
+  "Mesh Path": "Assets/3D/VFX/VFX_mesh_plane_160x160_01_19G4.fbx"
+}
