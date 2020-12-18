@@ -8,7 +8,9 @@
 	],
 
 	"Ambience": [
-
+		{ "Path": "Castle.mp3" },
+		{ "Path": "Dungeon.mp3" },
+		{ "Path": "Garden.mp3" }
 	],
 
 	"SFX": [
